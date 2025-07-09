@@ -1,0 +1,80 @@
+---
+import type { OpenPlannerType } from '../../type'
+
+interface Props {
+    sponsorCategories: OpenPlannerType['sponsors']
+}
+
+const { sponsorCategories } = Astro.props
+
+const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.order)
+---
+
+<section id="sponsors" class="py-12 sm:py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16 scroll-animate">
+            <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                <span class="mr-2 animate-bounce-gentle">🤝</span>
+                Partenaires
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
+                Nos 
+                <span class="text-gradient animate-gradient">partenaires</span>
+            </h2>
+        </div>
+
+        {sponsorsCategoriesSorted.length === 0 && (
+            <div class="text-center space-y-8 scroll-animate-scale">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 animate-fade-in">
+                    Rejoignez les partenaires de Tech'Work 2026
+                </h3>
+                <a
+                    href="mailto:partners@techwork.lyon"
+                    class="btn btn-primary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                    Devenir partenaire
+                </a>
+            </div>
+        )}
+
+        {sponsorsCategoriesSorted.map(
+            (sponsorCategory: { name: string; sponsors: { website: string; name: string; logoUrl: string }[] }, categoryIndex: number) => (
+                <div class="mb-12 sm:mb-16 scroll-animate" style={`animation-delay: ${categoryIndex * 0.3}s`}>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-6 text-center animate-fade-in">{sponsorCategory.name}</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 stagger-children">
+                        {sponsorCategory.sponsors.map(
+                            (sponsor: { website: string; name: string; logoUrl: string }, sponsorIndex: number) => (
+                                <a
+                                    class="logo-item p-4 sm:p-6 bg-white rounded-lg shadow-md border border-gray-100 hover-lift scroll-animate-scale group"
+                                    href={sponsor.website}
+                                    title={sponsor.name}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={`animation-delay: ${sponsorIndex * 0.1}s`}>
+                                    <img
+                                        class="logo-img w-full h-16 sm:h-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                                        src={sponsor.logoUrl}
+                                        alt={sponsor.name}
+                                        loading="lazy"
+                                    />
+                                </a>
+                            )
+                        )}
+                    </div>
+                </div>
+            )
+        )}
+
+        {sponsorsCategoriesSorted.length > 0 && (
+            <div class="text-center scroll-animate">
+                <a
+                    href="mailto:partners@techwork.lyon"
+                    class="btn btn-secondary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                    Devenir partenaire
+                </a>
+            </div>
+        )}
+    </div>
+</section>
+

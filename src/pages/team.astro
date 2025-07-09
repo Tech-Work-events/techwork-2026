@@ -1,0 +1,246 @@
+---
+import LayoutWithTitle from '../layouts/LayoutWithTitle.astro'
+import GenericIcon from '../components/icons/GenericIcon.astro'
+import Grid from '../components/ui-elements/Grid.astro'
+import Cluster from '../components/ui-elements/Cluster.astro'
+import Stack from '../components/ui-elements/Stack.astro'
+import ContentContainer from '../components/ui-elements/ContentContainer.astro'
+
+const team = [
+    {
+        name: "Votre nom",
+        role: "Co-fondateur & Chief Innovation Officer",
+        bio: "Développeur passionné, organisateur compulsif. J'ai toujours rêvé d'un événement tech qui ne me fasse pas rater le coucher de mes enfants.",
+        responsibilities: "Vision stratégique, relations speakers, coordination générale",
+        superpower: "Transformer les idées folles en événements réussis",
+        coffee: "Espresso (double, évidemment)",
+        photoUrl: "/pictures/team.webp",
+        socials: [
+            { icon: "twitter", link: "https://twitter.com/yourhandle" },
+            { icon: "linkedin", link: "https://linkedin.com/in/yourprofile" },
+        ]
+    },
+    {
+        name: "Maxime",
+        role: "Co-fondateur & Master of Logistics",
+        bio: "Organiser un événement tech, c'est comme déployer en prod : ça doit être parfait du premier coup.",
+        responsibilities: "Logistique, partenariats, expérience participant",
+        superpower: "Prévoir tous les edge cases possibles",
+        ide: "VS Code (et on se bat encore avec [votre nom] pour ça)",
+        photoUrl: "/pictures/team.webp",
+        socials: [
+            { icon: "twitter", link: "https://twitter.com/maxime" },
+            { icon: "linkedin", link: "https://linkedin.com/in/maxime" },
+        ]
+    }
+]
+---
+
+<LayoutWithTitle
+    htmlTitle="Tech'Work Lyon Équipe"
+    title="L'équipe qui révolutionne la tech lyonnaise"
+    subDescription="Nous sommes deux développeurs qui en avaient marre d'avoir à choisir entre apprendre et avoir une vie sociale. Après avoir organisé Tech & Wine, on a eu une révélation : et si on créait l'événement tech parfait ?">
+    
+    <ContentContainer>
+        <div class="origin-story">
+            <h2>L'origine story</h2>
+            <pre class="code-block"><code>{`// Il était une fois...
+const techAndWine = organiserEvenement({
+  nom: "Tech & Wine",
+  concept: "tech + convivialité",
+  résultat: "succès"
+});
+
+// Mais on a réalisé...
+const problème = {
+  timing: "soirée après une journée de travail",
+  format: "classique",
+  accessibilité: "limitée"
+};
+
+// Alors on a eu une idée...
+const techWork = refactor(techAndWine, {
+  timing: "sur temps de travail",
+  format: "révolutionnaire",
+  accessibilité: "maximale"
+});
+
+// Et voilà !
+console.log("Tech'Work is born! 🚀");`}</code></pre>
+        </div>
+    </ContentContainer>
+
+    <ContentContainer>
+        <Grid space="3rem" min="20rem">
+            {
+                team.map((member) => (
+                    <div class="team-card">
+                        <Cluster space="1.375rem" align="flex-start" nowrap>
+                            <img class="photo" src={member.photoUrl} alt={`Photo de ${member.name}`} />
+                            <div class="member-info">
+                                <Stack align="flex-start" space="0.75rem">
+                                    <div>
+                                        <h2 class="fs2 member-name">{member.name}</h2>
+                                        <p class="role">{member.role}</p>
+                                    </div>
+                                    
+                                    <blockquote class="bio">
+                                        "{member.bio}"
+                                    </blockquote>
+                                    
+                                    <div class="details">
+                                        <p><strong>Responsabilités :</strong> {member.responsibilities}</p>
+                                        <p><strong>Superpower :</strong> {member.superpower}</p>
+                                        {member.coffee && <p><strong>Café préféré :</strong> {member.coffee}</p>}
+                                        {member.ide && <p><strong>IDE préféré :</strong> {member.ide}</p>}
+                                    </div>
+
+                                    <ul class="list-inline">
+                                        {member.socials.map((social) => (
+                                            <li class="list-inline-item">
+                                                <a
+                                                    href={social.link}
+                                                    class="social-icon"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label={`${member.name} sur ${social.icon}`}>
+                                                    <GenericIcon name={social.icon} />
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </Stack>
+                            </div>
+                        </Cluster>
+                    </div>
+                ))
+            }
+        </Grid>
+    </ContentContainer>
+
+    <ContentContainer>
+        <div class="join-team">
+            <h2>Rejoignez la révolution</h2>
+            <p><strong>Vous voulez participer à l'aventure ?</strong></p>
+            <p>On cherche des complices pour nous aider à révolutionner l'événementiel tech :</p>
+            <ul class="roles-list">
+                <li><strong>🎯 Responsable Communication</strong> - Pour faire connaître notre révolution (et nos jeux de mots douteux)</li>
+                <li><strong>🎨 UX/UI Designer</strong> - Pour que notre site soit aussi beau que notre concept</li>
+                <li><strong>🤝 Community Manager</strong> - Pour animer notre communauté avec style et humour</li>
+                <li><strong>💻 Développeur·se</strong> - Pour automatiser tout ce qui peut l'être (on est des devs, après tout)</li>
+            </ul>
+            <p><strong>Contact :</strong> <a href="mailto:team@techwork.lyon">team@techwork.lyon</a> <em>(oui, on a un vrai email de devs)</em></p>
+        </div>
+    </ContentContainer>
+</LayoutWithTitle>
+
+<style>
+    .team-card {
+        background: var(--component);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .photo {
+        border-radius: 50%;
+        object-fit: cover;
+        box-sizing: border-box;
+        width: 8rem;
+        height: 8rem;
+        aspect-ratio: 1;
+        border: 0.25rem solid var(--brand-solid);
+        flex-shrink: 0;
+    }
+
+    .member-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .member-name {
+        margin: 0;
+        color: var(--brand-solid);
+    }
+
+    .role {
+        margin: 0;
+        font-style: italic;
+        color: var(--text-subtle);
+        font-size: var(--fs0);
+    }
+
+    .bio {
+        font-style: italic;
+        margin: 0;
+        padding: 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        border-left: 3px solid var(--brand-solid);
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+
+    .details {
+        font-size: var(--fs-1);
+        line-height: 1.6;
+    }
+
+    .details p {
+        margin: 0.25rem 0;
+    }
+
+    .social-icon {
+        fill: var(--text-subtle);
+        transition: fill var(--animation);
+        width: 1.5rem;
+        height: 1.5rem;
+
+        &:hover {
+            fill: var(--brand-solid);
+        }
+    }
+
+    .origin-story {
+        background: var(--component);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .code-block {
+        background: var(--grey-5);
+        color: var(--white);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        overflow-x: auto;
+        font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .join-team {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .roles-list {
+        margin: 1rem 0;
+    }
+
+    .roles-list li {
+        margin: 0.5rem 0;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .team-card .photo {
+            width: 6rem;
+            height: 6rem;
+        }
+
+        .code-block {
+            font-size: 0.8rem;
+        }
+    }
+</style>

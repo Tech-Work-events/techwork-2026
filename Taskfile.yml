@@ -1,0 +1,1027 @@
+version: '3'
+
+vars:
+    PROJECT_NAME: 'Cloud Nord Event Website'
+    TERRAFORM_DIR: './terraform'
+    SCRIPTS_DIR: './scripts'
+    NODE_VERSION: '20'
+
+env:
+    TF_IN_AUTOMATION: 'true'
+
+tasks:
+    default:
+        desc: 'Show available tasks'
+        silent: true
+        cmds:
+            - |
+                echo "🚀 Cloud Nord Event Website - Available Tasks"
+                echo ""
+                echo "Use 'task help' for detailed help and examples"
+                echo ""
+                echo "📋 Quick Commands:"
+                echo "  task help          # Show detailed help"
+                echo "  task setup-dev     # Setup development environment"
+                echo "  task start         # Start development server"
+                echo "  task deploy YEAR=2025  # Deploy infrastructure"
+                echo ""
+                echo "📖 Main Categories:"
+                echo "  🌐 Web Development: install, dev, build, preview, lint, test"
+                echo "  🏗️ Infrastructure: setup, plan, apply, destroy, update-env"
+                echo "  🚀 Deployment: deploy-web, full-deploy"
+                echo "  🔧 Utilities: validate, format, clean, list-workspaces"
+                echo "  🔐 SOPS Encryption: setup-sops, encrypt-secrets, edit-secrets"
+                echo ""
+                echo "💡 Tip: Use 'task --list' to see all tasks with descriptions"
+
+    # Setup and validation tasks
+    setup:
+        desc: 'Initial Terraform setup and validation'
+        deps: [check-requirements]
+        cmds:
+            - echo "=================================================="
+            - echo "  Firebase Infrastructure Terraform Setup"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - echo "=================================================="
+            - task: authenticate-gcloud
+            - task: setup-terraform-config
+            - task: validate-terraform
+            - echo ""
+            - echo "=================================================="
+            - echo "✅ Setup completed successfully!"
+            - echo "=================================================="
+            - echo ""
+            - echo "Next steps:"
+            - echo "1. Review and edit terraform/terraform.tfvars with your specific values"
+            - echo "2. Run task plan YEAR=2025 to see what will be created"
+            - echo "3. Run task apply YEAR=2025 to create the infrastructure"
+
+    check-requirements:
+        desc: 'Check if required tools are installed'
+        cmds:
+            - |
+                echo "🔍 Checking requirements..."
+                if ! command -v terraform &> /dev/null; then
+                  echo "❌ Terraform is not installed!"
+                  echo "Please install Terraform from: https://developer.hashicorp.com/terraform/downloads"
+                  exit 1
+                fi
+                if ! command -v gcloud &> /dev/null; then
+                  echo "❌ Google Cloud CLI is not installed!"
+                  echo "Please install gcloud from: https://cloud.google.com/sdk/docs/install"
+                  exit 1
+                fi
+                echo "✅ All requirements are met!"
+
+    authenticate-gcloud:
+        desc: 'Authenticate with Google Cloud'
+        cmds:
+            - |
+                echo "🔐 Checking Google Cloud authentication..."
+                if ! gcloud auth list --filter=status:ACTIVE --format="value(account)" | grep -q .; then
+                  echo "⚠️  Not authenticated with Google Cloud. Starting authentication..."
+                  gcloud auth login
+                  gcloud auth application-default login
+                else
+                  echo "✅ Already authenticated with Google Cloud"
+                fi
+
+    setup-terraform-config:
+        desc: 'Set up Terraform configuration'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "⚙️  Setting up Terraform configuration..."
+                if [ ! -f "terraform.tfvars" ]; then
+                  echo "⚠️  terraform.tfvars not found. Creating from example..."
+                  cp terraform.tfvars.example terraform.tfvars
+                  echo "⚠️  Please edit terraform.tfvars with your specific values:"
+                  echo "  - billing_account_id: Your GCP billing account ID"
+                  echo "  - project_id: Your base project ID"
+                  echo "  - year: The year for deployment"
+                  echo ""
+                  read -p "Press Enter to continue after editing terraform.tfvars..."
+                fi
+                echo "🚀 Initializing Terraform..."
+                terraform init
+                echo "✅ Terraform initialized successfully!"
+
+    setup-remote-state:
+        desc: 'Setup Google Cloud Storage backend for Terraform state'
+        deps: [check-requirements]
+        cmds:
+            - echo "=================================================="
+            - echo "  Terraform Remote State Setup"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - echo "=================================================="
+            - |
+                echo "🔧 Setting up remote state backend..."
+                ./scripts/terraform-setup-remote-state.sh
+                echo "✅ Remote state setup completed!"
+
+    validate:
+        desc: 'Validate Terraform configuration'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [check-requirements]
+        cmds:
+            - echo "=================================================="
+            - echo "  Terraform Configuration Validation"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - echo "=================================================="
+            - task: validate-terraform
+            - task: check-formatting
+            - task: check-security
+            - echo ""
+            - echo "=================================================="
+            - echo "✅ Validation completed!"
+            - echo "=================================================="
+
+    validate-terraform:
+        desc: 'Validate Terraform syntax'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "🔍 Validating Terraform syntax..."
+                if [ ! -d ".terraform" ]; then
+                  echo "🚀 Initializing Terraform..."
+                  terraform init -backend=false
+                fi
+                terraform validate
+                echo "✅ Terraform syntax is valid!"
+
+    check-formatting:
+        desc: 'Check Terraform formatting'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "🎨 Checking Terraform formatting..."
+                if terraform fmt -check -diff; then
+                  echo "✅ Terraform files are properly formatted"
+                else
+                  echo "⚠️  Terraform files need formatting"
+                  echo "  Run: task format"
+                fi
+
+    format:
+        desc: 'Format Terraform files'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "🎨 Formatting Terraform files..."
+                terraform fmt -recursive
+                echo "✅ Terraform files formatted!"
+
+    check-security:
+        desc: 'Check for security issues'
+        cmds:
+            - |
+                echo "🔒 Checking for security issues..."
+                if grep -q "terraform.tfvars" .gitignore; then
+                  echo "✅ terraform.tfvars is in .gitignore"
+                else
+                  echo "❌ terraform.tfvars should be in .gitignore!"
+                fi
+                if grep -q "terraform.tfstate" .gitignore; then
+                  echo "✅ Terraform state files are in .gitignore"
+                else
+                  echo "❌ Terraform state files should be in .gitignore!"
+                fi
+
+    # Deployment tasks
+    plan:
+        desc: 'Plan infrastructure deployment for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year]
+        cmds:
+            - echo "=================================================="
+            - echo "  Firebase Infrastructure Deployment Plan"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - 'echo "  Year: {{.YEAR}}"'
+            - echo "=================================================="
+            - task: create-workspace
+            - task: generate-tfvars
+            - task: decrypt-secrets
+            - |
+                echo "🔍 Planning infrastructure for year {{.YEAR}}..."
+                terraform plan \
+                  -var-file="terraform-{{.YEAR}}.tfvars" \
+                  -var-file="terraform-{{.YEAR}}.secrets.decrypted.tfvars" \
+                  -out="tfplan-{{.YEAR}}"
+                echo ""
+                echo "✅ Plan completed! Review the output above."
+                echo ""
+                echo "To apply these changes, run:"
+                echo "  task apply YEAR={{.YEAR}}"
+
+    apply:
+        desc: 'Apply infrastructure deployment for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year]
+        cmds:
+            - echo "=================================================="
+            - echo "  Firebase Infrastructure Deployment"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - 'echo "  Year: {{.YEAR}}"'
+            - echo "=================================================="
+            - task: create-workspace
+            - task: generate-tfvars
+            - task: decrypt-secrets
+            - |
+                echo "🚀 Deploying infrastructure for year {{.YEAR}}..."
+                if [ -f "tfplan-{{.YEAR}}" ]; then
+                  echo "📋 Applying existing plan..."
+                  terraform apply "tfplan-{{.YEAR}}"
+                else
+                  echo "📋 No existing plan found. Creating and applying..."
+                  terraform apply \
+                    -var-file="terraform-{{.YEAR}}.tfvars" \
+                    -var-file="terraform-{{.YEAR}}.secrets.decrypted.tfvars"
+                fi
+
+                if [ $? -eq 0 ]; then
+                  echo ""
+                  echo "✅ Infrastructure deployed successfully for year {{.YEAR}}!"
+                  echo ""
+                  echo "📊 Retrieving Firebase configuration..."
+                  terraform output -json > "outputs-{{.YEAR}}.json"
+                  echo ""
+                  echo "=================================================="
+                  echo "  Deployment Summary for {{.YEAR}}"
+                  echo "=================================================="
+                  terraform output
+                  echo ""
+                  echo "📄 Firebase configuration saved to: outputs-{{.YEAR}}.json"
+                  echo "Use these values to update your application environment variables."
+                  echo ""
+                  echo "Next step: task update-env YEAR={{.YEAR}}"
+                fi
+
+    destroy:
+        desc: 'Destroy infrastructure for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year]
+        cmds:
+            - echo "=================================================="
+            - echo "  Firebase Infrastructure Destruction"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - 'echo "  Year: {{.YEAR}}"'
+            - echo "=================================================="
+            - task: create-workspace
+            - task: generate-tfvars
+            - task: decrypt-secrets
+            - |
+                echo "⚠️  This will destroy ALL infrastructure for year {{.YEAR}}!"
+                read -p "Are you sure? Type yes to confirm: " confirm
+
+                if [ "$confirm" = "yes" ]; then
+                  terraform destroy \
+                    -var-file="terraform-{{.YEAR}}.tfvars" \
+                    -var-file="terraform-{{.YEAR}}.secrets.decrypted.tfvars"
+
+                  if [ $? -eq 0 ]; then
+                    echo "✅ Infrastructure destroyed for year {{.YEAR}}"
+
+                    # Clean up files
+                    rm -f "tfplan-{{.YEAR}}" "outputs-{{.YEAR}}.json"
+
+                    # Delete workspace
+                    terraform workspace select default
+                    terraform workspace delete "{{.YEAR}}"
+                  fi
+                else
+                  echo "🚫 Destroy cancelled"
+                fi
+
+    validate-year:
+        desc: 'Validate that YEAR variable is provided and valid'
+        cmds:
+            - |
+                if [ -z "{{.YEAR}}" ]; then
+                  echo "❌ YEAR variable is required!"
+                  echo "Usage: task <command> YEAR=<year>"
+                  echo "Example: task plan YEAR=2025"
+                  exit 1
+                fi
+                if ! echo "{{.YEAR}}" | grep -qE "^20[0-9]{2}$"; then
+                  echo "❌ Year must be in format YYYY (e.g., 2024)"
+                  exit 1
+                fi
+
+    create-workspace:
+        desc: 'Create or select Terraform workspace for the year'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "🏗️  Setting up Terraform workspace for year {{.YEAR}}..."
+                if terraform workspace list | grep -q "{{.YEAR}}"; then
+                  echo "📂 Selecting existing workspace: {{.YEAR}}"
+                  terraform workspace select "{{.YEAR}}"
+                else
+                  echo "📂 Creating new workspace: {{.YEAR}}"
+                  terraform workspace new "{{.YEAR}}"
+                fi
+                echo "✅ Workspace {{.YEAR}} is ready"
+
+    generate-tfvars:
+        desc: 'Check year-specific tfvars file exists'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "⚙️  Checking year-specific configuration..."
+
+                tfvars_file="terraform-{{.YEAR}}.tfvars"
+                secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+
+                if [ ! -f "$tfvars_file" ]; then
+                  echo "❌ Configuration file not found: $tfvars_file"
+                  echo "Please create this file with your configuration."
+                  echo "You can use terraform-2025.tfvars as a template if it exists."
+                  exit 1
+                fi
+
+                if [ ! -f "$secrets_file" ]; then
+                  echo "❌ Secrets file not found: $secrets_file"
+                  echo "Please create this file with your secrets (billing_account_id, etc.)"
+                  echo "You can use terraform-2025.secrets.tfvars as a template if it exists."
+                  exit 1
+                fi
+
+                echo "✅ Configuration files found:"
+                echo "  - $tfvars_file"
+                echo "  - $secrets_file"
+
+    decrypt-secrets:
+        desc: 'Decrypt secrets file for a specific year (or copy if not encrypted)'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year]
+        cmds:
+            - |
+                secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+                decrypted_file="terraform-{{.YEAR}}.secrets.decrypted.tfvars"
+
+                if [ ! -f "$secrets_file" ]; then
+                  echo "❌ Secrets file not found: $secrets_file"
+                  exit 1
+                fi
+
+                # Check if file is encrypted with SOPS
+                if grep -q "ENC\[" "$secrets_file"; then
+                  echo "🔓 Decrypting SOPS-encrypted secrets for year {{.YEAR}}..."
+                  if ! command -v sops &> /dev/null; then
+                    echo "❌ SOPS is required to decrypt this file but not installed!"
+                    echo "Please run: task setup-sops"
+                    exit 1
+                  fi
+                  if [ -z "$SOPS_AGE_KEY_FILE" ]; then
+                    echo "❌ SOPS_AGE_KEY_FILE environment variable not set!"
+                    echo "Please run: task setup-sops"
+                    exit 1
+                  fi
+                  sops -d "$secrets_file" > "$decrypted_file"
+                  echo "✅ SOPS secrets decrypted to: $decrypted_file"
+                else
+                  echo "📋 Copying unencrypted secrets for year {{.YEAR}}..."
+                  cp "$secrets_file" "$decrypted_file"
+                  echo "✅ Secrets copied to: $decrypted_file"
+                fi
+
+    check-sops:
+        desc: 'Check if SOPS is properly configured'
+        cmds:
+            - |
+                if ! command -v sops &> /dev/null; then
+                  echo "❌ SOPS is not installed!"
+                  echo "Please run: task setup-sops"
+                  exit 1
+                fi
+
+                if [ -z "$SOPS_AGE_KEY_FILE" ]; then
+                  echo "❌ SOPS_AGE_KEY_FILE environment variable not set!"
+                  echo "Please run: task setup-sops"
+                  exit 1
+                fi
+
+                if [ ! -f "$SOPS_AGE_KEY_FILE" ]; then
+                  echo "❌ Age key file not found: $SOPS_AGE_KEY_FILE"
+                  echo "Please run: task setup-sops"
+                  exit 1
+                fi
+
+                echo "✅ SOPS is properly configured"
+
+    # Environment management tasks
+    update-env:
+        desc: 'Update environment variables from Terraform outputs'
+        deps: [validate-year, check-jq]
+        cmds:
+            - echo "=================================================="
+            - echo "  Firebase Environment Configuration Update"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - 'echo "  Year: {{.YEAR}}"'
+            - 'echo "  Target file: {{.ENV_FILE | default ".env"}}"'
+            - echo "=================================================="
+            - task: update-env-file
+            - echo ""
+            - echo "=================================================="
+            - 'echo "  Configuration Summary for {{.YEAR}}"'
+            - echo "=================================================="
+            - 'echo "Environment file: {{.ENV_FILE | default ".env"}}"'
+            - echo ""
+            - echo "✅ Configuration update completed!"
+
+    check-jq:
+        desc: 'Check if jq is installed'
+        cmds:
+            - |
+                if ! command -v jq &> /dev/null; then
+                  echo "❌ jq is required but not installed. Please install jq first."
+                  echo "macOS: brew install jq"
+                  echo "Ubuntu: sudo apt-get install jq"
+                  exit 1
+                fi
+
+    extract-firebase-config:
+        desc: 'Extract Firebase configuration from Terraform outputs'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                outputs_file="outputs-{{.YEAR}}.json"
+                if [ ! -f "$outputs_file" ]; then
+                  echo "❌ Terraform outputs file not found: $outputs_file"
+                  echo "Please deploy infrastructure first:"
+                  echo "  task apply YEAR={{.YEAR}}"
+                  exit 1
+                fi
+
+                echo "📊 Extracting Firebase configuration..."
+
+                # Extract values using jq and export them
+                export FIREBASE_API_KEY=$(jq -r ".environment_variables.value.FIREBASE_API_KEY" "$outputs_file")
+                export FIREBASE_AUTH_DOMAIN=$(jq -r ".environment_variables.value.FIREBASE_AUTH_DOMAIN" "$outputs_file")
+                export FIREBASE_DATABASE_URL=$(jq -r ".environment_variables.value.FIREBASE_DATABASE_URL" "$outputs_file")
+                export FIREBASE_PROJECT_ID=$(jq -r ".environment_variables.value.FIREBASE_PROJECT_ID" "$outputs_file")
+                export FIREBASE_STORAGE_BUCKET=$(jq -r ".environment_variables.value.FIREBASE_STORAGE_BUCKET" "$outputs_file")
+                export FIREBASE_MESSAGING_SENDER_ID=$(jq -r ".environment_variables.value.FIREBASE_MESSAGING_SENDER_ID" "$outputs_file")
+                export FIREBASE_APP_ID=$(jq -r ".environment_variables.value.FIREBASE_APP_ID" "$outputs_file")
+                export FIREBASE_MEASUREMENT_ID=$(jq -r ".environment_variables.value.FIREBASE_MEASUREMENT_ID" "$outputs_file")
+
+                # Validate extracted values
+                if [ "$FIREBASE_API_KEY" = "null" ] || [ -z "$FIREBASE_API_KEY" ]; then
+                  echo "❌ Failed to extract Firebase configuration from Terraform outputs"
+                  exit 1
+                fi
+
+                echo "✅ Firebase configuration extracted successfully"
+
+    update-env-file:
+        desc: 'Update environment file with Firebase configuration'
+        dir: '{{.TERRAFORM_DIR}}'
+        env:
+            YEAR: '{{.YEAR}}'
+            ENV_FILE: '{{.ENV_FILE | default ".env"}}'
+        cmds:
+            - |
+                outputs_file="outputs-{{.YEAR}}.json"
+                env_file="../$ENV_FILE"
+                backup_file="../${ENV_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
+
+                echo "📝 Updating environment file: $ENV_FILE"
+
+                # Extract values using jq
+                FIREBASE_API_KEY=$(jq -r ".environment_variables.value.FIREBASE_API_KEY" "$outputs_file")
+                FIREBASE_AUTH_DOMAIN=$(jq -r ".environment_variables.value.FIREBASE_AUTH_DOMAIN" "$outputs_file")
+                FIREBASE_DATABASE_URL=$(jq -r ".environment_variables.value.FIREBASE_DATABASE_URL" "$outputs_file")
+                FIREBASE_PROJECT_ID=$(jq -r ".environment_variables.value.FIREBASE_PROJECT_ID" "$outputs_file")
+                FIREBASE_STORAGE_BUCKET=$(jq -r ".environment_variables.value.FIREBASE_STORAGE_BUCKET" "$outputs_file")
+                FIREBASE_MESSAGING_SENDER_ID=$(jq -r ".environment_variables.value.FIREBASE_MESSAGING_SENDER_ID" "$outputs_file")
+                FIREBASE_APP_ID=$(jq -r ".environment_variables.value.FIREBASE_APP_ID" "$outputs_file")
+                FIREBASE_MEASUREMENT_ID=$(jq -r ".environment_variables.value.FIREBASE_MEASUREMENT_ID" "$outputs_file")
+
+                # Create backup if file exists
+                if [ -f "$env_file" ]; then
+                  cp "$env_file" "$backup_file"
+                  echo "💾 Backup created: ${ENV_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
+                fi
+
+                # Create or update environment file
+                {
+                  echo "# Firebase Configuration for Year $YEAR"
+                  echo "# Generated on $(date)"
+                  echo "# DO NOT EDIT MANUALLY - Use task update-env YEAR=$YEAR to update"
+                  echo ""
+                  echo "# OpenPlanner URL (update as needed)"
+                  echo "OPENPLANNER_URL=https://storage.googleapis.com/conferencecenterr.appspot.com/events/xxx/xxx.json"
+                  echo ""
+                  echo "# Firebase Configuration"
+                  echo "FIREBASE_API_KEY=$FIREBASE_API_KEY"
+                  echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN"
+                  echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL"
+                  echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID"
+                  echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET"
+                  echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID"
+                  echo "FIREBASE_APP_ID=$FIREBASE_APP_ID"
+                  echo "FIREBASE_MEASUREMENT_ID=$FIREBASE_MEASUREMENT_ID"
+                } > "$env_file"
+
+                echo "✅ Environment file updated: $ENV_FILE"
+
+                # Show GitHub secrets commands with actual values
+                echo ""
+                echo "📋 GitHub Actions secrets update commands:"
+                echo "gh secret set FIREBASE_API_KEY --body \"$FIREBASE_API_KEY\""
+                echo "gh variable set FIREBASE_AUTH_DOMAIN --body \"$FIREBASE_AUTH_DOMAIN\""
+                echo "gh variable set FIREBASE_DATABASE_URL --body \"$FIREBASE_DATABASE_URL\""
+                echo "gh variable set FIREBASE_PROJECT_ID --body \"$FIREBASE_PROJECT_ID\""
+                echo "gh variable set FIREBASE_STORAGE_BUCKET --body \"$FIREBASE_STORAGE_BUCKET\""
+                echo "gh variable set FIREBASE_MESSAGING_SENDER_ID --body \"$FIREBASE_MESSAGING_SENDER_ID\""
+                echo "gh variable set FIREBASE_APP_ID --body \"$FIREBASE_APP_ID\""
+                echo "gh variable set FIREBASE_MEASUREMENT_ID --body \"$FIREBASE_MEASUREMENT_ID\""
+
+    show-github-secrets:
+        desc: 'Show GitHub Actions secrets update instructions'
+        cmds:
+            - |
+                echo "📋 GitHub Actions secrets update instructions:"
+                echo ""
+                echo "To update GitHub Actions secrets, run these commands:"
+                echo "(Requires GitHub CLI: https://cli.github.com/)"
+                echo ""
+                echo "gh secret set FIREBASE_API_KEY --body \"$FIREBASE_API_KEY\""
+                echo "gh variable set FIREBASE_AUTH_DOMAIN --body \"$FIREBASE_AUTH_DOMAIN\""
+                echo "gh variable set FIREBASE_DATABASE_URL --body \"$FIREBASE_DATABASE_URL\""
+                echo "gh variable set FIREBASE_PROJECT_ID --body \"$FIREBASE_PROJECT_ID\""
+                echo "gh variable set FIREBASE_STORAGE_BUCKET --body \"$FIREBASE_STORAGE_BUCKET\""
+                echo "gh variable set FIREBASE_MESSAGING_SENDER_ID --body \"$FIREBASE_MESSAGING_SENDER_ID\""
+                echo "gh variable set FIREBASE_APP_ID --body \"$FIREBASE_APP_ID\""
+                echo "gh variable set FIREBASE_MEASUREMENT_ID --body \"$FIREBASE_MEASUREMENT_ID\""
+                echo ""
+
+    # SOPS encryption tasks
+    setup-sops:
+        desc: 'Setup SOPS encryption with Age'
+        cmds:
+            - |
+                echo "🔐 Setting up SOPS encryption..."
+                ./scripts/sops-setup-encryption.sh
+
+    encrypt-secrets:
+        desc: 'Encrypt secrets file for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year, check-sops]
+        cmds:
+            - |
+                secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+
+                if [ ! -f "$secrets_file" ]; then
+                  echo "❌ Secrets file not found: $secrets_file"
+                  echo "Please create it first with your sensitive values"
+                  exit 1
+                fi
+
+                echo "🔒 Encrypting secrets for year {{.YEAR}}..."
+                sops -e -i "$secrets_file"
+                echo "✅ Secrets encrypted: $secrets_file"
+                echo ""
+                echo "📝 The file is now encrypted and safe to commit to git!"
+
+    edit-secrets:
+        desc: 'Edit encrypted secrets file for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year, check-sops]
+        cmds:
+            - |
+                secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+
+                if [ ! -f "$secrets_file" ]; then
+                  echo "❌ Encrypted secrets file not found: $secrets_file"
+                  exit 1
+                fi
+
+                echo "✏️  Opening encrypted secrets file for editing..."
+                sops "$secrets_file"
+
+    edit-env:
+        desc: 'Edit encrypted .env-encrypted file'
+        deps: [check-sops]
+        cmds:
+            - |
+                if [ ! -f ".env-encrypted" ]; then
+                  echo "❌ .env-encrypted file not found!"
+                  exit 1
+                fi
+
+                # Check if file is encrypted
+                if ! grep -q "ENC\[" .env-encrypted; then
+                  echo "❌ .env-encrypted file is not encrypted!"
+                  echo "Run: task encrypt-env"
+                  exit 1
+                fi
+
+                echo "✏️  Opening encrypted .env-encrypted file for editing..."
+                sops --input-type dotenv --output-type dotenv .env-encrypted
+
+    encrypt-env:
+        desc: 'Encrypt .env file to .env-encrypted with SOPS'
+        deps: [check-sops]
+        cmds:
+            - |
+                if [ ! -f ".env" ]; then
+                  echo "❌ .env file not found!"
+                  exit 1
+                fi
+
+                # Check if already encrypted
+                if [ -f ".env-encrypted" ] && grep -q "ENC\[" .env-encrypted; then
+                  echo "⚠️  .env-encrypted file already exists and is encrypted!"
+                  echo "Use: task edit-env to edit it"
+                  exit 0
+                fi
+
+                echo "🔒 Encrypting .env file to .env-encrypted..."
+                sops -e --input-type dotenv --output-type dotenv .env > .env-encrypted
+                echo "✅ .env file encrypted to .env-encrypted successfully!"
+                echo "📝 The .env-encrypted file can now be safely committed to git"
+                echo "⚠️  Remember to add .env to .gitignore if not already done"
+
+    decrypt-env:
+        desc: 'Decrypt .env-encrypted file to .env for development'
+        deps: [check-sops]
+        cmds:
+            - |
+                if [ ! -f ".env-encrypted" ]; then
+                  echo "❌ .env-encrypted file not found!"
+                  exit 1
+                fi
+
+                # Check if file is encrypted
+                if ! grep -q "ENC\[" .env-encrypted; then
+                  echo "❌ .env-encrypted file is not encrypted!"
+                  exit 1
+                fi
+
+                echo "🔓 Decrypting .env-encrypted file to .env..."
+                sops -d --input-type dotenv --output-type dotenv .env-encrypted > .env
+                echo "✅ Decrypted .env-encrypted to .env successfully!"
+                echo "⚠️  Remember: .env is in .gitignore and should not be committed!"
+
+    init-env:
+        desc: 'Initialize environment: create .env from .env-encrypted or create new .env-encrypted'
+        deps: [check-sops]
+        cmds:
+            - |
+                echo "🔧 Initializing environment configuration..."
+                
+                if [ -f ".env-encrypted" ]; then
+                  echo "📋 Found existing .env-encrypted file"
+                  if grep -q "ENC\[" .env-encrypted; then
+                    echo "🔓 Decrypting existing .env-encrypted to .env..."
+                    sops -d --input-type dotenv --output-type dotenv .env-encrypted > .env
+                    echo "✅ Environment initialized from existing encrypted file"
+                  else
+                    echo "❌ .env-encrypted file is not encrypted!"
+                    exit 1
+                  fi
+                else
+                  echo "📝 No .env-encrypted found. Creating new environment..."
+                  echo "Please create a .env file with your configuration first, then run:"
+                  echo "  task encrypt-env"
+                  echo ""
+                  echo "Or if you have an existing .env file, run:"
+                  echo "  task encrypt-env"
+                fi
+
+    add-team-member:
+        desc: 'Add a new team member to SOPS encryption'
+        cmds:
+            - |
+                if [ -z "{{.PUBLIC_KEY}}" ]; then
+                  echo "❌ PUBLIC_KEY variable is required!"
+                  echo "Usage: task add-team-member PUBLIC_KEY=<age_public_key>"
+                  echo ""
+                  echo "The new team member should:"
+                  echo "1. Run: task setup-sops"
+                  echo "2. Share their public key from: grep '# public key:' ~/.config/sops/age/keys.txt"
+                  exit 1
+                fi
+
+                echo "🔐 Adding team member with public key: {{.PUBLIC_KEY}}"
+                ./scripts/sops-add-team-member.sh "{{.PUBLIC_KEY}}"
+
+    show-my-public-key:
+        desc: 'Show your SOPS public key to share with team'
+        deps: [check-sops]
+        cmds:
+            - |
+                echo "📋 Your SOPS public key:"
+                echo ""
+                grep "# public key:" "$SOPS_AGE_KEY_FILE" | cut -d' ' -f4
+                echo ""
+                echo "💡 Share this public key with your team lead to get access to secrets."
+                echo "   They should run: task add-team-member PUBLIC_KEY=<your_key>"
+
+    # Utility tasks
+    clean:
+        desc: 'Clean up temporary files and old workspaces'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "🧹 Cleaning up temporary files..."
+                rm -f tfplan-* outputs-*.json terraform-*.tfvars terraform-*.secrets.decrypted.tfvars
+                echo "✅ Temporary files cleaned"
+
+    list-workspaces:
+        desc: 'List all Terraform workspaces'
+        dir: '{{.TERRAFORM_DIR}}'
+        cmds:
+            - |
+                echo "📂 Terraform workspaces:"
+                terraform workspace list
+
+    show-outputs:
+        desc: 'Show Terraform outputs for a specific year'
+        dir: '{{.TERRAFORM_DIR}}'
+        deps: [validate-year]
+        cmds:
+            - |
+                echo "📊 Terraform outputs for year {{.YEAR}}:"
+                terraform workspace select "{{.YEAR}}"
+                terraform output
+
+    # Quick deployment workflows
+    deploy:
+        desc: 'Complete deployment workflow (plan + apply + update-env)'
+        cmds:
+            - task: plan
+              vars: { YEAR: '{{.YEAR}}' }
+            - task: apply
+              vars: { YEAR: '{{.YEAR}}' }
+            - task: update-env
+              vars: { YEAR: '{{.YEAR}}' }
+
+    # Help and documentation
+    help:
+        desc: 'Show detailed help and usage examples'
+        silent: true
+        cmds:
+            - |
+                cat << 'EOF'
+                ==================================================
+                  Firebase Infrastructure as Code - Task Runner
+                  {{.PROJECT_NAME}}
+                ==================================================
+
+                🚀 Quick Start:
+                  task setup-dev                # Setup development environment
+                  task start                     # Start development server
+                  task deploy YEAR=2025          # Deploy infrastructure
+
+                🌐 Web Development:
+                  task install                   # Install dependencies
+                  task dev                       # Start development server
+                  task build                     # Build for production
+                  task preview                   # Preview production build
+                  task lint                      # Run linting
+                  task test                      # Run tests
+
+                🏗️ Infrastructure:
+                  task setup                     # Setup Terraform environment
+                  task setup-remote-state        # Setup remote state backend
+                  task plan YEAR=<year>          # Plan infrastructure changes
+                  task apply YEAR=<year>         # Apply infrastructure changes
+                  task destroy YEAR=<year>       # Destroy infrastructure
+                  task update-env YEAR=<year>    # Update environment variables
+
+                🚀 Deployment:
+                  task deploy-web YEAR=<year>    # Deploy website to Firebase
+                  task full-deploy YEAR=<year>   # Deploy infrastructure + website
+
+                🔧 Utility Commands:
+                  task validate                  # Validate Terraform configuration
+                  task format                    # Format Terraform files
+                  task clean                     # Clean Terraform temp files
+                  task clean-web                 # Clean web build artifacts
+                  task list-workspaces           # List Terraform workspaces
+                  task show-outputs YEAR=<year>  # Show outputs for a year
+
+                🔐 SOPS Encryption:
+                  task setup-sops                # Setup SOPS encryption
+                  task encrypt-secrets YEAR=<year> # Encrypt secrets file
+                  task edit-secrets YEAR=<year>   # Edit encrypted secrets
+                  task decrypt-secrets YEAR=<year> # Decrypt secrets (temp)
+                  task encrypt-env               # Encrypt .env to .env-encrypted
+                  task edit-env                  # Edit encrypted .env-encrypted
+                  task decrypt-env               # Decrypt .env-encrypted to .env
+                  task init-env                  # Initialize environment
+                  task show-my-public-key         # Show your public key
+                  task add-team-member PUBLIC_KEY=<key> # Add team member
+
+                📖 Examples:
+                  # Development workflow
+                  task setup-dev                # Setup everything for development
+                  task start                     # Quick start development server
+                  task build                     # Build for production
+
+                  # Infrastructure workflow
+                  task setup                     # Setup Terraform
+                  task deploy YEAR=2025          # Deploy infrastructure for 2025
+                  task update-env YEAR=2025      # Update environment variables
+                  
+                  # Environment management
+                  task init-env                  # Initialize environment from .env-encrypted
+                  task encrypt-env               # Encrypt .env to .env-encrypted
+                  task edit-env                  # Edit encrypted environment
+                  task decrypt-env               # Decrypt for development
+
+                  # Full deployment workflow
+                  task full-deploy YEAR=2025     # Deploy everything for 2025
+                  task destroy YEAR=2024         # Remove 2024 infrastructure
+
+                📖 Documentation:
+                  docs/INFRASTRUCTURE.md    # Complete infrastructure guide
+                  docs/DEVELOPMENT.md       # Development workflow guide
+                  terraform/README.md       # Detailed Terraform reference
+                EOF
+
+    # Web development tasks
+    install:
+        desc: 'Install Node.js dependencies'
+        cmds:
+            - |
+                echo "📦 Installing Node.js dependencies..."
+                if ! command -v node &> /dev/null; then
+                  echo "❌ Node.js is not installed!"
+                  echo "Please install Node.js {{.NODE_VERSION}} or later"
+                  echo "Visit: https://nodejs.org/ or use nvm: nvm install {{.NODE_VERSION}}"
+                  exit 1
+                fi
+
+                node_version=$(node --version | sed "s/v//")
+                echo "✅ Node.js version: $node_version"
+
+                if [ -f "package-lock.json" ]; then
+                  npm ci
+                else
+                  npm install
+                fi
+                echo "✅ Dependencies installed successfully!"
+
+    dev:
+        desc: 'Start development server'
+        deps: [check-node]
+        cmds:
+            - |
+                echo "🚀 Starting development server..."
+                echo "📍 Server will be available at: http://localhost:4321"
+                echo "🔄 Hot reload enabled - changes will be reflected automatically"
+                echo ""
+                npm run dev
+
+    build:
+        desc: 'Build the website for production'
+        deps: [check-node]
+        cmds:
+            - |
+                echo "🏗️  Building website for production..."
+                npm run build
+                echo "✅ Build completed! Output in ./dist/"
+
+    preview:
+        desc: 'Preview the production build locally'
+        deps: [check-node]
+        cmds:
+            - |
+                echo "👀 Starting preview server..."
+                echo "📍 Preview will be available at: http://localhost:4321"
+                npm run preview
+
+    lint:
+        desc: 'Run linting checks'
+        deps: [check-node]
+        cmds:
+            - |
+                echo "🔍 Running linting checks..."
+                if [ -f "package.json" ] && grep -q "lint" package.json; then
+                  npm run lint
+                else
+                  echo "⚠️  No lint script found in package.json"
+                fi
+
+    test:
+        desc: 'Run tests'
+        deps: [check-node]
+        cmds:
+            - |
+                echo "🧪 Running tests..."
+                if [ -f "package.json" ] && grep -q "test" package.json; then
+                  npm test
+                else
+                  echo "⚠️  No test script found in package.json"
+                fi
+
+    check-node:
+        desc: 'Check if Node.js is installed and dependencies are available'
+        cmds:
+            - |
+                if ! command -v node &> /dev/null; then
+                  echo "❌ Node.js is not installed!"
+                  echo "Please install Node.js {{.NODE_VERSION}} or later"
+                  exit 1
+                fi
+
+                if [ ! -d "node_modules" ]; then
+                  echo "📦 Dependencies not found. Installing..."
+                  task install
+                fi
+
+    clean-web:
+        desc: 'Clean web build artifacts and dependencies'
+        cmds:
+            - |
+                echo "🧹 Cleaning web build artifacts..."
+                rm -rf dist/
+                rm -rf .astro/
+                rm -rf node_modules/.cache/
+                echo "✅ Web artifacts cleaned"
+
+    clean-deps:
+        desc: 'Clean Node.js dependencies (requires reinstall)'
+        cmds:
+            - |
+                echo "🧹 Cleaning Node.js dependencies..."
+                rm -rf node_modules/
+                rm -f package-lock.json
+                echo "✅ Dependencies cleaned. Run task install to reinstall."
+
+    # Combined development workflows
+    start:
+        desc: 'Quick start: install dependencies and start development server'
+        cmds:
+            - task: install
+            - task: dev
+
+    fresh-start:
+        desc: 'Fresh start: clean everything and start development server'
+        cmds:
+            - task: clean-web
+            - task: install
+            - task: dev
+
+    deploy-web:
+        desc: 'Build and deploy website to Firebase Hosting for a specific year'
+        deps: [validate-year, check-node]
+        cmds:
+            - echo "=================================================="
+            - echo "  Website Deployment to Firebase Hosting"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - 'echo "  Year: {{.YEAR}}"'
+            - echo "=================================================="
+            - |
+                echo "🏗️  Building website for production..."
+                npm run build
+
+                echo "🚀 Deploying to Firebase Hosting..."
+                if ! command -v firebase &> /dev/null; then
+                  echo "❌ Firebase CLI is not installed!"
+                  echo "Install with: npm install -g firebase-tools"
+                  exit 1
+                fi
+
+                # Switch to the correct Firebase project
+                firebase use "cloudnord-{{.YEAR}}"
+
+                # Deploy to hosting
+                firebase deploy --only hosting
+
+                echo "✅ Website deployed successfully!"
+                echo "🌐 URL: https://cloudnord-{{.YEAR}}.firebaseapp.com"
+
+    # Full stack workflows
+    full-deploy:
+        desc: 'Complete deployment: infrastructure + website'
+        cmds:
+            - task: deploy
+              vars: { YEAR: '{{.YEAR}}' }
+            - task: deploy-web
+              vars: { YEAR: '{{.YEAR}}' }
+
+    # Development environment setup
+    setup-dev:
+        desc: 'Setup complete development environment'
+        silent: true
+        cmds:
+            - echo "=================================================="
+            - echo "  Development Environment Setup"
+            - 'echo "  {{.PROJECT_NAME}}"'
+            - echo "=================================================="
+            - task: check-requirements
+            - task: install
+            - |
+                echo ""
+                echo "✅ Development environment ready!"
+                echo ""
+                echo "🚀 Quick commands:"
+                echo "  task dev          - Start development server"
+                echo "  task build        - Build for production"
+                echo "  task setup        - Setup infrastructure"
+                echo "  task deploy YEAR=2025  - Deploy infrastructure"
+                echo ""

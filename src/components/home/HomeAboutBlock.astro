@@ -1,0 +1,137 @@
+---
+const streams = [
+    {
+        icon: '🤖',
+        title: 'Data & IA Stream',
+        subtitle: 'Skynet, mais en mieux',
+        description: 'Machine Learning, Data Science, IA générative... Tout ce qu\'il faut savoir pour automatiser votre job avant que votre job vous automatise.',
+        level: 'Vous savez ce qu\'est un algorithme (et non, les algos d\'Instagram ne comptent pas)',
+        color: 'from-blue-500 to-purple-600'
+    },
+    {
+        icon: '⚙️',
+        title: 'DevOps Stream',
+        subtitle: 'Parce que git push --force sur master, c\'est mal',
+        description: 'CI/CD, Infrastructure as Code, Kubernetes... Apprenez à déployer sans transpirer (et sans réveiller l\'équipe à 3h du matin).',
+        level: 'Vous avez déjà cassé la prod au moins une fois',
+        color: 'from-green-500 to-teal-600'
+    },
+    {
+        icon: '💻',
+        title: 'Dev & Craft Stream',
+        subtitle: 'Clean Code & Café',
+        description: 'Architecture, bonnes pratiques, nouveaux frameworks... Parce qu\'un code élégant, c\'est comme un café parfait : ça se savoure.',
+        level: 'Vous savez que var c\'est le mal',
+        color: 'from-orange-500 to-red-600'
+    }
+]
+---
+
+<section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-12 sm:mb-16 scroll-animate">
+            <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                <span class="mr-2 animate-bounce-gentle">🚀</span>
+                Les 3 Streams qui déchirent
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
+                Choisissez votre
+                <span class="text-gradient animate-gradient">aventure</span>
+            </h2>
+            <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate">
+                Trois streams thématiques pour approfondir vos compétences et découvrir les dernières innovations tech.
+            </p>
+        </div>
+
+        <!-- Streams Grid avec animations dynamiques -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 stagger-children">
+            {streams.map((stream, index) => (
+                <div class="card hover-lift scroll-animate-scale group" style={`animation-delay: ${index * 0.2}s`}>
+                    <div class={`h-2 bg-gradient-to-r ${stream.color} animate-gradient`}></div>
+                    <div class="p-6 sm:p-8 relative overflow-hidden">
+                        <!-- Effet de brillance au survol -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        <div class="text-4xl sm:text-5xl mb-4 text-center group-hover:animate-bounce-gentle transition-all duration-300">{stream.icon}</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 text-center group-hover:text-primary-600 transition-colors duration-300">{stream.title}</h3>
+                        <p class="text-primary-600 font-semibold text-center mb-4 italic text-sm sm:text-base animate-fade-in">"{stream.subtitle}"</p>
+                        <p class="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">{stream.description}</p>
+                        <div class="bg-gray-50 rounded-lg p-3 sm:p-4 group-hover:bg-primary-50 transition-colors duration-300">
+                            <p class="text-xs sm:text-sm text-gray-700 group-hover:text-primary-700 transition-colors duration-300">
+                                <strong>Niveau requis :</strong> {stream.level}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Team Section avec animations -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <!-- Image avec effet parallax -->
+            <div class="order-2 lg:order-1 scroll-animate-left">
+                <div class="relative hover-lift group">
+                    <img 
+                        src="/pictures/team.webp" 
+                        alt="Équipe Tech'Work" 
+                        class="rounded-2xl shadow-2xl w-full group-hover:shadow-3xl transition-shadow duration-500 parallax"
+                        loading="lazy"
+                        data-speed="0.1"
+                    />
+                    <!-- Overlay animé -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent rounded-2xl group-hover:from-primary-600/30 transition-all duration-500"></div>
+                    <!-- Effet de brillance -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+            </div>
+
+            <!-- Content avec animations séquentielles -->
+            <div class="order-1 lg:order-2 space-y-6 scroll-animate-right">
+                <div class="scroll-animate">
+                    <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                        <span class="mr-2 animate-bounce-gentle">👥</span>
+                        L'équipe
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
+                        Qui révolutionne la 
+                        <span class="text-gradient animate-gradient">tech lyonnaise</span>
+                    </h2>
+                </div>
+
+                <div class="space-y-4 stagger-children">
+                    <p class="text-lg sm:text-xl text-gray-600 leading-relaxed scroll-animate">
+                        Nous sommes deux développeurs qui en avaient marre d'avoir à choisir entre apprendre et avoir une vie sociale.
+                    </p>
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed scroll-animate">
+                        Après avoir organisé Tech & Wine, on a eu une révélation : et si on créait l'événement tech parfait ? 
+                        Celui qui respecte votre work-life balance tout en boostant vos compétences ?
+                    </p>
+                </div>
+
+                <!-- Mission avec animation -->
+                <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-4 sm:p-6 border border-primary-100 hover-lift scroll-animate-scale animate-gradient group">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors duration-300">Notre mission</h3>
+                    <p class="text-sm sm:text-base text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                        Prouver qu'on peut révolutionner la tech sans sacrifier sa vie perso. 
+                        Créer l'événement tech que nous aurions voulu avoir quand nous étions junior 
+                        (et qu'on veut encore maintenant qu'on est senior).
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 stagger-children scroll-animate">
+                    <a href="/team" class="btn btn-primary text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4 hover-lift group">
+                        <span class="mr-2 group-hover:animate-bounce-gentle">👋</span>
+                        <span class="hidden sm:inline">Découvrez l'équipe</span>
+                        <span class="sm:hidden">L'équipe</span>
+                    </a>
+                    <a href="mailto:team@techwork.lyon" class="btn btn-secondary text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4 hover-lift group">
+                        <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                        <span class="hidden sm:inline">Rejoignez-nous</span>
+                        <span class="sm:hidden">Contact</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

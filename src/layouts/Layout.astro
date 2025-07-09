@@ -1,0 +1,185 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import FooterBlock from '../components/footer/FooterBlock.astro'
+import Menu from '../components/Menu.astro'
+import '../styles/global.css'
+
+interface Props {
+    title: string
+    description?: string
+    metaImage?: string | null
+}
+
+const { title, description, metaImage } = Astro.props
+const url = import.meta.env.SITE
+const image = metaImage || url + '/social-share.png'
+const siteName = 'Tech\'Work Lyon'
+const pageTitle = title || siteName
+const siteNameWithTagline = 'Tech\'Work Lyon 2026 - L\'afterwork IT sur votre temps de travail'
+const fullPageTitle = title ? `${title} | ${siteName}` : siteNameWithTagline
+const pageDescription =
+    description ||
+    'Tech\'Work Lyon est l\'événement tech révolutionnaire qui se déroule sur temps de travail. Développeurs, DevOps, Data Scientists : rejoignez-nous en juin 2026 pour une journée qui respecte votre work-life balance.'
+const keywords = 'techwork, tech work, événement, event, lyon, programming, développeur, devops, data science, conférence, work-life balance, afterwork'
+
+const organizerName = 'Tech\'Work Lyon'
+const organizerTwitter = '@techworklyon'
+---
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <link href="manifest.json" rel="manifest" />
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta content="yes" name="mobile-web-app-capable" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- fallback for manifest.json -->
+        <meta content={siteName} name="application-name" />
+
+        <!-- Add to homescreen for Safari on iOS -->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+        <meta content={siteName} name="apple-mobile-web-app-title" />
+
+        <meta content={pageDescription} name="description" />
+        <meta content={keywords} name="keywords" />
+        <meta content={organizerName} name="author" />
+
+        <!-- Facebook sharing meta data -->
+        <meta content={pageTitle} property="og:title" />
+        <meta content={siteNameWithTagline} property="og:site_name" />
+        <meta content="website" property="og:type" />
+        <meta content={url} property="og:url" />
+        <meta content={pageDescription} property="og:description" />
+        <meta content="fr" property="og:locale" />
+        <meta content={image} property="og:image" />
+        <meta content="image/jpeg" property="og:image:type" />
+
+        <!-- Twitter meta data -->
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content={organizerTwitter} name="twitter:site" />
+        <meta content={pageTitle} name="twitter:title" />
+        <meta content={pageDescription} name="twitter:description" />
+        <meta content={image} name="twitter:image" />
+
+        <title>{fullPageTitle}</title>
+
+        <slot name="head" />
+
+        <script defer data-domain="cloudnord.fr" src="https://plausible.gresse.io/js/script.js"></script>
+        <ClientRouter />
+    </head>
+    <body class="antialiased">
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-primary-600 text-white px-4 py-2 z-50">Aller au contenu principal</a>
+        <Menu />
+        <main id="#main-content">
+            <slot />
+        </main>
+
+        <FooterBlock />
+        
+        <!-- Script pour les animations au scroll -->
+        <script>
+            // Observer pour les animations au scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observer tous les éléments avec les classes d'animation
+            function initScrollAnimations() {
+                const animateElements = document.querySelectorAll(
+                    '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale'
+                );
+                
+                animateElements.forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            // Animations séquentielles pour les grilles et listes
+            function staggerAnimations() {
+                const grids = document.querySelectorAll('.stagger-children');
+                
+                grids.forEach(grid => {
+                    const children = grid.children;
+                    Array.from(children).forEach((child, index) => {
+                        if (child instanceof HTMLElement) {
+                            child.style.animationDelay = `${index * 0.1}s`;
+                        }
+                    });
+                });
+            }
+
+            // Animations de hover avancées
+            function initHoverAnimations() {
+                const hoverElements = document.querySelectorAll('.hover-lift');
+                
+                hoverElements.forEach(el => {
+                    if (el instanceof HTMLElement) {
+                        el.addEventListener('mouseenter', () => {
+                            el.style.transform = 'translateY(-8px) scale(1.02)';
+                            el.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                        });
+                        
+                        el.addEventListener('mouseleave', () => {
+                            el.style.transform = 'translateY(0) scale(1)';
+                            el.style.boxShadow = '';
+                        });
+                    }
+                });
+            }
+
+            // Parallax doux pour les éléments
+            function initParallax() {
+                const parallaxElements = document.querySelectorAll('.parallax');
+                
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.scrollY;
+                    
+                    parallaxElements.forEach(el => {
+                        if (el instanceof HTMLElement) {
+                            const speed = parseFloat(el.dataset.speed || '0.5');
+                            const yPos = -(scrolled * speed);
+                            el.style.transform = `translateY(${yPos}px)`;
+                        }
+                    });
+                });
+            }
+
+            // Initialisation
+            document.addEventListener('DOMContentLoaded', () => {
+                initScrollAnimations();
+                staggerAnimations();
+                initHoverAnimations();
+                initParallax();
+            });
+
+            // Réinitialiser après navigation Astro
+            document.addEventListener('astro:page-load', () => {
+                setTimeout(() => {
+                    initScrollAnimations();
+                    staggerAnimations();
+                    initHoverAnimations();
+                    initParallax();
+                }, 100);
+            });
+        </script>
+    </body>
+</html>

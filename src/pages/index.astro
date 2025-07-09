@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content'
+import { OPENPLANNER_URL } from 'astro:env/client'
+import type { OpenPlannerType } from '../type'
+import Layout from '../layouts/Layout.astro'
+import SponsorsBlock from '../components/home/SponsorsBlock.astro'
+import Hero from '../components/home/Hero.astro'
+import HomeContentBlock from '../components/home/HomeContentBlock.astro'
+import HomeAboutBlock from '../components/home/HomeAboutBlock.astro'
+import HomeGalleryBlock from '../components/home/HomeGalleryBlock.astro'
+import HomeTicketsBlock from '../components/home/HomeTicketsBlock.astro'
+
+const response = await fetch(OPENPLANNER_URL)
+const openPlannerData: OpenPlannerType = await response.json()
+const tickets = await getCollection('tickets')
+---
+
+<Layout title="Tech'Work Lyon 2026">
+    <Hero />
+
+    <HomeContentBlock />
+    <HomeTicketsBlock tickets={tickets} />
+    <HomeGalleryBlock />
+    <HomeAboutBlock />
+
+    <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
+</Layout>
+
+<style is:global>
+    :root {
+        [data-transparent='true'] {
+            --hero-text-color: white;
+            --nav-drawer-bg-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+</style>

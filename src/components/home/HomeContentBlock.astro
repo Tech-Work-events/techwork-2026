@@ -1,0 +1,122 @@
+---
+const stats = {
+    attendees: {
+        label: 'Participants',
+        number: '200+',
+        icon: '👥',
+    },
+    sessions: {
+        label: 'Sessions',
+        number: '15+',
+        icon: '🎯',
+    },
+    tracks: {
+        label: 'Streams',
+        number: '3',
+        icon: '🚀',
+    },
+}
+---
+
+<section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <!-- Content -->
+            <div class="space-y-8 scroll-animate-left">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold animate-scale-in hover-lift">
+                        <span class="mr-2 animate-bounce-gentle">🤯</span>
+                        Plot Twist
+                    </div>
+                    
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-tight scroll-animate">
+                        Le concept 
+                        <span class="text-gradient animate-gradient">révolutionnaire</span>
+                    </h2>
+                    
+                    <p class="text-xl text-gray-600 leading-relaxed scroll-animate">
+                        <strong class="text-gray-900">Et si on faisait de la tech... sur temps de travail ?</strong>
+                    </p>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed scroll-animate">
+                        Tech'Work, c'est l'événement qui a compris que les meilleurs développeurs ne sont pas ceux qui codent 24h/24, mais ceux qui savent équilibrer apprentissage et bien-être.
+                    </p>
+                </div>
+                
+                <!-- Benefits List avec animations séquentielles -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover-lift scroll-animate-scale">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Pourquoi vous allez adorer :</h3>
+                    <div class="space-y-4 stagger-children">
+                        <div class="flex items-start space-x-3 scroll-animate hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-gray-700"><strong>Votre boss paie</strong> (c'est de la formation, officiellement)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 scroll-animate hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-gray-700"><strong>Vos collègues viennent</strong> (team building intégré)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 scroll-animate hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-gray-700"><strong>Vous rentrez à l'heure</strong> (17h30 max, promis)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 scroll-animate hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-gray-700"><strong>Vous apprenez vraiment</strong> (pas de blabla marketing)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats avec animations dynamiques -->
+            <div class="space-y-6 scroll-animate-right">
+                <div class="grid gap-6 stagger-children">
+                    {Object.entries(stats).map(([_, stat]) => (
+                        <div class="card-gradient p-8 text-center hover-lift scroll-animate-scale group">
+                            <div class="text-4xl mb-4 group-hover:animate-bounce-gentle">{stat.icon}</div>
+                            <div class="text-4xl md:text-5xl font-black text-gradient mb-2 animate-gradient">
+                                {stat.number}
+                            </div>
+                            <div class="text-lg font-semibold text-gray-700">
+                                {stat.label}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                
+                <!-- Quote avec effet brillant -->
+                <div class="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-8 text-white hover-lift scroll-animate-scale animate-gradient">
+                    <blockquote class="text-xl font-medium italic text-center animate-fade-in">
+                        "Enfin un événement tech qui ne vous fait pas choisir entre carrière et vie sociale !"
+                    </blockquote>
+                    <div class="text-center mt-4 text-primary-100 animate-slide-up">
+                        — L'équipe Tech'Work
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

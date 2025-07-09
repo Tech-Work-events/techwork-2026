@@ -1,0 +1,41 @@
+---
+import FooterSocial from './FooterSocial.astro'
+import FooterRel from './FooterRel.astro'
+import FooterNav from './FooterNav.astro'
+---
+
+<footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main Footer Content -->
+        <div class="py-8 sm:py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Brand Section -->
+                <div class="lg:col-span-1">
+                    <FooterNav />
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="lg:col-span-2">
+                    <FooterRel />
+                </div>
+                
+                <!-- Social & Contact -->
+                <div class="lg:col-span-1">
+                    <FooterSocial />
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 py-4 sm:py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                <div class="text-gray-400 text-xs sm:text-sm text-center md:text-left">
+                    © 2026 Tech'Work Lyon - Made with ❤️ by des devs lyonnais
+                </div>
+                <div class="text-gray-400 text-xs sm:text-sm font-mono text-center md:text-right">
+                    git commit -m "Révolution en cours"
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

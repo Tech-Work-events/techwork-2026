@@ -1,0 +1,135 @@
+---
+const navigation = [
+    { label: 'CFP', route: '/cfp' },
+    { label: 'Équipe', route: '/team' },
+    { label: 'Partenaires', route: '/sponsors' },
+    { label: 'Code de conduite', route: '/coc' },
+    { label: 'Lieu', route: '/location' },
+    // { label: 'Programme', route: '/schedule' },
+    // { label: 'Blog', route: '/blog' },
+]
+
+const routeName = Astro.url.pathname
+
+const isActiveRoute = (route: string) => {
+    if (route === '/') {
+        return route === routeName
+    }
+
+    return routeName.startsWith(route)
+}
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-200/50" data-transparent="true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                {routeName === '/' && <span class="text-2xl font-black text-gradient">Tech'Work</span>}
+                {routeName !== '/' && <a href="/" class="text-2xl font-black text-gradient hover:opacity-80 transition-opacity" aria-label="Retour à la page d'accueil">Tech'Work</a>}
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                {navigation.map((nav) => (
+                    <a 
+                        href={nav.route} 
+                        class={`text-sm font-semibold transition-colors duration-200 hover:text-primary-600 ${
+                            isActiveRoute(nav.route) 
+                                ? 'text-primary-600 border-b-2 border-primary-600 pb-1' 
+                                : 'text-gray-700'
+                        }`}
+                    >
+                        {nav.label}
+                    </a>
+                ))}
+            </nav>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <input type="checkbox" id="nav-trigger" class="sr-only" />
+                <label 
+                    for="nav-trigger" 
+                    class="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                    aria-label="Ouvrir/fermer le menu de navigation"
+                >
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+
+                <!-- Mobile Navigation Drawer -->
+                <div class="nav-drawer fixed inset-y-0 right-0 w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                            <span class="text-xl font-black text-gradient">Tech'Work</span>
+                            <label for="nav-trigger" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </label>
+                        </div>
+                        <nav class="flex-1 px-4 py-6 space-y-2">
+                            {navigation.map((nav) => (
+                                <a 
+                                    href={nav.route} 
+                                    class={`block px-4 py-3 rounded-lg text-sm font-semibold transition-colors ${
+                                        isActiveRoute(nav.route) 
+                                            ? 'bg-primary-50 text-primary-600' 
+                                            : 'text-gray-700 hover:bg-gray-50'
+                                    }`}
+                                >
+                                    {nav.label}
+                                </a>
+                            ))}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Handle transparent header on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('#site-header') as HTMLElement
+        if (header) {
+            const isTransparent = window.scrollY === 0
+            header.dataset.transparent = isTransparent.toString()
+            
+            if (isTransparent) {
+                header.className = 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b-0'
+            } else {
+                header.className = 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
+            }
+        }
+    })
+
+    // Handle mobile menu
+    document.addEventListener('astro:page-load', () => {
+        const trigger = document.querySelector('#nav-trigger') as HTMLInputElement
+        const drawer = document.querySelector('.nav-drawer') as HTMLElement
+        
+        if (trigger && drawer) {
+            trigger.addEventListener('change', () => {
+                if (trigger.checked) {
+                    drawer.style.transform = 'translateX(0)'
+                    document.body.style.overflow = 'hidden'
+                } else {
+                    drawer.style.transform = 'translateX(100%)'
+                    document.body.style.overflow = ''
+                }
+            })
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (trigger.checked && !drawer.contains(e.target as Node) && e.target !== trigger) {
+                    trigger.checked = false
+                    drawer.style.transform = 'translateX(100%)'
+                    document.body.style.overflow = ''
+                }
+            })
+        }
+    })
+</script>

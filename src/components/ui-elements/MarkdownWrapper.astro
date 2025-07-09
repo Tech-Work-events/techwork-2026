@@ -1,0 +1,60 @@
+<div class="container">
+    <slot />
+</div>
+
+<style>
+    .container {
+        max-width: 80ch;
+
+        :global(h1) {
+            font-size: var(--fs4);
+            margin: 1.5rem 0 5rem;
+        }
+
+        :global(h2) {
+            font-size: var(--fs2);
+            margin: 0 0 0.5rem;
+        }
+
+        :global(h3) {
+            font-size: var(--fs1);
+            margin: 0 0 0.35rem;
+        }
+
+        :global(p) {
+            line-height: 1.5;
+        }
+
+        :global(img) {
+            margin: 1.5rem 0;
+        }
+
+        :global(a) {
+            color: var(--brand-solid);
+            text-decoration: 2px underline var(--brand-border);
+            text-underline-offset: 2px;
+            transition: all var(--animation);
+
+            &:hover {
+                color: var(--brand-solid-hover);
+                text-decoration: 2px underline var(--brand-solid-hover);
+            }
+        }
+
+        :global(ul + h2),
+        :global(p + h2) {
+            margin-top: 2.5rem;
+        }
+
+        :global(p + p) {
+            margin-top: 0.5rem;
+        }
+
+        :global(p + ul),
+        :global(ul + p),
+        :global(ul + h3),
+        :global(p + h3) {
+            margin-top: 1.5rem;
+        }
+    }
+</style>

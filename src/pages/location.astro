@@ -1,0 +1,27 @@
+---
+import LayoutWithTitle from '../layouts/LayoutWithTitle.astro'
+import Stack from '../components/ui-elements/Stack.astro'
+import MarkdownWrapper from '../components/ui-elements/MarkdownWrapper.astro'
+import { Content } from '../markdown/location.md'
+---
+
+<LayoutWithTitle title="Lieu" description="Découvrez où se déroulera Tech'Work Lyon 2026 - Le lieu mystère sera bientôt révélé !">
+    <Stack align="center" space="40px">
+        <!--<div style="max-width: 1000px">-->
+        <!--    <Picture src={plan2024} formats={['avif', 'webp']} alt="Plan détaillé du lieu CloudNord" loading="lazy" />-->
+        <!--</div>-->
+        <!--<div style="max-width: 500px">-->
+        <!--    <Picture src={plan} formats={['avif', 'webp']} alt="Plan d’ensemble du lieu CloudNord" loading="lazy" />-->
+        <!--</div>-->
+
+        <MarkdownWrapper>
+            <Content />
+        </MarkdownWrapper>
+
+        <div style="width: 100%; text-align: center; padding: 2rem; background: var(--component); border-radius: var(--border-radius);">
+            <h3>🗺️ Carte à venir</h3>
+            <p>Une fois le lieu sélectionné, vous trouverez ici une carte interactive pour vous y rendre facilement !</p>
+            <p><em>Stay tuned... 📍</em></p>
+        </div>
+    </Stack>
+</LayoutWithTitle>

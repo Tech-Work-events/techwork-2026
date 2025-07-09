@@ -1,0 +1,35 @@
+[
+    {
+        "id": "early-bird",
+        "name": "Early Bird - J'adopte la révolution",
+        "price": 45,
+        "url": "https://techwork.lyon/signup",
+        "ticketsCount": 100,
+        "available": false,
+        "soldOut": false,
+        "highlighted": true,
+        "description": "Pour les visionnaires qui nous font confiance dès le début. Accès privilégié et tarif préférentiel."
+    },
+    {
+        "id": "standard",
+        "name": "Standard - Je veux être dev ET avoir une vie sociale",
+        "price": 65,
+        "url": "https://techwork.lyon/signup",
+        "ticketsCount": 100,
+        "available": false,
+        "soldOut": false,
+        "highlighted": false,
+        "description": "L'accès complet à Tech'Work 2026. Révolutionnez votre façon de faire de la tech."
+    },
+    {
+        "id": "corporate",
+        "name": "Entreprise - Team Building Tech",
+        "price": 55,
+        "url": "https://techwork.lyon/signup",
+        "ticketsCount": 50,
+        "available": false,
+        "soldOut": false,
+        "highlighted": false,
+        "description": "Tarif spécial pour les équipes (minimum 5 places). Parfait pour le team building."
+    }
+]

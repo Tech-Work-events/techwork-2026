@@ -1,0 +1,71 @@
+---
+const gallery = [
+    'pictures/after-movie-1.webp',
+    'pictures/after-movie-2.webp',
+    'pictures/after-movie-3.webp',
+    'pictures/after-movie-4.webp',
+    'pictures/after-movie-5.webp',
+    'pictures/after-movie-6.webp',
+    'pictures/after-movie-7.webp',
+    'pictures/after-movie-8.webp',
+]
+---
+
+<section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16 scroll-animate">
+            <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                <span class="mr-2 animate-bounce-gentle">📸</span>
+                Galerie
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
+                Tech'Work en 
+                <span class="text-gradient animate-gradient">images</span>
+            </h2>
+            <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">
+                Bientôt des photos de notre premier événement révolutionnaire !
+            </p>
+        </div>
+
+        <!-- Gallery Grid avec animations séquentielles -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 stagger-children">
+            {gallery.slice(0, 8).map((photo, index) => (
+                <div class={`
+                    relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-animate-scale group
+                    ${index === 0 ? 'col-span-2 row-span-2' : ''}
+                    ${index === 1 ? 'hidden md:block' : ''}
+                    ${index >= 6 ? 'hidden lg:block' : ''}
+                `} style={`animation-delay: ${index * 0.15}s`}>
+                    <img 
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        src={photo} 
+                        alt="Tech'Work event photo" 
+                        loading="lazy" 
+                        style={index === 0 ? 'min-height: 200px;' : 'height: 150px;'}
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <!-- Effet de brillance au survol -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Call to Action avec animations -->
+        <div class="text-center mt-12 sm:mt-16 scroll-animate-scale">
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift animate-gradient">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 animate-fade-in">Première édition en 2026</h3>
+                <p class="text-base sm:text-lg text-gray-600 mb-6 animate-slide-up">
+                    Vous voulez voir des photos ? Inscrivez-vous et créons ensemble l'histoire de Tech'Work !
+                </p>
+                <a 
+                    href="#tickets" 
+                    class="btn btn-primary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in"
+                >
+                    <span class="mr-2 group-hover:animate-bounce-gentle">🎫</span>
+                    Réserver ma place
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+

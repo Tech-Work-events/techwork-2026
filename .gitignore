@@ -1,0 +1,45 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables (unencrypted)
+.env
+.env.production
+.env.local
+.env.development
+.env.test
+
+# SOPS decrypted environment files (temporary)
+.env.decrypted
+*.env.decrypted
+
+# Note: .env-encrypted is encrypted with SOPS and can be committed
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+!terraform/terraform.tfvars.example
+# SOPS decrypted files (temporary)
+terraform/*.secrets.decrypted.tfvars
+# Terraform plans and outputs
+terraform/tfplan-*
+terraform/outputs-*.json

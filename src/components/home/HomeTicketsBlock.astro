@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import TicketCard from './TicketCard.astro'
+
+interface Props {
+    tickets: CollectionEntry<'tickets'>[]
+}
+
+const { tickets } = Astro.props
+---
+
+<section id="tickets" class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16 scroll-animate">
+            <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                <span class="mr-2 animate-bounce-gentle">🎫</span>
+                Billetterie
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
+                Acheter votre 
+                <span class="text-gradient animate-gradient">billet</span>
+            </h2>
+            <p class="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto scroll-animate">
+                * Les billets donnent accès à toutes les conférences, aux pauses café, au déjeuners et à la soirée.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 stagger-children">
+            {tickets.map((ticket, index) => (
+                <div class="scroll-animate-scale hover-lift" style={`animation-delay: ${index * 0.2}s`}>
+                    <TicketCard ticket={ticket} />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

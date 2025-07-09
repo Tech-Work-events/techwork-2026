@@ -1,0 +1,62 @@
+---
+const footerRelBlock = [
+    {
+        title: 'À propos',
+        links: [
+            { name: "Découvrez l'équipe", url: '/team', newTab: false },
+            { name: 'Code de conduite', url: '/coc', newTab: false },
+            { name: 'Lieu', url: '/location', newTab: false },
+        ],
+    },
+    {
+        title: 'Participation',
+        links: [
+            { name: 'CFP - Speakers', url: '/cfp', newTab: false },
+            { name: 'Billetterie', url: '/tickets', newTab: false },
+            { name: 'Partenaires', url: '/sponsors', newTab: false },
+        ],
+    },
+    {
+        title: 'Contact',
+        links: [
+            { name: 'hello@techwork.lyon', url: 'mailto:hello@techwork.lyon', newTab: false },
+            { name: 'partners@techwork.lyon', url: 'mailto:partners@techwork.lyon', newTab: false },
+            { name: 'cfp@techwork.lyon', url: 'mailto:cfp@techwork.lyon', newTab: false },
+        ],
+    },
+]
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {footerRelBlock.map((footerRel) => (
+        <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">{footerRel.title}</h4>
+            <ul class="space-y-2">
+                {footerRel.links.map((link) => (
+                    <li>
+                        {!link.newTab ? (
+                            <a 
+                                href={link.url} 
+                                class="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm"
+                            >
+                                {link.name}
+                            </a>
+                        ) : (
+                            <a 
+                                href={link.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm flex items-center"
+                            >
+                                {link.name}
+                                <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    ))}
+</div>
