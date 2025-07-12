@@ -55,13 +55,7 @@ Benefits:
 
 ### Prerequisites
 
-1. **Manual Setup Required**:
-
-    - Create Firebase project manually in Firebase Console
-    - Enable billing on the project
-    - Verify ownership of cloudnord.fr in Google Search Console
-
-2. **Tools Required**:
+1. **Tools Required**:
 
     ```bash
     # Install Task (recommended)
@@ -77,18 +71,124 @@ Benefits:
     brew install jq
     ```
 
+2. **Google Cloud Project Setup**:
+
+    - Create Firebase project manually in Firebase Console (e.g., `techwork-2026`)
+    - Enable billing on the project
+    - Verify ownership of your domain in Google Search Console
+
 ### Initial Setup
 
+**⚠️ IMPORTANT: Complete these steps before running `task deploy YEAR=XXXX`**
+
+#### 1. Google Cloud Authentication Setup
+
 ```bash
-# 1. Complete development environment setup
-task setup-dev
+# Authenticate with Google Cloud
+gcloud auth login
 
-# 2. Configure Terraform
-cp terraform/terraform.tfvars.example terraform/terraform.tfvars
-# Edit terraform.tfvars with your Firebase project ID
+# Set up application default credentials (required for Terraform)
+gcloud auth application-default login
 
-# 3. Initialize Terraform
-task setup
+# Configure the default project (replace with your project ID)
+gcloud config set project techwork-2026
+
+# Verify authentication and project access
+gcloud projects describe techwork-2026
+```
+
+**Expected output:** You should see project details including project ID, name, and number.
+
+#### 2. Verify Permissions
+
+```bash
+# Check your IAM roles on the project
+gcloud projects get-iam-policy techwork-2026 \
+  --flatten="bindings[].members" \
+  --format="table(bindings.role)" \
+  --filter="bindings.members:$(gcloud config get-value account)"
+```
+
+**Required roles:** You need at least `roles/owner` or `roles/editor` on the project.
+
+#### 3. Google Cloud Storage Backend Setup
+
+```bash
+# Create the GCS bucket for Terraform state storage
+gsutil mb -p techwork-2026 -c STANDARD -l europe-west1 gs://tf-states-techwork
+
+# Enable versioning for state file protection
+gsutil versioning set on gs://tf-states-techwork
+
+# Verify bucket access
+gsutil ls gs://tf-states-techwork
+```
+
+#### 4. Terraform Backend Initialization
+
+```bash
+# Navigate to terraform directory
+cd terraform
+
+# Initialize Terraform with the new backend
+terraform init -reconfigure
+
+# Verify initialization was successful
+terraform workspace list
+```
+
+**Expected output:** You should see `* default` workspace listed.
+
+#### 5. Configuration Setup
+
+```bash
+# Copy and edit configuration (if not already done)
+cp terraform/terraform.tfvars.example terraform/terraform-YEAR.tfvars
+# Edit terraform-YEAR.tfvars with your specific values
+
+# Set up secrets file (will be created automatically on first run)
+# The deploy command will prompt you to configure secrets if needed
+```
+
+### Troubleshooting Authentication Issues
+
+**Problem:** `Permission denied` errors during deployment
+
+**Solutions:**
+
+1. **Re-authenticate:**
+
+    ```bash
+    gcloud auth login
+    gcloud auth application-default login
+    ```
+
+2. **Check project access:**
+
+    ```bash
+    gcloud projects list --filter="projectId:techwork-2026"
+    ```
+
+3. **Verify bucket permissions:**
+    ```bash
+    gsutil iam get gs://tf-states-techwork
+    ```
+
+**Problem:** `Backend configuration changed` error
+
+**Solution:**
+
+```bash
+terraform init -reconfigure
+```
+
+**Problem:** `Bucket doesn't exist` error
+
+**Solution:**
+
+```bash
+gsutil mb -p techwork-2026 gs://tf-states-techwork
+terraform init -reconfigure
 ```
 
 ### Configuration
@@ -119,15 +219,26 @@ enable_analytics  = true
 
 ### Deploy Infrastructure
 
+**⚠️ Prerequisites:** Ensure you have completed all steps in the "Initial Setup" section above.
+
 ```bash
 # Option 1: Complete deployment in one command
-task deploy YEAR=2025
+task deploy YEAR=2026
 
 # Option 2: Step by step
-task plan YEAR=2025      # See what will be created
-task apply YEAR=2025     # Create the infrastructure
-task update-env YEAR=2025  # Update environment variables
+task plan YEAR=2026      # See what will be created
+task apply YEAR=2026     # Create the infrastructure
+task update-env YEAR=2026  # Update environment variables
 ```
+
+**First-time deployment checklist:**
+
+-   ✅ Google Cloud authentication configured
+-   ✅ Application default credentials set up
+-   ✅ Project permissions verified (owner/editor role)
+-   ✅ GCS bucket created for Terraform state
+-   ✅ Terraform backend initialized
+-   ✅ Configuration files created and edited
 
 ### Deploy Website
 

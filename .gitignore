@@ -43,3 +43,6 @@ terraform/*.secrets.decrypted.tfvars
 # Terraform plans and outputs
 terraform/tfplan-*
 terraform/outputs-*.json
+
+# Firebase
+.firebase/hosting.*.cache

@@ -235,6 +235,29 @@ task update-env YEAR=2025 ENV_FILE=.env.production
 task update-env YEAR=2025 ENV_FILE=.env.staging
 ```
 
+### Manual Environment Variable Updates
+
+For manual updates to environment variables (when automatic updates from Terraform outputs are not available):
+
+```bash
+# 1. Decrypt the encrypted environment file
+task decrypt-env
+
+# 2. Remove the encrypted file to avoid conflicts
+rm .env-encrypted
+
+# 3. Edit the .env file with your preferred editor
+nano .env  # or vim, code, etc.
+
+# 4. Encrypt the updated file
+task encrypt-env
+
+# Alternative: Use the guided workflow
+task update-env-manual
+```
+
+**Note:** This manual workflow is more reliable than the automated SOPS editor integration and provides better control over the editing process.
+
 ### Validation and Debug
 
 ```bash

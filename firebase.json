@@ -1,5 +1,6 @@
 {
     "hosting": {
+        "site": "techwork-2026-website",
         "public": "dist",
         "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
         "redirects": [

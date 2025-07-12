@@ -17,10 +17,10 @@ terraform {
     }
   }
 
-  # Remote state configuration
+  # Remote state configuration 
   backend "gcs" {
-    bucket = "tf-states-cloudnord"
-    prefix = "terraform/state/cloudnord-website/"
+    bucket = "tf-states-techwork"
+    prefix = "terraform/state/techwork-website/"
   }
 }
 
@@ -32,7 +32,7 @@ provider "google" {
   # Default labels for all resources
   default_labels = merge(var.labels, {
     managed-by = "terraform"
-    project    = "cloudnord-website"
+    project    = "techwork-website"
     year       = var.year
   })
 }
@@ -45,7 +45,7 @@ provider "google-beta" {
   # Default labels for all resources
   default_labels = merge(var.labels, {
     managed-by = "terraform"
-    project    = "cloudnord-website"
+    project    = "techwork-website"
     year       = var.year
   })
 }

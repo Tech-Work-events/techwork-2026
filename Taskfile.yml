@@ -28,9 +28,9 @@ tasks:
                 echo "📖 Main Categories:"
                 echo "  🌐 Web Development: install, dev, build, preview, lint, test"
                 echo "  🏗️ Infrastructure: setup, plan, apply, destroy, update-env"
-                echo "  🚀 Deployment: deploy-web, full-deploy"
+                echo "  🚀 Deployment: update-hosting-year, deploy-web, full-deploy"
                 echo "  🔧 Utilities: validate, format, clean, list-workspaces"
-                echo "  🔐 SOPS Encryption: setup-sops, encrypt-secrets, edit-secrets"
+                echo "  🔐 SOPS Encryption: setup-sops, encrypt-secrets, update-secrets-manual"
                 echo ""
                 echo "💡 Tip: Use 'task --list' to see all tasks with descriptions"
 
@@ -359,9 +359,26 @@ tasks:
                 secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
                 decrypted_file="terraform-{{.YEAR}}.secrets.decrypted.tfvars"
 
+                # If encrypted file doesn't exist, create a template
                 if [ ! -f "$secrets_file" ]; then
-                  echo "❌ Secrets file not found: $secrets_file"
-                  exit 1
+                  echo "📝 Encrypted secrets file not found. Creating template..."
+                  {
+                    echo "# Terraform Secrets for {{.YEAR}}"
+                    echo "# This file contains sensitive variables that should not be committed to git"
+                    echo "# Use SOPS to encrypt this file: task encrypt-secrets YEAR={{.YEAR}}"
+                    echo ""
+                    echo "# GCP Billing Account ID (required for creating new projects)"
+                    echo 'billing_account_id = "YOUR_BILLING_ACCOUNT_ID_HERE"'
+                    echo ""
+                    echo "# Google OAuth Client ID for Firebase Authentication (if needed)"
+                    echo 'google_oauth_client_id = "YOUR_GOOGLE_OAUTH_CLIENT_ID_HERE"'
+                    echo ""
+                    echo "# Add other sensitive variables as needed"
+                  } > "$decrypted_file"
+                  echo "✅ Template created: $decrypted_file"
+                  echo "📝 Please edit this file with your actual values, then run:"
+                  echo "   task encrypt-secrets YEAR={{.YEAR}}"
+                  exit 0
                 fi
 
                 # Check if file is encrypted with SOPS
@@ -571,11 +588,23 @@ tasks:
         cmds:
             - |
                 secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+                decrypted_file="terraform-{{.YEAR}}.secrets.decrypted.tfvars"
 
+                # If encrypted file doesn't exist, try to create it from decrypted file
                 if [ ! -f "$secrets_file" ]; then
-                  echo "❌ Secrets file not found: $secrets_file"
-                  echo "Please create it first with your sensitive values"
-                  exit 1
+                  if [ -f "$decrypted_file" ]; then
+                    echo "📋 Creating encrypted file from decrypted version..."
+                    cp "$decrypted_file" "$secrets_file"
+                  else
+                    echo "❌ Neither encrypted nor decrypted secrets file found!"
+                    echo "Please create one of these files first:"
+                    echo "  - $secrets_file (to encrypt directly)"
+                    echo "  - $decrypted_file (to copy and encrypt)"
+                    echo ""
+                    echo "💡 You can create a template with:"
+                    echo "   task update-secrets-manual YEAR={{.YEAR}}"
+                    exit 1
+                  fi
                 fi
 
                 echo "🔒 Encrypting secrets for year {{.YEAR}}..."
@@ -584,41 +613,47 @@ tasks:
                 echo ""
                 echo "📝 The file is now encrypted and safe to commit to git!"
 
-    edit-secrets:
-        desc: 'Edit encrypted secrets file for a specific year'
-        dir: '{{.TERRAFORM_DIR}}'
-        deps: [validate-year, check-sops]
+    update-secrets-manual:
+        desc: 'Manual secrets update workflow for a specific year'
+        deps: [validate-year]
         cmds:
             - |
-                secrets_file="terraform-{{.YEAR}}.secrets.tfvars"
+                echo "📝 Manual Secrets Update Workflow for Year {{.YEAR}}:"
+                echo ""
+                echo "1. Decrypt the encrypted secrets file:"
+                echo "   task decrypt-secrets YEAR={{.YEAR}}"
+                echo ""
+                echo "2. Remove the encrypted file to avoid conflicts:"
+                echo "   rm terraform/terraform-{{.YEAR}}.secrets.tfvars"
+                echo ""
+                echo "3. Edit the decrypted file with your preferred editor:"
+                echo "   nano terraform/terraform-{{.YEAR}}.secrets.decrypted.tfvars"
+                echo "   # or vim, code, etc."
+                echo ""
+                echo "4. Encrypt the updated file:"
+                echo "   task encrypt-secrets YEAR={{.YEAR}}"
+                echo ""
+                echo "⚠️  This workflow is more reliable than the automated SOPS editor."
 
-                if [ ! -f "$secrets_file" ]; then
-                  echo "❌ Encrypted secrets file not found: $secrets_file"
-                  exit 1
-                fi
-
-                echo "✏️  Opening encrypted secrets file for editing..."
-                sops "$secrets_file"
-
-    edit-env:
-        desc: 'Edit encrypted .env-encrypted file'
-        deps: [check-sops]
+    update-env-manual:
+        desc: 'Manual environment variable update workflow'
         cmds:
             - |
-                if [ ! -f ".env-encrypted" ]; then
-                  echo "❌ .env-encrypted file not found!"
-                  exit 1
-                fi
-
-                # Check if file is encrypted
-                if ! grep -q "ENC\[" .env-encrypted; then
-                  echo "❌ .env-encrypted file is not encrypted!"
-                  echo "Run: task encrypt-env"
-                  exit 1
-                fi
-
-                echo "✏️  Opening encrypted .env-encrypted file for editing..."
-                sops --input-type dotenv --output-type dotenv .env-encrypted
+                echo "📝 Manual Environment Variable Update Workflow:"
+                echo ""
+                echo "1. Decrypt the encrypted environment file:"
+                echo "   task decrypt-env"
+                echo ""
+                echo "2. Remove the encrypted file:"
+                echo "   rm .env-encrypted"
+                echo ""
+                echo "3. Edit the .env file with your preferred editor:"
+                echo "   nano .env  # or vim, code, etc."
+                echo ""
+                echo "4. Encrypt the updated file:"
+                echo "   task encrypt-env"
+                echo ""
+                echo "⚠️  This workflow is more reliable than the automated editor."
 
     encrypt-env:
         desc: 'Encrypt .env file to .env-encrypted with SOPS'
@@ -633,7 +668,7 @@ tasks:
                 # Check if already encrypted
                 if [ -f ".env-encrypted" ] && grep -q "ENC\[" .env-encrypted; then
                   echo "⚠️  .env-encrypted file already exists and is encrypted!"
-                  echo "Use: task edit-env to edit it"
+                  echo "Use: task update-env-manual for the manual update workflow"
                   exit 0
                 fi
 
@@ -670,7 +705,7 @@ tasks:
         cmds:
             - |
                 echo "🔧 Initializing environment configuration..."
-                
+
                 if [ -f ".env-encrypted" ]; then
                   echo "📋 Found existing .env-encrypted file"
                   if grep -q "ENC\[" .env-encrypted; then
@@ -792,8 +827,9 @@ tasks:
                   task update-env YEAR=<year>    # Update environment variables
 
                 🚀 Deployment:
-                  task deploy-web YEAR=<year>    # Deploy website to Firebase
-                  task full-deploy YEAR=<year>   # Deploy infrastructure + website
+                  task update-hosting-year YEAR=<year>  # Update Firebase hosting for year
+                  task deploy-web YEAR=<year>           # Deploy website to Firebase
+                  task full-deploy YEAR=<year>          # Deploy infrastructure + website
 
                 🔧 Utility Commands:
                   task validate                  # Validate Terraform configuration
@@ -806,11 +842,11 @@ tasks:
                 🔐 SOPS Encryption:
                   task setup-sops                # Setup SOPS encryption
                   task encrypt-secrets YEAR=<year> # Encrypt secrets file
-                  task edit-secrets YEAR=<year>   # Edit encrypted secrets
                   task decrypt-secrets YEAR=<year> # Decrypt secrets (temp)
+                  task update-secrets-manual YEAR=<year> # Manual secrets update workflow
                   task encrypt-env               # Encrypt .env to .env-encrypted
-                  task edit-env                  # Edit encrypted .env-encrypted
                   task decrypt-env               # Decrypt .env-encrypted to .env
+                  task update-env-manual         # Manual environment update workflow
                   task init-env                  # Initialize environment
                   task show-my-public-key         # Show your public key
                   task add-team-member PUBLIC_KEY=<key> # Add team member
@@ -825,11 +861,16 @@ tasks:
                   task setup                     # Setup Terraform
                   task deploy YEAR=2025          # Deploy infrastructure for 2025
                   task update-env YEAR=2025      # Update environment variables
+
+                  # Year-specific hosting workflow
+                  task update-hosting-year YEAR=2025  # Update Firebase hosting for year
+                  task deploy-web YEAR=2025           # Deploy website to year-specific site
+                  task full-deploy YEAR=2025          # Deploy infrastructure + website
                   
                   # Environment management
                   task init-env                  # Initialize environment from .env-encrypted
+                  task update-env-manual         # Manual environment update workflow
                   task encrypt-env               # Encrypt .env to .env-encrypted
-                  task edit-env                  # Edit encrypted environment
                   task decrypt-env               # Decrypt for development
 
                   # Full deployment workflow
@@ -966,9 +1007,51 @@ tasks:
             - task: install
             - task: dev
 
+    update-hosting-year:
+        desc: 'Update Firebase hosting configuration for a specific year'
+        deps: [validate-year]
+        cmds:
+            - echo "🔧 Updating Firebase hosting configuration for year {{.YEAR}}..."
+            - |
+                # Check if Firebase CLI is available
+                if ! command -v firebase &> /dev/null; then
+                  echo "❌ Firebase CLI is not installed!"
+                  echo "Install with: npm install -g firebase-tools"
+                  exit 1
+                fi
+
+                # Define the hosting site name
+                HOSTING_SITE="techwork-{{.YEAR}}-website"
+
+                echo "📋 Checking if hosting site exists: $HOSTING_SITE"
+
+                # Check if the hosting site exists
+                if firebase hosting:sites:list | grep -q "$HOSTING_SITE"; then
+                  echo "✅ Hosting site already exists: $HOSTING_SITE"
+                else
+                  echo "🆕 Creating hosting site: $HOSTING_SITE"
+                  firebase hosting:sites:create "$HOSTING_SITE" || {
+                    echo "⚠️  Site creation failed (may already exist). Continuing..."
+                  }
+                fi
+
+                # Update firebase.json with the correct site
+                echo "📝 Updating firebase.json with site: $HOSTING_SITE"
+                if command -v jq &> /dev/null; then
+                  # Use jq if available for precise JSON manipulation
+                  jq --arg site "$HOSTING_SITE" '.hosting.site = $site' firebase.json > firebase.json.tmp && mv firebase.json.tmp firebase.json
+                else
+                  # Fallback to sed if jq is not available
+                  sed -i.bak "s/\"site\": \"techwork-[0-9]*-website\"/\"site\": \"$HOSTING_SITE\"/" firebase.json && rm -f firebase.json.bak
+                fi
+
+                echo "✅ Firebase hosting configuration updated for year {{.YEAR}}"
+                echo "🌐 Hosting site: $HOSTING_SITE"
+                echo "🔗 URL: https://$HOSTING_SITE.web.app"
+
     deploy-web:
         desc: 'Build and deploy website to Firebase Hosting for a specific year'
-        deps: [validate-year, check-node]
+        deps: [validate-year, check-node, update-hosting-year]
         cmds:
             - echo "=================================================="
             - echo "  Website Deployment to Firebase Hosting"
@@ -987,13 +1070,13 @@ tasks:
                 fi
 
                 # Switch to the correct Firebase project
-                firebase use "cloudnord-{{.YEAR}}"
+                firebase use "techwork-{{.YEAR}}"
 
                 # Deploy to hosting
                 firebase deploy --only hosting
 
                 echo "✅ Website deployed successfully!"
-                echo "🌐 URL: https://cloudnord-{{.YEAR}}.firebaseapp.com"
+                echo "🌐 URL: https://techwork-{{.YEAR}}-website.web.app"
 
     # Full stack workflows
     full-deploy:

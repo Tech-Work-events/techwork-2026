@@ -16,7 +16,7 @@ const blogCollection = defineCollection({
 })
 
 const ticketsCollection = defineCollection({
-    loader: file('src/data/tickets/tickets.json'),
+    loader: file('src/config/tickets.json'),
     schema: z.object({
         name: z.string(),
         price: z.number(),

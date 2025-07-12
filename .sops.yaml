@@ -1,9 +1,15 @@
 creation_rules:
-  # Terraform secrets files
-  - path_regex: terraform/.*\.secrets\.tfvars$
-    age: >-
-      age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8
+    # Terraform secrets files
+    - path_regex: terraform/.*\.secrets\.tfvars$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w
 
-  # Default rule for all other files
-  - age: >-
-      age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8
+    # Environment files
+    - path_regex: \.env(-encrypted)?$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w
+
+    # Default rule for any .secrets files
+    - path_regex: \.secrets\.(yaml|yml|json|env)$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w

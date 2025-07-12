@@ -1,25 +1,25 @@
 # GCP Configuration
-project_id          = "cloudnord"  # Base project ID (year will be appended)
-use_existing_project = true       # Set to true if using existing Firebase project
-existing_project_id = "cloudnord-2025"           # Required if use_existing_project = true
-region             = "europe-west1"
+project_id           = "techwork"      # Base project ID (year will be appended to create "techwork-2026")
+use_existing_project = true            # Set to true to use existing Firebase project
+existing_project_id  = "techwork-2026" # Required when use_existing_project = true
+region               = "europe-west1"
 
 # Event Configuration
-year = "2025"  # Change this for each year's deployment
-event_name  = "cloud-nord"
-domain_name = "cloudnord.fr"
-site_suffix = "website"  # Suffix to make site name unique
+year        = "2026" # Change this for each year's deployment
+event_name  = "techwork"
+domain_name = "techwork.events"
+site_suffix = "website" # Suffix to make site name unique
 
 # Firebase Services Configuration
-enable_hosting    = true
-enable_firestore  = true
-enable_storage    = false  # Disabled temporarily due to domain verification issue
-enable_auth       = false  # Disabled temporarily due to quota project issue
-enable_analytics  = true
+enable_hosting   = true
+enable_firestore = true
+enable_storage   = false # Disabled temporarily due to domain verification issue
+enable_auth      = false # Disabled temporarily due to quota project issue
+enable_analytics = true
 
 # Custom Domain Configuration
-enable_custom_domain = true
-custom_domain_certificate_type = "GROUPED"  # Valid values: GROUPED, PROJECT_GROUPED, DEDICATED
+enable_custom_domain           = true
+custom_domain_certificate_type = "GROUPED" # Valid values: GROUPED, PROJECT_GROUPED, DEDICATED
 
 # Locations
 firestore_location = "europe-west1"
@@ -57,7 +57,7 @@ hosting_redirects = [
 
 # CORS Origins for Storage
 cors_origins = [
-  "https://techwork.fr",
+  "https://techwork.events",
   "https://localhost:4321",
   "https://localhost:3000"
 ]
@@ -65,6 +65,6 @@ cors_origins = [
 # Labels for resource organization
 labels = {
   environment = "production"
-  team        = "tech-work"
+  team        = "techwork"
   managed_by  = "terraform"
 }

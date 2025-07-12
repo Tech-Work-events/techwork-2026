@@ -96,15 +96,28 @@ task test          # Tests
 
 #### Commandes d'Infrastructure
 
+**⚠️ IMPORTANT:** Before running infrastructure commands, complete the setup in [Infrastructure Guide](./docs/INFRASTRUCTURE.md#initial-setup)
+
 ```bash
 task setup                # Configuration Terraform
-task deploy YEAR=2025     # Déployer l'infrastructure
-task deploy-web YEAR=2025 # Déployer le site web
-task update-env YEAR=2025 # Mettre à jour .env
+task deploy YEAR=2026     # Déployer l'infrastructure
+task deploy-web YEAR=2026 # Déployer le site web
+task update-env YEAR=2026 # Mettre à jour .env
 ```
 
 ### 📖 Documentation
 
--   **[Infrastructure Guide](./docs/INFRASTRUCTURE.md)** - Complete infrastructure setup and management
+-   **[Infrastructure Guide](./docs/INFRASTRUCTURE.md)** - **START HERE** for complete infrastructure setup and management
 -   **[Development Guide](./docs/DEVELOPMENT.md)** - Development workflow and commands
 -   **[Terraform Documentation](./terraform/README.md)** - Detailed Terraform configuration
+
+### 🔧 First-Time Setup Checklist
+
+Before deploying infrastructure, ensure you have:
+
+1. ✅ **Google Cloud Authentication** - `gcloud auth login` and `gcloud auth application-default login`
+2. ✅ **Project Access** - Verify you have owner/editor permissions on your GCP project
+3. ✅ **GCS Bucket** - Create bucket for Terraform state storage
+4. ✅ **Terraform Init** - Run `terraform init -reconfigure` in terraform directory
+
+**See [Infrastructure Guide](./docs/INFRASTRUCTURE.md#initial-setup) for detailed step-by-step instructions.**

@@ -104,13 +104,37 @@ source ~/.bashrc  # or ~/.zshrc
 # Encrypt secrets for a year
 task encrypt-secrets YEAR=2025
 
-# Edit encrypted secrets
-task edit-secrets YEAR=2025
+# Manual secrets update workflow
+task update-secrets-manual YEAR=2025
 
 # Deploy (automatic decryption)
 task plan YEAR=2025
 task apply YEAR=2025
 ```
+
+### Manual Secrets Update Workflow
+
+For editing encrypted secrets files, use the manual decrypt-edit-encrypt workflow:
+
+```bash
+# 1. Decrypt the encrypted secrets file
+task decrypt-secrets YEAR=2025
+
+# 2. Remove the encrypted file to avoid conflicts
+rm terraform/terraform-2025.secrets.tfvars
+
+# 3. Edit the decrypted file with your preferred editor
+nano terraform/terraform-2025.secrets.decrypted.tfvars
+# or vim, code, etc.
+
+# 4. Encrypt the updated file
+task encrypt-secrets YEAR=2025
+
+# Alternative: Use the guided workflow
+task update-secrets-manual YEAR=2025
+```
+
+**Note:** This manual workflow is more reliable than the automated SOPS editor integration and provides better control over the editing process.
 
 ### File Structure
 
@@ -145,7 +169,7 @@ git push
 
 ```bash
 git pull
-task edit-secrets YEAR=2025  # Should work now
+task update-secrets-manual YEAR=2025  # Should work now
 ```
 
 #### Removing Team Members
@@ -311,11 +335,17 @@ task check-requirements            # Verify all tools installed
 
 # Secret management
 task encrypt-secrets YEAR=2025     # Encrypt secrets
-task edit-secrets YEAR=2025        # Edit encrypted secrets
+task decrypt-secrets YEAR=2025     # Decrypt secrets (temp)
+task update-secrets-manual YEAR=2025 # Manual secrets update workflow
 task show-my-public-key            # Show your public key
 
 # Team management
 task add-team-member PUBLIC_KEY=<key>  # Add team member
+
+# Environment variable management
+task decrypt-env                       # Decrypt .env-encrypted to .env
+task encrypt-env                       # Encrypt .env to .env-encrypted
+task update-env-manual                 # Manual environment update workflow
 
 # Authentication
 gcloud auth application-default set-quota-project cloudnord-2025
