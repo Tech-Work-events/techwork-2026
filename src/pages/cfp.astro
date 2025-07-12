@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ConferenceHallIntegration from '../components/cfp/ConferenceHallIntegration.astro'
+import { CFP_CONFIG } from '../config/cfp'
+---
+
+<Layout title="CFP - Call for Papers" description="Proposez votre talk pour Tech'Work Lyon 2026">
+    <!-- Header Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">📢</span>
+                    Call for Papers
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Partagez votre <span class="text-gradient">expertise</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Vous avez une passion, une expérience, un projet fou à partager ? 
+                    Rejoignez-nous sur scène pour révolutionner la tech lyonnaise !
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CFP Status -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <!-- Status Info -->
+                <div class="scroll-animate-left">
+                    <ConferenceHallIntegration />
+                </div>
+
+                <!-- CFP Image/Illustration -->
+                <div class="scroll-animate-right">
+                    <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🎤</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Votre moment de gloire</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Partagez votre expertise avec la communauté tech lyonnaise. 
+                                Que vous soyez junior ou senior, votre expérience compte !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talk Formats -->
+    <section id="formats" class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Formats de <span class="text-gradient">talks</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Plusieurs formats pour s'adapter à votre style et votre message
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+                {CFP_CONFIG.formats.map((format, index) => (
+                    <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
+                        <div class="p-6 text-center">
+                            <div class="text-4xl mb-4">{format.emoji}</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{format.name}</h3>
+                            <p class="text-gray-600 mb-4">{format.description}</p>
+                            <div class="text-sm text-primary-600 font-semibold">⏱️ {format.duration}</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics & Guidelines -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Topics -->
+                <div class="scroll-animate-left">
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                        Sujets recherchés
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        {CFP_CONFIG.topics.map((topic) => (
+                            <div class="flex items-start space-x-3">
+                                <span class={`w-6 h-6 bg-${topic.color}-100 text-${topic.color}-600 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5`}>
+                                    {topic.emoji}
+                                </span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">{topic.name}</h3>
+                                    <p class="text-sm text-gray-600">{topic.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Guidelines -->
+                <div class="scroll-animate-right">
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                        Conseils pour votre proposition
+                    </h2>
+                    
+                    <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 border border-primary-100 mb-6">
+                        <h3 class="font-bold text-gray-900 mb-3">✨ Ce qu'on adore</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Des exemples concrets et du vécu</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Des retours d'expérience authentiques</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Des démonstrations pratiques</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Des sujets qui parlent au quotidien</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-2xl p-6 border border-yellow-200">
+                        <h3 class="font-bold text-gray-900 mb-3">💡 Tips</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• Pensez à votre audience : ni trop junior, ni trop expert</li>
+                            <li>• Racontez une histoire, pas juste de la théorie</li>
+                            <li>• Incluez vos échecs et comment vous les avez surmontés</li>
+                            <li>• Préparez quelques slides de démo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+            <h2 class="text-3xl sm:text-4xl font-black mb-6">
+                Prêt·e à partager votre expertise ?
+            </h2>
+            <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                Rejoignez-nous pour révolutionner la façon de faire de la tech à Lyon. 
+                Votre expérience peut inspirer toute une communauté !
+            </p>
+            
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a 
+                        href={CFP_CONFIG.submissionUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary text-lg px-8 py-4 hover-lift group bg-white text-primary-600 hover:bg-gray-50"
+                    >
+                        <span class="mr-2 group-hover:animate-bounce-gentle">🎯</span>
+                        Soumettre ma proposition
+                    </a>
+                    <a 
+                        href={`mailto:${CFP_CONFIG.contactEmail}`}
+                        class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group"
+                    >
+                        <span class="mr-2 group-hover:animate-bounce-gentle">💬</span>
+                        Besoin d'aide ?
+                    </a>
+                </div>
+        </div>
+    </section>
+</Layout>

@@ -1,27 +1,290 @@
 ---
-import LayoutWithTitle from '../layouts/LayoutWithTitle.astro'
-import Stack from '../components/ui-elements/Stack.astro'
-import MarkdownWrapper from '../components/ui-elements/MarkdownWrapper.astro'
-import { Content } from '../markdown/location.md'
+import Layout from '../layouts/Layout.astro'
 ---
 
-<LayoutWithTitle title="Lieu" description="Découvrez où se déroulera Tech'Work Lyon 2026 - Le lieu mystère sera bientôt révélé !">
-    <Stack align="center" space="40px">
-        <!--<div style="max-width: 1000px">-->
-        <!--    <Picture src={plan2024} formats={['avif', 'webp']} alt="Plan détaillé du lieu CloudNord" loading="lazy" />-->
-        <!--</div>-->
-        <!--<div style="max-width: 500px">-->
-        <!--    <Picture src={plan} formats={['avif', 'webp']} alt="Plan d’ensemble du lieu CloudNord" loading="lazy" />-->
-        <!--</div>-->
-
-        <MarkdownWrapper>
-            <Content />
-        </MarkdownWrapper>
-
-        <div style="width: 100%; text-align: center; padding: 2rem; background: var(--component); border-radius: var(--border-radius);">
-            <h3>🗺️ Carte à venir</h3>
-            <p>Une fois le lieu sélectionné, vous trouverez ici une carte interactive pour vous y rendre facilement !</p>
-            <p><em>Stay tuned... 📍</em></p>
+<Layout title="Lieu - Tech'Work Lyon 2026" description="Découvrez où se déroulera Tech'Work Lyon 2026 - Le lieu mystère sera bientôt révélé !">
+    <!-- Header Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">📍</span>
+                    Lieu
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Le lieu <span class="text-gradient">mystère</span> de Tech'Work 2026
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    🕵️ Actuellement en cours de sélection... <strong>Spoiler alert :</strong> Ce sera à Lyon et ce sera génial !
+                </p>
+            </div>
         </div>
-    </Stack>
-</LayoutWithTitle>
+    </section>
+
+    <!-- Selection Criteria -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Nos critères de sélection
+                </h2>
+                <p class="text-lg text-gray-600">
+                    (Parce qu'on est difficiles)
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-children">
+                <!-- Accessibilité -->
+                <div class="card hover-lift scroll-animate-scale">
+                    <div class="p-6">
+                        <div class="text-4xl mb-4 text-center">🚇</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Accessibilité</h3>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                TCL à proximité
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                Parking disponible
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                PMR complète
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                Pas au 42ème étage
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Technique -->
+                <div class="card hover-lift scroll-animate-scale">
+                    <div class="p-6">
+                        <div class="text-4xl mb-4 text-center">🔧</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Technique</h3>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">📶</span>
+                                Wifi ultra-performant
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">🔌</span>
+                                Prises partout
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">❄️</span>
+                                Clim qui fonctionne
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">🔊</span>
+                                Acoustique parfaite
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Espace -->
+                <div class="card hover-lift scroll-animate-scale">
+                    <div class="p-6">
+                        <div class="text-4xl mb-4 text-center">🏢</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Espaces</h3>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🏛️</span>
+                                3 salles streams
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🤝</span>
+                                Zones networking
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">😊</span>
+                                Espaces détente
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🍽️</span>
+                                Cuisine équipée
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bonus -->
+                <div class="card hover-lift scroll-animate-scale">
+                    <div class="p-6">
+                        <div class="text-4xl mb-4 text-center">🎯</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Bonus Points</h3>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">☀️</span>
+                                Terrasse/extérieur
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">✨</span>
+                                Déco moderne
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">🔄</span>
+                                Flexibilité
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">👥</span>
+                                Équipe dédiée
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Can Promise -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Ce qu'on peut déjà vous promettre
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Location -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 hover-lift scroll-animate-left">
+                    <div class="text-4xl mb-4">📍</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Localisation</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>• Dans Lyon ou proche banlieue</li>
+                        <li>• Métro/tram à moins de 10 minutes</li>
+                        <li>• Restaurants/cafés à proximité</li>
+                        <li>• Vue sympa (si possible)</li>
+                    </ul>
+                </div>
+
+                <!-- Equipment -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 hover-lift scroll-animate-scale">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Équipements garantis</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>• Sono de qualité dans chaque salle</li>
+                        <li>• Vidéoprojecteurs 4K</li>
+                        <li>• Setup streaming professionnel</li>
+                        <li>• Réseau testé 200+ connexions</li>
+                    </ul>
+                </div>
+
+                <!-- Food -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 hover-lift scroll-animate-right">
+                    <div class="text-4xl mb-4">🍕</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Restauration</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>• Vrais croissants le matin</li>
+                        <li>• Café de qualité</li>
+                        <li>• Déjeuner digne de ce nom</li>
+                        <li>• Options végé/vegan/sans gluten</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call for Suggestions -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+            <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100">
+                <div class="text-6xl mb-6">🏆</div>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                    Participez à la sélection !
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Vous connaissez LE lieu parfait ? On est ouverts aux suggestions ! 
+                    Si vous connaissez un endroit qui pourrait accueillir Tech'Work dans des conditions optimales, faites-vous connaître.
+                </p>
+                
+                <div class="grid sm:grid-cols-2 gap-6 mb-8 text-left">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200">
+                        <h3 class="font-bold text-gray-900 mb-3">💡 Critères techniques</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Capacité : 200-300 personnes</li>
+                            <li>• 3 salles de 60-80 places chacune</li>
+                            <li>• Espaces networking pour 200+ personnes</li>
+                            <li>• Équipements A/V complets</li>
+                            <li>• Cuisine/office pour la restauration</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-gray-200">
+                        <h3 class="font-bold text-gray-900 mb-3">🎯 Bonus points si</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Terrasse ou espace extérieur</li>
+                            <li>• Déco moderne/tech-friendly</li>
+                            <li>• Flexibilité sur l'aménagement</li>
+                            <li>• Équipe technique dédiée</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a 
+                    href="mailto:lieu@techwork.lyon"
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                    Proposer un lieu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+            <div class="mb-8">
+                <div class="text-6xl mb-6">🔥</div>
+                <h2 class="text-3xl sm:text-4xl font-black mb-6">
+                    Annonce imminente !
+                </h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Restez connecté·e·s ! L'annonce du lieu se fera très prochainement.
+                </p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8">
+                <h3 class="text-xl font-bold mb-4">🎁 Insider Info</h3>
+                <p class="text-gray-200">
+                    Les abonné·e·s newsletter auront un accès privilégié aux billets Early Bird 
+                    le jour de l'annonce du lieu.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                    href="mailto:news@techwork.lyon?subject=Inscription Newsletter Tech'Work"
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group bg-white text-primary-600 hover:bg-gray-50">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                    S'inscrire à la newsletter
+                </a>
+                <a 
+                    href="/team"
+                    class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
+                    Contacter l'équipe
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Placeholder -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+            <div class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300">
+                <div class="text-6xl mb-6">🗺️</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Carte interactive à venir</h3>
+                <p class="text-gray-600 mb-4">
+                    Une fois le lieu sélectionné, vous trouverez ici une carte interactive 
+                    pour vous y rendre facilement !
+                </p>
+                <p class="text-gray-500 italic">Stay tuned... 📍</p>
+            </div>
+        </div>
+    </section>
+</Layout>

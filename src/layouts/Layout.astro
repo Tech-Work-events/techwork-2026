@@ -97,7 +97,11 @@ const organizerTwitter = '@techworklyon'
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
+                        if (entry.target.classList.contains('text-blocks')) {
+                            entry.target.classList.add('visible');
+                        } else {
+                            entry.target.classList.add('animate');
+                        }
                     }
                 });
             }, observerOptions);
@@ -110,6 +114,12 @@ const organizerTwitter = '@techworklyon'
                 
                 animateElements.forEach(el => {
                     observer.observe(el);
+                });
+
+                // Observer spécial pour les blocs de texte progressifs
+                const textBlocks = document.querySelectorAll('.text-blocks');
+                textBlocks.forEach(container => {
+                    observer.observe(container);
                 });
             }
 

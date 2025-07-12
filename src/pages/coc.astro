@@ -1,11 +1,176 @@
 ---
-import LayoutWithTitle from '../layouts/LayoutWithTitle.astro'
-import MarkdownWrapper from '../components/ui-elements/MarkdownWrapper.astro'
+import Layout from '../layouts/Layout.astro'
 import { Content } from '../markdown/coc.md'
 ---
 
-<LayoutWithTitle title="Code de conduite">
-    <MarkdownWrapper>
-        <Content />
-    </MarkdownWrapper>
-</LayoutWithTitle>
+<Layout title="Code de conduite - Tech'Work Lyon 2026" description="Code de conduite pour un environnement bienveillant et inclusif lors de Tech'Work Lyon 2026">
+    <!-- Header Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🤝</span>
+                    Code de conduite
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Ensemble pour un <span class="text-gradient">environnement bienveillant</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Tech'Work s'engage à créer un espace sûr, inclusif et respectueux pour tous les participants
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg prose-gray max-w-none text-blocks">
+                <div class="text-block">
+                    <h2 id="à-lire">📖 À lire avant de participer</h2>
+                    <p><strong>TL;DR : Soyez respectueux·se, inclusif·ve et bienveillant·e. En cas de problème, signalez-le immédiatement.</strong></p>
+                    <p>Tech'Work Lyon 2026 s'engage à créer un environnement sûr, inclusif et bienveillant pour tous les participants. Ce code de conduite reflète nos valeurs et notre engagement envers une communauté tech diverse et respectueuse.</p>
+                </div>
+
+                <div class="text-block">
+                    <h3 id="nos-valeurs-fondamentales">🌟 Nos valeurs fondamentales</h3>
+                    <p><strong>🤝 Respect mutuel</strong> : Chaque personne mérite dignité et considération, quel que soit son niveau, son origine ou son parcours.</p>
+                    <p><strong>🌈 Inclusion active</strong> : Nous valorisons la diversité sous toutes ses formes et œuvrons pour un environnement accessible à tous.</p>
+                    <p><strong>💚 Bienveillance</strong> : Nous privilégions l'écoute, l'entraide et la construction collective plutôt que la compétition.</p>
+                    <p><strong>📚 Apprentissage partagé</strong> : Nous créons un espace d'échange sans jugement où chacun peut apprendre et enseigner.</p>
+                    <p><strong>⚖️ Équité</strong> : Nous luttons activement contre les biais et discriminations présents dans l'industrie tech.</p>
+                </div>
+
+                <div class="text-block">
+                    <h3 id="comportements-encouragés">✅ Comportements encouragés</h3>
+                    <ul>
+                        <li><strong>Utiliser un langage inclusif</strong> et éviter les termes potentiellement excluants</li>
+                        <li><strong>Respecter les pronoms</strong> et identités de chacun·e</li>
+                        <li><strong>Écouter activement</strong> et laisser la parole à tous·tes les participant·e·s</li>
+                        <li><strong>Poser des questions constructives</strong> sans jugement sur le niveau technique</li>
+                        <li><strong>Partager ses connaissances</strong> de manière pédagogique et accessible</li>
+                        <li><strong>Reconnaître et valoriser</strong> les contributions de chacun·e</li>
+                        <li><strong>Signaler</strong> les comportements problématiques de manière bienveillante</li>
+                        <li><strong>Créer un espace sûr</strong> pour les personnes sous-représentées dans la tech</li>
+                        <li><strong>Respecter les différents styles d'apprentissage</strong> et de communication</li>
+                    </ul>
+                </div>
+
+                <div class="text-block">
+                    <h3 id="comportements-inacceptables">❌ Comportements inacceptables</h3>
+                    <p>Nous avons <strong>tolérance zéro</strong> pour :</p>
+                </div>
+
+                <div class="text-block">
+                    <h4 id="harcèlement-et-discrimination">Harcèlement et discrimination</h4>
+                    <ul>
+                        <li><strong>Commentaires discriminatoires</strong> sur le genre, l'origine, l'orientation, l'âge, le handicap, l'apparence</li>
+                        <li><strong>Mansplaining</strong> ou condescendance basée sur le niveau technique perçu</li>
+                        <li><strong>Gatekeeping</strong> : définir qui est ou n'est pas un "vrai" développeur</li>
+                        <li><strong>Microagressions</strong> répétées ou intentionnelles</li>
+                        <li><strong>Questions intrusives</strong> sur la vie privée ou les choix personnels</li>
+                    </ul>
+                </div>
+
+                <div class="text-block">
+                    <h4 id="comportements-irrespectueux">Comportements irrespectueux</h4>
+                    <ul>
+                        <li><strong>Interruptions systématiques</strong> ou monopolisation de la parole</li>
+                        <li><strong>Commentaires déplacés</strong> sur l'apparence physique ou la tenue vestimentaire</li>
+                        <li><strong>Blagues</strong> à caractère sexuel, raciste ou discriminatoire</li>
+                        <li><strong>Contact physique non consenti</strong> : câlins, tapes dans le dos, etc.</li>
+                        <li><strong>Photographies</strong> sans consentement explicite</li>
+                    </ul>
+                </div>
+
+                <div class="text-block">
+                    <h4 id="pratiques-toxiques-de-lindustrie">Pratiques toxiques de l'industrie</h4>
+                    <ul>
+                        <li><strong>Tech bros attitude</strong> : comportement élitiste ou exclusif</li>
+                        <li><strong>Impostor syndrome shaming</strong> : minimiser les difficultés d'autrui</li>
+                        <li><strong>Technology shaming</strong> : critiquer les choix techniques de manière non constructive</li>
+                        <li><strong>Worklife imbalance pressure</strong> : pression pour sacrifier sa vie personnelle</li>
+                        <li><strong>Ageism</strong> : discrimination basée sur l'âge dans la tech</li>
+                    </ul>
+                </div>
+
+                <div class="text-block">
+                    <h4 id="espaces-numériques">Espaces numériques</h4>
+                    <ul>
+                        <li><strong>Trolling</strong> ou provocations délibérées</li>
+                        <li><strong>Doxxing</strong> : révélation d'informations personnelles</li>
+                        <li><strong>Brigading</strong> : harcèlement coordonné</li>
+                        <li><strong>Spam</strong> ou autopromotion excessive</li>
+                        <li><strong>Partage de contenu inapproprié</strong> : images, liens ou matériel offensant</li>
+                    </ul>
+                </div>
+
+                <div class="text-block">
+                    <h3 id="signalement--comment-agir-">🚨 Signalement : comment agir ?</h3>
+                    
+                    <h4 id="pour-les-victimes">Pour les victimes</h4>
+                    <ul>
+                        <li><strong>Vous n'êtes pas seul·e</strong> : Notre équipe est là pour vous accompagner</li>
+                        <li><strong>Aucune tolérance</strong> : Même les "petites" choses comptent et seront prises au sérieux</li>
+                        <li><strong>Confidentialité garantie</strong> : Vos signalements restent confidentiels</li>
+                        <li><strong>Pas de jugement</strong> : Nous vous croyons et vous soutenons</li>
+                    </ul>
+
+                    <h4 id="moyens-de-signalement">Moyens de signalement</h4>
+                    <ol>
+                        <li><strong>Sur place</strong> : Approchez n'importe quel membre de l'équipe (badges "STAFF")</li>
+                        <li><strong>Email</strong> : contact@techwork.lyon (réponse sous 2h pendant l'événement)</li>
+                        <li><strong>Signal d'urgence</strong> : Levez la main avec un "T" formé avec vos mains</li>
+                        <li><strong>Personne de confiance</strong> : Demandez à quelqu'un de nous alerter pour vous</li>
+                    </ol>
+                </div>
+
+                <div class="text-block">
+                    <h3 id="notre-engagement">🤝 Notre engagement</h3>
+                    <ul>
+                        <li><strong>Transparence</strong> : Bilan anonymisé des signalements après l'événement</li>
+                        <li><strong>Amélioration continue</strong> : Ce code évoluera avec votre feedback</li>
+                        <li><strong>Formation</strong> : Ressources pour sensibiliser votre entreprise/équipe</li>
+                        <li><strong>Suivi</strong> : Contact possible après l'événement si besoin</li>
+                    </ul>
+
+                    <hr>
+
+                    <p><strong>🚀 Ensemble, créons l'événement tech le plus inclusif et bienveillant possible !</strong></p>
+                    <p><em>Version 1.0 - Janvier 2026. Inspiré des meilleures pratiques communautaires et mis à jour selon vos retours.</em></p>
+                    <p><strong>Questions ? Suggestions ?</strong> Écrivez-nous à feedback@techwork.lyon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+            <div class="bg-white rounded-2xl p-8 border border-primary-100 hover-lift">
+                <div class="text-4xl mb-4">🚨</div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">
+                    Besoin d'aide ou signalement ?
+                </h2>
+                <p class="text-gray-600 mb-6">
+                    En cas de problème ou pour signaler un comportement inapproprié, 
+                    contactez immédiatement l'équipe d'organisation.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a
+                        href="mailto:contact@techwork.lyon"
+                        class="btn btn-primary hover-lift group">
+                        <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                        contact@techwork.lyon
+                    </a>
+                    <a
+                        href="/team"
+                        class="btn btn-secondary hover-lift group">
+                        <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
+                        Contacter l'équipe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

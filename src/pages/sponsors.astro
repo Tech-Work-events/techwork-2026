@@ -1,0 +1,219 @@
+---
+import { OPENPLANNER_URL } from 'astro:env/client'
+import type { OpenPlannerType } from '../type'
+import Layout from '../layouts/Layout.astro'
+
+// Récupération des données OpenPlanner
+let openPlannerData: OpenPlannerType | null = null
+try {
+    const response = await fetch(OPENPLANNER_URL)
+    if (response.ok) {
+        openPlannerData = await response.json()
+    }
+} catch (error) {
+    console.warn('Erreur lors de la récupération des données OpenPlanner:', error)
+}
+
+const sponsorCategories = openPlannerData?.sponsors || []
+const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.order)
+---
+
+<Layout title="Partenaires - Tech'Work Lyon 2026" description="Découvrez nos partenaires qui soutiennent Tech'Work Lyon 2026">
+    <!-- Header Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🤝</span>
+                    Partenaires
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Nos <span class="text-gradient">partenaires</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ils croient en notre vision et nous aident à révolutionner l'événementiel tech lyonnais
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Categories -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {sponsorsCategoriesSorted.length === 0 ? (
+                <!-- No Sponsors Yet -->
+                <div class="text-center space-y-8 scroll-animate-scale">
+                    <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 max-w-4xl mx-auto">
+                        <div class="text-6xl mb-6">🚀</div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                            Rejoignez l'aventure !
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Tech'Work révolutionne l'événementiel tech en proposant des événements sur le temps de travail. 
+                            Rejoignez-nous pour soutenir cette innovation et toucher une communauté engagée de développeurs.
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="text-3xl mb-3">🎯</div>
+                                <h3 class="font-bold text-gray-900 mb-2">Visibilité maximale</h3>
+                                <p class="text-sm text-gray-600">Votre marque mise en avant devant une audience de développeurs qualifiés</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="text-3xl mb-3">💼</div>
+                                <h3 class="font-bold text-gray-900 mb-2">Recrutement</h3>
+                                <p class="text-sm text-gray-600">Accès privilégié à une communauté de talents tech motivés</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="text-3xl mb-3">🌟</div>
+                                <h3 class="font-bold text-gray-900 mb-2">Innovation</h3>
+                                <p class="text-sm text-gray-600">Associez votre image à un concept révolutionnaire et moderne</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="text-3xl mb-3">🤝</div>
+                                <h3 class="font-bold text-gray-900 mb-2">Communauté</h3>
+                                <p class="text-sm text-gray-600">Participez à la création d'un écosystème tech dynamique</p>
+                            </div>
+                        </div>
+
+                        <a
+                            href="mailto:partners@techwork.lyon"
+                            class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                            <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                            Devenir partenaire
+                        </a>
+                    </div>
+                </div>
+            ) : (
+                <!-- Display Sponsors -->
+                <>
+                    {sponsorsCategoriesSorted.map((sponsorCategory, categoryIndex) => (
+                        <div class="mb-16 sm:mb-20 scroll-animate" style={`animation-delay: ${categoryIndex * 0.2}s`}>
+                            <div class="text-center mb-12">
+                                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-4">
+                                    {sponsorCategory.name}
+                                </h2>
+                                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto"></div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 stagger-children">
+                                {sponsorCategory.sponsors.map((sponsor, sponsorIndex) => (
+                                    <a
+                                        class="logo-item group block"
+                                        href={sponsor.website}
+                                        title={sponsor.name}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={`animation-delay: ${sponsorIndex * 0.1}s`}>
+                                        <div class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-gray-100 hover:border-primary-300 transition-all duration-300 hover-lift scroll-animate-scale">
+                                            <img
+                                                class="w-full h-16 sm:h-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                                                src={sponsor.logoUrl}
+                                                alt={sponsor.name}
+                                                loading="lazy"
+                                            />
+                                            <div class="mt-4 text-center">
+                                                <h3 class="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                                                    {sponsor.name}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                    
+                    <!-- Call to Action for More Partners -->
+                    <div class="text-center mt-16 scroll-animate">
+                        <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 max-w-2xl mx-auto">
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                                Vous aussi, rejoignez nos partenaires !
+                            </h3>
+                            <p class="text-gray-600 mb-6">
+                                Plusieurs formules de partenariat sont disponibles pour s'adapter à vos besoins et votre budget.
+                            </p>
+                            <a
+                                href="mailto:partners@techwork.lyon"
+                                class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                                <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                                Devenir partenaire
+                            </a>
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    </section>
+
+    <!-- Partnership Info Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <!-- Info Content -->
+                <div class="scroll-animate-left">
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                        Pourquoi devenir partenaire ?
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🎯</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Audience qualifiée</h3>
+                                <p class="text-gray-600">Rencontrez des développeurs passionnés et motivés lors d'un événement unique sur leur temps de travail.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-secondary-100 text-secondary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">💡</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Innovation</h3>
+                                <p class="text-gray-600">Associez votre marque à un concept révolutionnaire qui change la donne dans l'événementiel tech.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🌍</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Impact local</h3>
+                                <p class="text-gray-600">Contribuez au développement de l'écosystème tech lyonnais et régional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="scroll-animate-right">
+                    <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">🤝</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Discutons de votre partenariat</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Nous proposons différentes formules de partenariat adaptées à vos objectifs et votre budget. 
+                                Contactez-nous pour en discuter !
+                            </p>
+                            <div class="space-y-3">
+                                <a
+                                    href="mailto:partners@techwork.lyon"
+                                    class="btn btn-primary w-full hover-lift group">
+                                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                                    partners@techwork.lyon
+                                </a>
+                                <p class="text-xs text-gray-500">
+                                    Réponse garantie sous 48h
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
