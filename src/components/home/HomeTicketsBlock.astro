@@ -1,7 +1,7 @@
 ---
-import ticketsData from '../../data/tickets/tickets.json'
+import { TICKETS_CONFIG } from '../../config'
 
-const tickets = ticketsData.map(ticket => ({
+const tickets = TICKETS_CONFIG.map(ticket => ({
     ...ticket,
     available: ticket.ticketsCount,
     total: ticket.ticketsCount

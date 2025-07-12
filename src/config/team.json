@@ -1,0 +1,134 @@
+[
+    {
+        "id": "maxime",
+        "name": "Maxime",
+        "role": "Co-initiateur & Master of Logistics",
+        "bio": "Organiser un événement tech, c'est comme déployer en prod : ça doit être parfait du premier coup.",
+        "responsibilities": "Logistique, partenariats, expérience participant",
+        "superpower": "Prévoir tous les edge cases possibles",
+        "techDetail": {
+            "type": "ide",
+            "value": "VS Code"
+        },
+        "mood": "⚙️",
+        "funFact": "Peut prévoir qu'il va pleuvoir en regardant les logs du serveur",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "🐦", "name": "Twitter", "link": "https://twitter.com/maxime" },
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/maxime" }
+        ]
+    },
+    {
+        "id": "kevin",
+        "name": "Kevin",
+        "role": "Co-initiateur & Chief Innovation Officer", 
+        "bio": "Développeur passionné, organisateur compulsif. J'ai toujours rêvé d'un événement tech qui ne me fasse pas rater le coucher de mes enfants.",
+        "responsibilities": "Vision stratégique, relations speakers, coordination générale",
+        "superpower": "Transformer les idées folles en événements réussis",
+        "techDetail": {
+            "type": "coffee",
+            "value": "Espresso (double, évidemment)"
+        },
+        "mood": "🚀",
+        "funFact": "A réussi à faire un déploiement en prod un vendredi sans que ça crash",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/kevindelfour" }
+        ]
+    },
+    {
+        "id": "marie",
+        "name": "Marie",
+        "role": "Responsable Communication & Content",
+        "bio": "Ex-journaliste tech reconvertie en évangéliste. Je transforme les sujets complexes en contenus digestes (et parfois drôles).",
+        "responsibilities": "Stratégie communication, contenu, réseaux sociaux",
+        "superpower": "Expliquer Kubernetes à ma grand-mère",
+        "techDetail": {
+            "type": "coffee",
+            "value": "Latte art (oui, même le code doit être beau)"
+        },
+        "mood": "✨",
+        "funFact": "A réussi à faire un thread Twitter viral sur les hooks React",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "🐦", "name": "Twitter", "link": "https://twitter.com/marie" },
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/marie" }
+        ]
+    },
+    {
+        "id": "alex",
+        "name": "Alex",
+        "role": "Lead Developer & Tech Wizard",
+        "bio": "Full-stack par passion, DevOps par nécessité. Je code le jour, je rêve en algorithmes la nuit.",
+        "responsibilities": "Développement plateforme, infrastructure, automatisation",
+        "superpower": "Débugger du code écrit à 3h du matin",
+        "techDetail": {
+            "type": "ide",
+            "value": "Neovim (fight me)"
+        },
+        "mood": "🧙‍♂️",
+        "funFact": "Maintient un serveur personnel depuis 2008 sans interruption",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "🐦", "name": "Twitter", "link": "https://twitter.com/alex" },
+            { "icon": "🔗", "name": "GitHub", "link": "https://github.com/alex" }
+        ]
+    },
+    {
+        "id": "sarah",
+        "name": "Sarah",
+        "role": "UX/UI Designer & User Advocate",
+        "bio": "Designer par formation, psychologue des utilisateurs par vocation. Je rends les interfaces moins frustrantes que les bugs en production.",
+        "responsibilities": "Design UX/UI, recherche utilisateur, accessibilité",
+        "superpower": "Prédire où les utilisateurs vont cliquer (spoiler: pas où on veut)",
+        "techDetail": {
+            "type": "tools",
+            "value": "Figma + beaucoup de post-its"
+        },
+        "mood": "🎨",
+        "funFact": "A convaincu une équipe d'abandonner Comic Sans MS pour une interface",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "🎨", "name": "Dribbble", "link": "https://dribbble.com/sarah" },
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/sarah" }
+        ]
+    },
+    {
+        "id": "thomas",
+        "name": "Thomas",
+        "role": "Community Manager & Event Coordinator",
+        "bio": "Ancien organisateur de meetups, nouveau convertisseur d'idées en événements mémorables. Je gère la communauté comme un chef produit.",
+        "responsibilities": "Animation communauté, coordination événements, partenariats",
+        "superpower": "Transformer un channel Discord silencieux en ruche bourdonnante",
+        "techDetail": {
+            "type": "platform",
+            "value": "Discord + un peu partout"
+        },
+        "mood": "🤝",
+        "funFact": "A organisé un meetup avec 200 personnes via un simple message Discord",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "💬", "name": "Discord", "link": "https://discord.gg/thomas" },
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/thomas" }
+        ]
+    },
+    {
+        "id": "emma",
+        "name": "Emma",
+        "role": "Data Analyst & Growth Hacker",
+        "bio": "Je transforme les chiffres en insights et les insights en actions. Mes dashboards sont plus colorés que mon code Python.",
+        "responsibilities": "Analytics, croissance, optimisation performance",
+        "superpower": "Trouver des patterns dans le chaos des données utilisateur",
+        "techDetail": {
+            "type": "stack",
+            "value": "Python + SQL + Excel (assumé)"
+        },
+        "mood": "📊",
+        "funFact": "A prédit le succès d'un événement en analysant les emojis des messages Slack",
+        "photoUrl": "/pictures/team.webp",
+        "socials": [
+            { "icon": "📈", "name": "Kaggle", "link": "https://kaggle.com/emma" },
+            { "icon": "💼", "name": "LinkedIn", "link": "https://linkedin.com/in/emma" }
+        ]
+    }
+]
