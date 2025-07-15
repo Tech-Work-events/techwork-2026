@@ -18,12 +18,12 @@ const sponsorCategories = openPlannerData?.sponsors || []
 const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.order)
 ---
 
-<Layout title="Partenaires - Tech'Work Lyon 2026" description="Découvrez nos partenaires qui soutiennent Tech'Work Lyon 2026">
-    <!-- Header Section -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+<Layout title="Nos Partenaires" description="Découvrez nos partenaires qui nous soutiennent">
+    <!-- Page Header -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center scroll-animate">
-                <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
                     <span class="mr-2 animate-bounce-gentle">🤝</span>
                     Partenaires
                 </div>
@@ -38,8 +38,8 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
     </section>
 
     <!-- Sponsors Categories -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-16 sm:py-20 lg:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {sponsorsCategoriesSorted.length === 0 ? (
                 <!-- No Sponsors Yet -->
                 <div class="text-center space-y-8 scroll-animate-scale">
