@@ -108,46 +108,56 @@
     text-wrap: pretty;
   }
   
-  /* Animations fluides */
+  /* Animations fluides - Optimisées pour mobile */
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out forwards;
+    will-change: opacity;
   }
   
   .animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-slide-down {
     animation: slideDown 0.8s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-slide-left {
     animation: slideLeft 0.8s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-slide-right {
     animation: slideRight 0.8s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-scale-in {
     animation: scaleIn 0.6s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-bounce-gentle {
     animation: bounceGentle 2s ease-in-out infinite;
+    will-change: transform;
   }
   
   .animate-float {
     animation: float 3s ease-in-out infinite;
+    will-change: transform;
   }
   
   .animate-pulse-slow {
     animation: pulseSlow 3s ease-in-out infinite;
+    will-change: opacity;
   }
   
   .animate-gradient {
     animation: gradientShift 6s ease-in-out infinite;
     background-size: 200% 200%;
+    will-change: background-position;
   }
   
   .animate-typing {
@@ -155,25 +165,77 @@
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid;
+    will-change: width;
   }
   
-  /* Animations au scroll avec isolation */
+  /* Réduction des animations sur mobile */
+  @media (max-width: 768px) {
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-slide-left,
+    .animate-slide-right {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    .animate-scale-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    
+    .animate-bounce-gentle {
+      animation: bounceGentle 3s ease-in-out infinite;
+    }
+    
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .animate-gradient {
+      animation: gradientShift 8s ease-in-out infinite;
+    }
+  }
+  
+  /* Désactivation des animations sur très petits écrans ou si l'utilisateur préfère les animations réduites */
+  @media (max-width: 480px), (prefers-reduced-motion: reduce) {
+    .animate-bounce-gentle,
+    .animate-float,
+    .animate-gradient {
+      animation: none;
+    }
+    
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-slide-left,
+    .animate-slide-right,
+    .animate-scale-in {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  /* Animations au scroll avec isolation - Optimisées pour mobile */
   .scroll-animate {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 1;
+    will-change: transform, opacity;
   }
   
   .scroll-animate.animate {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   
   .scroll-animate-left {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translate3d(-50px, 0, 0);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 1;
@@ -182,12 +244,12 @@
   
   .scroll-animate-left.animate {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   
   .scroll-animate-right {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translate3d(50px, 0, 0);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 1;
@@ -196,12 +258,12 @@
   
   .scroll-animate-right.animate {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   
   .scroll-animate-scale {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale3d(0.8, 0.8, 1);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 1;
@@ -210,7 +272,53 @@
   
   .scroll-animate-scale.animate {
     opacity: 1;
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
+  }
+  
+  /* Optimisations mobile pour les animations au scroll */
+  @media (max-width: 768px) {
+    .scroll-animate,
+    .scroll-animate-left,
+    .scroll-animate-right,
+    .scroll-animate-scale {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .scroll-animate {
+      transform: translate3d(0, 20px, 0);
+    }
+    
+    .scroll-animate-left {
+      transform: translate3d(-30px, 0, 0);
+    }
+    
+    .scroll-animate-right {
+      transform: translate3d(30px, 0, 0);
+    }
+    
+    .scroll-animate-scale {
+      transform: scale3d(0.9, 0.9, 1);
+    }
+  }
+  
+  /* Désactivation des animations au scroll sur très petits écrans */
+  @media (max-width: 480px), (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .scroll-animate-left,
+    .scroll-animate-right,
+    .scroll-animate-scale {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    
+    .scroll-animate.animate,
+    .scroll-animate-left.animate,
+    .scroll-animate-right.animate,
+    .scroll-animate-scale.animate {
+      opacity: 1;
+      transform: none;
+    }
   }
   
   /* Isolation des contextes d'empilement */
@@ -231,6 +339,23 @@
     z-index: 1;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  
+  .hover-lift:hover {
+    transform: translate3d(0, -4px, 0);
+  }
+  
+  /* Désactivation des effets hover sur mobile */
+  @media (max-width: 768px) {
+    .hover-lift {
+      transition: none;
+    }
+    
+    .hover-lift:hover {
+      transform: none;
+    }
   }
 
   /* Animations pour les blocs de texte progressifs */
@@ -280,76 +405,76 @@
 @keyframes slideUp {
   from { 
     opacity: 0; 
-    transform: translateY(30px); 
+    transform: translate3d(0, 30px, 0); 
   }
   to { 
     opacity: 1; 
-    transform: translateY(0); 
+    transform: translate3d(0, 0, 0); 
   }
 }
 
 @keyframes slideDown {
   from { 
     opacity: 0; 
-    transform: translateY(-30px); 
+    transform: translate3d(0, -30px, 0); 
   }
   to { 
     opacity: 1; 
-    transform: translateY(0); 
+    transform: translate3d(0, 0, 0); 
   }
 }
 
 @keyframes slideLeft {
   from { 
     opacity: 0; 
-    transform: translateX(30px); 
+    transform: translate3d(30px, 0, 0); 
   }
   to { 
     opacity: 1; 
-    transform: translateX(0); 
+    transform: translate3d(0, 0, 0); 
   }
 }
 
 @keyframes slideRight {
   from { 
     opacity: 0; 
-    transform: translateX(-30px); 
+    transform: translate3d(-30px, 0, 0); 
   }
   to { 
     opacity: 1; 
-    transform: translateX(0); 
+    transform: translate3d(0, 0, 0); 
   }
 }
 
 @keyframes scaleIn {
   from { 
     opacity: 0; 
-    transform: scale(0.8); 
+    transform: scale3d(0.8, 0.8, 1); 
   }
   to { 
     opacity: 1; 
-    transform: scale(1); 
+    transform: scale3d(1, 1, 1); 
   }
 }
 
 @keyframes bounceGentle {
   0%, 20%, 50%, 80%, 100% { 
-    transform: translateY(0); 
+    transform: translate3d(0, 0, 0); 
   }
   40% { 
-    transform: translateY(-10px); 
+    transform: translate3d(0, -10px, 0); 
   }
   60% { 
-    transform: translateY(-5px); 
+    transform: translate3d(0, -5px, 0); 
   }
 }
 
 @keyframes float {
   0%, 100% { 
-    transform: translateY(0px); 
+    transform: translate3d(0, 0, 0); 
   }
   50% { 
-    transform: translateY(-10px); 
+    transform: translate3d(0, -10px, 0); 
   }
 }
 
@@ -392,19 +517,101 @@
   }
 }
 
-/* Améliorations des animations existantes */
+/* Améliorations des animations existantes - Optimisées pour mobile */
 .btn {
   @apply transition-all duration-300 ease-out;
+  will-change: transform, box-shadow;
 }
 
 .btn:hover {
-  @apply transform -translate-y-1 shadow-2xl;
+  @apply shadow-2xl;
+  transform: translate3d(0, -2px, 0);
 }
 
 .card {
   @apply transition-all duration-300 ease-out;
+  will-change: transform, box-shadow;
 }
 
 .card:hover {
-  @apply transform -translate-y-1 shadow-2xl;
+  @apply shadow-2xl;
+  transform: translate3d(0, -2px, 0);
+}
+
+/* Optimisations mobile pour les boutons et cartes */
+@media (max-width: 768px) {
+  .btn {
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  }
+  
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .card {
+    transition: box-shadow 0.2s ease-out;
+  }
+  
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Désactivation complète des effets hover sur très petits écrans */
+@media (max-width: 480px) {
+  .btn:hover,
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+    background: initial;
+  }
+}
+
+/* Optimisations pour les animations répétées */
+.animate-bounce-gentle,
+.animate-float,
+.animate-pulse-slow,
+.animate-gradient {
+  animation-fill-mode: both;
+}
+
+/* Classe pour nettoyage automatique du will-change */
+.animation-complete {
+  will-change: auto;
+}
+
+/* Optimisations pour les animations complexes sur mobile */
+@media (max-width: 768px) {
+  .animate-bounce-gentle {
+    animation-duration: 3s;
+  }
+  
+  .animate-float {
+    animation-duration: 4s;
+  }
+  
+  .animate-pulse-slow {
+    animation-duration: 4s;
+  }
+  
+  .animate-gradient {
+    animation-duration: 8s;
+  }
+}
+
+/* Réduction drastique des animations sur connexions lentes */
+@media (max-width: 480px) and (prefers-reduced-motion: no-preference) {
+  .animate-bounce-gentle {
+    animation-duration: 4s;
+  }
+  
+  .animate-float {
+    animation-duration: 6s;
+  }
+  
+  .animate-gradient {
+    animation-duration: 10s;
+  }
 }
