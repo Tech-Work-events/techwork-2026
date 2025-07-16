@@ -21,8 +21,7 @@ pnpm-debug.log*
 .env.test
 
 # SOPS decrypted environment files (temporary)
-.env.decrypted
-*.env.decrypted
+.env
 
 # Note: .env-encrypted is encrypted with SOPS and can be committed
 
