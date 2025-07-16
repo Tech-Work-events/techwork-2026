@@ -1,6 +1,8 @@
+import { SERVICES_DATA } from '../../config'
+
 export async function GET() {
     try {
-        const apiUrl = 'https://conference-hall.io/api/v1/event/tech-work-2026?key=2dd5a5af-0aad-4028-8e5b-d11736362418'
+        const apiUrl = `${SERVICES_DATA.cfp.api.endpoint}?key=${SERVICES_DATA.cfp.api.key}`
         
         const response = await fetch(apiUrl)
         
@@ -44,8 +46,8 @@ export async function GET() {
     } catch (error) {
         return new Response(JSON.stringify({
             error: 'Exception occurred',
-            message: error.message,
-            stack: error.stack
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined
         }), {
             status: 500,
             headers: {

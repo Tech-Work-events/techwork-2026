@@ -1,9 +1,7 @@
 ---
-const socials = [
-    { name: 'Twitter', url: 'https://x.com/techworklyon', icon: 'twitter' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/techwork-lyon/', icon: 'linkedin' },
-    { name: 'Mastodon', url: 'https://mastodon.social/@techwork', icon: 'mastodon' },
-]
+import { SOCIAL_DATA } from '../../config'
+
+const socials = SOCIAL_DATA.networks.filter(network => ['twitter', 'linkedin', 'mastodon'].includes(network.id))
 ---
 
 <div class="space-y-6">
@@ -18,17 +16,17 @@ const socials = [
                     class="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-colors duration-200 group"
                     aria-label={`Suivre sur ${social.name}`}
                 >
-                    {social.icon === 'twitter' && (
+                    {social.id === 'twitter' && (
                         <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
                     )}
-                    {social.icon === 'linkedin' && (
+                    {social.id === 'linkedin' && (
                         <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                         </svg>
                     )}
-                    {social.icon === 'mastodon' && (
+                    {social.id === 'mastodon' && (
                         <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.665 3.67.717 2.53 2.61 4.45 5.13 4.966 2.53.517 5.03-.098 6.53-1.24l-.131-.99c-1.208.705-2.78 1.106-4.37.882-1.59-.223-3.18-.888-4.17-2.39-.99-1.502-.98-3.33-.98-5.17 0-1.84-.01-3.67.98-5.17.99-1.502 2.58-2.167 4.17-2.39 1.59-.223 3.162.177 4.37.882l.131-.99c-1.5-1.142-4-1.757-6.53-1.24-2.52.516-4.413 2.436-5.13 4.966-.34 1.2-.547 2.43-.665 3.67-.172 1.866-.186 3.737-.26 5.611-.051 1.306-.021 2.731.661 4.016.582 2.609 2.968 4.435 5.61 4.824.453.067 1.308.309 5.288.309h.03c3.979 0 5.697-.242 6.15-.309 2.687-.394 4.954-2.426 5.304-5.004.314-2.316.278-4.66.278-7.003s.036-4.687-.278-7.003z"/>
                         </svg>
@@ -42,13 +40,13 @@ const socials = [
         <h4 class="text-lg font-semibold text-white mb-4">Contact direct</h4>
         <div class="space-y-2">
             <a 
-                href="mailto:hello@techwork.lyon" 
+                href={`mailto:${SOCIAL_DATA.contact.general}`} 
                 class="flex items-center text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm"
             >
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
-                hello@techwork.lyon
+                {SOCIAL_DATA.contact.general}
             </a>
             <p class="text-xs text-gray-400">
                 (oui, on a un vrai email de devs)

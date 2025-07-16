@@ -1,0 +1,231 @@
+{
+  "event": {
+    "name": "Tech'Work Lyon 2026",
+    "date": "20 mai 2026",
+    "location": "Lyon, France",
+    "website": "https://techwork.lyon"
+  },
+  "cfp": {
+    "isOpen": true,
+    "openDate": "1 janvier 2026",
+    "deadline": "15 février 2026",
+    "notificationDate": "1 mars 2026",
+    "submissionUrl": "https://conference-hall.io/public/event/tech-work-2026",
+    "maxSubmissions": 3,
+    "languages": ["Français", "Anglais"]
+  },
+  "formats": [
+    {
+      "id": "talk",
+      "name": "Conférence",
+      "duration": "45 minutes",
+      "description": "Présentation approfondie d'un sujet technique",
+      "icon": "🎤",
+      "slots": 16
+    },
+    {
+      "id": "lightning",
+      "name": "Lightning Talk",
+      "duration": "15 minutes",
+      "description": "Présentation courte et percutante",
+      "icon": "⚡",
+      "slots": 8
+    },
+    {
+      "id": "workshop",
+      "name": "Atelier",
+      "duration": "2 heures",
+      "description": "Session pratique avec les participants",
+      "icon": "🛠️",
+      "slots": 4
+    }
+  ],
+  "topics": [
+    {
+      "id": "frontend",
+      "name": "Frontend & UX",
+      "description": "React, Vue, Angular, UX/UI Design",
+      "icon": "🎨",
+      "color": "blue"
+    },
+    {
+      "id": "backend",
+      "name": "Backend & API",
+      "description": "Node.js, Python, Java, Architecture",
+      "icon": "⚙️",
+      "color": "green"
+    },
+    {
+      "id": "devops",
+      "name": "DevOps & Cloud",
+      "description": "CI/CD, Docker, Kubernetes, AWS",
+      "icon": "☁️",
+      "color": "purple"
+    },
+    {
+      "id": "data",
+      "name": "Data & AI",
+      "description": "Machine Learning, Analytics, Big Data",
+      "icon": "📊",
+      "color": "orange"
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile",
+      "description": "iOS, Android, React Native, Flutter",
+      "icon": "📱",
+      "color": "pink"
+    },
+    {
+      "id": "security",
+      "name": "Sécurité",
+      "description": "Cybersécurité, Ethical Hacking, GDPR",
+      "icon": "🔒",
+      "color": "red"
+    },
+    {
+      "id": "management",
+      "name": "Management & Carrière",
+      "description": "Leadership, Team Building, Productivité",
+      "icon": "👥",
+      "color": "indigo"
+    },
+    {
+      "id": "innovation",
+      "name": "Innovation & Tendances",
+      "description": "Blockchain, IoT, AR/VR, Quantum",
+      "icon": "🚀",
+      "color": "teal"
+    }
+  ],
+  "criteria": {
+    "title": "Critères d'évaluation",
+    "description": "Votre proposition sera évaluée selon ces critères",
+    "items": [
+      {
+        "name": "Originalité",
+        "description": "Approche innovante ou angle unique sur le sujet",
+        "weight": 25
+      },
+      {
+        "name": "Pertinence",
+        "description": "Intérêt pour la communauté tech lyonnaise",
+        "weight": 25
+      },
+      {
+        "name": "Expertise",
+        "description": "Maîtrise du sujet et expérience du speaker",
+        "weight": 25
+      },
+      {
+        "name": "Clarté",
+        "description": "Présentation claire et structure logique",
+        "weight": 25
+      }
+    ]
+  },
+  "tips": {
+    "title": "Conseils pour une bonne proposition",
+    "items": [
+      {
+        "icon": "💡",
+        "title": "Soyez spécifique",
+        "description": "Évitez les titres trop génériques. Précisez votre angle d'approche."
+      },
+      {
+        "icon": "📚",
+        "title": "Racontez une histoire",
+        "description": "Les meilleures présentations racontent une histoire avec un début, un développement et une conclusion."
+      },
+      {
+        "icon": "🎯",
+        "title": "Définissez votre audience",
+        "description": "Précisez le niveau requis : débutant, intermédiaire ou avancé."
+      },
+      {
+        "icon": "🔥",
+        "title": "Montrez votre passion",
+        "description": "Votre enthousiasme pour le sujet doit transparaître dans votre proposition."
+      },
+      {
+        "icon": "📝",
+        "title": "Structurez votre plan",
+        "description": "Proposez un plan détaillé avec les points clés que vous allez aborder."
+      },
+      {
+        "icon": "🌟",
+        "title": "Ajoutez de la valeur",
+        "description": "Que vont apprendre les participants ? Quels outils/techniques vont-ils découvrir ?"
+      }
+    ]
+  },
+  "process": {
+    "title": "Processus de sélection",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Soumission",
+        "description": "Envoyez votre proposition avant la deadline",
+        "icon": "📤"
+      },
+      {
+        "step": 2,
+        "title": "Évaluation",
+        "description": "L'équipe évalue toutes les propositions",
+        "icon": "📋"
+      },
+      {
+        "step": 3,
+        "title": "Sélection",
+        "description": "Choix final basé sur les critères définis",
+        "icon": "✅"
+      },
+      {
+        "step": 4,
+        "title": "Notification",
+        "description": "Vous recevrez une réponse par email",
+        "icon": "📧"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Pourquoi speaker à Tech'Work ?",
+    "items": [
+      {
+        "icon": "🎯",
+        "title": "Audience qualifiée",
+        "description": "Rencontrez des développeurs passionnés et expérimentés"
+      },
+      {
+        "icon": "🤝",
+        "title": "Networking premium",
+        "description": "Connectez-vous avec les leaders tech de Lyon"
+      },
+      {
+        "icon": "📹",
+        "title": "Visibilité maximale",
+        "description": "Talks enregistrés et diffusés sur nos canaux"
+      },
+      {
+        "icon": "🏆",
+        "title": "Reconnaissance",
+        "description": "Devenez une référence dans votre domaine"
+      },
+      {
+        "icon": "💼",
+        "title": "Opportunités carrière",
+        "description": "Accès privilégié aux recruteurs et startups"
+      },
+      {
+        "icon": "🎁",
+        "title": "Avantages speakers",
+        "description": "Goodies exclusifs, repas VIP, transport pris en charge"
+      }
+    ]
+  },
+  "contact": {
+    "email": "speakers@techwork.lyon",
+    "discord": "https://discord.gg/techwork-lyon",
+    "twitter": "@techworklyon"
+  }
+}

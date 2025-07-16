@@ -1,0 +1,99 @@
+{
+  "event": {
+    "name": "Tech'Work Lyon 2026",
+    "shortName": "Tech'Work",
+    "tagline": "La révolution de l'événementiel tech",
+    "description": "L'événement tech qui révolutionne tout : pour la première fois, venez vous former sur votre temps de travail !",
+    "year": "2026",
+    "date": {
+      "full": "7 juin 2026",
+      "day": 7,
+      "month": "juin",
+      "year": 2026,
+      "dayOfWeek": "samedi",
+      "iso": "2026-06-07"
+    },
+    "duration": {
+      "days": 1,
+      "hours": 8,
+      "startTime": "09:00",
+      "endTime": "18:00"
+    },
+    "location": {
+      "venue": "Lieu à confirmer",
+      "address": "Lyon, France",
+      "city": "Lyon",
+      "region": "Auvergne-Rhône-Alpes",
+      "country": "France",
+      "coordinates": {
+        "lat": 45.7640,
+        "lng": 4.8357
+      },
+      "capacity": 300,
+      "rooms": [
+        {
+          "name": "Auditorium Principal",
+          "capacity": 200,
+          "type": "conference"
+        },
+        {
+          "name": "Salle Atelier 1",
+          "capacity": 50,
+          "type": "workshop"
+        },
+        {
+          "name": "Salle Atelier 2", 
+          "capacity": 50,
+          "type": "workshop"
+        }
+      ]
+    },
+    "theme": {
+      "main": "Innovation & Révolution Tech",
+      "subThemes": [
+        "Intelligence Artificielle",
+        "Développement Web & Mobile", 
+        "DevOps & Cloud",
+        "Data Science",
+        "Cybersécurité",
+        "UX/UI Design"
+      ]
+    },
+    "statistics": {
+      "expectedAttendees": 300,
+      "speakers": 25,
+      "talks": 20,
+      "workshops": 6,
+      "partners": 10
+    },
+    "pricing": {
+      "currency": "EUR",
+      "freeForEmployees": true,
+      "sponsoredByEmployers": true
+    }
+  },
+  "organization": {
+    "name": "Tech'Work Events",
+    "legalName": "Association Tech'Work Lyon",
+    "founded": "2024",
+    "siret": null,
+    "website": "https://techwork.lyon",
+    "mission": "Révolutionner l'événementiel tech en proposant des formations sur le temps de travail"
+  },
+  "branding": {
+    "logo": {
+      "primary": "/images/logo-primary.svg",
+      "white": "/images/logo-white.svg",
+      "dark": "/images/logo-dark.svg"
+    },
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#10B981",
+      "accent": "#F59E0B"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  }
+}

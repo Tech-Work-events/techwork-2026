@@ -1,5 +1,6 @@
 ---
 import type { OpenPlannerType } from '../../type'
+import { SERVICES_DATA } from '../../config'
 
 interface Props {
     sponsorCategories: OpenPlannerType['sponsors']
@@ -35,7 +36,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                            href="mailto:partners@techwork.lyon"
+                            href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                             class="btn btn-primary hover-lift group">
                             <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                             Devenir partenaire
@@ -97,7 +98,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                            href="mailto:partners@techwork.lyon"
+                            href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                             class="btn btn-primary hover-lift group">
                             <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                             Devenir partenaire

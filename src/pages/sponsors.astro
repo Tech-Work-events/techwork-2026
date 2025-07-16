@@ -2,6 +2,7 @@
 import { OPENPLANNER_URL } from 'astro:env/client'
 import type { OpenPlannerType } from '../type'
 import Layout from '../layouts/Layout.astro'
+import { SERVICES_DATA, EVENT_DATA } from '../config'
 
 // Récupération des données OpenPlanner
 let openPlannerData: OpenPlannerType | null = null
@@ -49,7 +50,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                             Rejoignez l'aventure !
                         </h2>
                         <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                            Tech'Work révolutionne l'événementiel tech en proposant des événements sur le temps de travail. 
+                            {EVENT_DATA.event.shortName} révolutionne l'événementiel tech en proposant des événements sur le temps de travail. 
                             Rejoignez-nous pour soutenir cette innovation et toucher une communauté engagée de développeurs.
                         </p>
                         
@@ -77,7 +78,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                         </div>
 
                         <a
-                            href="mailto:partners@techwork.lyon"
+                            href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                             class="btn btn-primary text-lg px-8 py-4 hover-lift group">
                             <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                             Devenir partenaire
@@ -201,10 +202,10 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                             </p>
                             <div class="space-y-3">
                                 <a
-                                    href="mailto:partners@techwork.lyon"
+                                    href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                                     class="btn btn-primary w-full hover-lift group">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
-                                    partners@techwork.lyon
+                                    {SERVICES_DATA.sponsors.contact.email}
                                 </a>
                                 <p class="text-xs text-gray-500">
                                     Réponse garantie sous 48h

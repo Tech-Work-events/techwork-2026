@@ -1,5 +1,5 @@
 ---
-import { TICKETS_CONFIG } from '../../config'
+import { TICKETS_CONFIG, SERVICES_DATA } from '../../config'
 
 const tickets = TICKETS_CONFIG.map(ticket => ({
     ...ticket,
@@ -103,7 +103,7 @@ const tickets = TICKETS_CONFIG.map(ticket => ({
                     Offrez à vos collaborateurs l'opportunité de se former sur leur temps de travail !
                 </p>
                 <a 
-                    href="mailto:sponsors@techwork.lyon" 
+                    href={`mailto:${SERVICES_DATA.sponsors.contact.email}`} 
                     class="btn btn-secondary hover-lift group"
                 >
                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>

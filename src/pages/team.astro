@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { TEAM_CONFIG } from '../config'
+import { TEAM_CONFIG, SOCIAL_DATA, EVENT_DATA } from '../config'
 
 const team = TEAM_CONFIG
 
@@ -36,7 +36,7 @@ const openRoles = [
 ]
 ---
 
-<Layout title="L'équipe Tech'Work Lyon" description="Découvrez les fous qui révolutionnent la tech lyonnaise">
+<Layout title={`L'équipe ${EVENT_DATA.event.name}`} description={`Découvrez les fous qui révolutionnent la tech ${EVENT_DATA.event.location.city.toLowerCase()}aise`}>
     <!-- Page Header -->
     <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,7 +106,7 @@ const openRoles = [
                     <div class="bg-gradient-to-r from-green-50 to-primary-50 rounded-lg p-4 border border-green-200">
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-2xl">🚀</span>
-                            <h4 class="text-lg font-bold text-gray-900">La solution : Tech'Work</h4>
+                            <h4 class="text-lg font-bold text-gray-900">La solution : {EVENT_DATA.event.shortName}</h4>
                         </div>
                         <p class="text-gray-700">
                             Un événement sur le <strong>temps de travail</strong>, avec un thème qui parle à tous : 
@@ -117,7 +117,7 @@ const openRoles = [
                     
                     <div class="text-center">
                         <div class="inline-flex items-center space-x-2 text-primary-600 font-semibold">
-                            <span>Et voilà comment Tech'Work est né !</span>
+                            <span>Et voilà comment {EVENT_DATA.event.shortName} est né !</span>
                             <span class="text-2xl animate-bounce-gentle">🎉</span>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ const openRoles = [
                     Une équipe de <span class="text-gradient">passionnés</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Tech'Work, c'est avant tout une aventure collective. Découvrez les personnes qui donnent vie à cette révolution tech !
+                    {EVENT_DATA.event.shortName}, c'est avant tout une aventure collective. Découvrez les personnes qui donnent vie à cette révolution tech !
                 </p>
             </div>
 
@@ -286,14 +286,14 @@ const openRoles = [
             <div class="text-center scroll-animate-scale">
                 <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                        Prêt·e à révolutionner la tech lyonnaise ? 🚀
+                        Prêt·e à révolutionner la tech {EVENT_DATA.event.location.city.toLowerCase()}aise ? 🚀
                     </h3>
                     <p class="text-lg text-gray-600 mb-6">
                         Écrivez-nous et dites-nous comment vous voulez contribuer à l'aventure
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a 
-                            href="mailto:team@techwork.lyon" 
+                            href={`mailto:${SOCIAL_DATA.contact.team}`} 
                             class="btn btn-primary text-lg px-8 py-4 hover-lift group"
                         >
                             <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
