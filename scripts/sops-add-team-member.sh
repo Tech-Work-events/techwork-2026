@@ -254,7 +254,7 @@ re_encrypt_secrets_files() {
     while IFS= read -r file; do
         if [[ -n "$file" ]]; then
             print_info "  Re-encrypting: $(basename "$file")"
-            if sops updatekeys "$file"; then
+            if sops updatekeys -y "$file"; then
                 ((file_count++))
             else
                 print_error "Failed to re-encrypt: $file"
