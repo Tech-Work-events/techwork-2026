@@ -74,7 +74,7 @@ const organizerTwitter = '@techworklyon'
 
         <slot name="head" />
 
-        <script defer data-domain="cloudnord.fr" src="https://plausible.gresse.io/js/script.js"></script>
+        <script is:inline defer data-domain="cloudnord.fr" src="https://plausible.gresse.io/js/script.js"></script>
         <ClientRouter />
     </head>
     <body class="antialiased">
@@ -118,11 +118,18 @@ const organizerTwitter = '@techworklyon'
                 };
             };
 
+            type AnimationConfig = ReturnType<typeof getAnimationConfig>;
+
             // Optimisation des animations au scroll
             class ScrollAnimationOptimizer {
+                private config: AnimationConfig;
+                private animatedElements: Set<HTMLElement>;
+                private isScrolling: boolean;
+                private scrollTimer: ReturnType<typeof setTimeout> | null;
+                private observer!: IntersectionObserver;
+
                 constructor() {
                     this.config = getAnimationConfig();
-                    this.observers = new Map();
                     this.animatedElements = new Set();
                     this.isScrolling = false;
                     this.scrollTimer = null;
@@ -154,7 +161,7 @@ const organizerTwitter = '@techworklyon'
                     
                     this.observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
-                            if (entry.isIntersecting) {
+                            if (entry.isIntersecting && entry.target instanceof HTMLElement) {
                                 this.activateAnimation(entry.target);
                             }
                         });
@@ -174,10 +181,13 @@ const organizerTwitter = '@techworklyon'
                     
                     animatedElements.forEach(element => {
                         this.observer.observe(element);
+                        if (element instanceof HTMLElement) {
+                            this.activateAnimation(element);
+                        }
                     });
                 }
                 
-                activateAnimation(element) {
+                activateAnimation(element: HTMLElement) {
                     if (this.animatedElements.has(element)) return;
                     
                     // Ajouter will-change avant l'animation
@@ -238,10 +248,12 @@ const organizerTwitter = '@techworklyon'
                 }
                 
                 setupResizeHandler() {
-                    let resizeTimer = null;
+                    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
                     
                     window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
+                        if (resizeTimer) {
+                            clearTimeout(resizeTimer);
+                        }
                         resizeTimer = setTimeout(() => {
                             this.config = getAnimationConfig();
                             
@@ -260,7 +272,7 @@ const organizerTwitter = '@techworklyon'
                             .animate-float,
                             .animate-pulse-slow,
                             .animate-gradient
-                        `);
+                        `) as NodeListOf<HTMLElement>;
                         
                         infiniteAnimations.forEach(element => {
                             element.style.willChange = 'transform';
@@ -345,7 +357,7 @@ const organizerTwitter = '@techworklyon'
                         .animate-pulse-slow,
                         .animate-gradient,
                         .text-blocks > .text-block
-                    `);
+                    `) as NodeListOf<HTMLElement>;
                     
                     animatedElements.forEach(element => {
                         element.style.animation = 'none';
@@ -398,7 +410,7 @@ const organizerTwitter = '@techworklyon'
 
             // Nettoyer les will-change pour éviter les fuites mémoire
             window.addEventListener('beforeunload', () => {
-                document.querySelectorAll('*[style*="will-change"]').forEach(element => {
+                (document.querySelectorAll('*[style*="will-change"]') as NodeListOf<HTMLElement>).forEach(element => {
                     element.style.willChange = 'auto';
                 });
             });
