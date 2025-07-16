@@ -39,6 +39,6 @@ jobs:
             - uses: FirebaseExtended/action-hosting-deploy@v0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLOUDNORDWEBSITE }}'
+                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TECHWORK_2026 }}'
                   channelId: live
-                  projectId: cloudnordwebsite
+                  projectId: techwork-2026
