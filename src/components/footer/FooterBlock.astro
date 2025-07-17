@@ -28,12 +28,38 @@ import FooterNav from './FooterNav.astro'
         
         <!-- Bottom Bar -->
         <div class="border-t border-gray-700 py-4 sm:py-6">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-                <div class="text-gray-400 text-xs sm:text-sm text-center md:text-left">
-                    © 2026 Tech'Work Lyon - Made with ❤️ by des devs lyonnais
+            <div class="flex flex-col space-y-4">
+                <!-- Legal Links -->
+                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                    <a href="/legal/mentions-legales" 
+                       class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200">
+                        Mentions légales
+                    </a>
+                    <span class="text-gray-600">•</span>
+                    <a href="/legal/politique-confidentialite" 
+                       class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200">
+                        Politique de confidentialité
+                    </a>
+                    <span class="text-gray-600">•</span>
+                    <a href="/legal/cookies" 
+                       class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200">
+                        Cookies
+                    </a>
+                    <span class="text-gray-600">•</span>
+                    <a href="/legal/droits-utilisateurs" 
+                       class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200">
+                        Vos droits
+                    </a>
                 </div>
-                <div class="text-gray-400 text-xs sm:text-sm font-mono text-center md:text-right">
-                    git commit -m "Révolution en cours"
+                
+                <!-- Copyright and Credits -->
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                    <div class="text-gray-400 text-xs sm:text-sm text-center md:text-left">
+                        © 2026 Tech'Work Lyon - Made with ❤️ by des devs lyonnais
+                    </div>
+                    <div class="text-gray-400 text-xs sm:text-sm font-mono text-center md:text-right">
+                        git commit -m "Révolution en cours"
+                    </div>
                 </div>
             </div>
         </div>

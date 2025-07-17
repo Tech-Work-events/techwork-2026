@@ -1,0 +1,253 @@
+---
+// import LEGAL_DATA from '../../config/legal.json';
+---
+
+<!-- Bannière de consentement des cookies -->
+<div
+    id="cookie-consent-banner"
+    class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 transform translate-y-full transition-all duration-500 ease-in-out">
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <!-- Contenu principal -->
+            <div class="flex-1">
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">🍪</div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestion des cookies</h3>
+                        <p class="text-gray-600 text-sm mb-3">
+                            Nous utilisons des cookies pour améliorer votre expérience sur notre site. Certains sont
+                            essentiels au fonctionnement, d'autres nous aident à comprendre comment vous utilisez notre
+                            site.
+                        </p>
+                        <a href="/legal/cookies" class="text-blue-600 hover:text-blue-800 underline text-sm">
+                            En savoir plus sur notre politique des cookies
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3 lg:ml-6">
+                <button
+                    id="reject-cookies"
+                    class="px-6 py-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium">
+                    ❌ Rejeter les cookies non-essentiels
+                </button>
+
+                <button
+                    id="accept-all-cookies"
+                    class="px-6 py-2 text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                    ✅ Accepter tous les cookies
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Toast -->
+<div
+    id="cookie-notification"
+    class="fixed top-4 right-4 bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-all duration-300 ease-in-out opacity-0">
+    <div class="flex items-center space-x-3">
+        <div class="text-xl">✅</div>
+        <div>
+            <div class="font-medium" id="notification-title">Préférences mises à jour</div>
+            <div class="text-green-100 text-sm" id="notification-message">Vos préférences ont été sauvegardées</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Types pour TypeScript
+    interface ConsentData {
+        essential: boolean
+        analytics: boolean
+        functional: boolean
+        timestamp?: string
+        version?: string
+    }
+
+    type NotificationType = 'success' | 'info' | 'warning' | 'error'
+
+    // Configuration des cookies par défaut (supprimée car non utilisée)
+
+    // Éléments DOM
+    const banner = document.getElementById('cookie-consent-banner')
+    const notification = document.getElementById('cookie-notification')
+
+    // Boutons de la bannière
+    const acceptAllBtn = document.getElementById('accept-all-cookies')
+    const rejectBtn = document.getElementById('reject-cookies')
+
+    // Fonction pour obtenir les préférences stockées
+    function getStoredConsent(): ConsentData | null {
+        try {
+            const stored = localStorage.getItem('cookie-consent')
+            return stored ? JSON.parse(stored) : null
+        } catch (e) {
+            return null
+        }
+    }
+
+    // Fonction pour sauvegarder les préférences
+    function saveConsent(consent: ConsentData): ConsentData {
+        const consentData: ConsentData = {
+            ...consent,
+            timestamp: new Date().toISOString(),
+            version: '1.0',
+        }
+
+        localStorage.setItem('cookie-consent', JSON.stringify(consentData))
+
+        // Appliquer les préférences
+        applyCookieSettings(consent)
+
+        return consentData
+    }
+
+    // Fonction pour appliquer les paramètres de cookies
+    function applyCookieSettings(consent: ConsentData): void {
+        // Analytics (Plausible)
+        if (consent.analytics) {
+            // Activer Plausible Analytics
+            localStorage.removeItem('plausible_ignore')
+        } else {
+            // Désactiver Plausible Analytics
+            localStorage.setItem('plausible_ignore', 'true')
+        }
+    }
+
+    // Fonction pour afficher une notification
+    function showNotification(title: string, message: string, type: NotificationType = 'success'): void {
+        const notificationTitle = document.getElementById('notification-title')
+        const notificationMessage = document.getElementById('notification-message')
+
+        if (!notification || !notificationTitle || !notificationMessage) {
+            console.error('Notification elements not found')
+            return
+        }
+
+        // Couleurs selon le type
+        const colors: Record<NotificationType, string> = {
+            success: 'bg-green-600',
+            info: 'bg-blue-600',
+            warning: 'bg-yellow-600',
+            error: 'bg-red-600',
+        }
+
+        // Icônes selon le type
+        const icons: Record<NotificationType, string> = {
+            success: '✅',
+            info: 'ℹ️',
+            warning: '⚠️',
+            error: '❌',
+        }
+
+        // Mettre à jour le contenu
+        notificationTitle.textContent = title
+        notificationMessage.textContent = message
+
+        // Mettre à jour les couleurs
+        notification.className = `fixed top-4 right-4 ${colors[type]} text-white px-6 py-4 rounded-lg shadow-lg z-50 transform transition-all duration-300 ease-in-out`
+
+        // Mettre à jour l'icône
+        const icon = notification.querySelector('.text-xl')
+        if (icon) icon.textContent = icons[type]
+
+        // Afficher
+        notification.classList.remove('translate-x-full', 'opacity-0')
+        notification.classList.add('translate-x-0', 'opacity-100')
+
+        // Masquer après 4 secondes
+        setTimeout(() => {
+            if (notification) {
+                notification.classList.add('translate-x-full', 'opacity-0')
+                notification.classList.remove('translate-x-0', 'opacity-100')
+            }
+        }, 4000)
+    }
+
+    // Fonction pour afficher la bannière
+    function showBanner(): void {
+        if (!banner) return
+        banner.classList.remove('translate-y-full')
+        banner.classList.add('translate-y-0')
+    }
+
+    // Fonction pour masquer la bannière
+    function hideBanner(): void {
+        if (!banner) return
+        banner.classList.add('translate-y-full')
+        banner.classList.remove('translate-y-0')
+    }
+
+    // Gestionnaires d'événements
+    acceptAllBtn?.addEventListener('click', () => {
+        saveConsent({
+            essential: true,
+            analytics: true,
+            functional: true,
+        })
+
+        hideBanner()
+        showNotification('Cookies acceptés', 'Tous les cookies ont été acceptés')
+    })
+
+    rejectBtn?.addEventListener('click', () => {
+        saveConsent({
+            essential: true,
+            analytics: false,
+            functional: false,
+        })
+
+        hideBanner()
+        showNotification('Cookies limités', 'Seuls les cookies essentiels ont été acceptés', 'info')
+    })
+
+    // Initialisation au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+        const storedConsent = getStoredConsent()
+
+        if (!storedConsent) {
+            // Pas de consentement stocké, afficher la bannière
+            setTimeout(() => showBanner(), 1000)
+        } else {
+            // Appliquer les préférences existantes
+            applyCookieSettings(storedConsent)
+        }
+    })
+</script>
+
+<style>
+    /* Styles pour les transitions fluides */
+    #cookie-consent-banner {
+        will-change: transform;
+    }
+
+    #cookie-notification {
+        will-change: transform, opacity;
+    }
+
+    /* Animation pour les notifications */
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>

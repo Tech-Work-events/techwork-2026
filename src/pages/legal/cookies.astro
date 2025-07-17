@@ -1,0 +1,405 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LEGAL_DATA from '../../config/legal.json';
+
+const seoTitle = 'Gestion des cookies - Tech\'Work Lyon 2026';
+const seoDescription = 'Informations détaillées sur l\'utilisation des cookies sur le site Tech\'Work Lyon 2026 et gestion de vos préférences.';
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+  <!-- Header Section -->
+  <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center scroll-animate">
+        <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+          <span class="mr-2">🍪</span>
+          Gestion des cookies
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+          Politique <span class="text-gradient">cookies</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          Informations sur l'utilisation des cookies et gestion de vos préférences
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Qu'est-ce qu'un cookie -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          ❓ Qu'est-ce qu'un cookie ?
+        </h2>
+        
+        <div class="space-y-4 text-gray-600">
+          <p>
+            Un cookie est un petit fichier texte stocké sur votre appareil (ordinateur, tablette, smartphone) 
+            lorsque vous visitez un site web. Il permet au site de mémoriser certaines informations sur votre visite.
+          </p>
+          
+          <p>
+            Les cookies peuvent être <strong>« de session »</strong> (supprimés à la fermeture du navigateur) 
+            ou <strong>« persistants »</strong> (conservés pendant une durée déterminée).
+          </p>
+        </div>
+      </div>
+
+      <!-- Gestion des préférences -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          ⚙️ Gérer vos préférences
+        </h2>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded mb-6">
+          <p class="text-blue-800 mb-4">
+            <strong>🎛️ Panneau de contrôle des cookies</strong>
+          </p>
+          <p class="text-blue-700 mb-4">
+            Vous pouvez modifier vos préférences à tout moment en utilisant les boutons ci-dessous :
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            <button id="accept-all-cookies" 
+                    class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+              ✅ Accepter tous les cookies
+            </button>
+            
+            <button id="reject-non-essential-cookies" 
+                    class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+              ❌ Rejeter les cookies non-essentiels
+            </button>
+          </div>
+        </div>
+
+        <!-- Statut actuel -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="font-semibold text-gray-800 mb-3">📊 Statut actuel de vos préférences</h3>
+          <div id="current-preferences" class="space-y-2 text-sm text-gray-600">
+            <!-- Sera rempli par JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Types de cookies utilisés -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          📋 Types de cookies utilisés
+        </h2>
+        
+        <div class="space-y-6">
+          {Object.entries(LEGAL_DATA.cookies.categories).map(([_key, category]) => (
+            <div class="border border-gray-200 rounded-lg p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                  {category.required ? '🔒' : '⚙️'} {category.name}
+                </h3>
+                {category.required && (
+                  <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Obligatoire</span>
+                )}
+              </div>
+              
+              <p class="text-gray-600 mb-4">{category.description}</p>
+              
+              <div class="space-y-3">
+                {category.cookies.map((cookie) => (
+                  <div class="bg-gray-50 rounded p-4">
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                      <div>
+                        <strong class="text-gray-800">Nom :</strong>
+                        <p class="text-gray-600">{cookie.name}</p>
+                      </div>
+                      <div>
+                        <strong class="text-gray-800">Finalité :</strong>
+                        <p class="text-gray-600">{cookie.purpose}</p>
+                      </div>
+                      <div>
+                        <strong class="text-gray-800">Durée :</strong>
+                        <p class="text-gray-600">{cookie.duration}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Contrôle via navigateur -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          🌐 Contrôle via votre navigateur
+        </h2>
+        
+        <div class="space-y-6">
+          <p class="text-gray-600">
+            Vous pouvez également gérer les cookies directement depuis votre navigateur :
+          </p>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="border border-gray-200 rounded-lg p-6">
+              <h3 class="font-semibold text-gray-800 mb-3">🔧 Paramètres généraux</h3>
+              <ul class="text-sm text-gray-600 space-y-2">
+                <li>• Accepter ou refuser tous les cookies</li>
+                <li>• Supprimer les cookies existants</li>
+                <li>• Paramétrer par site web</li>
+                <li>• Mode navigation privée</li>
+              </ul>
+            </div>
+            
+            <div class="border border-gray-200 rounded-lg p-6">
+              <h3 class="font-semibold text-gray-800 mb-3">📚 Guides par navigateur</h3>
+              <ul class="text-sm space-y-2">
+                <li>
+                  <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" 
+                     class="text-blue-600 hover:text-blue-800 underline">
+                    Google Chrome
+                  </a>
+                </li>
+                <li>
+                  <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies-preferences" target="_blank" rel="noopener noreferrer" 
+                     class="text-blue-600 hover:text-blue-800 underline">
+                    Mozilla Firefox
+                  </a>
+                </li>
+                <li>
+                  <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" 
+                     class="text-blue-600 hover:text-blue-800 underline">
+                    Safari
+                  </a>
+                </li>
+                <li>
+                  <a href="https://support.microsoft.com/fr-fr/microsoft-edge" target="_blank" rel="noopener noreferrer" 
+                     class="text-blue-600 hover:text-blue-800 underline">
+                    Microsoft Edge
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Impact du refus -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          ⚠️ Impact du refus des cookies
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h3 class="font-semibold text-green-800 mb-3">✅ Fonctionnalités maintenues</h3>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>• Navigation sur le site</li>
+              <li>• Consultation des informations</li>
+              <li>• Accès aux contenus publics</li>
+              <li>• Formulaires de contact</li>
+            </ul>
+          </div>
+          
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h3 class="font-semibold text-yellow-800 mb-3">⚠️ Fonctionnalités limitées</h3>
+            <ul class="text-sm text-yellow-700 space-y-1">
+              <li>• Statistiques de fréquentation</li>
+              <li>• Optimisation des performances</li>
+              <li>• Personnalisation de l'expérience</li>
+              <li>• Mémorisation des préférences</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cookies tiers -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          🔗 Cookies de services tiers
+        </h2>
+        
+        <p class="text-gray-600 mb-6">
+          Certains cookies sont déposés par des services tiers intégrés à notre site :
+        </p>
+        
+        <div class="space-y-4">
+          <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="font-semibold text-gray-800 mb-2">📊 Plausible Analytics</h3>
+            <p class="text-gray-600 text-sm mb-2">
+              Service d'analyse de fréquentation respectueux de la vie privée.
+            </p>
+            <div class="flex justify-between items-center">
+              <a href="https://plausible.io/privacy" target="_blank" rel="noopener noreferrer" 
+                 class="text-blue-600 hover:text-blue-800 underline text-sm">
+                Politique de confidentialité
+              </a>
+              <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                Données anonymisées
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="scroll-animate mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          📞 Questions sur les cookies
+        </h2>
+        
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <p class="text-blue-800 mb-4">
+            Pour toute question concernant notre utilisation des cookies :
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            <a href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+               class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              📧 Contacter le DPO
+            </a>
+            
+            <a href="/legal/droits-utilisateurs"
+               class="bg-white text-blue-600 border border-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors">
+              📋 Exercer vos droits
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liens vers autres pages -->
+      <div class="scroll-animate">
+        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+          📚 Documentation légale
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <a href="/legal/mentions-legales" 
+             class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-blue-200">
+            <div class="text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform">📋</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Mentions légales</h3>
+            <p class="text-gray-600 text-sm">Informations légales sur l'organisation</p>
+          </a>
+          
+          <a href="/legal/politique-confidentialite" 
+             class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-green-200">
+            <div class="text-green-600 text-3xl mb-3 group-hover:scale-110 transition-transform">🔒</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Politique de confidentialité</h3>
+            <p class="text-gray-600 text-sm">Protection de vos données personnelles</p>
+          </a>
+          
+          <a href="/legal/droits-utilisateurs" 
+             class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-purple-200">
+            <div class="text-purple-600 text-3xl mb-3 group-hover:scale-110 transition-transform">👤</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Vos droits</h3>
+            <p class="text-gray-600 text-sm">Exercer vos droits RGPD</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Information de mise à jour -->
+      <div class="text-center text-gray-500 text-sm mt-8">
+        <p>Dernière mise à jour : {LEGAL_DATA.dataProtection.lastUpdate}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script pour la gestion des cookies -->
+  <script>
+    // Affichage des préférences actuelles
+    function updateCurrentPreferences() {
+      const consent = JSON.parse(localStorage.getItem('cookie-consent') || '{}');
+      const container = document.getElementById('current-preferences');
+      
+      if (!container) return;
+      
+      let html = '';
+      
+      if (Object.keys(consent).length === 0) {
+        html = '<p class="text-yellow-600">❓ Aucune préférence définie</p>';
+      } else {
+        html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-4">';
+        
+        const categories = {
+          essential: 'Essentiels',
+          analytics: 'Analyse', 
+          functional: 'Fonctionnels'
+        };
+        
+        Object.entries(categories).forEach(([key, name]) => {
+          const status = consent[key] || false;
+          const icon = status ? '✅' : '❌';
+          const color = status ? 'text-green-600' : 'text-red-600';
+          
+          html += `<div class="${color}">${icon} ${name}</div>`;
+        });
+        
+        html += '</div>';
+        html += `<p class="text-xs text-gray-500 mt-2">Dernière mise à jour : ${consent.timestamp || 'Non définie'}</p>`;
+      }
+      
+      container.innerHTML = html;
+    }
+    
+    // Gestionnaires d'événements pour les boutons
+    document.getElementById('accept-all-cookies')?.addEventListener('click', () => {
+      const consent = {
+        essential: true,
+        analytics: true,
+        functional: true,
+        timestamp: new Date().toLocaleString('fr-FR')
+      };
+      
+      localStorage.setItem('cookie-consent', JSON.stringify(consent));
+      updateCurrentPreferences();
+      
+      // Afficher notification
+      showNotification('✅ Tous les cookies ont été acceptés');
+    });
+    
+    document.getElementById('reject-non-essential-cookies')?.addEventListener('click', () => {
+      const consent = {
+        essential: true,
+        analytics: false,
+        functional: false,
+        timestamp: new Date().toLocaleString('fr-FR')
+      };
+      
+      localStorage.setItem('cookie-consent', JSON.stringify(consent));
+      updateCurrentPreferences();
+      
+      // Afficher notification
+      showNotification('❌ Seuls les cookies essentiels ont été acceptés');
+    });
+    
+    
+    // Fonction d'affichage de notification
+    function showNotification(message: string) {
+      // Créer une notification temporaire
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-0 transition-all duration-300';
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Supprimer après 3 secondes
+      setTimeout(() => {
+        notification.classList.add('translate-x-full', 'opacity-0');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+    
+    // Initialiser l'affichage au chargement de la page
+    document.addEventListener('DOMContentLoaded', updateCurrentPreferences);
+  </script>
+</Layout>

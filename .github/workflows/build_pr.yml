@@ -8,15 +8,27 @@ jobs:
         runs-on: ubuntu-latest
         environment: production
         steps:
-            - uses: szenius/set-timezone@v2.0
+            - name: Setup timezone
+              uses: szenius/set-timezone@v2.0
               with:
-                timezoneLinux: 'Europe/Paris'
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+                  timezoneLinux: 'Europe/Paris'
+
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
               with:
                   node-version-file: .nvmrc
                   cache: 'npm'
-            - run: npm ci && npm run build
+
+            - name: Install dependencies
+              run: |
+                  npm ci
+                  cd functions && npm ci
+
+            - name: Build project
+              run: npm run build
               env:
                   OPENPLANNER_URL: 'https://storage.googleapis.com/conferencecenterr.appspot.com/events/GB9qNr4UMNsQHd0F8uYu/8deb73e9-7879-4e9d-965f-be8766125185.json'
                   FIREBASE_API_KEY: '${{ secrets.FIREBASE_API_KEY }}'

@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions'
 import FooterBlock from '../components/footer/FooterBlock.astro'
 import Menu from '../components/Menu.astro'
+import CookieConsent from '../components/legal/CookieConsent.astro'
 import '../styles/global.css'
 
 interface Props {
@@ -13,16 +14,17 @@ interface Props {
 const { title, description, metaImage } = Astro.props
 const url = import.meta.env.SITE
 const image = metaImage || url + '/social-share.png'
-const siteName = 'Tech\'Work Lyon'
+const siteName = "Tech'Work Lyon"
 const pageTitle = title || siteName
-const siteNameWithTagline = 'Tech\'Work Lyon 2026 - L\'afterwork IT sur votre temps de travail'
+const siteNameWithTagline = "Tech'Work Lyon 2026 - L'afterwork IT sur votre temps de travail"
 const fullPageTitle = title ? `${title} | ${siteName}` : siteNameWithTagline
 const pageDescription =
     description ||
-    'Tech\'Work Lyon est l\'événement tech révolutionnaire qui se déroule sur temps de travail. Développeurs, DevOps, Data Scientists : rejoignez-nous en juin 2026 pour une journée qui respecte votre work-life balance.'
-const keywords = 'techwork, tech work, événement, event, lyon, programming, développeur, devops, data science, conférence, work-life balance, afterwork'
+    "Tech'Work Lyon est l'événement tech révolutionnaire qui se déroule sur temps de travail. Développeurs, DevOps, Data Scientists : rejoignez-nous en juin 2026 pour une journée qui respecte votre work-life balance."
+const keywords =
+    'techwork, tech work, événement, event, lyon, programming, développeur, devops, data science, conférence, work-life balance, afterwork'
 
-const organizerName = 'Tech\'Work Lyon'
+const organizerName = "Tech'Work Lyon"
 const organizerTwitter = '@techworklyon'
 ---
 
@@ -35,7 +37,7 @@ const organizerTwitter = '@techworklyon'
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-        <link href="manifest.json" rel="manifest" />
+        <link href="/manifest.json" rel="manifest" />
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta content="yes" name="mobile-web-app-capable" />
@@ -85,13 +87,16 @@ const organizerTwitter = '@techworklyon'
         </main>
 
         <FooterBlock />
-        
+
+        <!-- Gestion des cookies RGPD -->
+        <CookieConsent />
+
         <!-- Script optimisé pour les animations au scroll -->
         <script>
             // Détection du type d'appareil
-            const isMobile = () => window.innerWidth <= 768;
-            const isVerySmall = () => window.innerWidth <= 480;
-            const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isMobile = () => window.innerWidth <= 768
+            const isVerySmall = () => window.innerWidth <= 480
+            const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
             // Configuration des animations selon l'appareil
             const getAnimationConfig = () => {
@@ -99,77 +104,75 @@ const organizerTwitter = '@techworklyon'
                     return {
                         enabled: false,
                         duration: 0,
-                        threshold: 0.1
-                    };
+                        threshold: 0.1,
+                    }
                 }
-                
+
                 if (isMobile()) {
                     return {
                         enabled: true,
                         duration: 0.5,
-                        threshold: 0.2
-                    };
+                        threshold: 0.2,
+                    }
                 }
-                
+
                 return {
                     enabled: true,
                     duration: 0.8,
-                    threshold: 0.1
-                };
-            };
+                    threshold: 0.1,
+                }
+            }
 
-            type AnimationConfig = ReturnType<typeof getAnimationConfig>;
+            type AnimationConfig = ReturnType<typeof getAnimationConfig>
 
             // Optimisation des animations au scroll
             class ScrollAnimationOptimizer {
-                private config: AnimationConfig;
-                private animatedElements: Set<HTMLElement>;
-                private isScrolling: boolean;
-                private scrollTimer: ReturnType<typeof setTimeout> | null;
-                private observer!: IntersectionObserver;
+                private config: AnimationConfig
+                private animatedElements: Set<HTMLElement>
+                private scrollTimer: ReturnType<typeof setTimeout> | null
+                private observer!: IntersectionObserver
 
                 constructor() {
-                    this.config = getAnimationConfig();
-                    this.animatedElements = new Set();
-                    this.isScrolling = false;
-                    this.scrollTimer = null;
-                    
-                    this.init();
+                    this.config = getAnimationConfig()
+                    this.animatedElements = new Set()
+                    this.scrollTimer = null
+
+                    this.init()
                 }
-                
+
                 init() {
                     if (!this.config.enabled) {
-                        this.disableAllAnimations();
-                        return;
+                        this.disableAllAnimations()
+                        return
                     }
-                    
-                    this.setupIntersectionObserver();
-                    this.setupScrollOptimization();
-                    this.setupResizeHandler();
-                    this.optimizeExistingAnimations();
-                    this.initHoverAnimations();
-                    this.initParallax();
-                    this.staggerAnimations();
+
+                    this.setupIntersectionObserver()
+                    this.setupScrollOptimization()
+                    this.setupResizeHandler()
+                    this.optimizeExistingAnimations()
+                    this.initHoverAnimations()
+                    this.initParallax()
+                    this.staggerAnimations()
                 }
-                
+
                 setupIntersectionObserver() {
                     const observerOptions = {
                         root: null,
                         rootMargin: '50px',
-                        threshold: this.config.threshold
-                    };
-                    
+                        threshold: this.config.threshold,
+                    }
+
                     this.observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
+                        entries.forEach((entry) => {
                             if (entry.isIntersecting && entry.target instanceof HTMLElement) {
-                                this.activateAnimation(entry.target);
+                                this.activateAnimation(entry.target)
                             }
-                        });
-                    }, observerOptions);
-                    
-                    this.observeAnimatedElements();
+                        })
+                    }, observerOptions)
+
+                    this.observeAnimatedElements()
                 }
-                
+
                 observeAnimatedElements() {
                     const animatedElements = document.querySelectorAll(`
                         .scroll-animate,
@@ -177,93 +180,93 @@ const organizerTwitter = '@techworklyon'
                         .scroll-animate-right,
                         .scroll-animate-scale,
                         .text-blocks
-                    `);
-                    
-                    animatedElements.forEach(element => {
-                        this.observer.observe(element);
+                    `)
+
+                    animatedElements.forEach((element) => {
+                        this.observer.observe(element)
                         if (element instanceof HTMLElement) {
-                            this.activateAnimation(element);
+                            this.activateAnimation(element)
                         }
-                    });
+                    })
                 }
-                
+
                 activateAnimation(element: HTMLElement) {
-                    if (this.animatedElements.has(element)) return;
-                    
+                    if (this.animatedElements.has(element)) return
+
                     // Ajouter will-change avant l'animation
-                    element.style.willChange = 'transform, opacity';
-                    
+                    element.style.willChange = 'transform, opacity'
+
                     // Activer l'animation
                     if (element.classList.contains('text-blocks')) {
-                        element.classList.add('visible');
+                        element.classList.add('visible')
                     } else {
-                        element.classList.add('animate');
+                        element.classList.add('animate')
                     }
-                    this.animatedElements.add(element);
-                    
+                    this.animatedElements.add(element)
+
                     // Nettoyer will-change après l'animation
-                    setTimeout(() => {
-                        element.style.willChange = 'auto';
-                        element.classList.add('animation-complete');
-                    }, this.config.duration * 1000 + 100);
-                    
+                    setTimeout(
+                        () => {
+                            element.style.willChange = 'auto'
+                            element.classList.add('animation-complete')
+                        },
+                        this.config.duration * 1000 + 100
+                    )
+
                     // Arrêter d'observer cet élément
-                    this.observer.unobserve(element);
+                    this.observer.unobserve(element)
                 }
-                
+
                 setupScrollOptimization() {
-                    let ticking = false;
-                    
+                    let ticking = false
+
                     const handleScroll = () => {
                         if (!ticking) {
                             requestAnimationFrame(() => {
-                                this.onScroll();
-                                ticking = false;
-                            });
-                            ticking = true;
+                                this.onScroll()
+                                ticking = false
+                            })
+                            ticking = true
                         }
-                    };
-                    
-                    window.addEventListener('scroll', handleScroll, { passive: true });
+                    }
+
+                    window.addEventListener('scroll', handleScroll, { passive: true })
                 }
-                
+
                 onScroll() {
-                    this.isScrolling = true;
-                    
                     // Réduire les animations pendant le scroll
                     if (isMobile()) {
-                        document.body.classList.add('scrolling');
+                        document.body.classList.add('scrolling')
                     }
-                    
+
                     // Nettoyer le timer précédent
                     if (this.scrollTimer) {
-                        clearTimeout(this.scrollTimer);
+                        clearTimeout(this.scrollTimer)
                     }
-                    
+
                     // Restaurer les animations après le scroll
                     this.scrollTimer = setTimeout(() => {
-                        this.isScrolling = false;
-                        document.body.classList.remove('scrolling');
-                    }, 150);
+                        document.body.classList.remove('scrolling')
+                    }, 150)
                 }
-                
+
                 setupResizeHandler() {
-                    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-                    
+                    let resizeTimer: ReturnType<typeof setTimeout> | null = null
+
                     window.addEventListener('resize', () => {
                         if (resizeTimer) {
-                            clearTimeout(resizeTimer);
+                            clearTimeout(resizeTimer)
                         }
                         resizeTimer = setTimeout(() => {
-                            this.config = getAnimationConfig();
-                            
+                            this.config = getAnimationConfig()
+
                             if (!this.config.enabled) {
-                                this.disableAllAnimations();
+                                this.disableAllAnimations()
                             }
-                        }, 250);
-                    });
+                        }, 250)
+                    })
                 }
-                
+
                 optimizeExistingAnimations() {
                     // Optimiser les animations infinies sur mobile
                     if (isMobile()) {
@@ -272,79 +275,79 @@ const organizerTwitter = '@techworklyon'
                             .animate-float,
                             .animate-pulse-slow,
                             .animate-gradient
-                        `) as NodeListOf<HTMLElement>;
-                        
-                        infiniteAnimations.forEach(element => {
-                            element.style.willChange = 'transform';
-                            
+                        `) as NodeListOf<HTMLElement>
+
+                        infiniteAnimations.forEach((element) => {
+                            element.style.willChange = 'transform'
+
                             // Réduire la fréquence d'animation
                             if (element.classList.contains('animate-bounce-gentle')) {
-                                element.style.animationDuration = '3s';
+                                element.style.animationDuration = '3s'
                             } else if (element.classList.contains('animate-float')) {
-                                element.style.animationDuration = '4s';
+                                element.style.animationDuration = '4s'
                             } else if (element.classList.contains('animate-gradient')) {
-                                element.style.animationDuration = '8s';
+                                element.style.animationDuration = '8s'
                             }
-                        });
+                        })
                     }
                 }
-                
+
                 // Animations de hover avancées
                 initHoverAnimations() {
-                    if (isMobile()) return; // Pas d'animations hover sur mobile
-                    
-                    const hoverElements = document.querySelectorAll('.hover-lift');
-                    
-                    hoverElements.forEach(el => {
+                    if (isMobile()) return // Pas d'animations hover sur mobile
+
+                    const hoverElements = document.querySelectorAll('.hover-lift')
+
+                    hoverElements.forEach((el) => {
                         if (el instanceof HTMLElement) {
                             el.addEventListener('mouseenter', () => {
-                                el.style.transform = 'translate3d(0, -8px, 0) scale(1.02)';
-                                el.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
-                            });
-                            
+                                el.style.transform = 'translate3d(0, -8px, 0) scale(1.02)'
+                                el.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)'
+                            })
+
                             el.addEventListener('mouseleave', () => {
-                                el.style.transform = 'translate3d(0, 0, 0) scale(1)';
-                                el.style.boxShadow = '';
-                            });
+                                el.style.transform = 'translate3d(0, 0, 0) scale(1)'
+                                el.style.boxShadow = ''
+                            })
                         }
-                    });
+                    })
                 }
 
                 // Parallax doux pour les éléments
                 initParallax() {
-                    if (isMobile()) return; // Pas de parallax sur mobile
-                    
-                    const parallaxElements = document.querySelectorAll('.parallax');
-                    
+                    if (isMobile()) return // Pas de parallax sur mobile
+
+                    const parallaxElements = document.querySelectorAll('.parallax')
+
                     if (parallaxElements.length > 0) {
                         window.addEventListener('scroll', () => {
-                            const scrolled = window.scrollY;
-                            
-                            parallaxElements.forEach(el => {
+                            const scrolled = window.scrollY
+
+                            parallaxElements.forEach((el) => {
                                 if (el instanceof HTMLElement) {
-                                    const speed = parseFloat(el.dataset.speed || '0.5');
-                                    const yPos = -(scrolled * speed);
-                                    el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                                    const speed = parseFloat(el.dataset.speed || '0.5')
+                                    const yPos = -(scrolled * speed)
+                                    el.style.transform = `translate3d(0, ${yPos}px, 0)`
                                 }
-                            });
-                        });
+                            })
+                        })
                     }
                 }
 
                 // Animations séquentielles pour les grilles et listes
                 staggerAnimations() {
-                    const grids = document.querySelectorAll('.stagger-children');
-                    
-                    grids.forEach(grid => {
-                        const children = grid.children;
+                    const grids = document.querySelectorAll('.stagger-children')
+
+                    grids.forEach((grid) => {
+                        const children = grid.children
                         Array.from(children).forEach((child, index) => {
                             if (child instanceof HTMLElement) {
-                                child.style.animationDelay = `${index * 0.1}s`;
+                                child.style.animationDelay = `${index * 0.1}s`
                             }
-                        });
-                    });
+                        })
+                    })
                 }
-                
+
                 disableAllAnimations() {
                     // Désactiver toutes les animations
                     const animatedElements = document.querySelectorAll(`
@@ -357,20 +360,24 @@ const organizerTwitter = '@techworklyon'
                         .animate-pulse-slow,
                         .animate-gradient,
                         .text-blocks > .text-block
-                    `) as NodeListOf<HTMLElement>;
-                    
-                    animatedElements.forEach(element => {
-                        element.style.animation = 'none';
-                        element.style.transition = 'none';
-                        element.style.transform = 'none';
-                        element.style.opacity = '1';
-                        element.style.willChange = 'auto';
-                    });
-                    
+                    `) as NodeListOf<HTMLElement>
+
+                    animatedElements.forEach((element) => {
+                        element.style.animation = 'none'
+                        element.style.transition = 'none'
+                        element.style.transform = 'none'
+                        element.style.opacity = '1'
+                        element.style.willChange = 'auto'
+                    })
+
                     // Activer immédiatement tous les éléments scroll-animate
-                    document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale').forEach(element => {
-                        element.classList.add('animate');
-                    });
+                    document
+                        .querySelectorAll(
+                            '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale'
+                        )
+                        .forEach((element) => {
+                            element.classList.add('animate')
+                        })
                 }
             }
 
@@ -385,35 +392,37 @@ const organizerTwitter = '@techworklyon'
                 .scrolling .animate-float {
                     animation-play-state: paused !important;
                 }
-            `;
+            `
 
-            const styleSheet = document.createElement('style');
-            styleSheet.textContent = scrollPerformanceCSS;
-            document.head.appendChild(styleSheet);
+            const styleSheet = document.createElement('style')
+            styleSheet.textContent = scrollPerformanceCSS
+            document.head.appendChild(styleSheet)
 
             // Initialiser l'optimiseur
             function initAnimationOptimizer() {
-                new ScrollAnimationOptimizer();
+                new ScrollAnimationOptimizer()
             }
 
             // Initialisation
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initAnimationOptimizer);
+                document.addEventListener('DOMContentLoaded', initAnimationOptimizer)
             } else {
-                initAnimationOptimizer();
+                initAnimationOptimizer()
             }
 
             // Réinitialiser après navigation Astro
             document.addEventListener('astro:page-load', () => {
-                setTimeout(initAnimationOptimizer, 100);
-            });
+                setTimeout(initAnimationOptimizer, 100)
+            })
 
             // Nettoyer les will-change pour éviter les fuites mémoire
             window.addEventListener('beforeunload', () => {
-                (document.querySelectorAll('*[style*="will-change"]') as NodeListOf<HTMLElement>).forEach(element => {
-                    element.style.willChange = 'auto';
-                });
-            });
+                ;(document.querySelectorAll('*[style*="will-change"]') as NodeListOf<HTMLElement>).forEach(
+                    (element) => {
+                        element.style.willChange = 'auto'
+                    }
+                )
+            })
         </script>
     </body>
 </html>

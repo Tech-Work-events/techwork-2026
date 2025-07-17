@@ -1,0 +1,588 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import LEGAL_DATA from '../../config/legal.json'
+
+const seoTitle = "Exercer vos droits RGPD - Tech'Work Lyon 2026"
+const seoDescription = 'Formulaire pour exercer vos droits concernant vos données personnelles dans le cadre du RGPD.'
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+    <!-- Header Section -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2">👤</span>
+                    Vos droits RGPD
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Exercer vos <span class="text-gradient">droits</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Formulaire de demande pour l'exercice de vos droits RGPD
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Informations importantes -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-blue-900 mb-3">📋 Informations importantes</h2>
+                    <div class="text-blue-800 space-y-2 text-sm">
+                        <p>• <strong>Délai de réponse :</strong> 1 mois maximum (extensible à 3 mois si nécessaire)</p>
+                        <p>• <strong>Gratuit :</strong> L'exercice de vos droits est entièrement gratuit</p>
+                        <p>
+                            • <strong>Vérification d'identité :</strong> Nous pourrons vous demander une pièce d'identité
+                        </p>
+                        <p>
+                            • <strong>Contact DPO :</strong>
+                            <a
+                                href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+                                class="underline hover:text-blue-600">{LEGAL_DATA.dataProtection.dpoEmail}</a
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vos droits -->
+                <div class="scroll-animate mb-12">
+                    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            ⚖️ Vos droits selon le RGPD
+                        </h2>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            {
+                                Object.entries(LEGAL_DATA.userRights).map(([key, right]) => (
+                                    <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                                        <h3 class="font-semibold text-gray-800 mb-2">{right.name}</h3>
+                                        <p class="text-gray-600 text-sm mb-3">{right.description}</p>
+                                        <div class="text-xs text-blue-600">Code : {key}</div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de demande -->
+                    <div class="scroll-animate mb-12">
+                        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                                📝 Formulaire de demande
+                            </h2>
+
+                            <form id="rgpd-form" class="space-y-6">
+                                <!-- Type de demande -->
+                                <div>
+                                    <label for="requestType" class="block text-sm font-medium text-gray-700 mb-3">
+                                        Type de demande <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="grid md:grid-cols-2 gap-3">
+                                        {
+                                            Object.entries(LEGAL_DATA.userRights).map(([key, right]) => (
+                                                <label class="flex items-start space-x-3 p-3 border border-gray-200 rounded-lg hover:border-blue-300 cursor-pointer transition-colors">
+                                                    <input
+                                                        type="radio"
+                                                        name="requestType"
+                                                        value={key}
+                                                        class="mt-1"
+                                                        required
+                                                    />
+                                                    <div>
+                                                        <div class="font-medium text-gray-900">{right.name}</div>
+                                                        <div class="text-sm text-gray-600">{right.description}</div>
+                                                    </div>
+                                                </label>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+
+                                <!-- Informations personnelles -->
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="userEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Adresse email <span class="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="userEmail"
+                                            name="userEmail"
+                                            required
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="votre@email.com"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="userName" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Nom complet <span class="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="userName"
+                                            name="userName"
+                                            required
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Prénom NOM"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Détails de la demande -->
+                                <div>
+                                    <label for="requestDetails" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Détails de votre demande <span class="text-red-500">*</span>
+                                    </label>
+                                    <textarea
+                                        id="requestDetails"
+                                        name="requestDetails"
+                                        rows="5"
+                                        required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Décrivez précisément votre demande. Par exemple : quelles données vous souhaitez consulter, modifier ou supprimer..."
+                                    ></textarea>
+                                </div>
+
+                                <!-- Pièces jointes -->
+                                <div>
+                                    <label for="attachments" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Pièces jointes (optionnel)
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="attachments"
+                                        name="attachments"
+                                        multiple
+                                        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    />
+                                    <p class="mt-1 text-sm text-gray-500">
+                                        Formats acceptés : PDF, JPG, PNG, DOC, DOCX (5 Mo max par fichier)
+                                    </p>
+                                </div>
+
+                                <!-- Attestations obligatoires -->
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-yellow-800 mb-4">
+                                        📋 Attestations obligatoires
+                                    </h3>
+
+                                    <div class="space-y-4">
+                                        <label class="flex items-start space-x-3">
+                                            <input
+                                                type="checkbox"
+                                                id="identityConfirmed"
+                                                name="identityConfirmed"
+                                                required
+                                                class="mt-1 text-blue-600 focus:ring-blue-500"
+                                            />
+                                            <span class="text-sm text-yellow-800">
+                                                <strong>J'atteste sur l'honneur</strong> être la personne concernée par cette
+                                                demande ou être dûment autorisé(e) à agir pour son compte. Je m'engage à
+                                                fournir une pièce d'identité si elle m'est demandée.
+                                            </span>
+                                        </label>
+
+                                        <label class="flex items-start space-x-3">
+                                            <input
+                                                type="checkbox"
+                                                id="processingConsent"
+                                                name="processingConsent"
+                                                required
+                                                class="mt-1 text-blue-600 focus:ring-blue-500"
+                                            />
+                                            <span class="text-sm text-yellow-800">
+                                                <strong>J'accepte</strong> que mes données personnelles soient traitées par
+                                                Tech'Work Lyon dans le cadre du traitement de cette demande, conformément
+                                                à notre
+                                                <a
+                                                    href="/legal/politique-confidentialite"
+                                                    class="underline hover:text-yellow-600">
+                                                    politique de confidentialité
+                                                </a>.
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Bouton d'envoi -->
+                                <div class="text-center">
+                                    <button
+                                        type="submit"
+                                        id="submit-button"
+                                        class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                                        📤 Envoyer la demande
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Messages de statut -->
+                    <div id="status-messages" class="scroll-animate mb-12 space-y-4">
+                        <!-- Les messages seront ajoutés ici par JavaScript -->
+                    </div>
+
+                    <!-- Informations complémentaires -->
+                    <div class="scroll-animate mb-12">
+                        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                                ℹ️ Informations complémentaires
+                            </h2>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">⏱️ Délais de traitement</h3>
+                                    <ul class="text-gray-600 space-y-2 text-sm">
+                                        <li>• <strong>Accusé de réception :</strong> Immédiat (automatique)</li>
+                                        <li>• <strong>Première réponse :</strong> 72h ouvrées maximum</li>
+                                        <li>• <strong>Réponse complète :</strong> 1 mois maximum</li>
+                                        <li>
+                                            • <strong>Extension possible :</strong> 2 mois supplémentaires si complexe
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                                        📞 Autres moyens de contact
+                                    </h3>
+                                    <ul class="text-gray-600 space-y-2 text-sm">
+                                        <li>
+                                            <strong>Email DPO :</strong>
+                                            <a
+                                                href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+                                                class="text-blue-600 hover:text-blue-800">
+                                                {LEGAL_DATA.dataProtection.dpoEmail}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <strong>Contact général :</strong>
+                                            <a
+                                                href={`mailto:${LEGAL_DATA.organization.contact.email}`}
+                                                class="text-blue-600 hover:text-blue-800">
+                                                {LEGAL_DATA.organization.contact.email}
+                                            </a>
+                                        </li>
+                                        <li><strong>Téléphone :</strong> {LEGAL_DATA.organization.contact.phone}</li>
+                                        <li>
+                                            <strong>Courrier :</strong>
+                                            {LEGAL_DATA.organization.address.street},
+                                            {LEGAL_DATA.organization.address.postalCode}
+                                            {LEGAL_DATA.organization.address.city}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recours -->
+                        <div class="scroll-animate">
+                            <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                                    ⚖️ Recours possible
+                                </h2>
+
+                                <div class="bg-gray-50 rounded-lg p-6">
+                                    <p class="text-gray-700 mb-4">
+                                        Si vous n'êtes pas satisfait(e) de notre réponse ou si vous n'avez pas reçu de
+                                        réponse dans les délais impartis, vous avez le droit d'introduire une
+                                        réclamation auprès de l'autorité de contrôle :
+                                    </p>
+
+                                    <div class="bg-white rounded border p-4">
+                                        <h3 class="font-semibold text-gray-800 mb-2">
+                                            {LEGAL_DATA.compliance.authority}
+                                        </h3>
+                                        <p class="text-gray-600 text-sm mb-2">
+                                            Autorité française de protection des données personnelles
+                                        </p>
+                                        <a
+                                            href={LEGAL_DATA.compliance.authorityUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-600 hover:text-blue-800 underline text-sm">
+                                            {LEGAL_DATA.compliance.authorityUrl}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Script pour la gestion du formulaire -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const form = document.getElementById('rgpd-form') as HTMLFormElement
+                            const submitButton = document.getElementById('submit-button') as HTMLButtonElement
+                            const statusContainer = document.getElementById('status-messages')
+
+                            if (!form || !submitButton || !statusContainer) {
+                                console.error('Required form elements not found', {
+                                    form,
+                                    submitButton,
+                                    statusContainer,
+                                })
+                                return
+                            }
+
+                            // Types pour TypeScript
+                            type MessageType = 'success' | 'error' | 'info' | 'warning'
+                            type RequestType =
+                                | 'access'
+                                | 'rectification'
+                                | 'erasure'
+                                | 'portability'
+                                | 'opposition'
+                                | 'limitation'
+                                | 'consent-withdrawal'
+
+                            // Fonction pour afficher un message de statut
+                            function showMessage(type: MessageType, title: string, message: string) {
+                                const colors: Record<MessageType, string> = {
+                                    success: 'bg-green-50 border-green-200 text-green-800',
+                                    error: 'bg-red-50 border-red-200 text-red-800',
+                                    info: 'bg-blue-50 border-blue-200 text-blue-800',
+                                    warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+                                }
+
+                                const icons: Record<MessageType, string> = {
+                                    success: '✅',
+                                    error: '❌',
+                                    info: 'ℹ️',
+                                    warning: '⚠️',
+                                }
+
+                                const messageDiv = document.createElement('div')
+                                messageDiv.className = `border-l-4 rounded-lg p-4 ${colors[type]}`
+                                messageDiv.innerHTML = `
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <span class="text-lg">${icons[type]}</span>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium">${title}</h3>
+              <div class="mt-2 text-sm">${message}</div>
+            </div>
+          </div>
+        `
+
+                                if (statusContainer) {
+                                    statusContainer.appendChild(messageDiv)
+
+                                    // Scroll vers le message
+                                    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                                }
+
+                                return messageDiv
+                            }
+
+                            // Fonction pour effacer les messages précédents
+                            function clearMessages() {
+                                if (statusContainer) {
+                                    statusContainer.innerHTML = ''
+                                }
+                            }
+
+                            // Validation du formulaire
+                            function validateForm(): { valid: boolean; message?: string } {
+                                const requiredFields = ['requestType', 'userEmail', 'userName', 'requestDetails']
+                                const checkboxes = ['identityConfirmed', 'processingConsent']
+
+                                // Vérifier les champs requis
+                                for (const field of requiredFields) {
+                                    if (field === 'requestType') {
+                                        // Cas spécial pour les radio buttons
+                                        const radioButtons = form.querySelectorAll(
+                                            'input[name="requestType"]'
+                                        ) as NodeListOf<HTMLInputElement>
+                                        const isChecked = Array.from(radioButtons).some((radio) => radio.checked)
+                                        if (!isChecked) {
+                                            return {
+                                                valid: false,
+                                                message: 'Vous devez sélectionner un type de demande.',
+                                            }
+                                        }
+                                    } else {
+                                        const element = form.elements.namedItem(field) as
+                                            | HTMLInputElement
+                                            | HTMLTextAreaElement
+                                            | HTMLSelectElement
+                                        if (!element || !element.value.trim()) {
+                                            const label = element?.labels?.[0]?.textContent || field
+                                            return { valid: false, message: `Le champ "${label}" est requis.` }
+                                        }
+                                    }
+                                }
+
+                                // Vérifier les cases à cocher
+                                for (const checkbox of checkboxes) {
+                                    const checkboxElement = form.elements.namedItem(checkbox) as HTMLInputElement
+                                    if (!checkboxElement || !checkboxElement.checked) {
+                                        return {
+                                            valid: false,
+                                            message: 'Vous devez accepter toutes les attestations obligatoires.',
+                                        }
+                                    }
+                                }
+
+                                // Validation de l'email
+                                const emailElement = form.elements.namedItem('userEmail') as HTMLInputElement
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                if (!emailElement || !emailRegex.test(emailElement.value)) {
+                                    return { valid: false, message: "L'adresse email n'est pas valide." }
+                                }
+
+                                return { valid: true }
+                            }
+
+                            // Fonction pour afficher le succès avec les détails
+                            function showSuccessMessage(
+                                requestType: string,
+                                userEmail: string,
+                                trackingNumber?: string
+                            ) {
+                                const requestTypes: Record<RequestType, string> = {
+                                    access: "Droit d'accès",
+                                    rectification: 'Droit de rectification',
+                                    erasure: "Droit d'effacement",
+                                    portability: 'Droit à la portabilité',
+                                    opposition: "Droit d'opposition",
+                                    limitation: 'Droit à la limitation',
+                                    'consent-withdrawal': 'Retrait du consentement',
+                                }
+
+                                const requestTypeName = requestTypes[requestType as RequestType] || requestType
+
+                                showMessage(
+                                    'success',
+                                    '✅ Demande envoyée avec succès !',
+                                    `
+          <p><strong>Type de demande :</strong> ${requestTypeName}</p>
+          <p><strong>Email :</strong> ${userEmail}</p>
+          <p><strong>Prochaines étapes :</strong></p>
+          <ul class="list-disc list-inside mt-2 space-y-1">
+            <li>Vous allez recevoir un accusé de réception par email</li>
+            <li>Nous traiterons votre demande dans un délai maximum d'1 mois</li>
+            <li>Vous recevrez notre réponse complète par email</li>
+          </ul>
+          <p class="mt-3"><strong>Numéro de suivi :</strong> ${trackingNumber || 'RGPD-' + Date.now()}</p>
+        `
+                                )
+                            }
+
+                            // Gestionnaire de soumission du formulaire
+                            form.addEventListener('submit', async function (e) {
+                                e.preventDefault()
+
+                                clearMessages()
+
+                                // Validation
+                                const validation = validateForm()
+                                if (!validation.valid) {
+                                    showMessage(
+                                        'error',
+                                        'Erreur de validation',
+                                        validation.message || 'Erreur de validation'
+                                    )
+                                    return
+                                }
+
+                                // Désactiver le bouton de soumission
+                                submitButton.disabled = true
+                                submitButton.textContent = '📤 Envoi en cours...'
+
+                                try {
+                                    // Préparer les données du formulaire
+                                    const formData = new FormData(form)
+
+                                    // Récupérer les valeurs pour affichage
+                                    const requestType = formData.get('requestType') as string
+                                    const userEmail = formData.get('userEmail') as string
+
+                                    // Envoyer vers Firebase Functions
+                                    const firebaseUrl =
+                                        'https://us-central1-techwork-2026.cloudfunctions.net/processRGPDRequest'
+
+                                    // Envoyer vers Firebase Functions
+                                    const response = await fetch(firebaseUrl, {
+                                        method: 'POST',
+                                        body: formData,
+                                    })
+
+                                    const result = await response.json()
+
+                                    if (result.success) {
+                                        // Succès
+                                        showSuccessMessage(requestType, userEmail, result.trackingNumber)
+
+                                        // Réinitialiser le formulaire
+                                        form.reset()
+                                    } else {
+                                        // Erreur retournée par la fonction
+                                        showMessage(
+                                            'error',
+                                            "Erreur lors de l'envoi",
+                                            result.error ||
+                                                'Une erreur est survenue lors du traitement de votre demande.'
+                                        )
+                                    }
+                                } catch (error) {
+                                    console.error('Erreur:', error)
+
+                                    // Erreur de réseau ou autre
+                                    showMessage(
+                                        'error',
+                                        'Erreur de connexion',
+                                        `
+            <p>Impossible d'envoyer votre demande pour le moment.</p>
+            <p><strong>Solutions alternatives :</strong></p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>Réessayez dans quelques minutes</li>
+              <li>Contactez-nous directement : <a href="mailto:dpo@techwork-lyon.fr" class="underline">dpo@techwork-lyon.fr</a></li>
+            </ul>
+          `
+                                    )
+                                } finally {
+                                    // Réactiver le bouton
+                                    submitButton.disabled = false
+                                    submitButton.textContent = '📤 Envoyer la demande'
+                                }
+                            })
+
+                            // Validation en temps réel
+                            const inputs = form.querySelectorAll('input, textarea, select')
+                            inputs.forEach((input) => {
+                                input.addEventListener(
+                                    'blur',
+                                    function (this: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) {
+                                        if (this.hasAttribute('required') && !this.value.trim()) {
+                                            this.classList.add('border-red-500')
+                                        } else {
+                                            this.classList.remove('border-red-500')
+                                        }
+                                    }
+                                )
+
+                                input.addEventListener(
+                                    'input',
+                                    function (this: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) {
+                                        if (this.classList.contains('border-red-500') && this.value.trim()) {
+                                            this.classList.remove('border-red-500')
+                                        }
+                                    }
+                                )
+                            })
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section></Layout
+>
