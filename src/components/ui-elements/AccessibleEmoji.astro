@@ -1,0 +1,13 @@
+---
+interface Props {
+    emoji: string;
+    label: string;
+    class?: string;
+}
+
+const { emoji, label, class: className } = Astro.props;
+---
+
+<span role="img" aria-label={label} class={className}>
+    {emoji}
+</span>

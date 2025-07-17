@@ -1,5 +1,6 @@
 ---
 import { SOCIAL_DATA, EVENT_DATA } from '../config'
+import AccessibleEmoji from './ui-elements/AccessibleEmoji.astro'
 
 const navigation = [
     { label: 'CFP', route: '/cfp' },
@@ -62,7 +63,11 @@ const isActiveRoute = (route: string) => {
                             ? 'hover:bg-white/20' 
                             : 'hover:bg-gray-100'
                     }`}
-                    aria-label="Ouvrir/fermer le menu de navigation"
+                    aria-label="Ouvrir le menu de navigation"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    role="button"
+                    tabindex="0"
                 >
                     <svg class={`w-7 h-7 ${
                         routeName === '/' 
@@ -77,22 +82,22 @@ const isActiveRoute = (route: string) => {
                 <div class="nav-overlay fixed inset-0 bg-black/50 opacity-0 transition-opacity duration-300 ease-in-out z-50 pointer-events-none"></div>
                 
                 <!-- Mobile Navigation Drawer -->
-                <div class="nav-drawer fixed inset-y-0 right-0 w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-500 ease-out z-60">
+                <div id="mobile-menu" class="nav-drawer fixed inset-y-0 right-0 w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-500 ease-out z-60" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
                     <div class="flex flex-col h-full">
                         <div class="bg-gradient-to-r from-primary-600 to-secondary-600 p-6">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <span class="text-2xl font-black text-white">{EVENT_DATA.event.shortName}</span>
+                                    <span id="mobile-menu-title" class="text-2xl font-black text-white">{EVENT_DATA.event.shortName}</span>
                                     <p class="text-primary-100 text-sm mt-1">{EVENT_DATA.event.location.city} {EVENT_DATA.event.year}</p>
                                 </div>
-                                <label for="nav-trigger" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer">
+                                <label for="nav-trigger" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer" aria-label="Fermer le menu">
                                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
                                 </label>
                             </div>
                         </div>
-                        <nav class="flex-1 px-0 py-0 space-y-0 bg-white">
+                        <nav class="flex-1 px-0 py-0 space-y-0 bg-white" role="navigation" aria-label="Navigation principale mobile">
                             {navigation.map((nav, index) => (
                                 <a 
                                     href={nav.route} 
@@ -104,11 +109,11 @@ const isActiveRoute = (route: string) => {
                                     style={`animation-delay: ${index * 0.1}s`}
                                 >
                                     <span class="mr-4 text-xl group-hover:animate-bounce-gentle">
-                                        {nav.route === '/cfp' && '🎤'}
-                                        {nav.route === '/team' && '👥'}
-                                        {nav.route === '/sponsors' && '🤝'}
-                                        {nav.route === '/coc' && '🤝'}
-                                        {nav.route === '/location' && '📍'}
+                                        {nav.route === '/cfp' && <AccessibleEmoji emoji="🎤" label="Microphone" />}
+                                        {nav.route === '/team' && <AccessibleEmoji emoji="👥" label="Équipe" />}
+                                        {nav.route === '/sponsors' && <AccessibleEmoji emoji="🤝" label="Partenaires" />}
+                                        {nav.route === '/coc' && <AccessibleEmoji emoji="🤝" label="Code de conduite" />}
+                                        {nav.route === '/location' && <AccessibleEmoji emoji="📍" label="Lieu" />}
                                     </span>
                                     {nav.label}
                                     <svg class="w-5 h-5 ml-auto text-gray-400 group-hover:text-primary-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,34 +174,94 @@ const isActiveRoute = (route: string) => {
     
     window.addEventListener('scroll', updateHeaderOnScroll)
 
-    // Handle mobile menu
+    // Handle mobile menu avec support accessibilité
     document.addEventListener('astro:page-load', () => {
         const trigger = document.querySelector('#nav-trigger') as HTMLInputElement
+        const triggerLabel = document.querySelector('label[for="nav-trigger"]') as HTMLLabelElement
         const drawer = document.querySelector('.nav-drawer') as HTMLElement
         const overlay = document.querySelector('.nav-overlay') as HTMLElement
         
-        if (trigger && drawer && overlay) {
-            trigger.addEventListener('change', () => {
-                if (trigger.checked) {
+        if (trigger && triggerLabel && drawer && overlay) {
+            // Fonction pour ouvrir/fermer le menu
+            function toggleMenu(open: boolean) {
+                trigger.checked = open
+                triggerLabel.setAttribute('aria-expanded', open.toString())
+                
+                if (open) {
                     drawer.style.transform = 'translateX(0)'
                     overlay.style.opacity = '1'
                     overlay.style.pointerEvents = 'auto'
                     document.body.style.overflow = 'hidden'
+                    
+                    // Focus sur le premier élément du menu
+                    const firstLink = drawer.querySelector('a') as HTMLElement
+                    if (firstLink) {
+                        setTimeout(() => firstLink.focus(), 100)
+                    }
                 } else {
                     drawer.style.transform = 'translateX(100%)'
                     overlay.style.opacity = '0'
                     overlay.style.pointerEvents = 'none'
                     document.body.style.overflow = ''
+                    
+                    // Retour du focus au bouton trigger
+                    triggerLabel.focus()
+                }
+            }
+            
+            // Gestion du changement de state
+            trigger.addEventListener('change', () => {
+                toggleMenu(trigger.checked)
+            })
+            
+            // Support navigation clavier sur le label
+            triggerLabel.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    trigger.click()
                 }
             })
             
-            // Close menu when clicking overlay
+            // Fermer avec ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && trigger.checked) {
+                    toggleMenu(false)
+                }
+            })
+            
+            // Gestion du focus trap dans le menu
+            drawer.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusableElements = drawer.querySelectorAll('a, button, label, [tabindex]:not([tabindex="-1"])')
+                    const firstElement = focusableElements[0] as HTMLElement
+                    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+                    
+                    if (e.shiftKey) {
+                        // Shift + Tab - focus vers l'arrière
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault()
+                            lastElement.focus()
+                        }
+                    } else {
+                        // Tab - focus vers l'avant
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault()
+                            firstElement.focus()
+                        }
+                    }
+                }
+            })
+            
+            // Fermer le menu en cliquant sur l'overlay
             overlay.addEventListener('click', () => {
-                trigger.checked = false
-                drawer.style.transform = 'translateX(100%)'
-                overlay.style.opacity = '0'
-                overlay.style.pointerEvents = 'none'
-                document.body.style.overflow = ''
+                toggleMenu(false)
+            })
+            
+            // Fermer le menu lors de la navigation
+            drawer.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu(false)
+                })
             })
         }
     })

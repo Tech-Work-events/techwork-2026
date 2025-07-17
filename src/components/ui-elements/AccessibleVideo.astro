@@ -1,0 +1,162 @@
+---
+interface Props {
+    src: string;
+    poster?: string;
+    title: string;
+    description?: string;
+    subtitles?: Array<{
+        src: string;
+        srclang: string;
+        label: string;
+        kind?: 'subtitles' | 'captions' | 'descriptions';
+    }>;
+    controls?: boolean;
+    autoplay?: boolean;
+    loop?: boolean;
+    muted?: boolean;
+    width?: number;
+    height?: number;
+    class?: string;
+}
+
+const { 
+    src, 
+    poster, 
+    title, 
+    description, 
+    subtitles = [],
+    controls = true,
+    autoplay = false,
+    loop = false,
+    muted = false,
+    width,
+    height,
+    class: className = ""
+} = Astro.props;
+
+// Générer un ID unique pour la vidéo
+const videoId = `video-${Math.random().toString(36).substring(2, 11)}`;
+---
+
+<div class={`video-container ${className}`}>
+    <video 
+        id={videoId}
+        src={src}
+        poster={poster}
+        controls={controls}
+        autoplay={autoplay}
+        loop={loop}
+        muted={muted}
+        width={width}
+        height={height}
+        aria-label={title}
+        aria-describedby={description ? `${videoId}-desc` : undefined}
+        class="w-full h-auto"
+    >
+        {subtitles.map((subtitle, index) => (
+            <track
+                src={subtitle.src}
+                kind={subtitle.kind || 'subtitles'}
+                srclang={subtitle.srclang}
+                label={subtitle.label}
+                default={index === 0}
+            />
+        ))}
+        
+        <!-- Fallback pour les navigateurs qui ne supportent pas video -->
+        <p>
+            Votre navigateur ne supporte pas la lecture de vidéos HTML5. 
+            <a href={src} download>Télécharger la vidéo</a>
+        </p>
+    </video>
+    
+    {description && (
+        <p id={`${videoId}-desc`} class="sr-only">
+            {description}
+        </p>
+    )}
+    
+    <!-- Contrôles personnalisés pour l'accessibilité -->
+    <div class="video-controls mt-2 flex gap-2" aria-label="Contrôles vidéo">
+        <button 
+            type="button" 
+            class="px-3 py-1 bg-primary-600 text-white rounded hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            onclick={`document.getElementById('${videoId}').play()`}
+            aria-label="Lire la vidéo"
+        >
+            ▶️ Lire
+        </button>
+        
+        <button 
+            type="button" 
+            class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            onclick={`document.getElementById('${videoId}').pause()`}
+            aria-label="Mettre en pause"
+        >
+            ⏸️ Pause
+        </button>
+        
+        <button 
+            type="button" 
+            class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            onclick={`const video = document.getElementById('${videoId}'); video.muted = !video.muted`}
+            aria-label="Activer/désactiver le son"
+        >
+            🔊 Son
+        </button>
+        
+        {subtitles.length > 0 && (
+            <button 
+                type="button" 
+                class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                onclick={`const video = document.getElementById('${videoId}'); const tracks = video.textTracks; for(let i = 0; i < tracks.length; i++) { tracks[i].mode = tracks[i].mode === 'showing' ? 'hidden' : 'showing'; }`}
+                aria-label="Activer/désactiver les sous-titres"
+            >
+                📝 Sous-titres
+            </button>
+        )}
+    </div>
+</div>
+
+<style>
+    .video-container {
+        position: relative;
+        max-width: 100%;
+    }
+    
+    .video-container video {
+        background-color: #000;
+        border-radius: 8px;
+    }
+    
+    .video-controls {
+        font-size: 0.875rem;
+    }
+    
+    .video-controls button {
+        transition: all 0.2s ease;
+    }
+    
+    /* Styles pour les sous-titres */
+    .video-container video::cue {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 1.1em;
+        line-height: 1.4;
+        padding: 0.2em 0.5em;
+        border-radius: 4px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .video-controls {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .video-controls button {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.75rem;
+        }
+    }
+</style>
