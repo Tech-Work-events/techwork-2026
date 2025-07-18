@@ -3,20 +3,25 @@ import Layout from '../layouts/Layout.astro'
 import { EVENT_DATA } from '../config'
 ---
 
-<Layout title={`Lieu - ${EVENT_DATA.event.name}`} description={`Découvrez où se déroulera ${EVENT_DATA.event.name} - Le lieu mystère sera bientôt révélé !`}>
+<Layout
+    title={`Lieu - ${EVENT_DATA.event.name}`}
+    description={`Découvrez où se déroulera ${EVENT_DATA.event.name} - Le lieu mystère sera bientôt révélé !`}>
     <!-- Header Section -->
     <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center scroll-animate">
-                <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
                     <span class="mr-2 animate-bounce-gentle">📍</span>
                     Lieu
                 </div>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                    Le lieu <span class="text-gradient">mystère</span> de {EVENT_DATA.event.shortName} {EVENT_DATA.event.year}
+                    Le lieu <span class="text-gradient">mystère</span> de {EVENT_DATA.event.shortName}
+                    {EVENT_DATA.event.year}
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    🕵️ Actuellement en cours de sélection... <strong>Spoiler alert :</strong> Ce sera à Lyon et ce sera génial !
+                    🕵️ Actuellement en cours de sélection... <strong>Spoiler alert :</strong> Ce sera à Lyon et ce sera génial
+                    !
                 </p>
             </div>
         </div>
@@ -26,12 +31,8 @@ import { EVENT_DATA } from '../config'
     <section class="py-12 sm:py-16 lg:py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-animate">
-                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                    Nos critères de sélection
-                </h2>
-                <p class="text-lg text-gray-600">
-                    (Parce qu'on est difficiles)
-                </p>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Nos critères de sélection</h2>
+                <p class="text-lg text-gray-600">(Parce qu'on est difficiles)</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-children">
@@ -42,19 +43,31 @@ import { EVENT_DATA } from '../config'
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Accessibilité</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                <span
+                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >✓</span
+                                >
                                 TCL à proximité
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                <span
+                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >✓</span
+                                >
                                 Parking disponible
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                <span
+                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >✓</span
+                                >
                                 PMR complète
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
+                                <span
+                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >✓</span
+                                >
                                 Pas au 42ème étage
                             </li>
                         </ul>
@@ -68,19 +81,31 @@ import { EVENT_DATA } from '../config'
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Technique</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">📶</span>
+                                <span
+                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >📶</span
+                                >
                                 Wifi ultra-performant
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">🔌</span>
+                                <span
+                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🔌</span
+                                >
                                 Prises partout
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">❄️</span>
+                                <span
+                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >❄️</span
+                                >
                                 Clim qui fonctionne
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3">🔊</span>
+                                <span
+                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🔊</span
+                                >
                                 Acoustique parfaite
                             </li>
                         </ul>
@@ -94,19 +119,31 @@ import { EVENT_DATA } from '../config'
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Espaces</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🏛️</span>
+                                <span
+                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🏛️</span
+                                >
                                 3 salles streams
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🤝</span>
+                                <span
+                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🤝</span
+                                >
                                 Zones networking
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">😊</span>
+                                <span
+                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >😊</span
+                                >
                                 Espaces détente
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3">🍽️</span>
+                                <span
+                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🍽️</span
+                                >
                                 Cuisine équipée
                             </li>
                         </ul>
@@ -120,19 +157,31 @@ import { EVENT_DATA } from '../config'
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Bonus Points</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">☀️</span>
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >☀️</span
+                                >
                                 Terrasse/extérieur
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">✨</span>
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >✨</span
+                                >
                                 Déco moderne
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">🔄</span>
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >🔄</span
+                                >
                                 Flexibilité
                             </li>
                             <li class="flex items-center">
-                                <span class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3">👥</span>
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >👥</span
+                                >
                                 Équipe dédiée
                             </li>
                         </ul>
@@ -146,9 +195,7 @@ import { EVENT_DATA } from '../config'
     <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-animate">
-                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                    Ce qu'on peut déjà vous promettre
-                </h2>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Ce qu'on peut déjà vous promettre</h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
@@ -194,16 +241,15 @@ import { EVENT_DATA } from '../config'
     <!-- Call for Suggestions -->
     <section class="py-12 sm:py-16 lg:py-20 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100">
+            <div
+                class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100">
                 <div class="text-6xl mb-6">🏆</div>
-                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
-                    Participez à la sélection !
-                </h2>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">Participez à la sélection !</h2>
                 <p class="text-lg text-gray-600 mb-8">
-                    Vous connaissez LE lieu parfait ? On est ouverts aux suggestions ! 
-                    Si vous connaissez un endroit qui pourrait accueillir Tech'Work dans des conditions optimales, faites-vous connaître.
+                    Vous connaissez LE lieu parfait ? On est ouverts aux suggestions ! Si vous connaissez un endroit qui
+                    pourrait accueillir Tech'Work dans des conditions optimales, faites-vous connaître.
                 </p>
-                
+
                 <div class="grid sm:grid-cols-2 gap-6 mb-8 text-left">
                     <div class="bg-white rounded-xl p-6 border border-gray-200">
                         <h3 class="font-bold text-gray-900 mb-3">💡 Critères techniques</h3>
@@ -226,9 +272,7 @@ import { EVENT_DATA } from '../config'
                     </div>
                 </div>
 
-                <a 
-                    href="mailto:lieu@techwork.lyon"
-                    class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                <a href="mailto:lieu@techwork.lyon" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                     Proposer un lieu
                 </a>
@@ -237,13 +281,12 @@ import { EVENT_DATA } from '../config'
     </section>
 
     <!-- Coming Soon -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
+    <section
+        class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
             <div class="mb-8">
                 <div class="text-6xl mb-6">🔥</div>
-                <h2 class="text-3xl sm:text-4xl font-black mb-6">
-                    Annonce imminente !
-                </h2>
+                <h2 class="text-3xl sm:text-4xl font-black mb-6">Annonce imminente !</h2>
                 <p class="text-xl text-gray-200 mb-8">
                     Restez connecté·e·s ! L'annonce du lieu se fera très prochainement.
                 </p>
@@ -252,37 +295,119 @@ import { EVENT_DATA } from '../config'
             <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8">
                 <h3 class="text-xl font-bold mb-4">🎁 Insider Info</h3>
                 <p class="text-gray-200">
-                    Les abonné·e·s newsletter auront un accès privilégié aux billets Early Bird 
-                    le jour de l'annonce du lieu.
+                    Les abonné·e·s newsletter auront un accès privilégié aux billets Early Bird le jour de l'annonce du
+                    lieu.
                 </p>
             </div>
 
+            <!-- Newsletter Form -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-6">
+                <h3 class="text-xl font-bold mb-4 text-white">📧 Inscription Newsletter</h3>
+                <form id="location-newsletter-form" class="flex flex-col sm:flex-row gap-4">
+                    <input
+                        id="location-newsletter-email"
+                        name="email"
+                        type="email"
+                        placeholder="votre@email.com"
+                        class="flex-1 px-4 py-3 bg-white/90 border border-white/20 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        id="location-newsletter-submit-btn"
+                        class="px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                        S'inscrire
+                    </button>
+                </form>
+                <div id="location-newsletter-message" class="text-sm text-center mt-3 hidden"></div>
+            </div>
+
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                    href="mailto:news@techwork.lyon?subject=Inscription Newsletter Tech'Work"
-                    class="btn btn-primary text-lg px-8 py-4 hover-lift group bg-white text-primary-600 hover:bg-gray-50">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
-                    S'inscrire à la newsletter
-                </a>
-                <a 
+                <a
                     href="/team"
                     class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group">
                     <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
                     Contacter l'équipe
                 </a>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const form = document.getElementById('location-newsletter-form') as HTMLFormElement
+                    const submitBtn = document.getElementById('location-newsletter-submit-btn') as HTMLButtonElement
+                    const messageDiv = document.getElementById('location-newsletter-message') as HTMLDivElement
+
+                    if (!form || !submitBtn || !messageDiv) return
+
+                    function showMessage(message: string, isError: boolean = false) {
+                        messageDiv.textContent = message
+                        messageDiv.className = `text-sm text-center mt-3 ${isError ? 'text-red-200' : 'text-green-200'}`
+                        messageDiv.classList.remove('hidden')
+
+                        setTimeout(() => {
+                            messageDiv.classList.add('hidden')
+                        }, 5000)
+                    }
+
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault()
+
+                        const email = (document.getElementById('location-newsletter-email') as HTMLInputElement).value
+
+                        if (!email) {
+                            showMessage('Veuillez saisir votre adresse email', true)
+                            return
+                        }
+
+                        submitBtn.disabled = true
+                        submitBtn.textContent = 'Inscription...'
+
+                        try {
+                            const response = await fetch(
+                                'https://us-central1-techwork-2026.cloudfunctions.net/subscribeNewsletter',
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({
+                                        email: email,
+                                        source: 'location',
+                                    }),
+                                }
+                            )
+
+                            const result = await response.json()
+
+                            if (result.success) {
+                                showMessage('✅ Inscription réussie ! Vous recevrez bientôt nos actualités.', false)
+                                form.reset()
+                            } else {
+                                showMessage(result.error || "Erreur lors de l'inscription", true)
+                            }
+                        } catch (error) {
+                            console.error('Erreur:', error)
+                            showMessage('Erreur réseau. Réessayez plus tard.', true)
+                        } finally {
+                            submitBtn.disabled = false
+                            submitBtn.textContent = "S'inscrire"
+                        }
+                    })
+                })
+            </script>
         </div>
     </section>
 
     <!-- Interactive Map Placeholder -->
     <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <div class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300">
+            <div
+                class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300">
                 <div class="text-6xl mb-6">🗺️</div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">Carte interactive à venir</h3>
                 <p class="text-gray-600 mb-4">
-                    Une fois le lieu sélectionné, vous trouverez ici une carte interactive 
-                    pour vous y rendre facilement !
+                    Une fois le lieu sélectionné, vous trouverez ici une carte interactive pour vous y rendre facilement
+                    !
                 </p>
                 <p class="text-gray-500 italic">Stay tuned... 📍</p>
             </div>

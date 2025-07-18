@@ -3,7 +3,6 @@ dist/
 
 # generated files
 .astro/
-.firebase/
 
 # dependencies
 node_modules/
@@ -46,3 +45,7 @@ terraform/outputs-*.json
 
 # Firebase
 .firebase/hosting.*.cache
+
+# Functions
+functions/node_modules/
+functions/*.log
