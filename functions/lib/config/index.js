@@ -80,6 +80,8 @@ exports.corsHandler = (0, cors_1.default)({
     origin: [
         'https://techwork.events',
         'https://www.techwork.events',
+        'https://techwork-2026-website.web.app',
+        'https://techwork-2026-website.firebaseapp.com',
         'http://localhost:4321',
         'http://localhost:3000',
         'http://127.0.0.1:4321',

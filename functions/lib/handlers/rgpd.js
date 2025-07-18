@@ -90,7 +90,7 @@ exports.processRGPDRequest = functions.https.onRequest((request, response) => {
             busboy.on('field', (fieldname, val) => {
                 formData[fieldname] = val
             })
-            busboy.on('file', (fieldname, file, info) => {
+            busboy.on('file', (_fieldname, file, info) => {
                 const { filename, mimeType } = info
                 // Ignorer les fichiers vides ou sans nom
                 if (!filename || filename.trim() === '') {

@@ -96,7 +96,7 @@ const url = import.meta.env.SITE
                         const result = await response.json()
 
                         if (result.success) {
-                            showMessage('✅ Inscription réussie !', false)
+                            showMessage('✅ Inscription réussie ! Un email de bienvenue vous a été envoyé.', false)
                             form.reset()
                         } else {
                             showMessage(result.error || "Erreur lors de l'inscription", true)
