@@ -9,6 +9,27 @@
     z-index: 60;
 }
 
+/* Assurer la visibilité du header sur mobile */
+@media (max-width: 767px) {
+    #site-header {
+        /* Force un arrière-plan minimum sur mobile pour garantir la visibilité */
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    #site-header[data-transparent='true'] {
+        /* Même en mode transparent, garder un arrière-plan léger sur mobile */
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Améliorer la lisibilité du logo sur mobile */
+    #site-header span,
+    #site-header a {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    }
+}
+
 /* Animation pour les éléments du menu mobile */
 .nav-drawer .flex {
     opacity: 0;
