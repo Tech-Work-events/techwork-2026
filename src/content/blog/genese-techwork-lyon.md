@@ -1,6 +1,7 @@
 ---
 title: "La genèse de Tech'Work Lyon : pourquoi révolutionner l'événementiel tech ?"
 date: 2024-06-15
+description: "Découvrez comment l'idée révolutionnaire d'organiser un événement tech sur temps de travail est née et pourquoi nous voulons changer l'événementiel tech lyonnais."
 ---
 
 # La genèse de Tech'Work Lyon : pourquoi révolutionner l'événementiel tech ?

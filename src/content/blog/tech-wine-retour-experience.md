@@ -1,6 +1,7 @@
 ---
 title: "Tech & Wine : le retour d'expérience qui a tout changé"
 date: 2024-05-20
+description: "Retour d'expérience sur Tech & Wine, l'événement fondateur qui nous a inspiré pour créer Tech'Work Lyon et révolutionner l'événementiel tech."
 ---
 
 # Tech & Wine : le retour d'expérience qui a tout changé

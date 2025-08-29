@@ -1,6 +1,7 @@
 ---
 title: "Bienvenue sur le blog de Tech'Work Lyon !"
 date: 2024-08-01
+description: "Découvrez l'espace où nous partagerons toutes nos réflexions, nos découvertes, et les coulisses de l'organisation de Tech'Work Lyon."
 ---
 
 # Bienvenue sur le blog de Tech'Work Lyon !

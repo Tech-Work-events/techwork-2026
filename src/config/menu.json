@@ -58,7 +58,7 @@
     {
         "label": "Blog",
         "route": "/blog",
-        "enabled": true,
+        "enabled": false,
         "icon": "📝",
         "description": "Blog",
         "order": 8

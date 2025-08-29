@@ -1,6 +1,7 @@
 ---
 title: "Premiers pas dans l'organisation : de l'idée à la réalité"
 date: 2024-07-02
+description: "Découvrez les premiers défis concrets de l'organisation de Tech'Work Lyon : choix du lieu, budget, équipe et premières prises de contact."
 ---
 
 # Premiers pas dans l'organisation : de l'idée à la réalité
