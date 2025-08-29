@@ -149,15 +149,7 @@ const isActiveRoute = (route: string) => {
                                         }`}
                                         style={`animation-delay: ${index * 0.1}s`}>
                                         <span class="mr-4 text-xl group-hover:animate-bounce-gentle">
-                                            {nav.route === '/cfp' && <AccessibleEmoji emoji="🎤" label="Microphone" />}
-                                            {nav.route === '/team' && <AccessibleEmoji emoji="👥" label="Équipe" />}
-                                            {nav.route === '/sponsors' && (
-                                                <AccessibleEmoji emoji="🤝" label="Partenaires" />
-                                            )}
-                                            {nav.route === '/coc' && (
-                                                <AccessibleEmoji emoji="🤝" label="Code de conduite" />
-                                            )}
-                                            {nav.route === '/location' && <AccessibleEmoji emoji="📍" label="Lieu" />}
+                                            <AccessibleEmoji emoji={nav.icon} label={nav.description} />
                                         </span>
                                         {nav.label}
                                         <svg
