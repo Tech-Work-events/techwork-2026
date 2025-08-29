@@ -1,0 +1,66 @@
+[
+    {
+        "label": "CFP",
+        "route": "/cfp",
+        "enabled": true,
+        "icon": "🎤",
+        "description": "Microphone",
+        "order": 1
+    },
+    {
+        "label": "Équipe",
+        "route": "/team",
+        "enabled": true,
+        "icon": "👥",
+        "description": "Équipe",
+        "order": 2
+    },
+    {
+        "label": "Speakers",
+        "route": "/speakers",
+        "enabled": false,
+        "icon": "🎯",
+        "description": "Speakers",
+        "order": 3
+    },
+    {
+        "label": "Partenaires",
+        "route": "/sponsors",
+        "enabled": true,
+        "icon": "🤝",
+        "description": "Partenaires",
+        "order": 4
+    },
+    {
+        "label": "Code de conduite",
+        "route": "/coc",
+        "enabled": true,
+        "icon": "🤝",
+        "description": "Code de conduite",
+        "order": 5
+    },
+    {
+        "label": "Lieu",
+        "route": "/location",
+        "enabled": true,
+        "icon": "📍",
+        "description": "Lieu",
+        "order": 6
+    },
+    {
+        "label": "Programme",
+        "route": "/schedule",
+        "enabled": false,
+        "icon": "📅",
+        "description": "Programme",
+        "order": 7
+    },
+    {
+        "label": "Blog",
+        "route": "/blog",
+        "enabled": true,
+        "icon": "📝",
+        "description": "Blog",
+        "order": 8
+    }
+]

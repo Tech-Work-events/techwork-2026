@@ -1,16 +1,12 @@
 ---
-import { SOCIAL_DATA, EVENT_DATA } from '../config'
+import { SOCIAL_DATA, EVENT_DATA, MENU_CONFIG } from '../config'
+import type { MenuItemConfig } from '../config'
 import AccessibleEmoji from './ui-elements/AccessibleEmoji.astro'
 
-const navigation = [
-    { label: 'CFP', route: '/cfp' },
-    { label: 'Équipe', route: '/team' },
-    { label: 'Partenaires', route: '/sponsors' },
-    { label: 'Code de conduite', route: '/coc' },
-    { label: 'Lieu', route: '/location' },
-    // { label: 'Programme', route: '/schedule' },
-    // { label: 'Blog', route: '/blog' },
-]
+// Filtrer les éléments de menu activés et les trier par ordre
+const navigation: MenuItemConfig[] = MENU_CONFIG.filter((item: MenuItemConfig) => item.enabled).sort(
+    (a: MenuItemConfig, b: MenuItemConfig) => a.order - b.order
+)
 
 const routeName = Astro.url.pathname
 const socialNetworks = SOCIAL_DATA.networks

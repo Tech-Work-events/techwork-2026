@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content'
-import LayoutWithTitle from '../../layouts/LayoutWithTitle.astro'
-import MarkdownWrapper from '../../components/ui-elements/MarkdownWrapper.astro'
+import Layout from '../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection('blog')
@@ -14,10 +13,175 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content } = await render(entry)
+const formattedDate = entry.data.date.toLocaleString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+})
 ---
 
-<LayoutWithTitle title={entry.data.title} description={entry.data.date.toLocaleString('fr-FR', { dateStyle: 'long' })}>
-    <MarkdownWrapper>
-        <Content />
-    </MarkdownWrapper>
-</LayoutWithTitle>
+<Layout title={`${entry.data.title} | Blog Tech'Work Lyon`} description={entry.data.description}>
+    <!-- Article Hero -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-primary-50 to-secondary-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <div class="mb-8 scroll-animate">
+                <nav class="flex items-center space-x-2 text-sm text-gray-600">
+                    <a href="/" class="hover:text-primary-600 transition-colors">Accueil</a>
+                    <span>›</span>
+                    <a href="/blog" class="hover:text-primary-600 transition-colors">Blog</a>
+                    <span>›</span>
+                    <span class="text-gray-900 font-medium">{entry.data.title}</span>
+                </nav>
+            </div>
+
+            <!-- Article Header -->
+            <div class="text-center space-y-6">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold animate-scale-in hover-lift">
+                    <span class="mr-2 animate-bounce-gentle">📝</span>
+                    Article de blog
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight scroll-animate">
+                    {entry.data.title}
+                </h1>
+
+                {
+                    entry.data.description && (
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto scroll-animate">{entry.data.description}</p>
+                    )
+                }
+
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 scroll-animate">
+                    <time class="bg-white px-4 py-2 rounded-full shadow-sm">
+                        📅 {formattedDate}
+                    </time>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <article class="prose prose-lg prose-gray max-w-none scroll-animate">
+                <div class="article-content">
+                    <Content />
+                </div>
+            </article>
+
+            <!-- Back to Blog -->
+            <div class="mt-12 pt-8 border-t border-gray-200 text-center scroll-animate">
+                <a href="/blog" class="btn btn-secondary hover-lift group inline-flex items-center">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">←</span>
+                    Retour au blog
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .article-content {
+        /* Styles pour le contenu markdown */
+        font-size: 1.125rem;
+        line-height: 1.75;
+        color: theme('colors.gray.700');
+    }
+
+    .article-content :global(h1),
+    .article-content :global(h2),
+    .article-content :global(h3),
+    .article-content :global(h4),
+    .article-content :global(h5),
+    .article-content :global(h6) {
+        font-weight: 700;
+        color: theme('colors.gray.900');
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .article-content :global(h2) {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    .article-content :global(h3) {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .article-content :global(p) {
+        margin-bottom: 1.5rem;
+    }
+
+    .article-content :global(a) {
+        color: theme('colors.primary.600');
+        text-decoration: underline;
+        text-decoration-color: theme('colors.primary.300');
+        text-underline-offset: 3px;
+        transition: all 0.2s ease;
+    }
+
+    .article-content :global(a:hover) {
+        color: theme('colors.primary.700');
+        text-decoration-color: theme('colors.primary.600');
+    }
+
+    .article-content :global(ul),
+    .article-content :global(ol) {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .article-content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    .article-content :global(blockquote) {
+        border-left: 4px solid theme('colors.primary.300');
+        background: theme('colors.primary.50');
+        padding: 1rem 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .article-content :global(code) {
+        background: theme('colors.gray.100');
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    .article-content :global(pre) {
+        background: theme('colors.gray.900');
+        color: theme('colors.gray.100');
+        padding: 1.5rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 2rem 0;
+    }
+
+    .article-content :global(pre code) {
+        background: none;
+        padding: 0;
+        color: inherit;
+    }
+
+    .article-content :global(img) {
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+    }
+
+    .article-content :global(hr) {
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, theme('colors.primary.300'), theme('colors.secondary.300'));
+        margin: 3rem 0;
+        border-radius: 1px;
+    }
+</style>

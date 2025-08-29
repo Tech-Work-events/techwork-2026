@@ -1,28 +1,225 @@
 ---
 import { OPENPLANNER_URL } from 'astro:env/client'
 import type { OpenPlannerType } from '../../type'
-import LayoutWithTitle from '../../layouts/LayoutWithTitle.astro'
-import Grid from '../../components/ui-elements/Grid.astro'
-import Speaker from '../../components/schedule/Speaker.astro'
+import Layout from '../../layouts/Layout.astro'
+import { EVENT_DATA } from '../../config'
 
-const response = await fetch(OPENPLANNER_URL)
-const openPlannerData: OpenPlannerType = await response.json()
+// Récupération des données OpenPlanner
+let openPlannerData: OpenPlannerType | null = null
+try {
+    const response = await fetch(OPENPLANNER_URL)
+    if (response.ok) {
+        openPlannerData = await response.json()
+    }
+} catch (error) {
+    console.warn('Erreur lors de la récupération des données OpenPlanner:', error)
+}
 
-const { speakers } = openPlannerData
+const speakers = openPlannerData?.speakers || []
 ---
 
-<LayoutWithTitle htmlTitle="CloudNord speakers" title="Speakers">
-    <Grid space="2rem" min="20rem">
-        {
-            speakers.map((speaker) => (
-                <Speaker
-                    id={speaker.id}
-                    photoUrl={speaker.photoUrl}
-                    name={speaker.name}
-                    company={speaker.company}
-                    socials={speaker.socials}
-                />
-            ))
-        }
-    </Grid>
-</LayoutWithTitle>
+<Layout title="Nos Speakers" description="Découvrez les speakers qui vont animer Tech'Work Lyon 2026">
+    <!-- Page Header -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🎤</span>
+                    Speakers
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Nos <span class="text-gradient">speakers</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Découvrez les expertes et experts qui partageront leur passion et leur expertise avec vous
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="py-16 sm:py-20 lg:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {
+                speakers.length === 0 ? (
+                    <div class="text-center space-y-8 scroll-animate-scale">
+                        <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 max-w-4xl mx-auto">
+                            <div class="text-6xl mb-6">🎯</div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                                Nous préparons un lineup d'exception !
+                            </h2>
+                            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                {EVENT_DATA.event.shortName} réunit les meilleures expertes et experts de la tech
+                                lyonnaise et au-delà. Restez connecté·e·s pour découvrir bientôt notre sélection de
+                                speakers passionnants.
+                            </p>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                    <div class="text-3xl mb-3">🚀</div>
+                                    <h3 class="font-bold text-gray-900 mb-2">Expertise technique</h3>
+                                    <p class="text-sm text-gray-600">
+                                        Des talks pointus sur les dernières technologies et tendances
+                                    </p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                    <div class="text-3xl mb-3">💡</div>
+                                    <h3 class="font-bold text-gray-900 mb-2">Retours d'expérience</h3>
+                                    <p class="text-sm text-gray-600">
+                                        Des histoires vraies de projets et d'équipes qui inspirent
+                                    </p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                    <div class="text-3xl mb-3">🌟</div>
+                                    <h3 class="font-bold text-gray-900 mb-2">Diversité</h3>
+                                    <p class="text-sm text-gray-600">
+                                        Une programmation inclusive et représentative de notre écosystème
+                                    </p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                    <div class="text-3xl mb-3">🎤</div>
+                                    <h3 class="font-bold text-gray-900 mb-2">Formats innovants</h3>
+                                    <p class="text-sm text-gray-600">Des talks, workshops et sessions interactives</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="/cfp" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                                    <span class="mr-2 group-hover:animate-bounce-gentle">📝</span>
+                                    Proposer un talk
+                                </a>
+                                <a href="/team" class="btn btn-ghost text-lg px-8 py-4 hover-lift group">
+                                    <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
+                                    Contacter l'équipe
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 stagger-children">
+                        {speakers.map((speaker, index) => (
+                            <a
+                                href={`/speakers/${speaker.id}`}
+                                class="speaker-card group block"
+                                style={`animation-delay: ${index * 0.1}s`}>
+                                <div class="bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-primary-300 transition-all duration-300 hover-lift scroll-animate-scale">
+                                    <div class="text-center">
+                                        <div class="relative mb-4">
+                                            {speaker.photoUrl ? (
+                                                <img
+                                                    class="w-20 h-20 rounded-full mx-auto object-cover group-hover:scale-110 transition-transform duration-300"
+                                                    src={speaker.photoUrl}
+                                                    alt={speaker.name}
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <div class="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full mx-auto flex items-center justify-center text-2xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">
+                                                    {speaker.name.charAt(0).toUpperCase()}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
+                                            {speaker.name}
+                                        </h3>
+                                        {speaker.company && (
+                                            <p class="text-sm text-gray-600 mb-2">
+                                                {speaker.jobTitle ? `${speaker.jobTitle} • ` : ''}
+                                                {speaker.company}
+                                            </p>
+                                        )}
+                                        {speaker.geolocation && (
+                                            <p class="text-xs text-gray-500 flex items-center justify-center">
+                                                <span class="mr-1">📍</span>
+                                                {speaker.geolocation}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </section>
+
+    <!-- Call for Papers Info -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <!-- Info Content -->
+                <div class="scroll-animate-left">
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                        Vous avez une expertise à partager ?
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🎯</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Audience passionnée</h3>
+                                <p class="text-gray-600">
+                                    Partagez votre expertise avec des développeurs motivés et curieux sur leur temps de
+                                    travail.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-secondary-100 text-secondary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">📈</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Visibilité</h3>
+                                <p class="text-gray-600">
+                                    Augmentez votre notoriété dans l'écosystème tech lyonnais et au-delà.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🤝</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Networking</h3>
+                                <p class="text-gray-600">
+                                    Rencontrez d'autres expertes, experts et créez des liens durables dans la
+                                    communauté.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CFP Card -->
+                <div class="scroll-animate-right">
+                    <div
+                        class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">🎤</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Call for Papers</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Les candidatures sont ouvertes ! Proposez votre talk et rejoignez notre lineup
+                                d'exception.
+                            </p>
+                            <div class="space-y-3">
+                                <a href="/cfp" class="btn btn-primary w-full hover-lift group">
+                                    <span class="mr-2 group-hover:animate-bounce-gentle">📝</span>
+                                    Proposer un talk
+                                </a>
+                                <p class="text-xs text-gray-500">Sélection sur dossier • Accompagnement personnalisé</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

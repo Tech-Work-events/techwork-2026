@@ -2,7 +2,7 @@
 import { OPENPLANNER_URL } from 'astro:env/client'
 import { Markdown } from '@astropub/md'
 import type { OpenPlannerType } from '../../type'
-import LayoutWithTitle from '../../layouts/LayoutWithTitle.astro'
+import Layout from '../../layouts/Layout.astro'
 import GenericIcon from '../../components/icons/GenericIcon.astro'
 import MarkdownWrapper from '../../components/ui-elements/MarkdownWrapper.astro'
 
@@ -17,49 +17,238 @@ export const getStaticPaths = async () => {
         props: speaker,
     }))
 }
-const { name, company, bio, jobTitle, socials, photoUrl } = Astro.props
+const { name, company, bio, jobTitle, socials, photoUrl, geolocation, email, phone, companyLogoUrl } = Astro.props
 ---
 
-<LayoutWithTitle htmlTitle={`CloudNord speaker – ${name}`} title={name}>
-    {
-        photoUrl && (
-            <img
-                src={photoUrl}
-                class="speaker-photo"
-                style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'inline-block' }}
-                slot="pre-title"
-            />
-        )
-    }
-    <div slot="description">
-        <h2>{company}</h2>
-        <h3>{jobTitle}</h3>
-    </div>
+<Layout
+    title={`${name} - Speaker Tech'Work Lyon`}
+    description={`Découvrez ${name}${company ? ` de ${company}` : ''}, speaker à Tech'Work Lyon 2026`}>
+    <!-- Page Header -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="scroll-animate">
+                <!-- Back to Speakers -->
+                <div class="mb-8">
+                    <a
+                        href="/speakers"
+                        class="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Retour aux speakers
+                    </a>
+                </div>
 
-    {
-        (
-            <ul class="list-inline">
-                {socials.map((social: { icon: string; link: string }) => (
-                    <li class="list-inline-item">
-                        <a
-                            href={social.link}
-                            class="speaker-social-icon"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={social.icon}>
-                            <GenericIcon name={social.icon} />
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+                <div class="text-center">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                        <span class="mr-2">🎤</span>
+                        Speaker
+                    </div>
 
-    {
-        bio && (
-            <MarkdownWrapper>
-                <Markdown of={bio} />
-            </MarkdownWrapper>
-        )
-    }
-</LayoutWithTitle>
+                    <!-- Speaker Photo -->
+                    <div class="mb-6">
+                        {
+                            photoUrl ? (
+                                <img
+                                    class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
+                                    src={photoUrl}
+                                    alt={name}
+                                    loading="lazy"
+                                />
+                            ) : (
+                                <div class="w-32 h-32 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full mx-auto flex items-center justify-center text-4xl font-bold text-primary-600 border-4 border-white shadow-lg">
+                                    {name.charAt(0).toUpperCase()}
+                                </div>
+                            )
+                        }
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
+                        {name}
+                    </h1>
+
+                    {
+                        (company || jobTitle) && (
+                            <div class="mb-4">
+                                <p class="text-lg sm:text-xl text-gray-600">
+                                    {jobTitle && <span class="font-medium">{jobTitle}</span>}
+                                    {jobTitle && company && <span class="mx-2">•</span>}
+                                    {company && <span>{company}</span>}
+                                </p>
+                            </div>
+                        )
+                    }
+
+                    {
+                        geolocation && (
+                            <p class="text-sm text-gray-500 flex items-center justify-center mb-6">
+                                <span class="mr-2">📍</span>
+                                {geolocation}
+                            </p>
+                        )
+                    }
+
+                    <!-- Social Links -->
+                    {
+                        socials && socials.length > 0 && (
+                            <div class="flex justify-center space-x-4 mb-6">
+                                {socials.map((social: { icon: string; link: string }) => (
+                                    <a
+                                        href={social.link}
+                                        class="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-gray-200 hover:border-primary-300 transition-all duration-300 hover:scale-110"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={social.icon}>
+                                        <GenericIcon name={social.icon} />
+                                    </a>
+                                ))}
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Info -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Bio -->
+                <div class="md:col-span-2">
+                    {
+                        bio ? (
+                            <div class="scroll-animate-left">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-6">À propos</h2>
+                                <div class="prose prose-lg max-w-none">
+                                    <MarkdownWrapper>
+                                        <Markdown of={bio} />
+                                    </MarkdownWrapper>
+                                </div>
+                            </div>
+                        ) : (
+                            <div class="scroll-animate-left">
+                                <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100">
+                                    <div class="text-center">
+                                        <div class="text-4xl mb-4">🎯</div>
+                                        <h2 class="text-xl font-bold text-gray-900 mb-4">Informations à venir</h2>
+                                        <p class="text-gray-600">
+                                            Les détails sur ce speaker seront bientôt disponibles. Restez connecté·e·s !
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <!-- Sidebar -->
+                <div class="scroll-animate-right">
+                    <div class="bg-gray-50 rounded-2xl p-6 space-y-6">
+                        <!-- Company Info -->
+                        {
+                            company && (
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Entreprise</h3>
+                                    <div class="flex items-center space-x-3">
+                                        {companyLogoUrl && (
+                                            <img
+                                                class="w-12 h-12 rounded-lg object-contain bg-white p-1"
+                                                src={companyLogoUrl}
+                                                alt={company}
+                                                loading="lazy"
+                                            />
+                                        )}
+                                        <div>
+                                            <p class="font-medium text-gray-900">{company}</p>
+                                            {jobTitle && <p class="text-sm text-gray-600">{jobTitle}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        <!-- Contact Info -->
+                        {
+                            (email || phone) && (
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Contact</h3>
+                                    <div class="space-y-2">
+                                        {email && (
+                                            <a
+                                                href={`mailto:${email}`}
+                                                class="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors">
+                                                <svg
+                                                    class="w-4 h-4 mr-2"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                                    />
+                                                </svg>
+                                                {email}
+                                            </a>
+                                        )}
+                                        {phone && (
+                                            <a
+                                                href={`tel:${phone}`}
+                                                class="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors">
+                                                <svg
+                                                    class="w-4 h-4 mr-2"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                                    />
+                                                </svg>
+                                                {phone}
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        <!-- Location -->
+                        {
+                            geolocation && (
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Localisation</h3>
+                                    <p class="flex items-center text-sm text-gray-600">
+                                        <span class="mr-2">📍</span>
+                                        {geolocation}
+                                    </p>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Speakers -->
+    <section class="py-12 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <a href="/speakers" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                    <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
+                    Voir tous les speakers
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>

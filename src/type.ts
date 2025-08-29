@@ -74,6 +74,9 @@ export interface Speaker {
     company: string | null | undefined
     companyLogoUrl: string | null | undefined
     photoUrl: string | null | undefined
+    geolocation?: string | null
+    email?: string | null
+    phone?: string | null
     socials: {
         name: string
         icon: string
