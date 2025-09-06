@@ -13,7 +13,7 @@
         "test": "node test-brevo.js"
     },
     "engines": {
-        "node": "20"
+        "node": ">=20"
     },
     "dependencies": {
         "@astrojs/node": "^9.3.0",
