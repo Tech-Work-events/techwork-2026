@@ -1,6 +1,6 @@
 {
-    "name": "Cloud Nord, la conférence Cloud et DevOps à Lille",
-    "short_name": "Cloud Nord",
+    "name": "Techwork, la conférence organisée par les communautées Tech Lyonnaises",
+    "short_name": "Techwork",
     "start_url": "./?utm_source=web_app_manifest",
     "display": "standalone",
     "background_color": "#d63f49",

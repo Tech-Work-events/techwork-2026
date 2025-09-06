@@ -31,7 +31,7 @@
 #   - Terraform must be installed
 #   - Terraform must be initialized (terraform init)
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -438,7 +438,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  Terraform Configuration Validation"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     if [[ -n "$year" ]]; then
         echo "  Year: $year"
     fi

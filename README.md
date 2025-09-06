@@ -1,15 +1,15 @@
-# Cloud Nord Website
+# Techwork Website
 
-Site web pour l'événement Cloud Nord. Les sites 2018-2024 sont [ici](https://github.com/Sunny-Tech/website/).
+Site web pour l'événement Techwork. Les sites 2018-2024 sont [ici](https://github.com/Sunny-Tech/website/).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/cloud-nord/website-v2/)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/cloud-nord/website-v2/)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/cloud-nord/website-v2?devcontainer_path=.devcontainer/basics/devcontainer.json)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/techwork/website-v2/)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/techwork/website-v2/)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/techwork/website-v2?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
 ## 🚀 Quick Start
 
 ```sh
-git clone git@github.com:cloud-nord/website-v2.git
+git clone git@github.com:techwork/website-v2.git
 cd website-v2
 
 # Install Task (recommended)

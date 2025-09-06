@@ -1,4 +1,4 @@
-# Main Terraform configuration for Cloud Nord Firebase infrastructure
+# Main Terraform configuration for Techwork Firebase infrastructure
 # This file contains the core Firebase resources and configuration
 
 # Create the Firebase project (only if not using existing project)

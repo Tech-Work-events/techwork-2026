@@ -28,7 +28,7 @@
 #   - Terraform outputs must be available for the specified year
 #   - .env file must exist in the project root
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -398,7 +398,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  Terraform Environment Variables Update"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "  Year: $year"
     echo "=================================================="
     echo ""

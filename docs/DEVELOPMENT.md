@@ -1,6 +1,6 @@
 # Development Guide
 
-This guide covers the complete development workflow for the Cloud Nord website, including both web development and infrastructure management using the modern Taskfile approach.
+This guide covers the complete development workflow for the Techwork website, including both web development and infrastructure management using the modern Taskfile approach.
 
 ## 🎯 What is Taskfile?
 

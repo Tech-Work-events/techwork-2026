@@ -25,7 +25,7 @@
 #   - .sops.yaml must exist (run 'task setup-sops' first)
 #   - Age must be installed
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -310,7 +310,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  SOPS Team Member Management"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "=================================================="
     echo ""
 

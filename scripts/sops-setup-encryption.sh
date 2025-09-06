@@ -5,7 +5,7 @@
 # ==============================================================================
 # 
 # DESCRIPTION:
-#   Sets up SOPS (Secrets OPerationS) encryption for the Cloud Nord project.
+#   Sets up SOPS (Secrets OPerationS) encryption for the Techwork project.
 #   Generates Age encryption keys and configures SOPS for secure secrets management.
 #
 # USAGE:
@@ -26,7 +26,7 @@
 #   - Age must be installed (brew install age)
 #   - SOPS must be installed (brew install sops)
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -74,7 +74,7 @@ show_help() {
 SOPS Encryption Setup Script
 
 DESCRIPTION:
-    Sets up SOPS (Secrets OPerationS) encryption for the Cloud Nord project.
+    Sets up SOPS (Secrets OPerationS) encryption for the Techwork project.
     Generates Age encryption keys and configures SOPS for secure secrets management.
 
 USAGE:
@@ -291,7 +291,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  SOPS Encryption Setup"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "=================================================="
     echo ""
     

@@ -1,6 +1,6 @@
-# Cloud Nord Firebase Infrastructure - Documentation
+# Techwork Firebase Infrastructure - Documentation
 
-Welcome to the Cloud Nord Firebase infrastructure documentation. This guide covers everything you need to deploy and manage the Cloud Nord website infrastructure using modern Infrastructure as Code practices.
+Welcome to the Techwork Firebase infrastructure documentation. This guide covers everything you need to deploy and manage the Techwork website infrastructure using modern Infrastructure as Code practices.
 
 ## 🚀 Quick Start
 
@@ -127,7 +127,7 @@ task destroy YEAR=2023
 ┌─────────────────────────────────────────────────────────────┐
 │                Terraform Managed Resources                  │
 ├─────────────────────────────────────────────────────────────┤
-│ • Firebase Hosting (cloud-nord-2025-website)               │
+│ • Firebase Hosting (techwork-2025-website)               │
 │ • Custom Domain (cloudnord.fr)                             │
 │ • Firestore Database                                       │
 │ • Firebase Storage                                          │
@@ -173,7 +173,7 @@ task check-requirements
 
 ## 🎉 What's New
 
-This documentation consolidates and modernizes the Cloud Nord infrastructure:
+This documentation consolidates and modernizes the Techwork infrastructure:
 
 -   **Simplified Structure**: 3 focused guides instead of 7 scattered files
 -   **Unified Language**: Consistent English documentation

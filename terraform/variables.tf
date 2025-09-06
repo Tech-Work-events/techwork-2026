@@ -39,7 +39,7 @@ variable "year" {
 variable "event_name" {
   description = "The name of the event"
   type        = string
-  default     = "cloud-nord"
+  default     = "techwork"
 }
 
 variable "domain_name" {

@@ -9,7 +9,7 @@ existing_project_id     = "your-existing-firebase-project-id"  # Replace with yo
 
 # Event Configuration
 year        = "2025"  # Change this for each year's deployment
-event_name  = "cloud-nord"
+event_name  = "techwork"
 domain_name = "cloudnord.fr"
 
 # Custom Domain Configuration
@@ -64,11 +64,11 @@ cors_origins = [
 # Labels for resource organization
 labels = {
   environment = "production"
-  team        = "cloud-nord"
+  team        = "techwork"
   managed_by  = "terraform"
 }
 
 # Terraform State Management
 enable_state_bucket     = false  # Using existing bucket 'tf-states-cloudnord'
-state_bucket_name       = "tf-states-cloudnord"  # Existing bucket for Cloud Nord states
+state_bucket_name       = "tf-states-cloudnord"  # Existing bucket for Techwork states
 state_bucket_location   = "europe-west1"

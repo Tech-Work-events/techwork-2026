@@ -1,6 +1,6 @@
 # Scripts Directory
 
-This directory contains refactored and improved scripts for managing the Cloud Nord Event Website infrastructure and deployment. All scripts have been redesigned with comprehensive documentation, error handling, and consistent interfaces.
+This directory contains refactored and improved scripts for managing the Techwork Event Website infrastructure and deployment. All scripts have been redesigned with comprehensive documentation, error handling, and consistent interfaces.
 
 ## 📋 Script Overview
 

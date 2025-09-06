@@ -1,6 +1,6 @@
 # Firebase Infrastructure as Code
 
-This Terraform configuration automates the deployment of Firebase infrastructure for the Cloud Nord website, designed to work with existing Firebase projects while automating all service configuration.
+This Terraform configuration automates the deployment of Firebase infrastructure for the Techwork website, designed to work with existing Firebase projects while automating all service configuration.
 
 ## Overview
 
@@ -99,7 +99,7 @@ existing_project_id  = "your-firebase-project-id"
 
 # Event Configuration
 year        = "2025"
-event_name  = "cloud-nord"
+event_name  = "techwork"
 domain_name = "cloudnord.fr"
 
 # Custom Domain
@@ -136,7 +136,7 @@ task list-workspaces
 Each year creates:
 
 -   Separate Terraform workspace
--   Year-specific hosting site (`cloud-nord-2025`)
+-   Year-specific hosting site (`techwork-2025`)
 -   Isolated configuration files
 
 ## Custom Domain Setup
@@ -172,7 +172,7 @@ curl -I https://cloudnord.fr
 
 ### Hosting
 
--   **Site ID**: `cloud-nord-{year}`
+-   **Site ID**: `techwork-{year}`
 -   **Custom Domain**: `cloudnord.fr`
 -   **SSL**: Managed by Google
 -   **Redirects**: Configured for sponsoring, FAQ, etc.

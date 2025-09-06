@@ -32,7 +32,7 @@
 #   - Google Cloud CLI must be installed and authenticated
 #   - terraform-YEAR.tfvars and terraform-YEAR.secrets.tfvars must exist
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -463,7 +463,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  Terraform Infrastructure Deployment"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "  Year: $year"
     echo "  Action: $action"
     echo "=================================================="

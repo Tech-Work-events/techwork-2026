@@ -28,7 +28,7 @@
 #   - Active Google Cloud project must be set
 #   - Storage Admin permissions on the project
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -370,7 +370,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  Terraform Remote State Backend Setup"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "=================================================="
     echo ""
     

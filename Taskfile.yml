@@ -1,7 +1,7 @@
 version: '3'
 
 vars:
-    PROJECT_NAME: 'Cloud Nord Event Website'
+    PROJECT_NAME: 'Techwork Event Website'
     TERRAFORM_DIR: './terraform'
     SCRIPTS_DIR: './scripts'
     NODE_VERSION: '20'
@@ -15,7 +15,7 @@ tasks:
         silent: true
         cmds:
             - |
-                echo "🚀 Cloud Nord Event Website - Available Tasks"
+                echo "🚀 Techwork Event Website - Available Tasks"
                 echo ""
                 echo "Use 'task help' for detailed help and examples"
                 echo ""

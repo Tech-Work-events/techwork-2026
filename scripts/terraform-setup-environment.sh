@@ -27,7 +27,7 @@
 #   - Google Cloud CLI (gcloud) must be installed
 #   - Google Cloud account with appropriate permissions
 #
-# AUTHOR: Cloud Nord Team
+# AUTHOR: Techwork Team
 # ==============================================================================
 
 set -e
@@ -329,7 +329,7 @@ main() {
     # Display header
     echo "=================================================="
     echo "  Terraform Environment Setup"
-    echo "  Cloud Nord Event Website"
+    echo "  Techwork Event Website"
     echo "=================================================="
     echo ""
     

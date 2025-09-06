@@ -1,6 +1,6 @@
 # Security & Secrets Management Guide
 
-This guide covers all security aspects of the Cloud Nord infrastructure, including secret management with SOPS, Google Cloud authentication, and security best practices.
+This guide covers all security aspects of the Techwork infrastructure, including secret management with SOPS, Google Cloud authentication, and security best practices.
 
 ## 🛠️ Prerequisites Installation
 

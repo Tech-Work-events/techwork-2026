@@ -1,6 +1,6 @@
 # Infrastructure as Code - Complete Guide
 
-This guide covers the complete setup and management of Firebase infrastructure using Terraform with year-based deployments for the Cloud Nord website.
+This guide covers the complete setup and management of Firebase infrastructure using Terraform with year-based deployments for the Techwork website.
 
 ## 🎯 Overview
 
@@ -39,9 +39,9 @@ The infrastructure automation provides:
 
 Each year gets its own isolated infrastructure:
 
--   **2024**: `cloud-nord-2024` hosting site
--   **2025**: `cloud-nord-2025` hosting site
--   **2026**: `cloud-nord-2026` hosting site
+-   **2024**: `techwork-2024` hosting site
+-   **2025**: `techwork-2025` hosting site
+-   **2026**: `techwork-2026` hosting site
 
 Benefits:
 
@@ -202,7 +202,7 @@ existing_project_id  = "your-existing-firebase-project-id"
 
 # Event Configuration
 year        = "2025"
-event_name  = "cloud-nord"
+event_name  = "techwork"
 domain_name = "cloudnord.fr"
 
 # Custom Domain
