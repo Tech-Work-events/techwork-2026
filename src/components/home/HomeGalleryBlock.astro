@@ -1,16 +1,23 @@
 ---
 import { EVENT_DATA } from '../../config'
 import fs from 'node:fs'
+import path from 'node:path'
 
-const dir = new URL('../../../public/pictures/', import.meta.url)
+const picturesDir = path.join(process.cwd(), 'public', 'pictures')
 let allPhotos: string[] = []
 try {
     allPhotos = fs
-        .readdirSync(dir)
+        .readdirSync(picturesDir)
         .filter((f) => f.startsWith('after-movie-') && f.endsWith('.webp'))
         .map((f) => `pictures/${f}`)
 } catch (e) {
     allPhotos = []
+}
+
+// Safety fallback: if listing failed or returned empty, try known pattern 1..24
+if (allPhotos.length === 0) {
+    const candidates = Array.from({ length: 24 }, (_, i) => `after-movie-${i + 1}.webp`)
+    allPhotos = candidates.filter((f) => fs.existsSync(path.join(picturesDir, f))).map((f) => `pictures/${f}`)
 }
 
 const gallery = allPhotos.slice(0, 9)
