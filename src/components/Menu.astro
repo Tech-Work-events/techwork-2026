@@ -257,6 +257,61 @@ const isActiveRoute = (route: string) => {
 
 <script>
     // Handle header visibility on scroll for all pages
+    function isRouteActive(route: string, path: string): boolean {
+        if (!route) return false
+        if (route === '/') return path === '/'
+        return path.startsWith(route)
+    }
+
+    function applyHomepageHeaderTextStyles(isScrolled: boolean) {
+        const header = document.querySelector('#site-header') as HTMLElement | null
+        if (!header) return
+        const logo = header.querySelector('div.flex-shrink-0 a') as HTMLElement | null
+        const navLinks = header.querySelectorAll('nav a')
+        const mobileLabel = header.querySelector('label[for="nav-trigger"]') as HTMLElement | null
+        const hamburgerLines = header.querySelectorAll('.hamburger-line')
+        const path = window.location.pathname
+
+        // Logo
+        if (logo) {
+            logo.className = `text-3xl font-black cursor-pointer ${
+                isScrolled ? 'text-gradient hover:opacity-80 transition-opacity' : 'text-white drop-shadow-lg'
+            }`
+        }
+
+        // Desktop nav links
+        navLinks.forEach((linkEl) => {
+            const link = linkEl as HTMLAnchorElement
+            const href = link.getAttribute('href') || ''
+            const active = isRouteActive(href, path)
+            if (isScrolled) {
+                link.className = `text-base font-semibold transition-colors duration-200 ${
+                    active
+                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
+                        : 'text-gray-700 hover:text-primary-600'
+                }`
+            } else {
+                link.className = `text-base font-semibold transition-colors duration-200 ${
+                    active ? 'text-white border-b-2 border-white pb-1' : 'text-white/90 hover:text-white/80'
+                }`
+            }
+        })
+
+        // Mobile trigger label (button background hover)
+        if (mobileLabel) {
+            mobileLabel.className =
+                'flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-200 cursor-pointer ' +
+                (isScrolled ? 'hover:bg-gray-100 active:bg-gray-200' : 'hover:bg-white/20 active:bg-white/30')
+        }
+
+        // Hamburger icon lines color
+        hamburgerLines.forEach((line) => {
+            const el = line as HTMLElement
+            el.classList.remove('bg-white', 'bg-gray-700')
+            el.classList.add(isScrolled ? 'bg-gray-700' : 'bg-white')
+        })
+    }
+
     function updateHeaderOnScroll() {
         const header = document.querySelector('#site-header') as HTMLElement
         if (header) {
@@ -275,8 +330,13 @@ const isActiveRoute = (route: string) => {
                         'fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
                 } else {
                     // Top of homepage - semi-transparent on mobile, transparent on desktop
-                    header.className = `fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${isMobile ? 'bg-black/20 backdrop-blur-sm border-b-0' : 'bg-transparent border-b-0'}`
+                    header.className = `fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+                        isMobile ? 'bg-black/20 backdrop-blur-sm border-b-0' : 'bg-transparent border-b-0'
+                    }`
                 }
+
+                // Ensure text colors are readable on homepage
+                applyHomepageHeaderTextStyles(isScrolled)
             } else {
                 // Other pages - always solid background
                 header.className =
@@ -285,8 +345,9 @@ const isActiveRoute = (route: string) => {
         }
     }
 
-    window.addEventListener('scroll', updateHeaderOnScroll)
-    window.addEventListener('resize', updateHeaderOnScroll) // Update on resize for mobile/desktop detection
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true })
+    window.addEventListener('resize', updateHeaderOnScroll)
+    document.addEventListener('astro:page-load', updateHeaderOnScroll)
 
     // Handle mobile menu avec support accessibilité
     document.addEventListener('astro:page-load', () => {
