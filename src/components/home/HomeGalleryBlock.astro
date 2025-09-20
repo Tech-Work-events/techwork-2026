@@ -1,27 +1,31 @@
 ---
 import { EVENT_DATA } from '../../config'
+import fs from 'node:fs'
 
-const gallery = [
-    'pictures/after-movie-1.webp',
-    'pictures/after-movie-2.webp',
-    'pictures/after-movie-3.webp',
-    'pictures/after-movie-4.webp',
-    'pictures/after-movie-5.webp',
-    'pictures/after-movie-6.webp',
-    'pictures/after-movie-7.webp',
-    'pictures/after-movie-8.webp',
-]
+const dir = new URL('../../../public/pictures/', import.meta.url)
+let allPhotos: string[] = []
+try {
+    allPhotos = fs
+        .readdirSync(dir)
+        .filter((f) => f.startsWith('after-movie-') && f.endsWith('.webp'))
+        .map((f) => `pictures/${f}`)
+} catch (e) {
+    allPhotos = []
+}
+
+const gallery = allPhotos.slice(0, 9)
 ---
 
 <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 sm:mb-16 scroll-animate">
-            <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
                 <span class="mr-2 animate-bounce-gentle">📸</span>
                 Galerie
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
-                Tech'Work en 
+                Tech'Work en
                 <span class="text-gradient animate-gradient">images</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto scroll-animate">
@@ -31,38 +35,143 @@ const gallery = [
 
         <!-- Gallery Grid avec animations séquentielles -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 stagger-children">
-            {gallery.slice(0, 8).map((photo, index) => (
-                <div class={`
-                    relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-animate-scale group
+            {
+                gallery.map((photo, index) => (
+                    <div
+                        class={`
+                    relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-animate-scale group flex items-center justify-center bg-gray-100 dark:bg-gray-900/10 p-1 sm:p-1.5
                     ${index === 0 ? 'col-span-2 row-span-2' : ''}
                     ${index === 1 ? 'hidden md:block' : ''}
                     ${index >= 6 ? 'hidden lg:block' : ''}
-                `} style={`animation-delay: ${index * 0.15}s`}>
-                    <img 
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                        src={photo} 
-                        alt={`Photo de l'événement ${EVENT_DATA.event.name} - Image ${index + 1}`} 
-                        loading="lazy" 
-                        style={index === 0 ? 'min-height: 200px;' : 'height: 150px;'}
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <!-- Effet de brillance au survol -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                </div>
-            ))}
+                `}
+                        style={`animation-delay: ${index * 0.15}s`}>
+                        <img
+                            data-gallery-img
+                            class={`w-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500 ${index === 0 ? 'min-h-[220px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[340px]' : 'h-[160px] sm:h-[170px] md:h-[180px] lg:h-[200px]'}`}
+                            src={photo}
+                            alt={`Photo de l'événement ${EVENT_DATA.event.name} - Image ${index + 1}`}
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                    </div>
+                ))
+            }
+
+            <script is:inline data-all={JSON.stringify(allPhotos)}>
+                try {
+                    const data = document.currentScript?.getAttribute('data-all') || '[]'
+                    const all = JSON.parse(data)
+                    const imgs = Array.from(document.querySelectorAll('[data-gallery-img]'))
+
+                    const shuffled = (arr) => arr.slice().sort(() => Math.random() - 0.5)
+
+                    function applyResponsiveHeights() {
+                        const isMd = window.matchMedia('(min-width: 768px)').matches
+                        const isLg = window.matchMedia('(min-width: 1024px)').matches
+                        imgs.forEach((img, i) => {
+                            const portrait = img.naturalHeight > img.naturalWidth
+                            if (portrait) {
+                                if (i === 0) {
+                                    img.style.minHeight = isLg ? '340px' : isMd ? '300px' : '260px'
+                                } else {
+                                    img.style.height = isLg ? '200px' : isMd ? '180px' : '170px'
+                                }
+                            } else {
+                                img.style.minHeight = ''
+                                img.style.height = ''
+                            }
+                        })
+                    }
+
+                    function adjustWhenLoaded(img) {
+                        if (img.complete) {
+                            applyResponsiveHeights()
+                        } else {
+                            img.addEventListener('load', applyResponsiveHeights, { once: true })
+                        }
+                    }
+
+                    function preloadOrientations(urls, timeoutMs = 1500) {
+                        return new Promise((resolve) => {
+                            const landscape = []
+                            const portrait = []
+                            let done = 0
+                            const total = urls.length
+                            const finish = () => resolve({ landscape, portrait })
+                            const timer = setTimeout(finish, timeoutMs)
+
+                            urls.forEach((u) => {
+                                const url = u.startsWith('/') ? u : `/${u}`
+                                const im = new Image()
+                                im.onload = () => {
+                                    if (im.naturalWidth >= im.naturalHeight) landscape.push(u)
+                                    else portrait.push(u)
+                                    done += 1
+                                    if (done === total) {
+                                        clearTimeout(timer)
+                                        finish()
+                                    }
+                                }
+                                im.onerror = () => {
+                                    done += 1
+                                    if (done === total) {
+                                        clearTimeout(timer)
+                                        finish()
+                                    }
+                                }
+                                im.src = url
+                            })
+                        })
+                    }
+
+                    async function pickPhotosRespectingOrientation() {
+                        if (!Array.isArray(all) || !all.length || !imgs.length) return null
+                        const { landscape, portrait } = await preloadOrientations(all)
+                        const n = imgs.length
+                        let assigned = []
+
+                        if (landscape.length > 0) {
+                            const cover = shuffled(landscape)[0]
+                            assigned[0] = cover
+                            const pool = all.filter((u) => u !== cover)
+                            const rest = shuffled(pool).slice(0, n - 1)
+                            rest.forEach((u, idx) => (assigned[idx + 1] = u))
+                        } else {
+                            assigned = shuffled(all).slice(0, n)
+                        }
+                        return assigned
+                    }
+
+                    ;(async () => {
+                        const assigned = await pickPhotosRespectingOrientation()
+                        if (assigned && assigned.length) {
+                            imgs.forEach((img, i) => {
+                                if (assigned[i]) img.setAttribute('src', assigned[i])
+                            })
+                        }
+                        imgs.forEach(adjustWhenLoaded)
+                        window.addEventListener('resize', applyResponsiveHeights)
+                    })()
+                } catch (e) {
+                    // no-op
+                }
+            </script>
         </div>
 
         <!-- Call to Action avec animations -->
         <div class="text-center mt-12 sm:mt-16 scroll-animate-scale">
-            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift animate-gradient">
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 animate-fade-in">Première édition en 2026</h3>
+            <div
+                class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift animate-gradient">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 animate-fade-in">
+                    Première édition en 2026
+                </h3>
                 <p class="text-base sm:text-lg text-gray-600 mb-6 animate-slide-up">
                     Vous voulez voir des photos ? Inscrivez-vous et créons ensemble l'histoire de Tech'Work !
                 </p>
-                <a 
-                    href="#tickets" 
-                    class="btn btn-primary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in"
-                >
+                <a
+                    href="#tickets"
+                    class="btn btn-primary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in">
                     <span class="mr-2 group-hover:animate-bounce-gentle">🎫</span>
                     Réserver ma place
                 </a>
@@ -70,4 +179,3 @@ const gallery = [
         </div>
     </div>
 </section>
-
