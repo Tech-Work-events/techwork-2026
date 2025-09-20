@@ -4,74 +4,117 @@ import backgroundHome from '../../assets/hero.webp'
 import { EVENT_DATA } from '../../config'
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient" role="banner" aria-labelledby="event-title">
+<section
+    class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient"
+    role="banner"
+    aria-labelledby="event-title">
     <!-- Éléments flottants animés - Optimisés mobile -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index:1;">
-        <div class="absolute top-20 left-4 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 bg-white/10 rounded-full animate-float" style="animation-delay: 0s;"></div>
-        <div class="absolute top-32 sm:top-40 right-4 sm:right-20 w-4 h-4 sm:w-6 sm:h-6 bg-primary-300/20 rounded-full animate-float" style="animation-delay: 1s;"></div>
-        <div class="absolute bottom-32 sm:bottom-40 left-4 sm:left-20 w-2 h-2 sm:w-3 sm:h-3 bg-secondary-300/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
-        <div class="hidden sm:block absolute top-60 left-1/3 w-5 h-5 bg-white/5 rounded-full animate-float" style="animation-delay: 0.5s;"></div>
-        <div class="hidden sm:block absolute bottom-20 right-1/4 w-4 h-4 bg-primary-200/15 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+        <div
+            class="absolute top-20 left-4 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 bg-white/10 rounded-full animate-float"
+            style="animation-delay: 0s;">
+        </div>
+        <div
+            class="absolute top-32 sm:top-40 right-4 sm:right-20 w-4 h-4 sm:w-6 sm:h-6 bg-primary-300/20 rounded-full animate-float"
+            style="animation-delay: 1s;">
+        </div>
+        <div
+            class="absolute bottom-32 sm:bottom-40 left-4 sm:left-20 w-2 h-2 sm:w-3 sm:h-3 bg-secondary-300/20 rounded-full animate-float"
+            style="animation-delay: 2s;">
+        </div>
+        <div
+            class="hidden sm:block absolute top-60 left-1/3 w-5 h-5 bg-white/5 rounded-full animate-float"
+            style="animation-delay: 0.5s;">
+        </div>
+        <div
+            class="hidden sm:block absolute bottom-20 right-1/4 w-4 h-4 bg-primary-200/15 rounded-full animate-float"
+            style="animation-delay: 1.5s;">
+        </div>
     </div>
-    
+
     <!-- Background Pattern animé -->
     <div class="absolute inset-0 opacity-20 pointer-events-none" style="z-index:1;">
-        <div class="absolute inset-0 animate-gradient bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-primary-600/10" 
-             style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+        <div
+            class="absolute inset-0 animate-gradient bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-primary-600/10"
+            style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
     </div>
-    
+
     <!-- Background Image Overlay -->
-    <Picture 
-        src={backgroundHome} 
-        formats={['avif', 'webp']} 
-        alt="" 
-        loading="lazy" 
-        class="absolute inset-0 w-full h-full object-cover opacity-75 parallax pointer-events-none" 
+    <Picture
+        src={backgroundHome}
+        formats={['avif', 'webp']}
+        alt=""
+        loading="lazy"
+        class="absolute inset-0 w-full h-full object-cover opacity-75 parallax pointer-events-none"
         data-speed="0.2"
         style="z-index:1;"
     />
-    
+
     <!-- Gradient Overlay animé -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90 animate-gradient pointer-events-none" style="z-index:2;"></div>
-    
+    <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90 animate-gradient pointer-events-none"
+        style="z-index:2;">
+    </div>
+
     <!-- Content -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
         <div class="space-y-6 sm:space-y-8">
             <!-- Logo/Title avec animation séquentielle -->
             <div class="space-y-3 sm:space-y-4 scroll-animate">
-                <h1 id="event-title" class="text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-3 sm:mb-4 tracking-tight leading-tight">
-                    <span class="inline-block animate-slide-down" style="animation-delay: 0.2s;">{EVENT_DATA.event.shortName}</span>
-                    <span class="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-gradient font-bold animate-slide-up leading-tight" style="animation-delay: 0.4s;">{EVENT_DATA.event.location.city} {EVENT_DATA.event.year}</span>
+                <h1
+                    id="event-title"
+                    class="text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-3 sm:mb-4 tracking-tight leading-tight">
+                    <span class="inline-block animate-slide-down" style="animation-delay: 0.2s;"
+                        >{EVENT_DATA.event.shortName}</span
+                    >
+                    <span
+                        class="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-gradient font-bold animate-slide-up leading-tight"
+                        style="animation-delay: 0.4s;">{EVENT_DATA.event.location.city} {EVENT_DATA.event.year}</span
+                    >
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 font-medium max-w-2xl mx-auto text-balance animate-fade-in" style="animation-delay: 0.6s;">
+                <p
+                    class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 font-medium max-w-2xl mx-auto text-balance animate-fade-in"
+                    style="animation-delay: 0.6s;">
                     {EVENT_DATA.event.tagline}
                 </p>
             </div>
-            
+
             <!-- Event Details avec animation glass -->
             <div class="glass px-4 sm:px-6 md:px-8 py-4 sm:py-6 max-w-2xl mx-auto scroll-animate-scale hover-lift">
                 <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                    {EVENT_DATA.event.date.month} {EVENT_DATA.event.year} - {EVENT_DATA.event.location.city}
+                    {EVENT_DATA.event.date.month}
+                    {EVENT_DATA.event.year} - {EVENT_DATA.event.location.city}
                 </h2>
                 <p class="text-gray-200 text-base sm:text-lg">
-                    {EVENT_DATA.event.location.venue} <span class="inline-block animate-bounce-gentle">🔥</span>
+                    {EVENT_DATA.event.location.venue}
+                    <span class="inline-block animate-bounce-gentle">🔥</span>
                 </p>
             </div>
-            
+
             <!-- CTA Buttons avec animations séquentielles -->
-            <div class="flex flex-col gap-3 justify-center items-center w-full max-w-4xl mx-auto pt-6 sm:pt-8 scroll-animate">
-                <a href="#signup" class="btn btn-primary text-sm sm:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-full max-w-xs sm:max-w-sm glow text-center hover-lift animate-scale-in group" style="animation-delay: 0.8s;">
+            <div
+                class="flex flex-col gap-3 justify-center items-center w-full max-w-4xl mx-auto pt-6 sm:pt-8 scroll-animate">
+                <a
+                    href="#tickets"
+                    class="btn btn-primary text-sm sm:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-full max-w-xs sm:max-w-sm glow text-center hover-lift animate-scale-in group"
+                    style="animation-delay: 0.8s;">
                     <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
                     <span class="hidden xs:inline sm:hidden md:inline">Réserver moi une place</span>
                     <span class="sm:hidden">Participer</span>
                 </a>
-                <div class="flex flex-col xs:flex-row gap-2 sm:gap-3 w-full max-w-xs xs:max-w-lg justify-center stagger-children">
-                    <a href="#cfp" class="btn btn-secondary text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-left group">
+                <div
+                    class="flex flex-col xs:flex-row gap-2 sm:gap-3 w-full max-w-xs xs:max-w-lg justify-center stagger-children">
+                    <a
+                        href="#cfp"
+                        class="btn btn-secondary text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-left group">
                         <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🎤</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Postuler au CFP</span>
                         <span class="xs:hidden sm:inline md:hidden">CFP</span>
                     </a>
-                    <a href="#sponsors" class="btn btn-ghost text-white border-white hover:bg-white/10 text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-right group">
+                    <a
+                        href="#sponsors"
+                        class="btn btn-ghost text-white border-white hover:bg-white/10 text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-right group">
                         <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🤝</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Devenir partenaire</span>
                         <span class="xs:hidden sm:inline md:hidden">Partenaire</span>
@@ -80,5 +123,53 @@ import { EVENT_DATA } from '../../config'
             </div>
         </div>
     </div>
-    
 </section>
+
+<script is:browser>
+    // Smooth scroll to #tickets with ~900ms duration and header offset
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const easing = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+
+    function smoothScrollToTarget(target, duration = 900) {
+        const header = document.getElementById('site-header')
+        const offset = header ? header.offsetHeight : 0
+        const startY = window.pageYOffset
+        const targetY = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset)
+        const distance = targetY - startY
+        if (distance === 0) return
+
+        if (prefersReduced) {
+            window.scrollTo(0, targetY)
+            return
+        }
+
+        let startTime = null
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp
+            const elapsed = timestamp - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const eased = easing(progress)
+            window.scrollTo(0, startY + distance * eased)
+            if (elapsed < duration) requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
+    }
+
+    function setupSmoothScrollLinks() {
+        const links = document.querySelectorAll('a[href="#tickets"]')
+        links.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const target = document.getElementById('tickets')
+                if (!target) return
+                e.preventDefault()
+                smoothScrollToTarget(target, 900)
+            })
+        })
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSmoothScrollLinks)
+    } else {
+        setupSmoothScrollLinks()
+    }
+</script>

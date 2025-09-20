@@ -1,152 +1,152 @@
 {
-  "organization": {
-    "name": "Tech'Work Lyon",
-    "legalName": "Tech'Work Lyon by Cloud Alpes",
-    "address": {
-      "street": "32 Rue Gilloud",
-      "city": "Lyon",
-      "postalCode": "69002",
-      "country": "France"
+    "organization": {
+        "name": "Tech'Work Lyon",
+        "legalName": "Tech'Work Lyon by Cloud Alpes",
+        "address": {
+            "street": "32 Rue Gilloud",
+            "city": "Lyon",
+            "postalCode": "69002",
+            "country": "France"
+        },
+        "contact": {
+            "email": "contact@techwork.lyon",
+            "phone": "+33 4 XX XX XX XX"
+        },
+        "legal": {
+            "siret": "XXX XXX XXX XXXXX",
+            "rna": "W692XXXXXX",
+            "publicationDirector": "Maxime Deroullers, Président de l'association"
+        }
     },
-    "contact": {
-      "email": "contact@techwork.lyon",
-      "phone": "+33 4 XX XX XX XX"
+    "dataProtection": {
+        "dpoEmail": "privacy@techwork.lyon",
+        "lastUpdate": "2025-01-17",
+        "privacyPolicyVersion": "1.0.0"
     },
-    "legal": {
-      "siret": "XXX XXX XXX XXXXX",
-      "rna": "W692XXXXXX",
-      "publicationDirector": "Maxime Deroullers, Président de l'association"
+    "hosting": {
+        "provider": "Firebase Hosting (Google Cloud Platform)",
+        "address": "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlande"
+    },
+    "cookies": {
+        "categories": {
+            "essential": {
+                "name": "Cookies essentiels",
+                "description": "Nécessaires au bon fonctionnement du site",
+                "required": true,
+                "cookies": [
+                    {
+                        "name": "cookie-consent",
+                        "purpose": "Stockage des préférences de cookies",
+                        "duration": "1 an",
+                        "type": "localStorage"
+                    }
+                ]
+            },
+            "analytics": {
+                "name": "Cookies d'analyse",
+                "description": "Nous aident à comprendre comment vous utilisez notre site",
+                "required": false,
+                "cookies": [
+                    {
+                        "name": "plausible_ignore",
+                        "purpose": "Exclusion du suivi Plausible Analytics",
+                        "duration": "Permanente",
+                        "type": "localStorage"
+                    }
+                ]
+            },
+            "functional": {
+                "name": "Cookies fonctionnels",
+                "description": "Améliorent votre expérience sur le site",
+                "required": false,
+                "cookies": [
+                    {
+                        "name": "theme-preference",
+                        "purpose": "Stockage des préférences de thème",
+                        "duration": "1 an",
+                        "type": "localStorage"
+                    }
+                ]
+            }
+        }
+    },
+    "thirdPartyServices": {
+        "plausible": {
+            "name": "Plausible Analytics",
+            "purpose": "Statistiques anonymes de fréquentation",
+            "dataCollected": ["Pages visitées", "Durée de session", "Pays (approximatif)", "Type d'appareil"],
+            "privacyPolicy": "https://plausible.io/privacy",
+            "optOut": true
+        },
+        "firebase": {
+            "name": "Firebase (Google)",
+            "purpose": "Hébergement et authentification",
+            "dataCollected": ["Données de session", "Adresse IP (logs temporaires)"],
+            "privacyPolicy": "https://policies.google.com/privacy",
+            "optOut": false
+        },
+        "conferenceHall": {
+            "name": "Conference Hall",
+            "purpose": "Gestion des soumissions de talks",
+            "dataCollected": ["Email", "Nom", "Profil GitHub", "Contenu des soumissions"],
+            "privacyPolicy": "https://conference-hall.io/privacy",
+            "optOut": false
+        },
+        "helloasso": {
+            "name": "HelloAsso",
+            "purpose": "Billetterie et inscriptions",
+            "dataCollected": ["Email", "Nom", "Informations de paiement"],
+            "privacyPolicy": "https://www.helloasso.com/confidentialite",
+            "optOut": false
+        }
+    },
+    "userRights": {
+        "access": {
+            "name": "Droit d'accès",
+            "description": "Obtenir une copie de vos données personnelles que nous traitons"
+        },
+        "rectification": {
+            "name": "Droit de rectification",
+            "description": "Corriger des données inexactes ou incomplètes"
+        },
+        "erasure": {
+            "name": "Droit d'effacement",
+            "description": "Demander la suppression de vos données personnelles"
+        },
+        "portability": {
+            "name": "Droit à la portabilité",
+            "description": "Récupérer vos données dans un format structuré"
+        },
+        "opposition": {
+            "name": "Droit d'opposition",
+            "description": "Vous opposer au traitement de vos données"
+        },
+        "limitation": {
+            "name": "Droit à la limitation",
+            "description": "Limiter le traitement de vos données"
+        },
+        "consent-withdrawal": {
+            "name": "Retrait du consentement",
+            "description": "Retirer votre consentement pour les traitements basés sur le consentement"
+        }
+    },
+    "legalBasis": {
+        "website": "Intérêt légitime (information sur l'événement)",
+        "registration": "Consentement (inscription volontaire)",
+        "cfp": "Consentement (soumission volontaire)",
+        "analytics": "Intérêt légitime (amélioration du service)"
+    },
+    "dataRetention": {
+        "website": "Pas de collecte directe",
+        "registration": "2 ans après l'événement",
+        "cfp": "2 ans après l'événement",
+        "analytics": "25 mois (Plausible)"
+    },
+    "compliance": {
+        "framework": "RGPD (Règlement Général sur la Protection des Données)",
+        "authority": "CNIL (Commission Nationale de l'Informatique et des Libertés)",
+        "authorityUrl": "https://www.cnil.fr/",
+        "lastAudit": "2025-01-17",
+        "nextAudit": "2025-07-17"
     }
-  },
-  "dataProtection": {
-    "dpoEmail": "privacy@techwork.lyon",
-    "lastUpdate": "2025-01-17",
-    "privacyPolicyVersion": "1.0.0"
-  },
-  "hosting": {
-    "provider": "Firebase Hosting (Google Cloud Platform)",
-    "address": "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlande"
-  },
-  "cookies": {
-    "categories": {
-      "essential": {
-        "name": "Cookies essentiels",
-        "description": "Nécessaires au bon fonctionnement du site",
-        "required": true,
-        "cookies": [
-          {
-            "name": "cookie-consent",
-            "purpose": "Stockage des préférences de cookies",
-            "duration": "1 an",
-            "type": "localStorage"
-          }
-        ]
-      },
-      "analytics": {
-        "name": "Cookies d'analyse",
-        "description": "Nous aident à comprendre comment vous utilisez notre site",
-        "required": false,
-        "cookies": [
-          {
-            "name": "plausible_ignore",
-            "purpose": "Exclusion du suivi Plausible Analytics",
-            "duration": "Permanente",
-            "type": "localStorage"
-          }
-        ]
-      },
-      "functional": {
-        "name": "Cookies fonctionnels",
-        "description": "Améliorent votre expérience sur le site",
-        "required": false,
-        "cookies": [
-          {
-            "name": "theme-preference",
-            "purpose": "Stockage des préférences de thème",
-            "duration": "1 an",
-            "type": "localStorage"
-          }
-        ]
-      }
-    }
-  },
-  "thirdPartyServices": {
-    "plausible": {
-      "name": "Plausible Analytics",
-      "purpose": "Statistiques anonymes de fréquentation",
-      "dataCollected": ["Pages visitées", "Durée de session", "Pays (approximatif)", "Type d'appareil"],
-      "privacyPolicy": "https://plausible.io/privacy",
-      "optOut": true
-    },
-    "firebase": {
-      "name": "Firebase (Google)",
-      "purpose": "Hébergement et authentification",
-      "dataCollected": ["Données de session", "Adresse IP (logs temporaires)"],
-      "privacyPolicy": "https://policies.google.com/privacy",
-      "optOut": false
-    },
-    "conferenceHall": {
-      "name": "Conference Hall",
-      "purpose": "Gestion des soumissions de talks",
-      "dataCollected": ["Email", "Nom", "Profil GitHub", "Contenu des soumissions"],
-      "privacyPolicy": "https://conference-hall.io/privacy",
-      "optOut": false
-    },
-    "eventbrite": {
-      "name": "Eventbrite",
-      "purpose": "Billetterie et inscriptions",
-      "dataCollected": ["Email", "Nom", "Informations de paiement"],
-      "privacyPolicy": "https://www.eventbrite.fr/support/articles/fr/Troubleshooting/politique-de-confidentialit-eventbrite",
-      "optOut": false
-    }
-  },
-  "userRights": {
-    "access": {
-      "name": "Droit d'accès",
-      "description": "Obtenir une copie de vos données personnelles que nous traitons"
-    },
-    "rectification": {
-      "name": "Droit de rectification", 
-      "description": "Corriger des données inexactes ou incomplètes"
-    },
-    "erasure": {
-      "name": "Droit d'effacement",
-      "description": "Demander la suppression de vos données personnelles"
-    },
-    "portability": {
-      "name": "Droit à la portabilité",
-      "description": "Récupérer vos données dans un format structuré"
-    },
-    "opposition": {
-      "name": "Droit d'opposition",
-      "description": "Vous opposer au traitement de vos données"
-    },
-    "limitation": {
-      "name": "Droit à la limitation",
-      "description": "Limiter le traitement de vos données"
-    },
-    "consent-withdrawal": {
-      "name": "Retrait du consentement",
-      "description": "Retirer votre consentement pour les traitements basés sur le consentement"
-    }
-  },
-  "legalBasis": {
-    "website": "Intérêt légitime (information sur l'événement)",
-    "registration": "Consentement (inscription volontaire)",
-    "cfp": "Consentement (soumission volontaire)",
-    "analytics": "Intérêt légitime (amélioration du service)"
-  },
-  "dataRetention": {
-    "website": "Pas de collecte directe",
-    "registration": "2 ans après l'événement",
-    "cfp": "2 ans après l'événement", 
-    "analytics": "25 mois (Plausible)"
-  },
-  "compliance": {
-    "framework": "RGPD (Règlement Général sur la Protection des Données)",
-    "authority": "CNIL (Commission Nationale de l'Informatique et des Libertés)",
-    "authorityUrl": "https://www.cnil.fr/",
-    "lastAudit": "2025-01-17",
-    "nextAudit": "2025-07-17"
-  }
 }
