@@ -125,7 +125,7 @@ import { EVENT_DATA } from '../../config'
     </div>
 </section>
 
-<script is:browser>
+<script is:inline>
     // Smooth scroll to #tickets with ~900ms duration and header offset
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const easing = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
@@ -133,8 +133,8 @@ import { EVENT_DATA } from '../../config'
     function smoothScrollToTarget(target, duration = 900) {
         const header = document.getElementById('site-header')
         const offset = header ? header.offsetHeight : 0
-        const startY = window.pageYOffset
-        const targetY = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset)
+        const startY = window.scrollY
+        const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset)
         const distance = targetY - startY
         if (distance === 0) return
 
