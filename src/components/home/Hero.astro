@@ -124,3 +124,46 @@ import { EVENT_DATA } from '../../config'
         </div>
     </div>
 </section>
+
+<script is:inline>
+    ;(function () {
+        const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        const section =
+            (document.currentScript && document.currentScript.closest('section')) ||
+            document.querySelector('section[aria-labelledby="event-title"]')
+        if (!section) return
+        const link = section.querySelector('a[href="#tickets"]')
+        if (!link) return
+
+        const easing = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+        function scrollToTarget(target, duration = 900) {
+            const header = document.getElementById('site-header')
+            const offset = header ? header.offsetHeight : 0
+            const startY = window.scrollY
+            const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset)
+            const distance = targetY - startY
+            if (distance === 0) return
+            if (prefersReduced) {
+                window.scrollTo(0, targetY)
+                return
+            }
+            let startTime = null
+            function step(ts) {
+                if (startTime === null) startTime = ts
+                const elapsed = ts - startTime
+                const p = Math.min(elapsed / duration, 1)
+                const e = easing(p)
+                window.scrollTo(0, startY + distance * e)
+                if (elapsed < duration) requestAnimationFrame(step)
+            }
+            requestAnimationFrame(step)
+        }
+
+        link.addEventListener('click', (e) => {
+            const target = document.getElementById('tickets')
+            if (!target) return
+            e.preventDefault()
+            scrollToTarget(target, 900)
+        })
+    })()
+</script>

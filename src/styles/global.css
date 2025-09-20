@@ -47,22 +47,6 @@
 @layer base {
     html {
         font-family: 'Inter', system-ui, sans-serif;
-        scroll-behavior: smooth;
-    }
-
-    /* Smooth scroll target offset for fixed header */
-    :root {
-        --header-offset: 80px;
-    }
-
-    @media (min-width: 1024px) {
-        :root {
-            --header-offset: 96px;
-        }
-    }
-
-    #tickets {
-        scroll-margin-top: var(--header-offset);
     }
 
     /* Amélioration de l'accessibilité - Focus visible amélioré */
