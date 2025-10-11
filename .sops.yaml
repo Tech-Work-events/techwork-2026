@@ -1,15 +1,15 @@
 creation_rules:
-  # Environment files (.env and .env-encrypted)
-  - path_regex: \.env(-encrypted)?$
-    age: >-
-      age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r
+    # Environment files (.env and .env-encrypted)
+    - path_regex: \.env(-encrypted)?$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r,age1fclh63pelgx9f92fy20cfu39y5wv2m7a9vjwfspp2djder8tke0qmu53eu
 
-  # Terraform secrets files
-  - path_regex: terraform/.*\.secrets\.tfvars$
-    age: >-
-      age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r
+    # Terraform secrets files
+    - path_regex: terraform/.*\.secrets\.tfvars$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r,age1fclh63pelgx9f92fy20cfu39y5wv2m7a9vjwfspp2djder8tke0qmu53eu
 
-  # Default rule for any .secrets files
-  - path_regex: \.secrets\.(yaml|yml|json|env)$
-    age: >-
-      age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r
+    # Default rule for any .secrets files
+    - path_regex: \.secrets\.(yaml|yml|json|env)$
+      age: >-
+          age1mm86z3nly8e4mk6cc39xg74nqpm7gkppz77zpq2mkp2y87t5dc0qmufp6w,age1kdhsg9my9qv7te7d0j4nxjg64vhkqpx0vgkwpll5km2vdzfn4s4qe6xdm8,age1j4f65w0d20nvfv5dvsd5vap4ll3956pne9hrhunl8npg53xpv3gsve977r,age1fclh63pelgx9f92fy20cfu39y5wv2m7a9vjwfspp2djder8tke0qmu53eu
