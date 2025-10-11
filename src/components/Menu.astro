@@ -41,7 +41,7 @@ const isActiveRoute = (route: string) => {
             </div>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-8">
+            <nav id="desktop-nav" class="hidden md:flex items-center space-x-8">
                 {
                     navigation.map((nav) => (
                         <a
@@ -86,19 +86,20 @@ const isActiveRoute = (route: string) => {
 
                 <!-- Mobile Navigation Overlay -->
                 <div
-                    class="nav-overlay fixed inset-0 bg-black/50 opacity-0 transition-opacity duration-300 ease-in-out z-50 pointer-events-none">
+                    class="nav-overlay fixed inset-0 bg-black/50 opacity-0 transition-opacity duration-200 ease-in-out z-[10000] pointer-events-none">
                 </div>
 
                 <!-- Mobile Navigation Drawer -->
                 <div
                     id="mobile-menu"
-                    class="nav-drawer fixed inset-y-0 right-0 w-72 sm:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-out z-60"
+                    class="nav-drawer fixed inset-0 h-dvh w-screen max-w-full bg-gradient-to-b from-white/95 via-primary-50/20 to-secondary-50/20 backdrop-blur-md shadow-2xl transform translate-x-full transition-transform duration-200 ease-out z-[10001]"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="mobile-menu-title">
-                    <div class="flex flex-col h-full">
+                    <div class="flex flex-col h-full min-h-0">
                         <!-- Header simplifié -->
-                        <div class="bg-gradient-to-r from-primary-600 to-secondary-600 p-5">
+                        <div
+                            class="bg-gradient-to-r from-primary-600 to-secondary-600 p-5 pt-[env(safe-area-inset-top)]">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <span id="mobile-menu-title" class="text-xl font-black text-white"
@@ -111,10 +112,10 @@ const isActiveRoute = (route: string) => {
                                 </div>
                                 <label
                                     for="nav-trigger"
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 cursor-pointer"
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 cursor-pointer"
                                     aria-label="Fermer le menu">
                                     <svg
-                                        class="w-5 h-5 text-white"
+                                        class="w-6 h-6 text-white"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24">
@@ -128,84 +129,89 @@ const isActiveRoute = (route: string) => {
                             </div>
                         </div>
 
-                        <!-- CTA Principal -->
                         <div
-                            class="px-5 py-4 bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-gray-100">
-                            <a
-                                href="/#tickets"
-                                class="block w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold py-3 px-4 rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg">
-                                🎫 Réserver ma place
-                            </a>
-                        </div>
-                        <nav
-                            class="flex-1 px-0 py-2 space-y-0 bg-white overflow-y-auto"
-                            role="navigation"
-                            aria-label="Navigation principale mobile">
-                            {
-                                navigation.map((nav, index) => (
-                                    <a
-                                        href={nav.route}
-                                        class={`flex items-center px-5 py-4 text-base font-medium transition-all duration-200 border-b border-gray-50 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 group active:bg-primary-100 ${
-                                            isActiveRoute(nav.route)
-                                                ? 'bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-600 border-l-4 border-l-primary-600'
-                                                : 'text-gray-700 hover:text-primary-600'
-                                        }`}
-                                        style={`animation-delay: ${index * 0.05}s`}>
-                                        <span class="mr-3 text-lg group-hover:scale-110 transition-transform duration-200">
-                                            <AccessibleEmoji emoji={nav.icon} label={nav.description} />
-                                        </span>
-                                        <span class="flex-1">{nav.label}</span>
-                                        <svg
-                                            class="w-4 h-4 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all duration-200"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 5l7 7-7 7"
-                                            />
-                                        </svg>
-                                    </a>
-                                ))
-                            }
-                        </nav>
+                            class="flex-1 overflow-y-auto bg-gradient-to-b from-white/95 via-gray-50 to-white/95 backdrop-blur-sm">
+                            <!-- CTA Principal -->
+                            <div
+                                class="px-5 py-4 bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-gray-100">
+                                <a
+                                    href="/#tickets"
+                                    class="block w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold min-h-12 py-4 px-5 rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg">
+                                    🎫 Réserver ma place
+                                </a>
+                            </div>
+                            <nav
+                                class="px-0 py-2 space-y-0 bg-white/95 shadow-sm ring-1 ring-black/5"
+                                role="navigation"
+                                aria-label="Navigation principale mobile">
+                                {
+                                    navigation.map((nav, index) => (
+                                        <a
+                                            href={nav.route}
+                                            class={`flex items-center px-5 py-4 text-base font-medium transition-all duration-200 border-b border-gray-50 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 group active:bg-primary-100 ${
+                                                isActiveRoute(nav.route)
+                                                    ? 'bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-600 border-l-4 border-l-primary-600'
+                                                    : 'text-gray-700 hover:text-primary-600'
+                                            }`}
+                                            style={`animation-delay: ${index * 0.05}s`}>
+                                            <span class="mr-3 text-lg group-hover:scale-110 transition-transform duration-200">
+                                                <AccessibleEmoji emoji={nav.icon} label={nav.description} />
+                                            </span>
+                                            <span class="flex-1">{nav.label}</span>
+                                            <svg
+                                                class="w-4 h-4 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all duration-200"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 5l7 7-7 7"
+                                                />
+                                            </svg>
+                                        </a>
+                                    ))
+                                }
+                            </nav>
 
-                        <!-- Footer simplifié -->
-                        <div class="p-5 border-t border-gray-100 bg-gray-50">
-                            <div class="text-center space-y-3">
-                                <p class="text-xs text-gray-500 font-medium">Rejoignez la révolution tech</p>
-                                <div class="flex justify-center space-x-4">
-                                    <a
-                                        href={`mailto:${SOCIAL_DATA.contact.general}`}
-                                        class="w-9 h-9 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center hover:bg-primary-200 hover:scale-105 transition-all duration-200"
-                                        title="Nous contacter">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                                            ></path>
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                        </svg>
-                                    </a>
-                                    {
-                                        socialNetworks
-                                            .filter((network) => ['discord', 'linkedin'].includes(network.id))
-                                            .slice(0, 2)
-                                            .map((network) => (
-                                                <a
-                                                    href={network.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    class={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105`}
-                                                    style={`background-color: ${network.color}15; color: ${network.color};`}
-                                                    title={network.description}>
-                                                    <span class="text-sm">{network.icon}</span>
-                                                </a>
-                                            ))
-                                    }
+                            <!-- Footer simplifié -->
+                            <div
+                                class="p-5 pb-[env(safe-area-inset-bottom)] border-t border-gray-100 bg-gradient-to-b from-gray-50 via-white to-white">
+                                <div class="text-center space-y-3">
+                                    <p class="text-xs text-gray-500 font-medium">Rejoignez la révolution tech</p>
+                                    <div class="flex justify-center space-x-4">
+                                        <a
+                                            href={`mailto:${SOCIAL_DATA.contact.general}`}
+                                            class="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center hover:bg-primary-200 hover:scale-105 transition-all duration-200"
+                                            title="Nous contacter">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                                ></path>
+                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                        {
+                                            socialNetworks
+                                                .filter((network) => ['discord', 'linkedin'].includes(network.id))
+                                                .slice(0, 2)
+                                                .map((network) => (
+                                                    <a
+                                                        href={network.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        class={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105`}
+                                                        style={`background-color: ${network.color}15; color: ${network.color};`}
+                                                        title={network.description}>
+                                                        <span class="text-lg">{network.icon}</span>
+                                                    </a>
+                                                ))
+                                        }
+                                    </div>
+                                    <p class="text-xs text-gray-400">© 2026 Tech'Work Lyon</p>
                                 </div>
-                                <p class="text-xs text-gray-400">© 2026 Tech'Work Lyon</p>
                             </div>
                         </div>
                     </div>
@@ -267,7 +273,7 @@ const isActiveRoute = (route: string) => {
         const header = document.querySelector('#site-header') as HTMLElement | null
         if (!header) return
         const logo = header.querySelector('div.flex-shrink-0 a') as HTMLElement | null
-        const navLinks = header.querySelectorAll('nav a')
+        const navLinks = header.querySelectorAll('#desktop-nav a')
         const mobileLabel = header.querySelector('label[for="nav-trigger"]') as HTMLElement | null
         const hamburgerLines = header.querySelectorAll('.hamburger-line')
         const path = window.location.pathname
