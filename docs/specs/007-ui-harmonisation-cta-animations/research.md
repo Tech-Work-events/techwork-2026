@@ -27,6 +27,15 @@
 
 ## Open Questions
 
+## Micro‑interactions autorisées (par bloc)
+
+-   Home/Hero: conserver fond gradient/float décoratifs (déjà aria-hidden), pas d’animations bloquantes CTA; parallax desktop only; reduced‑motion: OFF.
+-   Home/Content: in‑view doux (scroll-animate[-left/right/scale]) sur listes de bénéfices; hover-lift léger; pulses discrets sur icônes; reduced‑motion: OFF.
+-   Home/Social Proof: in‑view doux sur section + images; staggering (0.1–0.15s);
+-   Sponsors: hover-lift modéré sur cartes logos; staggering par catégorie; reduced‑motion: OFF.
+-   CFP/Team/Location: in‑view subtil des tuiles/cta; pas d’effets distrayants; reduced‑motion: OFF.
+-   Règles globales: durée 150–300ms, ease-out; amplitude translateY ≤ 12px, scale ≤ 1.02; infinite loops minimisés sur mobile; respect strict de prefers-reduced-motion.
+
 -   Priorisation business par page (quels CTA absolument au-dessus de la ligne de flottaison?)
 -   Palette de référence à figer (nuances exactes pour badges/fonds dégradés)
 -   Icônes standardisées (taille/épaisseur) et sets autorisés
