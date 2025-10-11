@@ -2,6 +2,7 @@
 import { SOCIAL_DATA, EVENT_DATA, MENU_CONFIG } from '../config'
 import type { MenuItemConfig } from '../config'
 import AccessibleEmoji from './ui-elements/AccessibleEmoji.astro'
+import PrimaryCTA from './cta/PrimaryCTA.astro'
 
 // Filtrer les éléments de menu activés et les trier par ordre
 const navigation: MenuItemConfig[] = MENU_CONFIG.filter((item: MenuItemConfig) => item.enabled).sort(
@@ -60,6 +61,11 @@ const isActiveRoute = (route: string) => {
                     ))
                 }
             </nav>
+
+            <!-- Desktop CTA -->
+            <div class="hidden md:block">
+                <PrimaryCTA />
+            </div>
 
             <!-- Mobile menu button -->
             <div class="md:hidden">
@@ -134,11 +140,9 @@ const isActiveRoute = (route: string) => {
                             <!-- CTA Principal -->
                             <div
                                 class="px-5 py-4 bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-gray-100">
-                                <a
-                                    href="/#tickets"
-                                    class="block w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold min-h-12 py-4 px-5 rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg">
-                                    🎫 Réserver ma place
-                                </a>
+                                <div class="block w-full">
+                                    <PrimaryCTA />
+                                </div>
                             </div>
                             <nav
                                 class="px-0 py-2 space-y-0 bg-white/95 shadow-sm ring-1 ring-black/5"
