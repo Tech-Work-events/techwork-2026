@@ -147,7 +147,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                     votre budget.
                                 </p>
                                 <a
-                                    href="mailto:partners@techwork.lyon"
+                                    href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                                     class="btn btn-primary text-lg px-8 py-4 hover-lift group">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                                     Devenir partenaire

@@ -29,7 +29,7 @@
         "platform": "OpenPlanner",
         "publicUrl": "https://openplanner.fr/event/tech-work-lyon-2026",
         "contact": {
-            "email": "partners@techwork.lyon"
+            "email": "partners@techwork.events"
         },
         "api": {
             "enabled": true,
