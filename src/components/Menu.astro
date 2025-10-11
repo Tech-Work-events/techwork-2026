@@ -22,7 +22,7 @@ const isActiveRoute = (route: string) => {
 
 <header
     id="site-header"
-    class={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${routeName === '/' ? 'bg-black/20 backdrop-blur-sm border-b-0 md:bg-transparent md:backdrop-blur-none' : 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'}`}
+    class={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${routeName === '/' ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm md:bg-transparent md:backdrop-blur-none md:border-b-0 md:shadow-none' : 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'}`}
     data-transparent={routeName === '/'}>
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
@@ -337,12 +337,14 @@ const isActiveRoute = (route: string) => {
                 } else {
                     // Top of homepage - semi-transparent on mobile, transparent on desktop
                     header.className = `fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
-                        isMobile ? 'bg-black/20 backdrop-blur-sm border-b-0' : 'bg-transparent border-b-0'
+                        isMobile
+                            ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
+                            : 'bg-transparent border-b-0'
                     }`
                 }
 
                 // Ensure text colors are readable on homepage
-                applyHomepageHeaderTextStyles(isScrolled)
+                applyHomepageHeaderTextStyles(isScrolled || isMobile)
             } else {
                 // Other pages - always solid background
                 header.className =
