@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { EVENT_DATA } from '../config'
+import CTASection from '../components/cta/CTASection.astro'
 ---
 
 <Layout
@@ -21,7 +22,7 @@ import { EVENT_DATA } from '../config'
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                     🕵️ Actuellement en cours de sélection... <strong>Spoiler alert :</strong> Ce sera à Lyon et ce sera génial
-                    !
+                    — tout confort, lama‑friendly.
                 </p>
             </div>
         </div>
@@ -170,6 +171,15 @@ import { EVENT_DATA } from '../config'
                                 >
                                 Déco moderne
                             </li>
+
+                            <li class="flex items-center">
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >📸</span
+                                >
+                                Photo spot pour vos selfies (lama‑compatible)
+                            </li>
+
                             <li class="flex items-center">
                                 <span
                                     class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
@@ -413,4 +423,10 @@ import { EVENT_DATA } from '../config'
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="On te dit le lieu tres vite !"
+        description="En attendant, assure ta place a la conf' lama-friendly."
+        placement="content-location"
+    />
 </Layout>

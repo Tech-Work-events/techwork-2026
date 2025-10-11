@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import CTASection from '../components/cta/CTASection.astro'
 ---
 
 <Layout
@@ -33,7 +34,8 @@ import Layout from '../layouts/Layout.astro'
                     <p>
                         <strong
                             >TL;DR : Soyez respectueux·se, inclusif·ve et bienveillant·e. En cas de problème,
-                            signalez-le immédiatement.</strong>
+                            signalez-le immédiatement.</strong
+                        >
                     </p>
                     <p>
                         Tech'Work Lyon 2026 s'engage à créer un environnement sûr, inclusif et bienveillant pour tous
@@ -179,19 +181,24 @@ import Layout from '../layouts/Layout.astro'
                     <hr />
 
                     <p>
-                        <strong
-                            >🚀 Ensemble, créons l'événement tech le plus inclusif et bienveillant possible !</strong>
+                        <strong>🚀 Ensemble, créons l'événement tech le plus inclusif et bienveillant possible !</strong
+                        >
                     </p>
                     <p>
                         <em
                             >Version 1.0 - Janvier 2026. Inspiré des meilleures pratiques communautaires et mis à jour
-                            selon vos retours.</em>
+                            selon vos retours.</em
+                        >
                     </p>
                     <p><strong>Questions ? Suggestions ?</strong> Écrivez-nous à feedback@techwork.lyon</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="text-center text-xs text-gray-400 mt-2">
+        🦙 Note mascotte&nbsp;: lama dans la d&eacute;co, on reste 100% s&eacute;rieux.
+    </div>
 
     <!-- Contact Section -->
     <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
@@ -216,4 +223,10 @@ import Layout from '../layouts/Layout.astro'
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="Envie de participer ?"
+        description="Achete ton billet aujourd'hui, on s'occupe du reste."
+        placement="content-coc"
+    />
 </Layout>

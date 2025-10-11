@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 
+import CTASection from '../../components/cta/CTASection.astro'
+
 export async function getStaticPaths() {
     const blogEntries = await getCollection('blog')
 
@@ -80,6 +82,12 @@ const formattedDate = entry.data.date.toLocaleString('fr-FR', {
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="On en parle IRL ?"
+        description="Retrouve-nous  la conf pour reseauter et apprendre ensemble. Reserve ta place."
+        placement="content-blog-post"
+    />
 </Layout>
 
 <style>

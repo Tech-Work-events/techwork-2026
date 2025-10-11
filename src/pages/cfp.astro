@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { CFP_DATA, SERVICES_DATA, EVENT_DATA } from '../config'
+import CTASection from '../components/cta/CTASection.astro'
 
 const cfp = CFP_DATA
 ---
@@ -10,16 +11,17 @@ const cfp = CFP_DATA
     <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center scroll-animate">
-                <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
                     <span class="mr-2 animate-bounce-gentle">📢</span>
                     Call for Papers
                 </div>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                    Partagez votre <span class="text-gradient">expertise</span>
+                    Partagez votre <span class="text-gradient">expertise</span> (et votre amour du lama)
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    Vous avez une passion, une expérience, un projet fou à partager ? 
-                    Rejoignez-nous sur scène pour révolutionner la tech {EVENT_DATA.event.location.city.toLowerCase()}aise !
+                    Vous avez une passion, une expérience, un projet fou à partager ? Rejoignez-nous sur scène : on
+                    fournit les lamas gonflables, vous apportez la magie.
                 </p>
 
                 <div class="mt-8 p-6 bg-white rounded-xl shadow-lg border border-gray-200">
@@ -27,15 +29,13 @@ const cfp = CFP_DATA
                         <div>
                             <h2 class="text-xl font-bold text-gray-900">Statut du CFP</h2>
                             <p class="text-gray-600 mt-1">
-                                {cfp.cfp.isOpen ? 'Ouvert' : 'Fermé'} • 
-                                Deadline: {cfp.cfp.deadline}
+                                {cfp.cfp.isOpen ? 'Ouvert' : 'Fermé'} • Deadline: {cfp.cfp.deadline}
                             </p>
                         </div>
-                        <div class={`px-4 py-2 rounded-full text-sm font-semibold ${
-                            cfp.cfp.isOpen 
-                                ? 'bg-green-100 text-green-700' 
-                                : 'bg-red-100 text-red-700'
-                        }`}>
+                        <div
+                            class={`px-4 py-2 rounded-full text-sm font-semibold ${
+                                cfp.cfp.isOpen ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                            }`}>
                             {cfp.cfp.isOpen ? '✅ Ouvert' : '❌ Fermé'}
                         </div>
                     </div>
@@ -57,19 +57,19 @@ const cfp = CFP_DATA
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {cfp.formats.map((format, index) => (
-                    <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
-                        <div class="text-center">
-                            <div class="text-4xl mb-4">{format.icon}</div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">{format.name}</h3>
-                            <p class="text-3xl font-black text-primary-600 mb-2">{format.duration}</p>
-                            <p class="text-gray-600 text-sm mb-4">{format.description}</p>
-                            <div class="text-xs text-gray-500">
-                                {format.slots} créneaux disponibles
+                {
+                    cfp.formats.map((format, index) => (
+                        <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">{format.icon}</div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">{format.name}</h3>
+                                <p class="text-3xl font-black text-primary-600 mb-2">{format.duration}</p>
+                                <p class="text-gray-600 text-sm mb-4">{format.description}</p>
+                                <div class="text-xs text-gray-500">{format.slots} créneaux disponibles</div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -87,15 +87,17 @@ const cfp = CFP_DATA
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 stagger-children">
-                {cfp.topics.map((topic, index) => (
-                    <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
-                        <div class="text-center">
-                            <div class="text-4xl mb-4">{topic.icon}</div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">{topic.name}</h3>
-                            <p class="text-sm text-gray-600">{topic.description}</p>
+                {
+                    cfp.topics.map((topic, index) => (
+                        <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">{topic.icon}</div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{topic.name}</h3>
+                                <p class="text-sm text-gray-600">{topic.description}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -110,15 +112,17 @@ const cfp = CFP_DATA
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 stagger-children">
-                {cfp.tips.items.map((tip, index) => (
-                    <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
-                        <div class="text-center">
-                            <div class="text-4xl mb-4">{tip.icon}</div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">{tip.title}</h3>
-                            <p class="text-sm text-gray-600">{tip.description}</p>
+                {
+                    cfp.tips.items.map((tip, index) => (
+                        <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">{tip.icon}</div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{tip.title}</h3>
+                                <p class="text-sm text-gray-600">{tip.description}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -133,18 +137,20 @@ const cfp = CFP_DATA
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                {cfp.process.steps.map((step, index) => (
-                    <div class="text-center scroll-animate-scale" style={`animation-delay: ${index * 0.2}s`}>
-                        <div class="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <div class="text-2xl">{step.icon}</div>
+                {
+                    cfp.process.steps.map((step, index) => (
+                        <div class="text-center scroll-animate-scale" style={`animation-delay: ${index * 0.2}s`}>
+                            <div class="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <div class="text-2xl">{step.icon}</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-6 shadow-lg hover-lift">
+                                <div class="text-sm font-semibold text-primary-600 mb-2">Étape {step.step}</div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+                                <p class="text-sm text-gray-600">{step.description}</p>
+                            </div>
                         </div>
-                        <div class="bg-white rounded-lg p-6 shadow-lg hover-lift">
-                            <div class="text-sm font-semibold text-primary-600 mb-2">Étape {step.step}</div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                            <p class="text-sm text-gray-600">{step.description}</p>
-                        </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -159,15 +165,17 @@ const cfp = CFP_DATA
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 stagger-children">
-                {cfp.benefits.items.map((benefit, index) => (
-                    <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
-                        <div class="text-center">
-                            <div class="text-4xl mb-4">{benefit.icon}</div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                            <p class="text-sm text-gray-600">{benefit.description}</p>
+                {
+                    cfp.benefits.items.map((benefit, index) => (
+                        <div class="card hover-lift scroll-animate-scale" style={`animation-delay: ${index * 0.1}s`}>
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">{benefit.icon}</div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                                <p class="text-sm text-gray-600">{benefit.description}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
     </section>
@@ -181,39 +189,45 @@ const cfp = CFP_DATA
             <p class="text-lg sm:text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
                 Rejoignez les speakers qui font la différence dans la tech lyonnaise
             </p>
-            
-            {cfp.cfp.isOpen ? (
-                <div class="space-y-4">
-                    <a 
-                        href={SERVICES_DATA.cfp.publicUrl}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center"
-                    >
-                        <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
-                        Soumettre ma proposition
-                    </a>
-                    <p class="text-sm text-primary-100">
-                        Jusqu'à {cfp.cfp.maxSubmissions} propositions par personne
-                    </p>
-                </div>
-            ) : (
-                <div class="space-y-4">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                        <p class="text-white text-lg font-semibold mb-2">CFP fermé</p>
-                        <p class="text-primary-100">
-                            Les soumissions sont terminées. Notifications le {cfp.cfp.notificationDate}
+
+            {
+                cfp.cfp.isOpen ? (
+                    <div class="space-y-4">
+                        <a
+                            href={SERVICES_DATA.cfp.publicUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center">
+                            <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
+                            Soumettre ma proposition
+                        </a>
+                        <p class="text-sm text-primary-100">
+                            Jusqu'à {cfp.cfp.maxSubmissions} propositions par personne
                         </p>
                     </div>
-                    <a 
-                        href={`mailto:${cfp.contact.email}`}
-                        class="btn btn-ghost text-white border-white hover:bg-white/10 inline-flex items-center"
-                    >
-                        <span class="mr-2">📧</span>
-                        Nous contacter
-                    </a>
-                </div>
-            )}
+                ) : (
+                    <div class="space-y-4">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                            <p class="text-white text-lg font-semibold mb-2">CFP fermé</p>
+                            <p class="text-primary-100">
+                                Les soumissions sont terminées. Notifications le {cfp.cfp.notificationDate}
+                            </p>
+                        </div>
+                        <a
+                            href={`mailto:${cfp.contact.email}`}
+                            class="btn btn-ghost text-white border-white hover:bg-white/10 inline-flex items-center">
+                            <span class="mr-2">📧</span>
+                            Nous contacter
+                        </a>
+                    </div>
+                )
+            }
+
+            <CTASection
+                title="Envie de venir ?"
+                description="Pas encore pret(e) a proposer, mais partant(e) pour participer ? Prends ton billet."
+                placement="content-cfp"
+            />
         </div>
     </section>
 </Layout>

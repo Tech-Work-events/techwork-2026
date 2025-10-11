@@ -2,6 +2,8 @@
 import { Picture } from 'astro:assets'
 import backgroundHome from '../../assets/hero.webp'
 import { EVENT_DATA } from '../../config'
+import { EXPERIMENTS, labelFor } from '../../config/experiments'
+const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
 ---
 
 <section
@@ -101,7 +103,7 @@ import { EVENT_DATA } from '../../config'
                     class="btn btn-primary text-sm sm:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-full max-w-xs sm:max-w-sm glow text-center hover-lift animate-scale-in group"
                     style="animation-delay: 0.8s;">
                     <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
-                    <span class="hidden xs:inline sm:hidden md:inline">Réserver moi une place</span>
+                    <span class="hidden xs:inline sm:hidden md:inline">{HERO_CTA_LABEL}</span>
                     <span class="sm:hidden">Participer</span>
                 </a>
                 <div

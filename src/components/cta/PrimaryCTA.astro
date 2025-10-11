@@ -1,5 +1,7 @@
 ---
 import { TICKETING_BASE_URL } from '../../config/cta'
+import { EXPERIMENTS, labelFor } from '../../config/experiments'
+const CTA_LABEL = labelFor(EXPERIMENTS.ctaLabelVariant)
 ---
 
 <a
@@ -8,9 +10,9 @@ import { TICKETING_BASE_URL } from '../../config/cta'
     data-cta
     data-placement="header"
     data-base-href={TICKETING_BASE_URL}
-    aria-label="Réserver ma place">
+    aria-label={CTA_LABEL}>
     <span>🎫</span>
-    <span>Réserver ma place</span>
+    <span>{CTA_LABEL}</span>
 </a>
 
 <script>

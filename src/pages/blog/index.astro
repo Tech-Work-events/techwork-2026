@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 
+import CTASection from '../../components/cta/CTASection.astro'
+
 const posts = await getCollection('blog')
 
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -21,8 +23,8 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
                 <span class="text-gradient animate-gradient">coulisses</span>
             </h1>
             <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto scroll-animate">
-                Découvrez les actualités de Tech'Work Lyon, nos réflexions sur l'écosystème tech lyonnais et les
-                coulisses de l'organisation.
+                Découvrez les actualités de Tech'Work Lyon, nos réflexions (lama friendly) sur l'écosystème tech
+                lyonnais et les coulisses de l'organisation (avec ou sans laine).
             </p>
         </div>
     </section>
@@ -81,6 +83,12 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
                     </div>
                 )
             }
+
+            <CTASection
+                title="On continue la lecture en vrai ?"
+                description="Le blog c'est cool, mais sur place c'est mieux. Reserve ta place."
+                placement="content-blog-index"
+            />
         </div>
     </section>
 </Layout>
