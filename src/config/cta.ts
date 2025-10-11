@@ -10,4 +10,4 @@ export const UTM_DEFAULTS = {
 }
 
 export const REFUND_POLICY_SNIPPET =
-    'Remboursement possible sur demande (association) — écris-nous à contact@techwork.events'
+    'Remboursement possible sur demande (asso). Et même si les lamas crachent, on ne crache pas dans la soupe :\nsi tu peux éviter, ça aide la communauté ; sinon, écris‑nous : contact@techwork.events'
