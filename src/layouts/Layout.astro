@@ -30,6 +30,7 @@ const keywords =
 
 const organizerName = "Tech'Work Lyon"
 const organizerTwitter = '@techworklyon'
+const GA_ID = import.meta.env.PUBLIC_GA_ID
 ---
 
 <!doctype html>
@@ -45,7 +46,16 @@ const organizerTwitter = '@techworklyon'
 
         <link href="/manifest.json" rel="manifest" />
         <!-- Performance hints -->
-        <link rel="preconnect" href="https://plausible.gresse.io" crossorigin />
+        <!-- Analytics performance hints -->
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <!-- Font performance hints -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta content="yes" name="mobile-web-app-capable" />
@@ -89,7 +99,21 @@ const organizerTwitter = '@techworklyon'
 
         <slot name="head" />
 
-        <script is:inline defer data-domain="cloudnord.fr" src="https://plausible.gresse.io/js/script.js"></script>
+        {
+            GA_ID && (
+                <>
+                    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+                    <script is:inline>
+                        {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_ID}', { anonymize_ip: true });
+                    `}
+                    </script>
+                </>
+            )
+        }
         <ClientRouter />
     </head>
     <body class="antialiased">
