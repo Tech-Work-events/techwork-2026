@@ -238,7 +238,10 @@ const openRoles = [
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href={`mailto:${SOCIAL_DATA.contact.team}`}
-                            class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                            class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                            aria-label="Rejoindre l'équipe (contact email)"
+                            data-cta
+                            data-placement="team-contact-primary">
                             <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                             Rejoindre l'équipe
                         </a>
@@ -246,7 +249,10 @@ const openRoles = [
                             href="https://discord.gg/techwork-lyon"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn-secondary text-lg px-8 py-4 hover-lift group">
+                            class="btn btn-secondary text-lg px-8 py-4 hover-lift group"
+                            aria-label="Rejoindre la communauté Discord"
+                            data-cta
+                            data-placement="team-contact-discord">
                             <span class="mr-2 group-hover:animate-bounce-gentle">💬</span>
                             Discord communauté
                         </a>

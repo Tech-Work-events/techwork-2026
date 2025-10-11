@@ -112,7 +112,10 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                     data-smooth-scroll
                     href="#tickets"
                     class="btn btn-primary text-sm sm:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-full max-w-xs sm:max-w-sm glow text-center hover-lift animate-scale-in group"
-                    style="animation-delay: 0.8s;">
+                    style="animation-delay: 0.8s;"
+                    aria-label="Voir la billetterie"
+                    data-cta
+                    data-placement="hero-primary">
                     <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
                     <span class="hidden xs:inline sm:hidden md:inline">{HERO_CTA_LABEL}</span>
                     <span class="sm:hidden">Participer</span>
@@ -121,7 +124,10 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                     class="flex flex-col xs:flex-row gap-2 sm:gap-3 w-full max-w-xs xs:max-w-lg justify-center stagger-children">
                     <a
                         href="#cfp"
-                        class="btn btn-secondary text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-left group">
+                        class="btn btn-secondary text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-left group"
+                        aria-label="Voir le CFP"
+                        data-cta
+                        data-placement="hero-cfp">
                         <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🎤</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Postuler au CFP</span>
                         <span class="xs:hidden sm:inline md:hidden">CFP</span>
@@ -129,7 +135,10 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                     <a
                         data-smooth-scroll
                         href="#sponsors"
-                        class="btn btn-ghost text-white border-white hover:bg-white/10 text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-right group">
+                        class="btn btn-ghost text-white border-white hover:bg-white/10 text-xs xs:text-sm sm:text-base px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 flex-1 text-center hover-lift animate-slide-right group"
+                        aria-label="Aller à la section partenaires"
+                        data-cta
+                        data-placement="hero-sponsors">
                         <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🤝</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Devenir partenaire</span>
                         <span class="xs:hidden sm:inline md:hidden">Partenaire</span>

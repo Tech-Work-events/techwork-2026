@@ -287,7 +287,12 @@ import CTASection from '../components/cta/CTASection.astro'
                     </div>
                 </div>
 
-                <a href="mailto:lieu@techwork.lyon" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                <a
+                    href="mailto:lieu@techwork.lyon"
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                    aria-label="Proposer un lieu par email"
+                    data-cta
+                    data-placement="location-suggest">
                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                     Proposer un lieu
                 </a>
@@ -340,7 +345,10 @@ import CTASection from '../components/cta/CTASection.astro'
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                     href="/team"
-                    class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group">
+                    class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group"
+                    aria-label="Contacter l'équipe"
+                    data-cta
+                    data-placement="location-contact-team">
                     <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
                     Contacter l'équipe
                 </a>

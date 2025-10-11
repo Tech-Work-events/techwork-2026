@@ -53,14 +53,20 @@ const cfp = CFP_DATA
                                 href={SERVICES_DATA.cfp.publicUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center">
+                                class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center"
+                                aria-label="Soumettre une proposition au CFP"
+                                data-cta
+                                data-placement="cfp-header">
                                 <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
                                 Soumettre ma proposition
                             </a>
                         ) : (
                             <a
                                 href={`mailto:${cfp.contact.email}`}
-                                class="btn btn-secondary hover-lift group inline-flex items-center">
+                                class="btn btn-secondary hover-lift group inline-flex items-center"
+                                aria-label="Nous contacter (CFP fermé)"
+                                data-cta
+                                data-placement="cfp-header-closed">
                                 <span class="mr-2">📧</span>
                                 Nous contacter
                             </a>
@@ -224,7 +230,10 @@ const cfp = CFP_DATA
                             href={SERVICES_DATA.cfp.publicUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center">
+                            class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center"
+                            aria-label="Soumettre une proposition au CFP"
+                            data-cta
+                            data-placement="cfp-bottom">
                             <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
                             Soumettre ma proposition
                         </a>
@@ -242,7 +251,10 @@ const cfp = CFP_DATA
                         </div>
                         <a
                             href={`mailto:${cfp.contact.email}`}
-                            class="btn btn-ghost text-white border-white hover:bg-white/10 inline-flex items-center">
+                            class="btn btn-ghost text-white border-white hover:bg-white/10 inline-flex items-center"
+                            aria-label="Nous contacter (CFP fermé)"
+                            data-cta
+                            data-placement="cfp-bottom-closed">
                             <span class="mr-2">📧</span>
                             Nous contacter
                         </a>

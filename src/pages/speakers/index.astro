@@ -85,7 +85,12 @@ const speakers = openPlannerData?.speakers || []
                             </div>
 
                             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="/cfp" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                                <a
+                                    href="/cfp"
+                                    class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                                    aria-label="Proposer un talk (ouvrir la page CFP)"
+                                    data-cta
+                                    data-placement="speakers-empty-cfp">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📝</span>
                                     Proposer un talk
                                 </a>
@@ -113,7 +118,6 @@ const speakers = openPlannerData?.speakers || []
                                                     alt={speaker.name}
                                                     loading="lazy"
                                                     decoding="async"
-                                                    loading="lazy"
                                                 />
                                             ) : (
                                                 <div class="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full mx-auto flex items-center justify-center text-2xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">

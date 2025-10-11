@@ -43,7 +43,10 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
             <div class="mt-6">
                 <a
                     href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
-                    class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                    aria-label="Contacter l'équipe sponsoring par email"
+                    data-cta
+                    data-placement="sponsors-header">
                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                     Discutons partenariat
                 </a>
@@ -102,7 +105,10 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
 
                             <a
                                 href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
-                                class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                                class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                                aria-label="Devenir partenaire (contact email)"
+                                data-cta
+                                data-placement="sponsors-empty">
                                 <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                                 Devenir partenaire
                             </a>
@@ -162,7 +168,10 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                 </p>
                                 <a
                                     href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
-                                    class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                                    class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                                    aria-label="Devenir partenaire (contact email)"
+                                    data-cta
+                                    data-placement="sponsors-bottom">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                                     Devenir partenaire
                                 </a>
@@ -240,7 +249,10 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                             <div class="space-y-3">
                                 <a
                                     href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
-                                    class="btn btn-primary w-full hover-lift group">
+                                    class="btn btn-primary w-full hover-lift group"
+                                    aria-label="Contacter l'équipe sponsoring par email"
+                                    data-cta
+                                    data-placement="sponsors-contact-card">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                                     {SERVICES_DATA.sponsors.contact.email}
                                 </a>
