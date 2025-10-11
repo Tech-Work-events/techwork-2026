@@ -1,5 +1,6 @@
 ---
 import { TICKETS_CONFIG, SERVICES_DATA } from '../../config'
+import { REFUND_POLICY_SNIPPET } from '../../config/cta'
 
 const tickets = TICKETS_CONFIG.map((ticket) => ({
     ...ticket,
@@ -109,6 +110,33 @@ const tickets = TICKETS_CONFIG.map((ticket) => ({
                     </div>
                 ))
             }
+        </div>
+
+        <!-- Valeur & confiance -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 scroll-animate">
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🤝</div>
+                <h4 class="font-bold text-gray-900 mb-1">Réseauter</h4>
+                <p class="text-sm text-gray-600">
+                    Rencontre la tribu tech locale, fais tourner les cartes et les idées.
+                </p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🧠</div>
+                <h4 class="font-bold text-gray-900 mb-1">Se former</h4>
+                <p class="text-sm text-gray-600">Talks et ateliers pour booster tes skills sans tondre ton agenda.</p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🥂</div>
+                <h4 class="font-bold text-gray-900 mb-1">Afterwork</h4>
+                <p class="text-sm text-gray-600">
+                    Ambiance détendue, échanges de qualité, l'esprit Tech'Work façon lama.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center text-xs text-gray-500">
+            {REFUND_POLICY_SNIPPET}
         </div>
 
         <div class="text-center mt-12 scroll-animate">

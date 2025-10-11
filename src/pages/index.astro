@@ -9,6 +9,8 @@ import HomeContentBlock from '../components/home/HomeContentBlock.astro'
 import HomeAboutBlock from '../components/home/HomeAboutBlock.astro'
 import HomeGalleryBlock from '../components/home/HomeGalleryBlock.astro'
 import HomeTicketsBlock from '../components/home/HomeTicketsBlock.astro'
+import HomeSocialProof from '../components/home/HomeSocialProof.astro'
+import HomeFAQ from '../components/home/HomeFAQ.astro'
 
 const response = await fetch(OPENPLANNER_URL)
 const openPlannerData: OpenPlannerType = await response.json()
@@ -20,7 +22,9 @@ const tickets = await getCollection('tickets')
 
     <HomeContentBlock />
     <HomeTicketsBlock tickets={tickets} />
+    <HomeSocialProof />
     <HomeGalleryBlock />
+    <HomeFAQ />
     <HomeAboutBlock />
 
     <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
