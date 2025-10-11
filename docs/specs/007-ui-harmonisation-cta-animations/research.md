@@ -37,3 +37,15 @@
 -   Établir une matrice « page × CTA » et « page × animations autorisées »
 -   Définir les tailles typographiques et rampes d’espacement cibles (mobile/desktop)
 -   Lancer première passe d’harmonisation sur Home/Sponsors/CFP, puis les autres pages
+
+## Baseline LHCI (2025-10-11 19:32)
+
+-   404: https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760204130680-39775.report.html
+-   Home (/index.html): https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760204131528-28814.report.html
+-   Home (/): https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760204132429-48810.report.html
+
+## Reduced Motion Policy (confirmed)
+
+-   Respect strict de `prefers-reduced-motion`: animations non essentielles désactivées.
+-   Les éléments décoratifs restent statiques; transitions raccourcies/simplifiées.
+-   Les visuels LCP (hero) ne dépendent pas d’animations bloquantes.

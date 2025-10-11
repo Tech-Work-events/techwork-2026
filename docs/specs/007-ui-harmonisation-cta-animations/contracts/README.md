@@ -21,6 +21,8 @@ These contracts codify the expected behavior and presentation for UI elements ac
 -   In-view appearances: subtle opacity+translate; durations 150–300ms; ease-out.
 -   Respects prefers-reduced-motion: disable nonessential motion.
 
+-   Reduced motion fallback: nonessential animations MUST be disabled under `prefers-reduced-motion`; essential transitions degrade gracefully (no infinite loops, no parallax).
+
 ## Accessibility Contract
 
 -   Text and interactive elements meet AA contrast.

@@ -40,6 +40,8 @@ Open the printed report links. Ensure no category regresses by > 2 points.
 -   Focus visibles; alt cohrents; textes lisibles sur fonds dgrdgs
 -   Animations discrtes (opacity/translate), dsactives si prefers-reduced-motion
 
+-   Vérifier aussi en mode `prefers-reduced-motion` (simulateur navigateur) que les animations non essentielles sont désactivées.
+
 ## Success Criteria
 
 -   Harmonisation perue (typographie, espaces, palette)
