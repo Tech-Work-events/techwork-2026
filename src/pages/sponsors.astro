@@ -47,7 +47,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                     aria-label="Contacter l'équipe sponsoring par email"
                     data-cta
                     data-placement="sponsors-header">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">📧</span>
                     Discutons partenariat
                 </a>
                 <p class="text-sm text-gray-500 mt-2">
@@ -172,7 +172,9 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                     aria-label="Devenir partenaire (contact email)"
                                     data-cta
                                     data-placement="sponsors-bottom">
-                                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">
+                                        📧
+                                    </span>
                                     Devenir partenaire
                                 </a>
                             </div>

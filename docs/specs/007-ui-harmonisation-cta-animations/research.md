@@ -47,6 +47,12 @@
 -   Définir les tailles typographiques et rampes d’espacement cibles (mobile/desktop)
 -   Lancer première passe d’harmonisation sur Home/Sponsors/CFP, puis les autres pages
 
+## Mid‑pass LHCI (after 3.4, 2025-10-11 19:50)
+
+-   404: https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760205235118-57187.report.html
+-   Home (/index.html): https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760205235975-18594.report.html
+-   Blog (/blog/index.html): https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760205236930-90516.report.html
+
 ## Baseline LHCI (2025-10-11 19:32)
 
 -   404: https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1760204130680-39775.report.html

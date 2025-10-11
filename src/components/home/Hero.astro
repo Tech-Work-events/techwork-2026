@@ -101,7 +101,7 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                 </h2>
                 <p class="text-gray-200 text-base sm:text-lg">
                     {EVENT_DATA.event.location.venue}
-                    <span class="inline-block animate-bounce-gentle">🔥</span>
+                    <span class="inline-block animate-bounce-gentle" aria-hidden="true">🔥</span>
                 </p>
             </div>
 
@@ -116,7 +116,7 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                     aria-label="Voir la billetterie"
                     data-cta
                     data-placement="hero-primary">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
+                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">🚀</span>
                     <span class="hidden xs:inline sm:hidden md:inline">{HERO_CTA_LABEL}</span>
                     <span class="sm:hidden">Participer</span>
                 </a>
@@ -128,7 +128,7 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                         aria-label="Voir le CFP"
                         data-cta
                         data-placement="hero-cfp">
-                        <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🎤</span>
+                        <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">🎤</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Postuler au CFP</span>
                         <span class="xs:hidden sm:inline md:hidden">CFP</span>
                     </a>
@@ -139,7 +139,7 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                         aria-label="Aller à la section partenaires"
                         data-cta
                         data-placement="hero-sponsors">
-                        <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle">🤝</span>
+                        <span class="mr-1 xs:mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">🤝</span>
                         <span class="hidden xs:inline sm:hidden md:inline">Devenir partenaire</span>
                         <span class="xs:hidden sm:inline md:hidden">Partenaire</span>
                     </a>
