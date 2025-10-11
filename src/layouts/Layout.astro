@@ -15,7 +15,7 @@ interface Props {
 
 const { title, description, metaImage } = Astro.props
 const url = import.meta.env.SITE
-const image = metaImage || url + '/social-share.png'
+const image = metaImage || url + '/og/llama-default.svg'
 const siteName = "Tech'Work Lyon"
 const pageTitle = title || siteName
 const siteNameWithTagline = "Tech'Work Lyon 2026 - L'afterwork IT sur votre temps de travail"
@@ -66,6 +66,11 @@ const organizerTwitter = '@techworklyon'
         <meta content="fr" property="og:locale" />
         <meta content={image} property="og:image" />
         <meta content="image/jpeg" property="og:image:type" />
+        <meta content="1200" property="og:image:width" />
+        <meta content="630" property="og:image:height" />
+        <meta content="Lama Tech'Work Lyon" property="og:image:alt" />
+        <!-- PNG fallback for platforms not supporting SVG in OG -->
+        <meta content={url + '/social-share.png'} property="og:image" />
 
         <!-- Twitter meta data -->
         <meta content="summary_large_image" name="twitter:card" />
