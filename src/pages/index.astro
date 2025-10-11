@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro'
 import SponsorsBlock from '../components/home/SponsorsBlock.astro'
 import Hero from '../components/home/Hero.astro'
 import HomeContentBlock from '../components/home/HomeContentBlock.astro'
-import HomeAboutBlock from '../components/home/HomeAboutBlock.astro'
+
 import HomeGalleryBlock from '../components/home/HomeGalleryBlock.astro'
 import HomeTicketsBlock from '../components/home/HomeTicketsBlock.astro'
 import HomeSocialProof from '../components/home/HomeSocialProof.astro'
@@ -21,11 +21,10 @@ const tickets = await getCollection('tickets')
     <Hero />
 
     <HomeContentBlock />
-    <HomeTicketsBlock tickets={tickets} />
     <HomeSocialProof />
+    <HomeTicketsBlock tickets={tickets} />
     <HomeGalleryBlock />
     <HomeFAQ />
-    <HomeAboutBlock />
 
     <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
 </Layout>

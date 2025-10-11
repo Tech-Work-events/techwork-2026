@@ -11,9 +11,10 @@ interface Props {
     title: string
     description?: string
     metaImage?: string | null
+    robots?: string
 }
 
-const { title, description, metaImage } = Astro.props
+const { title, description, metaImage, robots } = Astro.props
 const url = import.meta.env.SITE
 const image = metaImage || url + '/og/llama-default.svg'
 const siteName = "Tech'Work Lyon"
@@ -35,7 +36,7 @@ const organizerTwitter = '@techworklyon'
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content={robots || 'index, follow'} />
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
