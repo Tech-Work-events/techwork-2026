@@ -6,12 +6,16 @@ import { EXPERIMENTS, labelFor } from '../../config/experiments'
 const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
 ---
 
+<Fragment slot="head">
+    <link rel="preload" as="image" href={backgroundHome.src} />
+</Fragment>
+
 <section
     class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient"
     role="banner"
     aria-labelledby="event-title">
-    <!-- Éléments flottants animés - Optimisés mobile -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index:1;">
+    <!-- Éléments flottants animés - Optimisés mobile (décoratifs) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index:1;" aria-hidden="true">
         <div
             class="absolute top-20 left-4 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 bg-white/10 rounded-full animate-float"
             style="animation-delay: 0s;">
@@ -34,29 +38,35 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
         </div>
     </div>
 
-    <!-- Background Pattern animé -->
-    <div class="absolute inset-0 opacity-20 pointer-events-none" style="z-index:1;">
+    <!-- Background Pattern animé (décoratif) -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none" style="z-index:1;" aria-hidden="true">
         <div
             class="absolute inset-0 animate-gradient bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-primary-600/10"
             style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;">
         </div>
     </div>
 
-    <!-- Background Image Overlay -->
+    <!-- Background Image Overlay (LCP) -->
     <Picture
         src={backgroundHome}
         formats={['avif', 'webp']}
         alt=""
-        loading="lazy"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        sizes="100vw"
+        width={backgroundHome.width}
+        height={backgroundHome.height}
         class="absolute inset-0 w-full h-full object-cover opacity-75 parallax pointer-events-none"
         data-speed="0.2"
         style="z-index:1;"
     />
 
-    <!-- Gradient Overlay animé -->
+    <!-- Gradient Overlay animé (décoratif) -->
     <div
         class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90 animate-gradient pointer-events-none"
-        style="z-index:2;">
+        style="z-index:2;"
+        aria-hidden="true">
     </div>
 
     <!-- Content -->
