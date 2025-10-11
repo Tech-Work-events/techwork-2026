@@ -355,7 +355,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
 
                 // Parallax doux pour les éléments
                 initParallax() {
-                    if (isMobile()) return // Pas de parallax sur mobile
+                    if (isMobile() || prefersReducedMotion()) return // Pas de parallax sur mobile ou si motion réduite
 
                     const parallaxElements = document.querySelectorAll('.parallax')
 

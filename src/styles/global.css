@@ -319,7 +319,7 @@
     /* Animations au scroll avec isolation - Optimisées pour mobile */
     .scroll-animate {
         opacity: 0;
-        transform: translate3d(0, 30px, 0);
+        transform: translate3d(0, 12px, 0);
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         z-index: 1;
@@ -333,7 +333,7 @@
 
     .scroll-animate-left {
         opacity: 0;
-        transform: translate3d(-50px, 0, 0);
+        transform: translate3d(-12px, 0, 0);
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         z-index: 1;
@@ -347,7 +347,7 @@
 
     .scroll-animate-right {
         opacity: 0;
-        transform: translate3d(50px, 0, 0);
+        transform: translate3d(12px, 0, 0);
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         z-index: 1;
@@ -361,7 +361,7 @@
 
     .scroll-animate-scale {
         opacity: 0;
-        transform: scale3d(0.8, 0.8, 1);
+        transform: scale3d(0.98, 0.98, 1);
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         z-index: 1;
@@ -383,19 +383,19 @@
         }
 
         .scroll-animate {
-            transform: translate3d(0, 20px, 0);
+            transform: translate3d(0, 8px, 0);
         }
 
         .scroll-animate-left {
-            transform: translate3d(-30px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
         }
 
         .scroll-animate-right {
-            transform: translate3d(30px, 0, 0);
+            transform: translate3d(10px, 0, 0);
         }
 
         .scroll-animate-scale {
-            transform: scale3d(0.9, 0.9, 1);
+            transform: scale3d(0.99, 0.99, 1);
         }
     }
 
@@ -437,7 +437,7 @@
         z-index: 1;
         backface-visibility: hidden;
         transform-style: preserve-3d;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         will-change: transform;
     }
 
@@ -459,7 +459,7 @@
     /* Animations pour les blocs de texte progressifs */
     .text-blocks > .text-block {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(12px);
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         animation-fill-mode: forwards;
         position: relative;
@@ -686,8 +686,11 @@ button.btn-ghost.text-white:hover {
 
 /* Améliorations des animations existantes - Optimisées pour mobile */
 .btn {
-    @apply transition-all duration-300 ease-out;
-    will-change: transform, box-shadow;
+    transition:
+        transform 0.2s ease-out,
+        background-color 0.2s ease-out,
+        color 0.2s ease-out;
+    will-change: transform;
 }
 
 .btn:hover {
@@ -696,8 +699,11 @@ button.btn-ghost.text-white:hover {
 }
 
 .card {
-    @apply transition-all duration-300 ease-out;
-    will-change: transform, box-shadow;
+    transition:
+        transform 0.2s ease-out,
+        background-color 0.2s ease-out,
+        color 0.2s ease-out;
+    will-change: transform;
 }
 
 .card:hover {
