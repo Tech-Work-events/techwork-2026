@@ -40,6 +40,33 @@ const cfp = CFP_DATA
                         </div>
                     </div>
                 </div>
+                <div class="mt-6 space-y-4">
+                    <ul class="text-left mx-auto max-w-2xl text-gray-700 text-sm grid gap-2">
+                        <li>• Audience dev qualifiée</li>
+                        <li>• Formats courts et denses</li>
+                        <li>• Ambiance bienveillante (lama friendly)</li>
+                    </ul>
+
+                    {
+                        cfp.cfp.isOpen ? (
+                            <a
+                                href={SERVICES_DATA.cfp.publicUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-secondary text-lg px-8 py-4 hover-lift group inline-flex items-center">
+                                <span class="mr-2 group-hover:animate-bounce-gentle">🚀</span>
+                                Soumettre ma proposition
+                            </a>
+                        ) : (
+                            <a
+                                href={`mailto:${cfp.contact.email}`}
+                                class="btn btn-secondary hover-lift group inline-flex items-center">
+                                <span class="mr-2">📧</span>
+                                Nous contacter
+                            </a>
+                        )
+                    }
+                </div>
             </div>
         </div>
     </section>
