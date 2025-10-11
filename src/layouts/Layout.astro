@@ -3,6 +3,8 @@ import { ClientRouter } from 'astro:transitions'
 import FooterBlock from '../components/footer/FooterBlock.astro'
 import Menu from '../components/Menu.astro'
 import CookieConsent from '../components/legal/CookieConsent.astro'
+import StickyCTA from '../components/cta/StickyCTA.astro'
+
 import '../styles/global.css'
 
 interface Props {
@@ -87,6 +89,9 @@ const organizerTwitter = '@techworklyon'
         </main>
 
         <FooterBlock />
+
+        <!-- Sticky CTA (mobile/tablet) -->
+        <StickyCTA />
 
         <!-- Gestion des cookies RGPD -->
         <CookieConsent />
