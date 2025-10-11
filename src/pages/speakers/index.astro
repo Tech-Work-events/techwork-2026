@@ -112,6 +112,8 @@ const speakers = openPlannerData?.speakers || []
                                                     src={speaker.photoUrl}
                                                     alt={speaker.name}
                                                     loading="lazy"
+                                                    decoding="async"
+                                                    loading="lazy"
                                                 />
                                             ) : (
                                                 <div class="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full mx-auto flex items-center justify-center text-2xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">

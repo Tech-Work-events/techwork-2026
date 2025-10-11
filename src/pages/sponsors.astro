@@ -136,6 +136,8 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                                     src={sponsor.logoUrl}
                                                     alt={sponsor.name}
                                                     loading="lazy"
+                                                    decoding="async"
+                                                    fetchpriority="low"
                                                 />
                                                 <div class="mt-4 text-center">
                                                     <h3 class="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
