@@ -11,22 +11,22 @@
 
 /* Assurer la visibilité du header sur mobile */
 @media (max-width: 767px) {
+    /* Le header doit être OPAQUE sur mobile */
     #site-header {
-        /* Force un arrière-plan minimum sur mobile pour garantir la visibilité */
-        background-color: rgba(0, 0, 0, 0.1) !important;
-        backdrop-filter: blur(8px) !important;
-        -webkit-backdrop-filter: blur(8px) !important;
+        background-color: #ffffff !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
+    /* Même en mode "transparent", on garde un fond blanc sur mobile */
     #site-header[data-transparent='true'] {
-        /* Même en mode transparent, garder un arrière-plan léger sur mobile */
-        background-color: rgba(0, 0, 0, 0.2) !important;
+        background-color: #ffffff !important;
     }
 
-    /* Améliorer la lisibilité du logo sur mobile */
+    /* Retirer le shadow forcé pour un rendu net */
     #site-header span,
     #site-header a {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+        text-shadow: none !important;
     }
 }
 
