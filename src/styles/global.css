@@ -30,6 +30,32 @@
     }
 }
 
+/* Header brand focus readability over Hero */
+#site-header .flex-shrink-0 a {
+    /* Stabilize box to avoid layout shift on focus */
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem; /* rounded-md */
+    background: transparent;
+    transition:
+        background-color 150ms ease-out,
+        outline-color 150ms ease-out;
+}
+
+/* On-Hero context (desktop, transparent header): strong focus background + white outline */
+@media (min-width: 768px) {
+    #site-header[data-transparent='true'] .flex-shrink-0 a:focus-visible {
+        background: rgba(0, 0, 0, 0.6);
+        outline: 3px solid #ffffff;
+        outline-offset: 2px;
+    }
+}
+
+/* Off-Hero or solid header: keep primary-colored outline without background fill */
+#site-header:not([data-transparent='true']) .flex-shrink-0 a:focus-visible {
+    outline: 2px solid #2563eb; /* primary-600 */
+    outline-offset: 2px;
+}
+
 /* Animation pour les éléments du menu mobile */
 .nav-drawer .flex {
     opacity: 0;

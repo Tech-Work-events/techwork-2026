@@ -2,37 +2,37 @@
     {
         "name": "minScore",
         "expected": 0.95,
-        "actual": 0.86,
-        "values": [0.85, 0.86, 0.86],
+        "actual": 0.91,
+        "values": [0.84, 0.91, 0.86],
         "operator": ">=",
         "passed": false,
         "auditProperty": "performance",
         "auditId": "categories",
         "level": "warn",
-        "url": "http://localhost:63748/404.html"
+        "url": "http://localhost:52585/404.html"
     },
     {
         "name": "minScore",
         "expected": 0.95,
         "actual": 0.83,
-        "values": [0.81, 0.81, 0.83],
+        "values": [0.81, 0.8, 0.83],
         "operator": ">=",
         "passed": false,
         "auditProperty": "performance",
         "auditId": "categories",
         "level": "warn",
-        "url": "http://localhost:63748/index.html"
+        "url": "http://localhost:52585/index.html"
     },
     {
         "name": "minScore",
         "expected": 0.95,
         "actual": 0.9,
-        "values": [0.89, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.88, 0.9],
+        "values": [0.9, 0.9, 0.89, 0.9, 0.89, 0.9, 0.88, 0.9, 0.89],
         "operator": ">=",
         "passed": false,
         "auditProperty": "performance",
         "auditId": "categories",
         "level": "warn",
-        "url": "http://localhost:63748/"
+        "url": "http://localhost:52585/"
     }
 ]
