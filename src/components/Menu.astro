@@ -34,7 +34,7 @@ const isActiveRoute = (route: string) => {
                     aria-label="Retour à la page d'accueil"
                     class={`text-3xl font-black cursor-pointer ${
                         routeName === '/'
-                            ? 'text-white drop-shadow-lg'
+                            ? 'text-gradient drop-shadow-lg'
                             : 'text-gradient hover:opacity-80 transition-opacity'
                     }`}>
                     {EVENT_DATA.event.shortName}
@@ -285,7 +285,7 @@ const isActiveRoute = (route: string) => {
         // Logo
         if (logo) {
             logo.className = `text-3xl font-black cursor-pointer ${
-                isScrolled ? 'text-gradient hover:opacity-80 transition-opacity' : 'text-white drop-shadow-lg'
+                isScrolled ? 'text-gradient hover:opacity-80 transition-opacity' : 'text-gradient drop-shadow-lg'
             }`
         }
 

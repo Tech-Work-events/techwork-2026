@@ -56,6 +56,25 @@
     outline-offset: 2px;
 }
 
+/* Header logo gradient variants for contrast */
+#site-header[data-transparent='true'] .flex-shrink-0 a.text-gradient {
+    /* Brighter gradient for dark/transparent hero */
+    @apply bg-gradient-to-r from-primary-200 via-primary-300 to-secondary-300 bg-clip-text text-transparent;
+    /* Extra legibility on complex backgrounds */
+    filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.45));
+}
+
+#site-header:not([data-transparent='true']) .flex-shrink-0 a.text-gradient {
+    /* Darker gradient for white/solid header to meet contrast */
+    @apply bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-transparent;
+}
+
+@media (prefers-contrast: more) {
+    #site-header:not([data-transparent='true']) .flex-shrink-0 a.text-gradient {
+        @apply bg-gradient-to-r from-primary-800 to-secondary-800 bg-clip-text text-transparent;
+    }
+}
+
 /* Animation pour les éléments du menu mobile */
 .nav-drawer .flex {
     opacity: 0;
@@ -482,6 +501,50 @@
         }
     }
 
+    /* Interactive press for CTA/buttons (motion-safe) */
+    .interactive-press {
+        transition:
+            transform 0.18s ease-in-out,
+            box-shadow 0.18s ease-in-out;
+        will-change: transform;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        .interactive-press:hover,
+        .interactive-press:focus-visible {
+            transform: scale(1.02);
+        }
+        .interactive-press:active {
+            transform: scale(0.995);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .interactive-press {
+            transition: opacity 0.15s ease-out;
+        }
+        .interactive-press:hover,
+        .interactive-press:focus-visible,
+        .interactive-press:active {
+            transform: none;
+        }
+    }
+
+    /* Skeleton shimmer (motion-safe) */
+    .skeleton {
+        @apply bg-gray-100 relative overflow-hidden;
+    }
+    .skeleton::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+        animation: shimmer 1.3s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .skeleton::after {
+            animation: none;
+        }
+    }
+
     /* Animations pour les blocs de texte progressifs */
     .text-blocks > .text-block {
         opacity: 0;
@@ -691,6 +754,16 @@
     }
 }
 
+/* Keyframes for skeleton shimmer */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 .btn-primary:hover,
 a.btn-primary:hover,
 button.btn-primary:hover {
@@ -807,12 +880,92 @@ button.btn-ghost.text-white:hover {
     .animate-bounce-gentle {
         animation-duration: 4s;
     }
-
     .animate-float {
         animation-duration: 6s;
     }
-
     .animate-gradient {
         animation-duration: 10s;
     }
+}
+
+/* Neutralize animations/transitions for ticket cards in HomeTicketsBlock */
+[data-no-animate='true'] *,
+[data-no-animate='true'] *::before,
+[data-no-animate='true'] *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+[data-no-animate='true'] .skeleton::after {
+    animation: none !important;
+}
+
+/* Within ticket cards scope, disable motion (keep visual state stable) */
+[data-no-animate='true'] :hover,
+[data-no-animate='true'] :active {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Prevent group-hover motion inside ticket cards */
+[data-no-animate='true'] .group:hover *,
+[data-no-animate='true'] .group:active * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Keep base look on hover for specific components */
+/* Card: keep base shadow-xl; stop lift */
+[data-no-animate='true'] .card:hover {
+    transform: none !important;
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+/* btn-primary: keep base gradient (primary-600 -> primary-700) and base shadow-lg */
+
+/* Allow a subtle press animation only for CTA links inside tickets scope */
+[data-no-animate='true'] a[data-allow-animate='cta'] {
+    transition:
+        transform 180ms ease-in-out,
+        box-shadow 180ms ease-in-out !important;
+    will-change: transform;
+}
+[data-no-animate='true'] a[data-allow-animate='cta']:hover,
+[data-no-animate='true'] a[data-allow-animate='cta']:focus-visible {
+    transform: scale(1.02) !important;
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    [data-no-animate='true'] a[data-allow-animate='cta'] {
+        transition: none !important;
+    }
+    [data-no-animate='true'] a[data-allow-animate='cta']:hover,
+    [data-no-animate='true'] a[data-allow-animate='cta']:focus-visible {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+[data-no-animate='true'] .btn-primary:hover,
+[data-no-animate='true'] .btn-primary:active {
+    transform: none !important;
+    color: #ffffff !important;
+    background-image: linear-gradient(to right, #4f46e5, #4338ca) !important;
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+}
+/* btn-secondary: keep base bg white, border primary-600, no shadow */
+[data-no-animate='true'] .btn-secondary:hover,
+[data-no-animate='true'] .btn-secondary:active {
+    transform: none !important;
+    background-color: #ffffff !important;
+    color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    box-shadow: none !important;
 }
