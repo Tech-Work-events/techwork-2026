@@ -23,7 +23,7 @@ const isActiveRoute = (route: string) => {
 
 <header
     id="site-header"
-    class={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${routeName === '/' ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm md:bg-transparent md:backdrop-blur-none md:border-b-0 md:shadow-none' : 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'}`}
+    class={`fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 ${routeName === '/' ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm md:bg-transparent md:backdrop-blur-none md:border-b md:border-transparent md:shadow-none' : 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'}`}
     data-transparent={routeName === '/'}>
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
@@ -337,13 +337,13 @@ const isActiveRoute = (route: string) => {
                 if (isScrolled) {
                     // Scrolled on homepage - show solid background
                     header.className =
-                        'fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
+                        'fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 border-b bg-white/95 backdrop-blur-md border-gray-200/50 shadow-sm'
                 } else {
                     // Top of homepage - semi-transparent on mobile, transparent on desktop
-                    header.className = `fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+                    header.className = `fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 border-b ${
                         isMobile
-                            ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
-                            : 'bg-transparent border-b-0'
+                            ? 'bg-white/95 backdrop-blur-md border-gray-200/50 shadow-sm'
+                            : 'bg-transparent border-transparent shadow-none backdrop-blur-none'
                     }`
                 }
 
@@ -352,7 +352,7 @@ const isActiveRoute = (route: string) => {
             } else {
                 // Other pages - always solid background
                 header.className =
-                    'fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-sm'
+                    'fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 border-b bg-white/95 backdrop-blur-md border-gray-200/50 shadow-sm'
             }
         }
     }
