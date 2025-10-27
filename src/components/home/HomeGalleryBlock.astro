@@ -58,6 +58,8 @@ const gallery = allPhotos.slice(0, 9)
                             src={photo}
                             alt={`Photo de l'événement ${EVENT_DATA.event.name} - Image ${index + 1}`}
                             loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
                         />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -65,13 +67,9 @@ const gallery = allPhotos.slice(0, 9)
                 ))
             }
 
-            <script is:inline data-all={JSON.stringify(allPhotos)}>
+            <script is:inline>
                 try {
-                    const data = document.currentScript?.getAttribute('data-all') || '[]'
-                    const all = JSON.parse(data)
                     const imgs = Array.from(document.querySelectorAll('[data-gallery-img]'))
-
-                    const shuffled = (arr) => arr.slice().sort(() => Math.random() - 0.5)
 
                     function applyResponsiveHeights() {
                         const isMd = window.matchMedia('(min-width: 768px)').matches
@@ -99,67 +97,8 @@ const gallery = allPhotos.slice(0, 9)
                         }
                     }
 
-                    function preloadOrientations(urls, timeoutMs = 1500) {
-                        return new Promise((resolve) => {
-                            const landscape = []
-                            const portrait = []
-                            let done = 0
-                            const total = urls.length
-                            const finish = () => resolve({ landscape, portrait })
-                            const timer = setTimeout(finish, timeoutMs)
-
-                            urls.forEach((u) => {
-                                const url = u.startsWith('/') ? u : `/${u}`
-                                const im = new Image()
-                                im.onload = () => {
-                                    if (im.naturalWidth >= im.naturalHeight) landscape.push(u)
-                                    else portrait.push(u)
-                                    done += 1
-                                    if (done === total) {
-                                        clearTimeout(timer)
-                                        finish()
-                                    }
-                                }
-                                im.onerror = () => {
-                                    done += 1
-                                    if (done === total) {
-                                        clearTimeout(timer)
-                                        finish()
-                                    }
-                                }
-                                im.src = url
-                            })
-                        })
-                    }
-
-                    async function pickPhotosRespectingOrientation() {
-                        if (!Array.isArray(all) || !all.length || !imgs.length) return null
-                        const { landscape, portrait } = await preloadOrientations(all)
-                        const n = imgs.length
-                        let assigned = []
-
-                        if (landscape.length > 0) {
-                            const cover = shuffled(landscape)[0]
-                            assigned[0] = cover
-                            const pool = all.filter((u) => u !== cover)
-                            const rest = shuffled(pool).slice(0, n - 1)
-                            rest.forEach((u, idx) => (assigned[idx + 1] = u))
-                        } else {
-                            assigned = shuffled(all).slice(0, n)
-                        }
-                        return assigned
-                    }
-
-                    ;(async () => {
-                        const assigned = await pickPhotosRespectingOrientation()
-                        if (assigned && assigned.length) {
-                            imgs.forEach((img, i) => {
-                                if (assigned[i]) img.setAttribute('src', assigned[i])
-                            })
-                        }
-                        imgs.forEach(adjustWhenLoaded)
-                        window.addEventListener('resize', applyResponsiveHeights)
-                    })()
+                    imgs.forEach(adjustWhenLoaded)
+                    window.addEventListener('resize', applyResponsiveHeights)
                 } catch (e) {
                     // no-op
                 }
@@ -192,7 +131,7 @@ const gallery = allPhotos.slice(0, 9)
                 <a
                     href="#tickets"
                     class="btn btn-primary inline-flex items-center text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift group animate-scale-in">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">🎫</span>
+                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">🎫</span>
                     Réserver ma place
                 </a>
             </div>

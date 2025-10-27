@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial" fill="#fff" text-anchor="middle">
+    <text x="600" y="260" font-size="164" font-weight="800">🦙</text>
+    <text x="600" y="350" font-size="52" font-weight="800">Tech'Work Lyon 2026</text>
+    <text x="600" y="400" font-size="28" fill="rgba(255,255,255,0.95)">L'afterwork IT (sur temps de travail) — lama friendly</text>
+    <text x="600" y="450" font-size="20" fill="rgba(255,255,255,0.85)">Billets, talks, ateliers & rencontres</text>
+  </g>
+</svg>
+

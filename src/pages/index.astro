@@ -6,22 +6,50 @@ import Layout from '../layouts/Layout.astro'
 import SponsorsBlock from '../components/home/SponsorsBlock.astro'
 import Hero from '../components/home/Hero.astro'
 import HomeContentBlock from '../components/home/HomeContentBlock.astro'
-import HomeAboutBlock from '../components/home/HomeAboutBlock.astro'
+
 import HomeGalleryBlock from '../components/home/HomeGalleryBlock.astro'
 import HomeTicketsBlock from '../components/home/HomeTicketsBlock.astro'
+import HomeSocialProof from '../components/home/HomeSocialProof.astro'
+import HomeFAQ from '../components/home/HomeFAQ.astro'
 
 const response = await fetch(OPENPLANNER_URL)
 const openPlannerData: OpenPlannerType = await response.json()
 const tickets = await getCollection('tickets')
 ---
 
-<Layout title="Tech'Work Lyon 2026">
+<Layout
+    title="Tech'Work Lyon 2026"
+    description="1 journée de talks utiles, ateliers et rencontres – sur le temps de travail, fin à 17h30. Ambiance bienveillante (🦙).">
     <Hero />
 
     <HomeContentBlock />
+    <!-- Benefits Summary (concise, above Social Proof) -->
+    <section class="py-8 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-3 gap-4">
+                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
+                    <div class="text-xl mb-1">🎯</div>
+                    <div class="font-semibold text-gray-900">Contenu utile</div>
+                    <p class="text-gray-600">pas de blabla</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
+                    <div class="text-xl mb-1">⏰</div>
+                    <div class="font-semibold text-gray-900">Fin 17h30</div>
+                    <p class="text-gray-600">promesse tenue</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
+                    <div class="text-xl mb-1">🦙</div>
+                    <div class="font-semibold text-gray-900">Ambiance lama</div>
+                    <p class="text-gray-600">bienveillante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <HomeSocialProof />
     <HomeTicketsBlock tickets={tickets} />
     <HomeGalleryBlock />
-    <HomeAboutBlock />
+    <HomeFAQ />
 
     <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
 </Layout>

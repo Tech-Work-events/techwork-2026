@@ -1,345 +1,380 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import LEGAL_DATA from '../../config/legal.json';
+import Layout from '../../layouts/Layout.astro'
+import LEGAL_DATA from '../../config/legal.json'
 
-const seoTitle = 'Politique de confidentialité - Tech\'Work Lyon 2026';
-const seoDescription = 'Notre engagement pour la protection de vos données personnelles dans le cadre de Tech\'Work Lyon 2026.';
+const seoTitle = "Politique de confidentialité - Tech'Work Lyon 2026"
+const seoDescription =
+    "Notre engagement pour la protection de vos données personnelles dans le cadre de Tech'Work Lyon 2026."
 ---
 
 <Layout title={seoTitle} description={seoDescription}>
-  <!-- Header Section -->
-  <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center scroll-animate">
-        <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
-          <span class="mr-2">🔒</span>
-          Protection des données
-        </div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-          Politique de <span class="text-gradient">confidentialité</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-          Notre engagement pour la protection de vos données personnelles
-        </p>
-        <div class="mt-4 text-sm text-gray-500">
-          Version {LEGAL_DATA.dataProtection.privacyPolicyVersion} - 
-          Mise à jour : {LEGAL_DATA.dataProtection.lastUpdate}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Introduction -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            📋 Introduction
-          </h2>
-          
-          <div class="space-y-4 text-gray-600">
-            <p>
-              Dans le cadre de l'organisation de <strong>Tech'Work Lyon 2026</strong>, nous sommes amenés à traiter 
-              certaines données à caractère personnel vous concernant.
-            </p>
-            
-            <p>
-              Cette politique de confidentialité vous informe sur la manière dont nous collectons, utilisons, 
-              conservons et protégeons vos données personnelles, conformément au Règlement Général sur la 
-              Protection des Données (RGPD).
-            </p>
-            
-            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-              <p class="text-blue-800">
-                <strong>📧 Contact DPO :</strong> Pour toute question relative à la protection de vos données, 
-                contactez notre délégué à la protection des données : 
-                <a href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`} class="underline hover:text-blue-600">
-                  {LEGAL_DATA.dataProtection.dpoEmail}
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Responsable du traitement -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🏢 Responsable du traitement
-          </h2>
-          
-          <div class="bg-gray-50 rounded-lg p-6">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 class="font-semibold text-gray-800 mb-2">Organisation</h3>
-                <p class="text-gray-600">{LEGAL_DATA.organization.legalName}</p>
-                <p class="text-gray-600">{LEGAL_DATA.organization.address.street}</p>
-                <p class="text-gray-600">{LEGAL_DATA.organization.address.postalCode} {LEGAL_DATA.organization.address.city}</p>
-              </div>
-              
-              <div>
-                <h3 class="font-semibold text-gray-800 mb-2">Contact</h3>
-                <p class="text-gray-600">
-                  Email : <a href={`mailto:${LEGAL_DATA.organization.contact.email}`} class="text-blue-600 hover:text-blue-800">{LEGAL_DATA.organization.contact.email}</a>
-                </p>
-                <p class="text-gray-600">Téléphone : {LEGAL_DATA.organization.contact.phone}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Données collectées -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            📊 Données que nous collectons
-          </h2>
-          
-          <div class="space-y-6">
-            <div class="border border-gray-200 rounded-lg p-6">
-              <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                🌐 Navigation sur le site
-              </h3>
-              <p class="text-gray-600 mb-3">
-                <strong>Données collectées :</strong> Aucune donnée personnelle directement collectée
-              </p>
-              <p class="text-gray-600 mb-3">
-                <strong>Base légale :</strong> {LEGAL_DATA.legalBasis.website}
-              </p>
-              <p class="text-gray-600">
-                <strong>Conservation :</strong> {LEGAL_DATA.dataRetention.website}
-              </p>
-            </div>
-
-            <div class="border border-gray-200 rounded-lg p-6">
-              <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                🎟️ Inscription à l'événement
-              </h3>
-              <p class="text-gray-600 mb-3">
-                <strong>Données collectées :</strong> Nom, prénom, email, informations professionnelles
-              </p>
-              <p class="text-gray-600 mb-3">
-                <strong>Base légale :</strong> {LEGAL_DATA.legalBasis.registration}
-              </p>
-              <p class="text-gray-600">
-                <strong>Conservation :</strong> {LEGAL_DATA.dataRetention.registration}
-              </p>
-            </div>
-
-            <div class="border border-gray-200 rounded-lg p-6">
-              <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                🎤 Soumission de talk (CFP)
-              </h3>
-              <p class="text-gray-600 mb-3">
-                <strong>Données collectées :</strong> Profil speaker, contenu des propositions, réseaux sociaux
-              </p>
-              <p class="text-gray-600 mb-3">
-                <strong>Base légale :</strong> {LEGAL_DATA.legalBasis.cfp}
-              </p>
-              <p class="text-gray-600">
-                <strong>Conservation :</strong> {LEGAL_DATA.dataRetention.cfp}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Services tiers -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🔗 Services tiers utilisés
-          </h2>
-          
-          <div class="grid gap-6">
-            {Object.entries(LEGAL_DATA.thirdPartyServices).map(([_key, service]) => (
-              <div class="border border-gray-200 rounded-lg p-6">
-                <div class="flex justify-between items-start mb-3">
-                  <h3 class="text-lg font-semibold text-gray-800">{service.name}</h3>
-                  {service.optOut && (
-                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Opt-out possible</span>
-                  )}
+    <!-- Header Section -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2">🔒</span>
+                    Protection des données
                 </div>
-                
-                <p class="text-gray-600 mb-3">
-                  <strong>Finalité :</strong> {service.purpose}
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Politique de <span class="text-gradient">confidentialité</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Notre engagement pour la protection de vos données personnelles
                 </p>
-                
-                <p class="text-gray-600 mb-3">
-                  <strong>Données collectées :</strong> {service.dataCollected.join(', ')}
-                </p>
-                
-                <p class="text-gray-600">
-                  <strong>Politique de confidentialité :</strong> 
-                  <a href={service.privacyPolicy} target="_blank" rel="noopener noreferrer" 
-                     class="text-blue-600 hover:text-blue-800 underline ml-1">
-                    Consulter
-                  </a>
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <!-- Vos droits -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            👤 Vos droits
-          </h2>
-          
-          <p class="text-gray-600 mb-6">
-            Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-4">
-            {Object.entries(LEGAL_DATA.userRights).map(([_key, right]) => (
-              <div class="border border-gray-200 rounded-lg p-4">
-                <h3 class="font-semibold text-gray-800 mb-2">{right.name}</h3>
-                <p class="text-gray-600 text-sm">{right.description}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h3 class="font-semibold text-blue-900 mb-3">📝 Comment exercer vos droits ?</h3>
-            <p class="text-blue-800 mb-3">
-              Pour exercer vos droits, contactez-nous ou utilisez notre formulaire dédié :
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="/legal/droits-utilisateurs" 
-                 class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                📋 Formulaire de demande
-              </a>
-              <a href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
-                 class="bg-white text-blue-600 border border-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors">
-                📧 Contacter le DPO
-              </a>
+                <div class="mt-4 text-sm text-gray-500">
+                    Version {LEGAL_DATA.dataProtection.privacyPolicyVersion} - Mise à jour : {
+                        LEGAL_DATA.dataProtection.lastUpdate
+                    }
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Sécurité -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🛡️ Sécurité et conservation
-          </h2>
-          
-          <div class="space-y-4 text-gray-600">
-            <p>
-              Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger 
-              vos données personnelles contre la destruction accidentelle ou illicite, la perte, l'altération, 
-              la divulgation ou l'accès non autorisé.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 class="font-semibold text-gray-800 mb-2">🔐 Mesures techniques</h3>
-                <ul class="text-sm space-y-1">
-                  <li>• Chiffrement HTTPS</li>
-                  <li>• Hébergement sécurisé (Firebase)</li>
-                  <li>• Accès restreint aux données</li>
-                  <li>• Sauvegarde sécurisée</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 class="font-semibold text-gray-800 mb-2">📋 Mesures organisationnelles</h3>
-                <ul class="text-sm space-y-1">
-                  <li>• Formation des équipes</li>
-                  <li>• Politique de confidentialité interne</li>
-                  <li>• Audit de conformité régulier</li>
-                  <li>• Procédures d'incident</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Introduction -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">📋 Introduction</h2>
 
-      <!-- Contact et réclamations -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            📞 Contact et réclamations
-          </h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="font-semibold text-gray-800 mb-3">📧 Nous contacter</h3>
-              <p class="text-gray-600 text-sm mb-3">
-                Pour toute question concernant cette politique ou vos données :
-              </p>
-              <div class="space-y-2 text-sm">
-                <p>
-                  <strong>DPO :</strong> 
-                  <a href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`} class="text-blue-600 hover:text-blue-800">
-                    {LEGAL_DATA.dataProtection.dpoEmail}
-                  </a>
-                </p>
-                <p>
-                  <strong>Contact général :</strong> 
-                  <a href={`mailto:${LEGAL_DATA.organization.contact.email}`} class="text-blue-600 hover:text-blue-800">
-                    {LEGAL_DATA.organization.contact.email}
-                  </a>
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-gray-800 mb-3">⚖️ Autorité de contrôle</h3>
-              <p class="text-gray-600 text-sm mb-3">
-                Vous avez le droit d'introduire une réclamation auprès de :
-              </p>
-              <div class="text-sm">
-                <p><strong>{LEGAL_DATA.compliance.authority}</strong></p>
-                <a href={LEGAL_DATA.compliance.authorityUrl} target="_blank" rel="noopener noreferrer"
-                   class="text-blue-600 hover:text-blue-800 underline">
-                  {LEGAL_DATA.compliance.authorityUrl}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                    <div class="space-y-4 text-gray-600">
+                        <p>
+                            Dans le cadre de l'organisation de <strong>Tech'Work Lyon 2026</strong>, nous sommes amenés
+                            à traiter certaines données à caractère personnel vous concernant.
+                        </p>
 
-      <!-- Liens vers autres pages -->
-      <div class="scroll-animate">
-        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-            📚 Documentation complémentaire
-          </h2>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <a href="/legal/mentions-legales" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-blue-200">
-              <div class="text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform">📋</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Mentions légales</h3>
-              <p class="text-gray-600 text-sm">Informations légales sur l'organisation</p>
-            </a>
-            
-            <a href="/legal/cookies" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-green-200">
-              <div class="text-green-600 text-3xl mb-3 group-hover:scale-110 transition-transform">🍪</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestion des cookies</h3>
-              <p class="text-gray-600 text-sm">Politique d'utilisation des cookies</p>
-            </a>
-            
-            <a href="/legal/droits-utilisateurs" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-purple-200">
-              <div class="text-purple-600 text-3xl mb-3 group-hover:scale-110 transition-transform">👤</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Exercer vos droits</h3>
-              <p class="text-gray-600 text-sm">Formulaire de demande RGPD</p>
-            </a>
-          </div>
+                        <p>
+                            Cette politique de confidentialité vous informe sur la manière dont nous collectons,
+                            utilisons, conservons et protégeons vos données personnelles, conformément au Règlement
+                            Général sur la Protection des Données (RGPD).
+                        </p>
+
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                            <p class="text-blue-800">
+                                <strong>📧 Contact DPO :</strong> Pour toute question relative à la protection de vos données,
+                                contactez notre délégué à la protection des données :
+                                <a
+                                    href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+                                    class="underline hover:text-blue-600">
+                                    {LEGAL_DATA.dataProtection.dpoEmail}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsable du traitement -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        🏢 Responsable du traitement
+                    </h2>
+
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Organisation</h3>
+                                <p class="text-gray-600">{LEGAL_DATA.organization.legalName}</p>
+                                <p class="text-gray-600">{LEGAL_DATA.organization.address.street}</p>
+                                <p class="text-gray-600">
+                                    {LEGAL_DATA.organization.address.postalCode}
+                                    {LEGAL_DATA.organization.address.city}
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Contact</h3>
+                                <p class="text-gray-600">
+                                    Email : <a
+                                        href={`mailto:${LEGAL_DATA.organization.contact.email}`}
+                                        class="text-blue-600 hover:text-blue-800"
+                                        >{LEGAL_DATA.organization.contact.email}</a
+                                    >
+                                </p>
+                                <p class="text-gray-600">Téléphone : {LEGAL_DATA.organization.contact.phone}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Données collectées -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        📊 Données que nous collectons
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                                🌐 Navigation sur le site
+                            </h3>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Données collectées :</strong> Aucune donnée personnelle directement collectée
+                            </p>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Base légale :</strong>
+                                {LEGAL_DATA.legalBasis.website}
+                            </p>
+                            <p class="text-gray-600">
+                                <strong>Conservation :</strong>
+                                {LEGAL_DATA.dataRetention.website}
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                                🎟️ Inscription à l'événement
+                            </h3>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Données collectées :</strong> Nom, prénom, email, informations professionnelles
+                            </p>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Base légale :</strong>
+                                {LEGAL_DATA.legalBasis.registration}
+                            </p>
+                            <p class="text-gray-600">
+                                <strong>Conservation :</strong>
+                                {LEGAL_DATA.dataRetention.registration}
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                                🎤 Soumission de talk (CFP)
+                            </h3>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Données collectées :</strong> Profil speaker, contenu des propositions, réseaux sociaux
+                            </p>
+                            <p class="text-gray-600 mb-3">
+                                <strong>Base légale :</strong>
+                                {LEGAL_DATA.legalBasis.cfp}
+                            </p>
+                            <p class="text-gray-600">
+                                <strong>Conservation :</strong>
+                                {LEGAL_DATA.dataRetention.cfp}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services tiers -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">🔗 Services tiers utilisés</h2>
+
+                    <div class="grid gap-6">
+                        {
+                            Object.entries(LEGAL_DATA.thirdPartyServices).map(([_key, service]) => (
+                                <div class="border border-gray-200 rounded-lg p-6">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <h3 class="text-lg font-semibold text-gray-800">{service.name}</h3>
+                                        {service.optOut && (
+                                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                                                Opt-out possible
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <p class="text-gray-600 mb-3">
+                                        <strong>Finalité :</strong> {service.purpose}
+                                    </p>
+
+                                    <p class="text-gray-600 mb-3">
+                                        <strong>Données collectées :</strong> {service.dataCollected.join(', ')}
+                                    </p>
+
+                                    <p class="text-gray-600">
+                                        <strong>Politique de confidentialité :</strong>
+                                        <a
+                                            href={service.privacyPolicy}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-600 hover:text-blue-800 underline ml-1">
+                                            Consulter
+                                        </a>
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vos droits -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">👤 Vos droits</h2>
+
+                    <p class="text-gray-600 mb-6">
+                        Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        {
+                            Object.entries(LEGAL_DATA.userRights).map(([_key, right]) => (
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <h3 class="font-semibold text-gray-800 mb-2">{right.name}</h3>
+                                    <p class="text-gray-600 text-sm">{right.description}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <h3 class="font-semibold text-blue-900 mb-3">📝 Comment exercer vos droits ?</h3>
+                        <p class="text-blue-800 mb-3">
+                            Pour exercer vos droits, contactez-nous ou utilisez notre formulaire dédié :
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a
+                                href="/legal/droits-utilisateurs"
+                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📋 Formulaire de demande
+                            </a>
+                            <a
+                                href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+                                class="bg-white text-blue-600 border border-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors">
+                                📧 Contacter le DPO
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sécurité -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">🛡️ Sécurité et conservation</h2>
+
+                    <div class="space-y-4 text-gray-600">
+                        <p>
+                            Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger
+                            vos données personnelles contre la destruction accidentelle ou illicite, la perte,
+                            l'altération, la divulgation ou l'accès non autorisé.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">🔐 Mesures techniques</h3>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Chiffrement HTTPS</li>
+                                    <li>• Hébergement sécurisé (Firebase)</li>
+                                    <li>• Accès restreint aux données</li>
+                                    <li>• Sauvegarde sécurisée</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">📋 Mesures organisationnelles</h3>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Formation des équipes</li>
+                                    <li>• Politique de confidentialité interne</li>
+                                    <li>• Audit de conformité régulier</li>
+                                    <li>• Procédures d'incident</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact et réclamations -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">📞 Contact et réclamations</h2>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-3">📧 Nous contacter</h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Pour toute question concernant cette politique ou vos données :
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <p>
+                                    <strong>DPO :</strong>
+                                    <a
+                                        href={`mailto:${LEGAL_DATA.dataProtection.dpoEmail}`}
+                                        class="text-blue-600 hover:text-blue-800">
+                                        {LEGAL_DATA.dataProtection.dpoEmail}
+                                    </a>
+                                </p>
+                                <p>
+                                    <strong>Contact général :</strong>
+                                    <a
+                                        href={`mailto:${LEGAL_DATA.organization.contact.email}`}
+                                        class="text-blue-600 hover:text-blue-800">
+                                        {LEGAL_DATA.organization.contact.email}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-3">⚖️ Autorité de contrôle</h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Vous avez le droit d'introduire une réclamation auprès de :
+                            </p>
+                            <div class="text-sm">
+                                <p><strong>{LEGAL_DATA.compliance.authority}</strong></p>
+                                <a
+                                    href={LEGAL_DATA.compliance.authorityUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-blue-600 hover:text-blue-800 underline">
+                                    {LEGAL_DATA.compliance.authorityUrl}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liens vers autres pages -->
+            <div class="scroll-animate">
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">📚 Documentation complémentaire</h2>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <a
+                            href="/legal/mentions-legales"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-blue-200">
+                            <div class="text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform">📋</div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Mentions légales</h3>
+                            <p class="text-gray-600 text-sm">Informations légales sur l'organisation</p>
+                        </a>
+
+                        <a
+                            href="/legal/cookies"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-green-200">
+                            <div class="text-green-600 text-3xl mb-3 group-hover:scale-110 transition-transform">
+                                🍪
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestion des cookies</h3>
+                            <p class="text-gray-600 text-sm">Politique d'utilisation des cookies</p>
+                        </a>
+
+                        <a
+                            href="/legal/droits-utilisateurs"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-purple-200">
+                            <div class="text-purple-600 text-3xl mb-3 group-hover:scale-110 transition-transform">
+                                👤
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Exercer vos droits</h3>
+                            <p class="text-gray-600 text-sm">Formulaire de demande RGPD</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+
+        <div class="text-center text-xs text-gray-400 mt-2">
+            🦙 Note mascotte&nbsp;: lama dans la d&eacute;co, on reste 100% s&eacute;rieux.
+        </div>
+    </section>
 </Layout>

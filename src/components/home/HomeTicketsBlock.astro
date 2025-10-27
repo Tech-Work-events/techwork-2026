@@ -1,111 +1,205 @@
 ---
 import { TICKETS_CONFIG, SERVICES_DATA } from '../../config'
+import { REFUND_POLICY_SNIPPET } from '../../config/cta'
 
-const tickets = TICKETS_CONFIG.map(ticket => ({
+const { loading = false, error = null } = Astro.props
+
+const orderMap: Record<string, number> = { standard: 0, 'early-adopter': 1, sponsored: 2 }
+const tickets = TICKETS_CONFIG.map((ticket) => ({
     ...ticket,
     available: ticket.ticketsCount,
-    total: ticket.ticketsCount
-}))
+    total: ticket.ticketsCount,
+})).sort((a, b) => (orderMap[a.id] ?? 99) - (orderMap[b.id] ?? 99))
 ---
 
 <section id="tickets" class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 sm:mb-16 scroll-animate">
-            <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
                 <span class="mr-2 animate-bounce-gentle">🎫</span>
                 Billetterie
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 scroll-animate">
-                Acheter votre 
-                <span class="text-gradient animate-gradient">billet</span>
+                Ton pass pour la
+                <span class="text-gradient animate-gradient">lama‑party</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto scroll-animate">
-                Les billets donnent accès à toutes les conférences, aux pauses café, au déjeuner et aux ateliers.
+                Un billet = talks, ateliers, café, dej’… et tout un troupeau de devs. Ambiance lama garantie.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 stagger-children">
-            {tickets.map((ticket, index) => (
-                <div class="scroll-animate-scale hover-lift" style={`animation-delay: ${index * 0.2}s`}>
-                    <div class={`card relative overflow-hidden ${ticket.highlighted ? 'ring-2 ring-primary-500 shadow-2xl scale-105' : ''}`}>
-                        {ticket.badge && (
-                            <div class={`absolute top-4 right-4 px-3 py-1 text-xs font-bold rounded-full ${
-                                ticket.badge === 'PROMO' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'
-                            }`}>
-                                {ticket.badge}
-                            </div>
-                        )}
-                        
-                        <div class="p-6 sm:p-8">
-                            <div class="text-center mb-6">
-                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{ticket.name}</h3>
-                                <div class="flex items-center justify-center space-x-2">
-                                    {ticket.originalPrice && (
-                                        <span class="text-lg text-gray-400 line-through">{ticket.originalPrice}€</span>
-                                    )}
-                                    <span class={`text-3xl sm:text-4xl font-black ${ticket.price === 0 ? 'text-green-600' : 'text-primary-600'}`}>
-                                        {ticket.price}€
-                                    </span>
-                                </div>
-                                <p class="text-sm text-gray-600 mt-2">{ticket.description}</p>
-                            </div>
+        <div id="tickets-live" class="sr-only" aria-live="polite"></div>
 
-                            <div class="mb-6">
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="text-sm font-semibold text-gray-700">Disponibilité</span>
-                                    <span class="text-sm text-gray-600">{ticket.available}/{ticket.total}</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div 
-                                        class={`h-2 rounded-full ${
-                                            ticket.available > ticket.total * 0.5 ? 'bg-green-500' : 
-                                            ticket.available > ticket.total * 0.2 ? 'bg-yellow-500' : 'bg-red-500'
-                                        }`}
-                                        style={`width: ${(ticket.available / ticket.total) * 100}%`}
-                                    ></div>
-                                </div>
-                            </div>
-
-                            <ul class="space-y-2 mb-6">
-                                {ticket.features.map((feature) => (
-                                    <li class="flex items-center text-sm text-gray-600">
-                                        <span class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3">✓</span>
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {ticket.note && (
-                                <p class="text-xs text-gray-500 italic mb-4">{ticket.note}</p>
-                            )}
-
-                            <a 
-                                href={ticket.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class={`btn w-full text-center ${ticket.highlighted ? 'btn-primary' : 'btn-secondary'} hover-lift group`}
-                            >
-                                <span class="mr-2 group-hover:animate-bounce-gentle">🎫</span>
-                                {ticket.price === 0 ? 'Demander mon billet' : 'Acheter'}
-                            </a>
-                        </div>
-                    </div>
+        {
+            error && (
+                <div role="alert" class="mb-8 rounded-lg border border-red-200 bg-red-50 text-red-800 px-4 py-3">
+                    Oups, nos lamas ont perdu la connexion. Réessaie plus tard.
                 </div>
-            ))}
+            )
+        }
+
+        {
+            loading ? (
+                <div
+                    data-no-animate="true"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start stagger-children">
+                    {[1, 2, 3].map((i) => (
+                        <div>
+                            <div class="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 sm:min-h-[344px] md:min-h-[384px] lg:min-h-[404px] flex flex-col h-full">
+                                <div class="skeleton h-6 w-1/3 mb-3" />
+                                <div class="skeleton h-8 w-1/2 mb-4" />
+                                <div class="space-y-2 mb-5">
+                                    <div class="skeleton h-4 w-3/4" />
+                                    <div class="skeleton h-4 w-2/3" />
+                                </div>
+                                <div class="mt-auto pt-3">
+                                    <div class="skeleton h-2 w-full rounded-full mb-3 sm:mb-4 md:mb-6" />
+                                    <div class="skeleton h-10 w-full rounded-xl" />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div
+                    data-no-animate="true"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start stagger-children">
+                    {tickets.map((ticket, index) => (
+                        <div>
+                            <div
+                                class={`bg-white border border-gray-200 rounded-xl p-5 sm:p-6 ${ticket.soldOut ? 'opacity-60' : ''} sm:min-h-[344px] md:min-h-[384px] lg:min-h-[404px] flex flex-col h-full`}>
+                                <div class="space-y-1 sm:space-y-2">
+                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+                                        {ticket.name}
+                                    </h3>
+                                    <div class="flex items-baseline gap-1">
+                                        {ticket.originalPrice && (
+                                            <span class="text-gray-400 line-through">{ticket.originalPrice}€</span>
+                                        )}
+                                        <span
+                                            class={`text-3xl font-black ${ticket.price === 0 ? 'text-green-600' : 'text-primary-600'}`}>
+                                            {ticket.price}€
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 leading-5 sm:leading-6">
+                                        Prix TTC — des frais de plateforme peuvent s’appliquer
+                                    </p>
+                                    <p class="text-sm text-gray-600 mt-1 leading-6 sm:leading-7">
+                                        {ticket.description}
+                                    </p>
+                                </div>
+
+                                <div class="mt-auto pt-3">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-sm font-semibold text-gray-700">Disponibilité</span>
+                                        <span class="text-sm text-gray-600">
+                                            Restent {ticket.available}/{ticket.total}
+                                        </span>
+                                    </div>
+                                    <div
+                                        role="progressbar"
+                                        aria-valuenow={ticket.available}
+                                        aria-valuemin="0"
+                                        aria-valuemax={ticket.total}
+                                        aria-label={`Disponibilité: ${ticket.available}/${ticket.total}`}
+                                        class="w-full bg-gray-200 rounded-full h-2">
+                                        <div
+                                            class={`h-2 rounded-full ${ticket.available > ticket.total * 0.5 ? 'bg-green-500' : ticket.available > ticket.total * 0.2 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                                            style={`width: ${(ticket.available / ticket.total) * 100}%`}
+                                        />
+                                    </div>
+
+                                    {ticket.soldOut ? (
+                                        <span
+                                            role="button"
+                                            aria-disabled="true"
+                                            class="btn w-full text-center btn-secondary opacity-50 cursor-not-allowed mt-4 sm:mt-5 md:mt-6">
+                                            Épuisé — le troupeau a tout raflé 🦙
+                                        </span>
+                                    ) : (
+                                        <a
+                                            href={ticket.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class={`btn w-full text-center ${ticket.highlighted ? 'btn-primary' : 'btn-secondary'} mt-4 sm:mt-5 md:mt-6`}
+                                            data-cta
+                                            data-placement="tickets"
+                                            data-base-href={ticket.url}
+                                            data-allow-animate="cta">
+                                            <span class="mr-2" aria-hidden="true">
+                                                🎫
+                                            </span>
+                                            {ticket.price === 0
+                                                ? 'Demander mon billet 🦙'
+                                                : 'Continuer sur HelloAsso 🦙'}
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        <div class="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-gray-600 leading-5">
+            Remboursement possible sur demande (asso). Et même si les lamas crachent, on ne crache pas dans la soupe :
+            si tu peux éviter, ça aide la communauté ; sinon, écris‑nous :
+            <a href="mailto:contact@techwork.events" class="underline">contact@techwork.events</a>
+        </div>
+
+        <script is:inline>
+            document.addEventListener('click', function (ev) {
+                var t = ev.target && ev.target.closest && ev.target.closest('[data-cta][data-placement="tickets"]')
+                if (!t) return
+                var live = document.getElementById('tickets-live')
+                if (live) {
+                    live.textContent = 'Redirection vers HelloAsso… accroche‑toi au lama !'
+                    setTimeout(function () {
+                        if (live) live.textContent = ''
+                    }, 2500)
+                }
+            })
+        </script>
+
+        <!-- Valeur & confiance -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 scroll-animate">
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🤝</div>
+                <h4 class="font-bold text-gray-900 mb-1">Réseauter</h4>
+                <p class="text-sm text-gray-600">
+                    Rencontre la tribu tech locale, fais tourner les cartes et les idées.
+                </p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🧠</div>
+                <h4 class="font-bold text-gray-900 mb-1">Se former</h4>
+                <p class="text-sm text-gray-600">Talks et ateliers pour booster tes skills sans tondre ton agenda.</p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                <div class="text-2xl mb-2">🥂</div>
+                <h4 class="font-bold text-gray-900 mb-1">Afterwork</h4>
+                <p class="text-sm text-gray-600">
+                    Ambiance détendue, échanges de qualité, l'esprit Tech'Work façon lama.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center text-xs text-gray-500">
+            {REFUND_POLICY_SNIPPET}
         </div>
 
         <div class="text-center mt-12 scroll-animate">
-            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift">
+            <div
+                class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift">
                 <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">
                     🏢 Votre entreprise veut sponsoriser des billets ?
                 </h3>
                 <p class="text-gray-600 mb-4">
                     Offrez à vos collaborateurs l'opportunité de se former sur leur temps de travail !
                 </p>
-                <a 
-                    href={`mailto:${SERVICES_DATA.sponsors.contact.email}`} 
-                    class="btn btn-secondary hover-lift group"
-                >
+                <a href={`mailto:${SERVICES_DATA.sponsors.contact.email}`} class="btn btn-secondary hover-lift group">
                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                     Contacter l'équipe
                 </a>

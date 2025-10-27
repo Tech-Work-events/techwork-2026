@@ -1,0 +1,36 @@
+---
+import { TICKETING_BASE_URL } from '../../config/cta'
+import { EXPERIMENTS, labelFor } from '../../config/experiments'
+const CTA_LABEL = labelFor(EXPERIMENTS.ctaLabelVariant)
+---
+
+<div id="sticky-cta" class="fixed inset-x-0 bottom-4 z-[9998] px-4 pointer-events-none hidden">
+    <div class="max-w-6xl mx-auto pointer-events-auto">
+        <a
+            href={TICKETING_BASE_URL}
+            class="w-full md:max-w-md mx-auto flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold shadow-xl bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 transition-all"
+            data-cta
+            data-placement="sticky"
+            data-base-href={TICKETING_BASE_URL}
+            aria-label={`${CTA_LABEL} (sticky)`}>
+            <span>🎫</span>
+            <span>{CTA_LABEL}</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    const el = document.getElementById('sticky-cta')
+    if (el) {
+        const showThreshold = 320 // px scrolled before showing
+        const mq = window.matchMedia('(max-width: 1023px)') // primarily on mobile/tablet
+        const update = () => {
+            const shouldShow = window.scrollY > showThreshold && mq.matches
+            el.classList.toggle('hidden', !shouldShow)
+        }
+        window.addEventListener('scroll', update, { passive: true })
+        window.addEventListener('resize', update)
+        document.addEventListener('astro:page-load', update)
+        update()
+    }
+</script>

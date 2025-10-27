@@ -1,0 +1,51 @@
+---
+import { EVENT_DATA } from '../../config'
+---
+
+<section class="py-10 bg-white scroll-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-black text-gray-900">Preuves (avec de la laine)</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                    Des lamas, des talks, des rencontres : on remet ça pour de vrai. Viens brouter de la veille tech.
+                </p>
+                <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+                    <div>
+                        <div class="text-2xl font-black text-primary-600">
+                            {EVENT_DATA.event.statistics.expectedAttendees}
+                        </div>
+                        <div class="text-xs text-gray-500">participants attendus</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-primary-600">{EVENT_DATA.event.statistics.partners}</div>
+                        <div class="text-xs text-gray-500">partenaires</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-primary-600">{EVENT_DATA.event.statistics.workshops}</div>
+                        <div class="text-xs text-gray-500">ateliers</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="grid grid-cols-3 gap-3 stagger-children scroll-animate-scale">
+                    <img
+                        src="/pictures/after-movie-1.webp"
+                        alt="Instant Tech'Work"
+                        loading="lazy"
+                        decoding="async"
+                        class="rounded-xl shadow-sm object-cover w-full h-28 md:h-36"
+                    />
+                    <img
+                        src="/pictures/after-movie-4.webp"
+                        alt="Rencontres et talks"
+                        loading="lazy"
+                        decoding="async"
+                        class="rounded-xl shadow-sm object-cover w-full h-28 md:h-36"
+                    />
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center md:text-right">Encore + de photos dans la galerie.</p>
+            </div>
+        </div>
+    </div>
+</section>

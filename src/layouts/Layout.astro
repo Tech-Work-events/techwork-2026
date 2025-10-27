@@ -3,17 +3,21 @@ import { ClientRouter } from 'astro:transitions'
 import FooterBlock from '../components/footer/FooterBlock.astro'
 import Menu from '../components/Menu.astro'
 import CookieConsent from '../components/legal/CookieConsent.astro'
+import StickyCTA from '../components/cta/StickyCTA.astro'
+
 import '../styles/global.css'
 
 interface Props {
     title: string
     description?: string
     metaImage?: string | null
+    robots?: string
 }
 
-const { title, description, metaImage } = Astro.props
+const { title, description, metaImage, robots } = Astro.props
 const url = import.meta.env.SITE
-const image = metaImage || url + '/social-share.png'
+const canonical = new URL(Astro.url.pathname, url).href
+const shareImage = metaImage || url + '/social-share.png'
 const siteName = "Tech'Work Lyon"
 const pageTitle = title || siteName
 const siteNameWithTagline = "Tech'Work Lyon 2026 - L'afterwork IT sur votre temps de travail"
@@ -26,6 +30,7 @@ const keywords =
 
 const organizerName = "Tech'Work Lyon"
 const organizerTwitter = '@techworklyon'
+const GA_ID = import.meta.env.PUBLIC_GA_ID
 ---
 
 <!doctype html>
@@ -33,11 +38,24 @@ const organizerTwitter = '@techworklyon'
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content={robots || 'index, follow'} />
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+        <link rel="canonical" href={canonical} />
+
         <link href="/manifest.json" rel="manifest" />
+        <!-- Performance hints -->
+        <!-- Analytics performance hints -->
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <!-- Font performance hints -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta content="yes" name="mobile-web-app-capable" />
@@ -59,24 +77,43 @@ const organizerTwitter = '@techworklyon'
         <meta content={pageTitle} property="og:title" />
         <meta content={siteNameWithTagline} property="og:site_name" />
         <meta content="website" property="og:type" />
-        <meta content={url} property="og:url" />
+        <meta content={canonical} property="og:url" />
         <meta content={pageDescription} property="og:description" />
         <meta content="fr" property="og:locale" />
-        <meta content={image} property="og:image" />
-        <meta content="image/jpeg" property="og:image:type" />
+        <meta content={shareImage} property="og:image" />
+        <meta content="image/png" property="og:image:type" />
+        <meta content="1200" property="og:image:width" />
+        <meta content="630" property="og:image:height" />
+        <meta content="Lama Tech'Work Lyon" property="og:image:alt" />
+        <!-- PNG fallback for platforms not supporting SVG in OG -->
+        <meta content={url + '/social-share.png'} property="og:image" />
 
         <!-- Twitter meta data -->
         <meta content="summary_large_image" name="twitter:card" />
         <meta content={organizerTwitter} name="twitter:site" />
         <meta content={pageTitle} name="twitter:title" />
         <meta content={pageDescription} name="twitter:description" />
-        <meta content={image} name="twitter:image" />
+        <meta content={shareImage} name="twitter:image" />
 
         <title>{fullPageTitle}</title>
 
         <slot name="head" />
 
-        <script is:inline defer data-domain="cloudnord.fr" src="https://plausible.gresse.io/js/script.js"></script>
+        {
+            GA_ID && (
+                <>
+                    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+                    <script is:inline>
+                        {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_ID}', { anonymize_ip: true });
+                    `}
+                    </script>
+                </>
+            )
+        }
         <ClientRouter />
     </head>
     <body class="antialiased">
@@ -87,6 +124,9 @@ const organizerTwitter = '@techworklyon'
         </main>
 
         <FooterBlock />
+
+        <!-- Sticky CTA (mobile/tablet) -->
+        <StickyCTA />
 
         <!-- Gestion des cookies RGPD -->
         <CookieConsent />
@@ -315,7 +355,7 @@ const organizerTwitter = '@techworklyon'
 
                 // Parallax doux pour les éléments
                 initParallax() {
-                    if (isMobile()) return // Pas de parallax sur mobile
+                    if (isMobile() || prefersReducedMotion()) return // Pas de parallax sur mobile ou si motion réduite
 
                     const parallaxElements = document.querySelectorAll('.parallax')
 

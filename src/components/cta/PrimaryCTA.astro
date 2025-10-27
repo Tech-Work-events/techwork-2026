@@ -1,0 +1,45 @@
+---
+import { TICKETING_BASE_URL } from '../../config/cta'
+import { EXPERIMENTS, labelFor } from '../../config/experiments'
+const CTA_LABEL = labelFor(EXPERIMENTS.ctaLabelVariant)
+---
+
+<a
+    href={TICKETING_BASE_URL}
+    class="btn btn-primary inline-flex items-center gap-2 hover-lift"
+    data-cta
+    data-placement="header"
+    data-base-href={TICKETING_BASE_URL}
+    aria-label={CTA_LABEL}>
+    <span>🎫</span>
+    <span>{CTA_LABEL}</span>
+</a>
+
+<script>
+    import { mergeUtm, getIncomingUtmFromLocation, buildUrlWithUtm } from '../../utils/utm'
+    import { UTM_DEFAULTS } from '../../config/cta'
+
+    // Enhance all anchors with data-cta on the page (supports multiple placements)
+    document.addEventListener('astro:page-load', () => {
+        const anchors = document.querySelectorAll('a[data-cta][data-base-href]') as NodeListOf<HTMLAnchorElement>
+        anchors.forEach((a) => {
+            const base = a.getAttribute('data-base-href') || a.href
+            const placement = a.getAttribute('data-placement') || 'unknown'
+            a.addEventListener(
+                'click',
+                () => {
+                    // Merge incoming UTM with defaults
+                    const incoming = getIncomingUtmFromLocation(window.location)
+                    const utm = mergeUtm(incoming, UTM_DEFAULTS)
+                    a.href = buildUrlWithUtm(base, utm)
+                    // Fire analytics if available (Plausible respects consent via localStorage)
+                    try {
+                        // @ts-ignore
+                        if (window.plausible) window.plausible('cta_click', { props: { placement, ...utm } })
+                    } catch {}
+                },
+                { once: false, capture: true }
+            )
+        })
+    })
+</script>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { EVENT_DATA } from '../config'
+import CTASection from '../components/cta/CTASection.astro'
 ---
 
 <Layout
@@ -21,11 +22,16 @@ import { EVENT_DATA } from '../config'
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                     🕵️ Actuellement en cours de sélection... <strong>Spoiler alert :</strong> Ce sera à Lyon et ce sera génial
-                    !
+                    — tout confort, lama‑friendly.
                 </p>
             </div>
         </div>
     </section>
+    <CTASection
+        title="On te dit le lieu très vite !"
+        description="En attendant, assure ta place : TCL/parking/PMR, on pense à tout."
+        placement="content-location-early"
+    />
 
     <!-- Selection Criteria -->
     <section class="py-12 sm:py-16 lg:py-20 bg-white">
@@ -170,6 +176,15 @@ import { EVENT_DATA } from '../config'
                                 >
                                 Déco moderne
                             </li>
+
+                            <li class="flex items-center">
+                                <span
+                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
+                                    >📸</span
+                                >
+                                Photo spot pour vos selfies (lama‑compatible)
+                            </li>
+
                             <li class="flex items-center">
                                 <span
                                     class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
@@ -205,7 +220,7 @@ import { EVENT_DATA } from '../config'
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Localisation</h3>
                     <ul class="space-y-3 text-gray-600">
                         <li>• Dans Lyon ou proche banlieue</li>
-                        <li>• Métro/tram à moins de 10 minutes</li>
+                        <li>• Métro/tram &lt; 10 min</li>
                         <li>• Restaurants/cafés à proximité</li>
                         <li>• Vue sympa (si possible)</li>
                     </ul>
@@ -219,7 +234,7 @@ import { EVENT_DATA } from '../config'
                         <li>• Sono de qualité dans chaque salle</li>
                         <li>• Vidéoprojecteurs 4K</li>
                         <li>• Setup streaming professionnel</li>
-                        <li>• Réseau testé 200+ connexions</li>
+                        <li>• Réseau 200+ connexions (testé)</li>
                     </ul>
                 </div>
 
@@ -231,7 +246,7 @@ import { EVENT_DATA } from '../config'
                         <li>• Vrais croissants le matin</li>
                         <li>• Café de qualité</li>
                         <li>• Déjeuner digne de ce nom</li>
-                        <li>• Options végé/vegan/sans gluten</li>
+                        <li>• Options végé/vegan/SG</li>
                     </ul>
                 </div>
             </div>
@@ -272,8 +287,13 @@ import { EVENT_DATA } from '../config'
                     </div>
                 </div>
 
-                <a href="mailto:lieu@techwork.lyon" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                <a
+                    href="mailto:lieu@techwork.lyon"
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group"
+                    aria-label="Proposer un lieu par email"
+                    data-cta
+                    data-placement="location-suggest">
+                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">📧</span>
                     Proposer un lieu
                 </a>
             </div>
@@ -325,8 +345,11 @@ import { EVENT_DATA } from '../config'
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                     href="/team"
-                    class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
+                    class="btn btn-ghost text-white border-white hover:bg-white/10 text-lg px-8 py-4 hover-lift group"
+                    aria-label="Contacter l'équipe"
+                    data-cta
+                    data-placement="location-contact-team">
+                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">👥</span>
                     Contacter l'équipe
                 </a>
             </div>
@@ -413,4 +436,10 @@ import { EVENT_DATA } from '../config'
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="On te dit le lieu tres vite !"
+        description="En attendant, assure ta place a la conf' lama-friendly."
+        placement="content-location"
+    />
 </Layout>

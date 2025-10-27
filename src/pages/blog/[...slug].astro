@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 
+import CTASection from '../../components/cta/CTASection.astro'
+
 export async function getStaticPaths() {
     const blogEntries = await getCollection('blog')
 
@@ -20,18 +22,19 @@ const formattedDate = entry.data.date.toLocaleString('fr-FR', {
 })
 ---
 
-<Layout title={`${entry.data.title} | Blog Tech'Work Lyon`} description={entry.data.description}>
+<Layout
+    title={`${entry.data.title} | Blog Tech'Work Lyon`}
+    description={entry.data.description}
+    robots="noindex, nofollow">
     <!-- Article Hero -->
+    <slot name="head">
+        <meta http-equiv="refresh" content="0; url=/" />
+    </slot>
     <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-primary-50 to-secondary-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb -->
-            <div class="mb-8 scroll-animate">
+            <div class="mb-8">
                 <nav class="flex items-center space-x-2 text-sm text-gray-600">
                     <a href="/" class="hover:text-primary-600 transition-colors">Accueil</a>
-                    <span>›</span>
-                    <a href="/blog" class="hover:text-primary-600 transition-colors">Blog</a>
-                    <span>›</span>
-                    <span class="text-gray-900 font-medium">{entry.data.title}</span>
                 </nav>
             </div>
 
@@ -71,15 +74,21 @@ const formattedDate = entry.data.date.toLocaleString('fr-FR', {
                 </div>
             </article>
 
-            <!-- Back to Blog -->
-            <div class="mt-12 pt-8 border-t border-gray-200 text-center scroll-animate">
-                <a href="/blog" class="btn btn-secondary hover-lift group inline-flex items-center">
+            <!-- Back to Home -->
+            <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+                <a href="/" class="btn btn-secondary hover-lift group inline-flex items-center">
                     <span class="mr-2 group-hover:animate-bounce-gentle">←</span>
-                    Retour au blog
+                    Retour à l'accueil
                 </a>
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="On en parle IRL ?"
+        description="Retrouve-nous  la conf pour reseauter et apprendre ensemble. Reserve ta place."
+        placement="content-blog-post"
+    />
 </Layout>
 
 <style>

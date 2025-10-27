@@ -1,196 +1,210 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import LEGAL_DATA from '../../config/legal.json';
+import Layout from '../../layouts/Layout.astro'
+import LEGAL_DATA from '../../config/legal.json'
 
-const seoTitle = 'Mentions légales - Tech\'Work Lyon 2026';
-const seoDescription = 'Informations légales concernant le site Tech\'Work Lyon 2026 et l\'organisation de l\'événement.';
+const seoTitle = "Mentions légales - Tech'Work Lyon 2026"
+const seoDescription = "Informations légales concernant le site Tech'Work Lyon 2026 et l'organisation de l'événement."
 ---
 
 <Layout title={seoTitle} description={seoDescription}>
-  <!-- Header Section -->
-  <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center scroll-animate">
-        <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
-          <span class="mr-2">📋</span>
-          Informations légales
-        </div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-          Mentions <span class="text-gradient">légales</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-          Informations légales et réglementaires concernant le site Tech'Work Lyon 2026
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Informations sur l'organisation -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🏢 Informations sur l'organisation
-          </h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-3">Identité</h3>
-              <div class="space-y-2 text-gray-600">
-                <p><strong>Nom :</strong> {LEGAL_DATA.organization.legalName}</p>
-                <p><strong>Nom commercial :</strong> {LEGAL_DATA.organization.name}</p>
-                <p><strong>SIRET :</strong> {LEGAL_DATA.organization.legal.siret}</p>
-                <p><strong>RNA :</strong> {LEGAL_DATA.organization.legal.rna}</p>
-              </div>
+    <!-- Header Section -->
+    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2">📋</span>
+                    Informations légales
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Mentions <span class="text-gradient">légales</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Informations légales et réglementaires concernant le site Tech'Work Lyon 2026
+                </p>
             </div>
-            
-            <div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-3">Adresse</h3>
-              <div class="text-gray-600">
-                <p>{LEGAL_DATA.organization.address.street}</p>
-                <p>{LEGAL_DATA.organization.address.postalCode} {LEGAL_DATA.organization.address.city}</p>
-                <p>{LEGAL_DATA.organization.address.country}</p>
-              </div>
+        </div>
+    </section>
+
+    <!-- Informations sur l'organisation -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        🏢 Informations sur l'organisation
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Identité</h3>
+                            <div class="space-y-2 text-gray-600">
+                                <p><strong>Nom :</strong> {LEGAL_DATA.organization.legalName}</p>
+                                <p><strong>Nom commercial :</strong> {LEGAL_DATA.organization.name}</p>
+                                <p><strong>SIRET :</strong> {LEGAL_DATA.organization.legal.siret}</p>
+                                <p><strong>RNA :</strong> {LEGAL_DATA.organization.legal.rna}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Adresse</h3>
+                            <div class="text-gray-600">
+                                <p>{LEGAL_DATA.organization.address.street}</p>
+                                <p>
+                                    {LEGAL_DATA.organization.address.postalCode}
+                                    {LEGAL_DATA.organization.address.city}
+                                </p>
+                                <p>{LEGAL_DATA.organization.address.country}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Contact</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-gray-600">
+                            <p>
+                                <strong>Email :</strong>
+                                <a
+                                    href={`mailto:${LEGAL_DATA.organization.contact.email}`}
+                                    class="text-blue-600 hover:text-blue-800"
+                                    >{LEGAL_DATA.organization.contact.email}</a>
+                            </p>
+                            <p><strong>Téléphone :</strong> {LEGAL_DATA.organization.contact.phone}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Direction de la publication</h3>
+                        <p class="text-gray-600">{LEGAL_DATA.organization.legal.publicationDirector}</p>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="mt-6 pt-6 border-t border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3">Contact</h3>
-            <div class="grid md:grid-cols-2 gap-4 text-gray-600">
-              <p><strong>Email :</strong> <a href={`mailto:${LEGAL_DATA.organization.contact.email}`} class="text-blue-600 hover:text-blue-800">{LEGAL_DATA.organization.contact.email}</a></p>
-              <p><strong>Téléphone :</strong> {LEGAL_DATA.organization.contact.phone}</p>
+            <!-- Hébergement -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">🌐 Hébergement</h2>
+
+                    <div class="text-gray-600 space-y-2">
+                        <p><strong>Hébergeur :</strong> {LEGAL_DATA.hosting.provider}</p>
+                        <p><strong>Adresse :</strong> {LEGAL_DATA.hosting.address}</p>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="mt-6 pt-6 border-t border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3">Direction de la publication</h3>
-            <p class="text-gray-600">{LEGAL_DATA.organization.legal.publicationDirector}</p>
-          </div>
+            <!-- Propriété intellectuelle -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">©️ Propriété intellectuelle</h2>
+
+                    <div class="space-y-4 text-gray-600">
+                        <p>
+                            L'ensemble du contenu de ce site (textes, images, vidéos, etc.) est protégé par le droit
+                            d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+                        </p>
+
+                        <p>
+                            Les marques et logos présents sur ce site sont la propriété de leurs détenteurs respectifs.
+                        </p>
+
+                        <p>
+                            Le code source de ce site est disponible sous licence MIT sur
+                            <a
+                                href="https://github.com/techwork-lyon"
+                                class="text-blue-600 hover:text-blue-800 underline"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                GitHub
+                            </a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsabilité -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        ⚖️ Limitation de responsabilité
+                    </h2>
+
+                    <div class="space-y-4 text-gray-600">
+                        <p>
+                            Les informations contenues sur ce site sont données à titre informatif et peuvent être
+                            modifiées sans préavis.
+                        </p>
+
+                        <p>
+                            L'association Tech'Work Lyon ne peut être tenue responsable des dommages directs ou
+                            indirects résultant de l'utilisation du site ou de l'impossibilité d'y accéder.
+                        </p>
+
+                        <p>
+                            Les liens vers des sites externes sont fournis à titre informatif. Nous ne sommes pas
+                            responsables du contenu de ces sites.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Droit applicable -->
+            <div class="scroll-animate mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">🏛️ Droit applicable</h2>
+
+                    <div class="text-gray-600 space-y-4">
+                        <p>Les présentes mentions légales sont soumises au droit français.</p>
+
+                        <p>En cas de litige, les tribunaux français seront seuls compétents.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liens vers autres pages légales -->
+            <div class="scroll-animate">
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">📚 Documentation légale</h2>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <a
+                            href="/legal/politique-confidentialite"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-blue-200">
+                            <div class="text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform">🔒</div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Politique de confidentialité</h3>
+                            <p class="text-gray-600 text-sm">Protection et traitement des données personnelles</p>
+                        </a>
+
+                        <a
+                            href="/legal/cookies"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-green-200">
+                            <div class="text-green-600 text-3xl mb-3 group-hover:scale-110 transition-transform">
+                                🍪
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestion des cookies</h3>
+                            <p class="text-gray-600 text-sm">Informations sur l'utilisation des cookies</p>
+                        </a>
+
+                        <a
+                            href="/legal/droits-utilisateurs"
+                            class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-purple-200">
+                            <div class="text-purple-600 text-3xl mb-3 group-hover:scale-110 transition-transform">
+                                👤
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Vos droits</h3>
+                            <p class="text-gray-600 text-sm">Exercer vos droits sur vos données</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information de mise à jour -->
+            <div class="text-center text-gray-500 text-sm mt-8">
+                <p>Dernière mise à jour : {LEGAL_DATA.dataProtection.lastUpdate}</p>
+            </div>
+
+            <div class="text-center text-xs text-gray-400 mt-2">
+                🦙 Note mascotte&nbsp;: lama dans la d&eacute;co, on reste 100% s&eacute;rieux.
+            </div>
         </div>
-      </div>
-
-      <!-- Hébergement -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🌐 Hébergement
-          </h2>
-          
-          <div class="text-gray-600 space-y-2">
-            <p><strong>Hébergeur :</strong> {LEGAL_DATA.hosting.provider}</p>
-            <p><strong>Adresse :</strong> {LEGAL_DATA.hosting.address}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Propriété intellectuelle -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            ©️ Propriété intellectuelle
-          </h2>
-          
-          <div class="space-y-4 text-gray-600">
-            <p>
-              L'ensemble du contenu de ce site (textes, images, vidéos, etc.) est protégé par le droit d'auteur. 
-              Toute reproduction, même partielle, est interdite sans autorisation préalable.
-            </p>
-            
-            <p>
-              Les marques et logos présents sur ce site sont la propriété de leurs détenteurs respectifs.
-            </p>
-            
-            <p>
-              Le code source de ce site est disponible sous licence MIT sur 
-              <a href="https://github.com/techwork-lyon" class="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Responsabilité -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            ⚖️ Limitation de responsabilité
-          </h2>
-          
-          <div class="space-y-4 text-gray-600">
-            <p>
-              Les informations contenues sur ce site sont données à titre informatif et peuvent être modifiées sans préavis.
-            </p>
-            
-            <p>
-              L'association Tech'Work Lyon ne peut être tenue responsable des dommages directs ou indirects 
-              résultant de l'utilisation du site ou de l'impossibilité d'y accéder.
-            </p>
-            
-            <p>
-              Les liens vers des sites externes sont fournis à titre informatif. Nous ne sommes pas responsables 
-              du contenu de ces sites.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Droit applicable -->
-      <div class="scroll-animate mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            🏛️ Droit applicable
-          </h2>
-          
-          <div class="text-gray-600 space-y-4">
-            <p>
-              Les présentes mentions légales sont soumises au droit français.
-            </p>
-            
-            <p>
-              En cas de litige, les tribunaux français seront seuls compétents.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Liens vers autres pages légales -->
-      <div class="scroll-animate">
-        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-            📚 Documentation légale
-          </h2>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <a href="/legal/politique-confidentialite" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-blue-200">
-              <div class="text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform">🔒</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Politique de confidentialité</h3>
-              <p class="text-gray-600 text-sm">Protection et traitement des données personnelles</p>
-            </a>
-            
-            <a href="/legal/cookies" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-green-200">
-              <div class="text-green-600 text-3xl mb-3 group-hover:scale-110 transition-transform">🍪</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestion des cookies</h3>
-              <p class="text-gray-600 text-sm">Informations sur l'utilisation des cookies</p>
-            </a>
-            
-            <a href="/legal/droits-utilisateurs" 
-               class="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-purple-200">
-              <div class="text-purple-600 text-3xl mb-3 group-hover:scale-110 transition-transform">👤</div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Vos droits</h3>
-              <p class="text-gray-600 text-sm">Exercer vos droits sur vos données</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Information de mise à jour -->
-      <div class="text-center text-gray-500 text-sm mt-8">
-        <p>Dernière mise à jour : {LEGAL_DATA.dataProtection.lastUpdate}</p>
-      </div>
-    </div>
-  </section>
+    </section>
 </Layout>

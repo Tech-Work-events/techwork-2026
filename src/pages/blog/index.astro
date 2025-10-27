@@ -2,28 +2,23 @@
 import { getCollection } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 
+import CTASection from '../../components/cta/CTASection.astro'
+
 const posts = await getCollection('blog')
 
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
-<Layout title="Blog | Tech'Work Lyon">
+<Layout title="Blog | Tech'Work Lyon" robots="noindex, nofollow">
     <!-- Hero Section -->
+    <slot name="head">
+        <meta http-equiv="refresh" content="0; url=/" />
+    </slot>
     <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div
-                class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
-                <span class="mr-2 animate-bounce-gentle">📝</span>
-                Blog Tech'Work
-            </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-6 scroll-animate">
-                Actualités et
-                <span class="text-gradient animate-gradient">coulisses</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto scroll-animate">
-                Découvrez les actualités de Tech'Work Lyon, nos réflexions sur l'écosystème tech lyonnais et les
-                coulisses de l'organisation.
-            </p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-6">Redirection...</h1>
+            <p class="text-lg text-gray-600">Le blog est désactivé pour l'instant. Retour à l'accueil.</p>
+            <a href="/" class="btn btn-primary mt-6">Aller à l'accueil</a>
         </div>
     </section>
 
@@ -81,6 +76,12 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
                     </div>
                 )
             }
+
+            <CTASection
+                title="On continue la lecture en vrai ?"
+                description="Le blog c'est cool, mais sur place c'est mieux. Reserve ta place."
+                placement="content-blog-index"
+            />
         </div>
     </section>
 </Layout>
