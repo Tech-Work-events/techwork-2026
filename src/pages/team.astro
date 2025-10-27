@@ -45,8 +45,10 @@ const members = Array.isArray(team)
           .map((m) => ({
               name: m?.name ?? '',
               linkedin_url:
-                  m?.linkedin_url ?? m?.socials?.find?.((s) => s?.name?.toLowerCase?.() === 'linkedin')?.link ?? null,
-              image_url: m?.image_url ?? m?.photoUrl ?? null,
+                  m?.linkedin_url ??
+                  (m as any)?.socials?.find?.((s: any) => s?.name?.toLowerCase?.() === 'linkedin')?.link ??
+                  null,
+              image_url: m?.image_url ?? (m as any)?.photoUrl ?? null,
           }))
           .filter((m) => !!m.name && !!m.linkedin_url)
     : []
