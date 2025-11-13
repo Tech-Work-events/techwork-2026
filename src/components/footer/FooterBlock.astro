@@ -2,7 +2,6 @@
 import FooterSocial from './FooterSocial.astro'
 import FooterRel from './FooterRel.astro'
 import FooterNav from './FooterNav.astro'
-import { TICKETING_BASE_URL } from '../../config/cta'
 ---
 
 <footer role="contentinfo" class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -27,7 +26,7 @@ import { TICKETING_BASE_URL } from '../../config/cta'
 
                 <!-- Contact -->
                 <div class="lg:col-span-1">
-                    <h3 class="text-base font-semibold text-white mb-4">Contact</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4">Contact</h3>
                     <a
                         href="mailto:team@techwork.events"
                         aria-label="Contacter l’équipe par e‑mail"
@@ -36,26 +35,11 @@ import { TICKETING_BASE_URL } from '../../config/cta'
                     </a>
                 </div>
             </div>
-
-            <!-- Footer CTA -->
-            <div class="py-6 text-center">
-                <p class="text-gray-400 text-sm mb-3">si tu aimes les lamas : Réserve ta place</p>
-                <a
-                    href={TICKETING_BASE_URL}
-                    class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r from-primary-500 to-secondary-500 text-white hover:from-primary-600 hover:to-secondary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-400 hover-lift"
-                    data-cta
-                    data-placement="footer"
-                    data-base-href={TICKETING_BASE_URL}
-                    aria-label="Réserver ma place (footer)">
-                    <span>🎫</span>
-                    <span>Réserver ma place</span>
-                </a>
-            </div>
         </div>
 
         <!-- Bottom Bar -->
         <div class="border-t border-gray-700 py-4 sm:py-6">
-            <div class="flex flex-col space-y-4">
+            <div class="flex flex-col space-y-6">
                 <!-- Legal Links -->
                 <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
                     <a

@@ -3,7 +3,6 @@ import { ClientRouter } from 'astro:transitions'
 import FooterBlock from '../components/footer/FooterBlock.astro'
 import Menu from '../components/Menu.astro'
 import CookieConsent from '../components/legal/CookieConsent.astro'
-import StickyCTA from '../components/cta/StickyCTA.astro'
 
 import '../styles/global.css'
 
@@ -124,9 +123,6 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
         </main>
 
         <FooterBlock />
-
-        <!-- Sticky CTA (mobile/tablet) -->
-        <StickyCTA />
 
         <!-- Gestion des cookies RGPD -->
         <CookieConsent />
