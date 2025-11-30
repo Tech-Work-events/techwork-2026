@@ -9,7 +9,7 @@
             "country": "France"
         },
         "contact": {
-            "email": "contact@techwork.lyon",
+            "email": "team@techwork.events",
             "phone": "+33 4 XX XX XX XX"
         },
         "legal": {
@@ -19,7 +19,7 @@
         }
     },
     "dataProtection": {
-        "dpoEmail": "privacy@techwork.lyon",
+        "dpoEmail": "team@techwork.events",
         "lastUpdate": "2025-01-17",
         "privacyPolicyVersion": "1.0.0"
     },

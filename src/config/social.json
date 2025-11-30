@@ -1,65 +1,59 @@
 {
-  "networks": [
-    {
-      "id": "discord",
-      "name": "Discord",
-      "url": "https://discord.gg/techwork-lyon",
-      "icon": "💬",
-      "color": "#5865F2",
-      "description": "Rejoignez notre communauté Discord",
-      "handle": "@techwork-lyon"
+    "networks": [
+        {
+            "id": "discord",
+            "name": "Discord",
+            "url": "https://discord.gg/techwork-lyon",
+            "icon": "💬",
+            "color": "#5865F2",
+            "description": "Rejoignez notre communauté Discord",
+            "handle": "@techwork-lyon"
+        },
+        {
+            "id": "twitter",
+            "name": "Twitter/X",
+            "url": "https://twitter.com/techworklyon",
+            "icon": "🐦",
+            "color": "#1DA1F2",
+            "description": "Suivez-nous sur Twitter",
+            "handle": "@techworklyon"
+        },
+        {
+            "id": "linkedin",
+            "name": "LinkedIn",
+            "url": "https://linkedin.com/company/techwork-lyon",
+            "icon": "💼",
+            "color": "#0077B5",
+            "description": "Page LinkedIn officielle",
+            "handle": "techwork-lyon"
+        },
+        {
+            "id": "youtube",
+            "name": "YouTube",
+            "url": "https://youtube.com/@techworklyon",
+            "icon": "📺",
+            "color": "#FF0000",
+            "description": "Chaîne YouTube avec les replays",
+            "handle": "@techworklyon"
+        },
+        {
+            "id": "github",
+            "name": "GitHub",
+            "url": "https://github.com/tech-work-events",
+            "icon": "💻",
+            "color": "#333333",
+            "description": "Organisation GitHub",
+            "handle": "tech-work-events"
+        }
+    ],
+    "contact": {
+        "general": "team@techwork.events",
+        "team": "team@techwork.events",
+        "speakers": "team@techwork.events",
+        "sponsors": "team@techwork.events",
+        "location": "team@techwork.events",
+        "newsletter": "team@techwork.events",
+        "press": "team@techwork.events"
     },
-    {
-      "id": "twitter",
-      "name": "Twitter/X",
-      "url": "https://twitter.com/techworklyon",
-      "icon": "🐦",
-      "color": "#1DA1F2",
-      "description": "Suivez-nous sur Twitter",
-      "handle": "@techworklyon"
-    },
-    {
-      "id": "linkedin",
-      "name": "LinkedIn",
-      "url": "https://linkedin.com/company/techwork-lyon",
-      "icon": "💼",
-      "color": "#0077B5",
-      "description": "Page LinkedIn officielle",
-      "handle": "techwork-lyon"
-    },
-    {
-      "id": "youtube",
-      "name": "YouTube",
-      "url": "https://youtube.com/@techworklyon",
-      "icon": "📺",
-      "color": "#FF0000",
-      "description": "Chaîne YouTube avec les replays",
-      "handle": "@techworklyon"
-    },
-    {
-      "id": "github",
-      "name": "GitHub",
-      "url": "https://github.com/tech-work-events",
-      "icon": "💻",
-      "color": "#333333",
-      "description": "Organisation GitHub",
-      "handle": "tech-work-events"
-    }
-  ],
-  "contact": {
-    "general": "contact@techwork.lyon",
-    "team": "team@techwork.lyon",
-    "speakers": "speakers@techwork.lyon",
-    "sponsors": "sponsors@techwork.lyon",
-    "location": "lieu@techwork.lyon",
-    "newsletter": "news@techwork.lyon",
-    "press": "presse@techwork.lyon"
-  },
-  "hashtags": [
-    "#TechWorkLyon",
-    "#TechWorkLyon2026",
-    "#TechLyon",
-    "#DevLyon",
-    "#WorkLifeBalance"
-  ]
+    "hashtags": ["#TechWorkLyon", "#TechWorkLyon2026", "#TechLyon", "#DevLyon", "#WorkLifeBalance"]
 }
