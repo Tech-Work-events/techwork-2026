@@ -1,6 +1,5 @@
 ---
 import { TICKETS_CONFIG, SERVICES_DATA } from '../../config'
-import { REFUND_POLICY_SNIPPET } from '../../config/cta'
 
 const { loading = false, error = null } = Astro.props
 
@@ -163,51 +162,5 @@ const tickets = TICKETS_CONFIG.map((ticket) => ({
                 }
             })
         </script>
-
-        <!-- Valeur & confiance -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 scroll-animate">
-            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-                <div class="text-2xl mb-2">🤝</div>
-                <h4 class="font-bold text-gray-900 mb-1">Networking exceptionnel</h4>
-                <p class="text-sm text-gray-600">
-                    Des moments pensés pour créer de vraies connexions. Ici, tu rencontres des passionnés, pas des
-                    cartes de visite.
-                </p>
-            </div>
-            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-                <div class="text-2xl mb-2">🎭</div>
-                <h4 class="font-bold text-gray-900 mb-1">Ambiance décalée</h4>
-                <p class="text-sm text-gray-600">
-                    Des animations fun par des artisans locaux. Un événement qui sort du lot, façon lama 🦙
-                </p>
-            </div>
-            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-                <div class="text-2xl mb-2">💡</div>
-                <h4 class="font-bold text-gray-900 mb-1">Partage & inspiration</h4>
-                <p class="text-sm text-gray-600">
-                    Talks, ateliers et échanges entre passionnés. Tu repars avec des idées ET de nouveaux amis.
-                </p>
-            </div>
-        </div>
-
-        <div class="mt-6 text-center text-xs text-gray-500">
-            {REFUND_POLICY_SNIPPET}
-        </div>
-
-        <div class="text-center mt-12 scroll-animate">
-            <div
-                class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 sm:p-8 border border-primary-100 hover-lift">
-                <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">
-                    🏢 Votre entreprise veut sponsoriser des billets ?
-                </h3>
-                <p class="text-gray-600 mb-4">
-                    Offrez à vos collaborateurs l'opportunité de se former sur leur temps de travail !
-                </p>
-                <a href={`mailto:${SERVICES_DATA.sponsors.contact.email}`} class="btn btn-secondary hover-lift group">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
-                    Contacter l'équipe
-                </a>
-            </div>
-        </div>
     </div>
 </section>

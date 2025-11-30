@@ -4,11 +4,18 @@ import FooterRel from './FooterRel.astro'
 import FooterNav from './FooterNav.astro'
 ---
 
-<footer role="contentinfo" class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+<footer
+    role="contentinfo"
+    class="bg-gradient-to-br from-gray-900 via-[#1a1016] to-gray-900 text-white relative overflow-hidden">
+    <!-- Decorative top border -->
+    <div
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-purple-500 to-primary-500 opacity-50">
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Main Footer Content -->
-        <div class="py-8 sm:py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="py-12 sm:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8">
                 <!-- Brand / Description & Newsletter -->
                 <div class="lg:col-span-1">
                     <FooterNav />
@@ -26,54 +33,63 @@ import FooterNav from './FooterNav.astro'
 
                 <!-- Contact -->
                 <div class="lg:col-span-1">
-                    <h3 class="text-lg font-semibold text-white mb-4">Contact</h3>
-                    <a
-                        href="mailto:contact@techwork.events"
-                        aria-label="Contacter l’équipe par e‑mail"
-                        class="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
-                        contact@techwork.events
-                    </a>
+                    <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                        <span>Contact</span>
+                        <span class="text-2xl" role="img" aria-label="Lettre">📨</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-400 text-sm">
+                            Une question ? Une suggestion ?<br />
+                            Ou juste envie de parler de lamas ?
+                        </p>
+                        <a
+                            href="mailto:contact@techwork.events"
+                            aria-label="Contacter l’équipe par e‑mail"
+                            class="inline-flex items-center gap-2 text-primary-300 hover:text-primary-400 transition-colors duration-200 text-sm font-medium group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                            <span class="group-hover:translate-x-1 transition-transform">contact@techwork.events</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Bar -->
-        <div class="border-t border-gray-700 py-4 sm:py-6">
+        <div class="border-t border-gray-800 py-8">
             <div class="flex flex-col space-y-6">
                 <!-- Legal Links -->
-                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
                     <a
                         href="/legal/mentions-legales"
-                        class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                        class="text-gray-500 hover:text-primary-300 text-xs sm:text-sm transition-colors duration-200">
                         Mentions légales
                     </a>
-                    <span class="text-gray-600">•</span>
                     <a
                         href="/legal/politique-confidentialite"
-                        class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                        class="text-gray-500 hover:text-primary-300 text-xs sm:text-sm transition-colors duration-200">
                         Politique de confidentialité
                     </a>
-                    <span class="text-gray-600">•</span>
                     <a
                         href="/legal/cookies"
-                        class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                        class="text-gray-500 hover:text-primary-300 text-xs sm:text-sm transition-colors duration-200">
                         Cookies
                     </a>
-                    <span class="text-gray-600">•</span>
                     <a
                         href="/legal/droits-utilisateurs"
-                        class="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                        class="text-gray-500 hover:text-primary-300 text-xs sm:text-sm transition-colors duration-200">
                         Vos droits
                     </a>
                 </div>
 
                 <!-- Copyright -->
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-                    <div class="text-gray-400 text-xs sm:text-sm text-center md:text-left">
-                        © 2026 Tech'Work Lyon - Made with ❤️ by des devs lyonnais
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 pt-4">
+                    <div class="text-gray-500 text-xs sm:text-sm text-center md:text-left flex items-center gap-1.5">
+                        <span>© 2026 Tech'Work Lyon</span>
+                        <span class="hidden sm:inline text-gray-700">|</span>
+                        <span>Fait avec ❤️ et 🦙 par des passionnés</span>
                     </div>
-                    <div class="text-gray-400 text-xs sm:text-sm font-mono text-center md:text-right">
-                        git commit -m "Révolution en cours"
+                    <div
+                        class="text-gray-600 text-xs font-mono text-center md:text-right bg-gray-900/50 px-3 py-1 rounded-full border border-gray-800">
+                        git commit -m "More llamas, less drama"
                     </div>
                 </div>
             </div>
