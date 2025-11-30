@@ -12,7 +12,7 @@
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 scroll-animate">
                 Pas encore décidé·e ?
-                <span class="text-gradient animate-gradient">Reste dans le troupeau</span>
+                <span class="text-gradient animate-gradient">Reste dans la boucle</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8 scroll-animate">
                 Reçois les actus Tech'Work, un rappel avant la clôture des ventes, et quelques surprises signées Ola 🦙
@@ -87,7 +87,7 @@
                 const result = await response.json()
 
                 if (result.success) {
-                    showMessage('✅ Bienvenue dans le troupeau ! Check tes emails 🦙', false)
+                    showMessage("✅ Bienvenue dans l'aventure ! Check tes emails 🦙", false)
                     form.reset()
                 } else {
                     showMessage(result.error || "Oups, une erreur s'est produite", true)
