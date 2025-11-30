@@ -75,7 +75,16 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
         <div class="space-y-6 sm:space-y-8">
             <!-- Logo/Title avec animation séquentielle -->
             <div class="space-y-3 sm:space-y-4 scroll-animate">
-                <div class="inline-block animate-bounce-gentle mb-2 text-4xl sm:text-5xl" aria-hidden="true">🦙</div>
+                <!-- Badge de transition Tech & Wine → Tech'Work -->
+                <div>
+                    <span
+                        class="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs sm:text-sm font-medium text-white/90 animate-fade-in">
+                        <span>Tech & Wine devient</span>
+                        <span class="mx-1.5">→</span>
+                        <span class="font-bold">Tech'Work</span>
+                    </span>
+                </div>
+                <div class="text-4xl sm:text-5xl animate-bounce-gentle" aria-hidden="true">🦙</div>
                 <h1
                     id="event-title"
                     class="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-3 sm:mb-4 tracking-tight leading-tight">
