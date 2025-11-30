@@ -2,8 +2,8 @@
     "event": {
         "name": "Tech'Work Lyon 2026",
         "shortName": "Tech'Work",
-        "tagline": "La conf' tech qui respecte ton 9‑5 — lama friendly",
-        "description": "L'événement tech qui révolutionne tout : pour la première fois, venez vous former sur votre temps de travail !",
+        "tagline": "La conf' tech qui ne vous prend pas pour des lamas — Data, Craft & Cloud",
+        "description": "Tech'Work : l'événement qui révolutionne votre agenda. Formez-vous sur Data/IA, Craft et Cloud/DevOps sur votre temps de travail. Promis, on ne vous posera pas de lapin... mais peut-être un lama !",
         "year": "2026",
         "date": {
             "full": "7 juin 2026",
@@ -50,14 +50,7 @@
         },
         "theme": {
             "main": "Innovation & Révolution Tech",
-            "subThemes": [
-                "Intelligence Artificielle",
-                "Développement Web & Mobile",
-                "DevOps & Cloud",
-                "Data Science",
-                "Cybersécurité",
-                "UX/UI Design"
-            ]
+            "subThemes": ["Data / IA", "Craft", "Cloud/DevOps"]
         },
         "statistics": {
             "expectedAttendees": 300,

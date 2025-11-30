@@ -1,273 +1,393 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { SOCIAL_DATA } from '../config'
-import RoleCard from '../components/RoleCard.astro'
-import TeamProfileCard from '../components/TeamProfileCard.astro'
+import { SOCIAL_DATA, EVENT_DATA } from '../config'
+import { Picture } from 'astro:assets'
+import teamHero from '../assets/team/hero.webp'
+import CTASection from '../components/cta/CTASection.astro'
 
-const EVENT_DATA_URL =
-    'https://storage.googleapis.com/conferencecenterr.appspot.com/events/yJJCwgGH19X4uPP9ArxV/d0f4f4c4-7f37-4772-8aea-a12db737e509.json'
+import { OPENPLANNER_URL } from 'astro:env/client'
+import type { OpenPlannerType } from '../type'
 
-interface ApiSocial {
-    name: string
-    icon: string
-    link: string
-}
+const response = await fetch(OPENPLANNER_URL)
+const openPlannerData: OpenPlannerType = await response.json()
+const team = openPlannerData.team
 
-interface ApiMember {
-    id: string
-    name: string
-    photoUrl?: string
-    socials?: ApiSocial[]
-    role?: string
-    bio?: string
-    team?: string
-}
-
-let team: ApiMember[] = []
-
-try {
-    const response = await fetch(`${EVENT_DATA_URL}?t=${Date.now()}`)
-    const data = await response.json()
-    team = data.team || []
-} catch (error) {
-    console.error('Failed to fetch team data:', error)
-    // Fallback to empty or handle error as needed
-    team = []
-}
-
-const DISCORD_URL =
-    SOCIAL_DATA.networks.find((network) => network.id === 'discord')?.url || 'https://discord.gg/techwork-lyon'
-
-const TEAM_EMAIL = 'mailto:team@techwork.events'
-
-type Affiliation = string
-
-interface ProfileMeta {
-    role: string
-    affiliation: Affiliation
-    bio: string
-}
-
-const defaultProfile: ProfileMeta = {
-    role: 'Bénévole',
-    affiliation: 'Bénévole',
-    bio: 'Bénévole Tech’Work, motivé pour faire vivre un événement utile et convivial.',
-}
-
-const teamProfiles = team
-    .map((member) => {
-        const linkedinUrl = member.socials?.find((s) => s.name.toLowerCase() === 'linkedin')?.link || undefined
-        const twitterUrl =
-            member.socials?.find((s) => s.name.toLowerCase() === 'twitter' || s.name.toLowerCase() === 'x')?.link ||
-            undefined
-
-        return {
-            name: member.name,
-            role: member.role || '',
-            bio: member.bio || '',
-            affiliation: member.team || 'Bénévole',
-            imageSrc: member.photoUrl ?? null,
-            links: {
-                linkedin: linkedinUrl,
-                twitter: twitterUrl,
-            },
-        }
-    })
-    .filter((profile) => profile.name)
-    .sort((a, b) => a.name.localeCompare(b.name))
-
-const roleCards = [
+const openRoles = [
     {
+        emoji: '🎯',
         title: 'Responsable Communication',
-        mission: 'Faire grandir la communauté Tech’Work et porter nos messages.',
-        responsibilities: ['Social', 'Newsletter', 'RP'],
-        skills: ['Marketing digital', 'Storytelling', 'Outils Social'],
+        description: 'Pour faire connaître notre révolution (et nos jeux de mots douteux)',
+        skills: ['Marketing digital', 'Storytelling', 'Résistance aux crachats de bugs'],
+        commitment: "C'est toi qui choisis (Ola t'en voudra pas)",
     },
     {
+        emoji: '🎨',
         title: 'UX/UI Designer',
-        mission: 'Faire évoluer le design system et les interfaces.',
-        responsibilities: ['Design System', 'Maquettes', 'Revue design'],
-        skills: ['Figma/Sketch', 'Design System', 'UI/UX'],
+        description: "Pour que notre site soit aussi beau que le pelage d'un alpaga",
+        skills: ['Figma/Sketch', 'Design System', 'Patience avec les devs'],
+        commitment: "C'est toi qui choisis (Ola t'en voudra pas)",
     },
     {
+        emoji: '🤝',
         title: 'Community Manager',
-        mission: 'Animer la communauté avec humour et cohérence.',
-        responsibilities: ['Calendrier éditorial', 'Memes', 'Interactions'],
-        skills: ['Social Media', 'Créativité', 'Copywriting'],
+        description: 'Pour animer notre troupeau avec style et humour',
+        skills: ['Social Media', 'Créativité', 'Memes de qualité'],
+        commitment: "C'est toi qui choisis (Ola t'en voudra pas)",
     },
     {
+        emoji: '💻',
         title: 'Développeur·se',
-        mission: 'Automatiser et améliorer le site et les outils.',
-        responsibilities: ['React/Astro', 'Node.js', 'Automatisation'],
-        skills: ['React/Astro', 'Node.js', 'CI/CD'],
+        description: "Pour automatiser tout ce qui peut l'être (on est des devs, après tout)",
+        skills: ['React/Astro', 'Node.js', 'Café++'],
+        commitment: "C'est toi qui choisis (Ola t'en voudra pas)",
     },
 ]
+const AVATAR_SIZE_PX = 160
+
+// Build minimal list and preserve input order; support both new (name, linkedin_url, image_url) and legacy shapes
+const members = Array.isArray(team)
+    ? team
+          .map((m) => ({
+              name: m?.name ?? '',
+              linkedin_url: m?.socials?.find?.((s: any) => s?.name?.toLowerCase?.() === 'linkedin')?.link ?? null,
+              image_url: m?.photoUrl ?? null,
+          }))
+          .filter((m) => !!m.name && !!m.linkedin_url)
+    : []
 ---
 
 <Layout
-    title="Équipe Tech’Work Lyon — Organisation & Recrutement"
-    description="Découvrez l’équipe Tech’Work Lyon, la core team et les bénévoles, et comment contribuer à l’organisation de l’événement.">
+    title={`L'équipe ${EVENT_DATA.event.name}`}
+    description={`Découvrez le troupeau qui révolutionne la tech ${EVENT_DATA.event.location.city.toLowerCase()}aise`}>
     <!-- Page Header with Hero Background -->
-    <section
-        class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-900 via-gray-900 to-primary-900 text-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="scroll-animate space-y-6">
-                <p
-                    class="inline-flex items-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/10 text-gray-200">
-                    <span class="mr-2" aria-hidden="true">👥</span>
-                    L’équipe & le collectif
+    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <Picture
+                src={teamHero}
+                alt="Équipe Tech'Work"
+                class="w-full h-full object-cover object-top opacity-75"
+                loading="eager"
+                widths={[640, 768, 1024, 1280, 1920]}
+                sizes="100vw"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🦙</span>
+                    L'équipe
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Le <span class="text-gradient">Troupeau</span> Fondateur
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
+                    Une équipe de passionnés (et un lama) pour révolutionner l'événementiel tech.
                 </p>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black">L’équipe Tech’Work</h1>
-                <p class="text-base sm:text-lg text-gray-200 max-w-3xl">
-                    Tech’Work Lyon, c’est une core team et une garde rapprochée de bénévoles qui conçoivent
-                    l’expérience, choisissent les sujets et s’assurent que tout reste humain (et un peu lama).
-                </p>
-                <p class="text-base sm:text-lg text-gray-200 max-w-3xl">
-                    Si tu as envie de contribuer à l’organisation, cette page est pour toi : rôles ouverts,
-                    fonctionnement de l’équipe et contacts.
-                </p>
-                <a
-                    href="/"
-                    class="inline-flex items-center text-sm sm:text-base text-primary-200 hover:text-white underline underline-offset-4">
-                    <span aria-hidden="true" class="mr-1">↩</span>
-                    Découvrir l’événement
-                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
             </div>
         </div>
     </section>
 
-    <!-- Origin Story Section -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="scroll-animate space-y-4">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Notre histoire (en bref)</h2>
-                <p class="text-base sm:text-lg text-gray-700">
-                    On a commencé avec Tech & Wine : super ambiance, mais compliqué à décliner en Tech & Bière, Tech &
-                    Mojito ou Tech & Jus de fruits. L’illumination est venue en réalisant que le vrai point commun, ce
-                    n’est pas la boisson, c’est le travail.
+    <!-- Team Members Section (Moved UP) -->
+    <section id="team-members" class="py-16 sm:py-20 lg:py-24 bg-white relative z-10 -mt-10 rounded-t-3xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Les <span class="text-gradient">Gardiens</span> du Lama
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Ils codent, ils organisent, et ils nourrissent Ola. Voici les humains derrière le projet.
                 </p>
-                <p class="text-base sm:text-lg text-gray-700">
-                    De là est né Tech’Work : un événement pensé sur temps de travail, centré sur notre métier, pour
-                    apprendre ensemble sans sacrifier ses soirs. Cette page raconte surtout qui fait tourner la machine.
-                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 stagger-children">
+                {
+                    members.map((member, index) => (
+                        <div
+                            class="card hover-lift scroll-animate-scale group p-6 flex flex-col items-center text-center"
+                            style={`animation-delay: ${index * 0.2}s`}>
+                            <a
+                                href={member.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer nofollow"
+                                aria-label={`Voir le profil LinkedIn de ${member.name}`}
+                                class="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full inline-block">
+                                {member.image_url && (
+                                    <img
+                                        src={member.image_url}
+                                        alt={`Photo de ${member.name}`}
+                                        class="rounded-full object-cover w-40 h-40"
+                                        width={AVATAR_SIZE_PX}
+                                        height={AVATAR_SIZE_PX}
+                                        loading="lazy"
+                                        decoding="async"
+                                        onerror="this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden')"
+                                    />
+                                )}
+                                <span
+                                    class={`${member.image_url ? 'hidden ' : ''}w-40 h-40 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-3xl font-bold select-none`}
+                                    aria-hidden="true">
+                                    {member.name?.charAt(0)?.toUpperCase()}
+                                </span>
+                            </a>
+                            <a
+                                href={member.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer nofollow"
+                                aria-label={`Voir le profil LinkedIn de ${member.name}`}
+                                class="mt-4 text-lg font-semibold text-gray-900 hover:text-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded">
+                                {member.name}
+                            </a>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </section>
-    <!-- Recruitment Section -->
-    <section id="join-us" class="py-16 sm:py-20 lg:py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Origin Story Section (Simplified & Moved Down) -->
+    <section class="py-16 sm:py-20 lg:py-24 bg-gray-50 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-animate">
                 <div
-                    class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6">
-                    <span class="mr-2 animate-bounce-gentle">🚀</span>
-                    Nous recrutons
+                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2">📜</span>
+                    La Légende
                 </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
-                    Contribuer à l’organisation
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Comment on en est arrivé là ?</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block"></div>
+
+                <div class="space-y-12">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between scroll-animate-left">
+                        <div
+                            class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">2023 : Les débuts Cloud Alpes</h3>
+                            <p class="text-gray-600 text-sm">
+                                Notre premier événement, en petit comité mais 100% passion. C'était top, mais très focus
+                                Cloud & DevOps. On s'est vite dit qu'on voulait ouvrir les chakras à toute la tech
+                                (Data, IA, Craft...) parce qu'au final, on bosse tous ensemble.
+                            </p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary-500 rounded-full border-4 border-white hidden md:flex items-center justify-center text-white font-bold z-10">
+                            1
+                        </div>
+                        <div class="md:w-5/12 order-1 md:order-2 text-center md:text-left pl-8 hidden md:block">
+                            <span class="text-4xl">🏔️</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between scroll-animate-right">
+                        <div class="md:w-5/12 order-1 md:order-1 text-center md:text-right pr-8 hidden md:block">
+                            <span class="text-4xl">🍷</span>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-secondary-500 rounded-full border-4 border-white hidden md:flex items-center justify-center text-white font-bold z-10">
+                            2
+                        </div>
+                        <div
+                            class="md:w-5/12 order-2 md:order-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">2024 : La suite Tech & Wine</h3>
+                            <p class="text-gray-600 text-sm">
+                                Direction le Château de Montchat ! Succès total, networking incroyable avec des artisans
+                                vignerons. Mais bon, un château ça coûte un bras, et le "Wine" freinait certains
+                                sponsors (on les comprend). Il fallait évoluer.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between scroll-animate-left">
+                        <div
+                            class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">2025 : La pause réflexion</h3>
+                            <p class="text-gray-600 text-sm">
+                                Une année off pour repenser le concept. Autour d'un resto, Kevin lance : "Tech'Work !".
+                                L'idée ? L'ambiance afterwork (partage, échanges, networking) mais sur le temps de
+                                travail tout en gardant les artisans locaux. Et pour le fun ? Un lama mascotte nommé Ola
+                                (clin d'œil à O'lama).
+                            </p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gray-700 rounded-full border-4 border-white hidden md:flex items-center justify-center text-white font-bold z-10">
+                            3
+                        </div>
+                        <div class="md:w-5/12 order-1 md:order-2 text-center md:text-left pl-8 hidden md:block">
+                            <span class="text-4xl">🤔</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between scroll-animate-right">
+                        <div class="md:w-5/12 order-1 md:order-1 text-center md:text-right pr-8 hidden md:block">
+                            <span class="text-4xl animate-bounce-gentle">🦙</span>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary-500 rounded-full border-4 border-white hidden md:flex items-center justify-center text-white font-bold z-10">
+                            4
+                        </div>
+                        <div
+                            class="md:w-5/12 order-2 md:order-2 bg-gradient-to-br from-primary-50 to-secondary-50 p-6 rounded-2xl shadow-sm border border-primary-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">2026 : Tech'Work 1ère édition</h3>
+                            <p class="text-gray-700 text-sm font-medium">
+                                C'est le grand lancement ! Un événement pro, utile, inclusif, et décalé. Le bonheur. Ola
+                                est prêt, l'équipe aussi. La révolution est en marche !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p class="text-center text-lg text-gray-600 max-w-3xl mx-auto mt-8">
+        Après ces quatre étapes marquantes, notre troupeau a trouvé sa voie : allier technologie, convivialité et
+        créativité autour d’Ola le lama, notre mascotte emblématique. Nous continuons d’innover, d’accueillir des
+        artisans passionnés et d’offrir une expérience unique à chaque édition. Rejoignez‑nous pour écrire le prochain
+        chapitre !
+    </p>
+
+    <!-- Join Team Section -->
+    <section id="join-us" class="py-16 sm:py-20 lg:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🦙</span>
+                    Recrutement
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
+                    Rejoignez le <span class="text-gradient">troupeau</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Tous les rôles sont bénévoles : on cherche des personnes curieuses, fiables et partantes pour
-                    co-construire l’événement, pas des super-héros disponibles 10h par semaine.
-                </p>
-                <p class="mt-4 text-sm text-gray-500 max-w-2xl mx-auto">
-                    Processus simple : tu nous écris, on échange rapidement, puis on voit ensemble comment intégrer ton
-                    aide. Réponse sous quelques jours ouvrés.
+                    On cherche des lamas motivés pour nous aider à révolutionner l'événementiel tech.
                 </p>
             </div>
 
-            {
-                roleCards.length > 0 && (
-                    <div class="grid md:grid-cols-2 gap-6 lg:gap-8 stagger-children mb-10">
-                        {roleCards.map((role) => (
-                            <RoleCard
-                                title={role.title}
-                                mission={role.mission}
-                                responsibilities={role.responsibilities}
-                                skills={role.skills}
-                                applyEmailHref={TEAM_EMAIL}
-                                discordHref={DISCORD_URL}
-                            />
-                        ))}
-                    </div>
-                )
-            }
+            <div class="grid md:grid-cols-2 gap-6 lg:gap-8 stagger-children mb-16">
+                {
+                    openRoles.map((role, index) => (
+                        <div
+                            class="card hover-lift scroll-animate-scale group"
+                            style={`animation-delay: ${index * 0.15}s`}>
+                            <div class="p-6 relative overflow-hidden">
+                                {/* Effet de brillance */}
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
 
-            <p class="text-center text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-                Tu ne te reconnais pas dans ces rôles mais tu as envie d’aider ? Écris-nous quand même : on trouve
-                souvent une façon utile de contribuer.
-            </p>
-        </div>
-    </section>
+                                <div class="relative z-10">
+                                    <div class="flex items-center space-x-3 mb-4">
+                                        <div class="text-3xl group-hover:animate-bounce-gentle">{role.emoji}</div>
+                                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                                            {role.title}
+                                        </h3>
+                                    </div>
 
-    <!-- Team Profiles Section -->
-    <section id="team-members" class="py-16 sm:py-20 lg:py-24 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 scroll-animate">
-                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">La core team & les bénévoles</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Derrière Tech’Work, il y a une petite équipe qui coordonne, prépare les contenus et veille à ce que
-                    la journée se passe bien pour tout le monde.
-                </p>
+                                    <p class="text-gray-600 mb-4 leading-relaxed">{role.description}</p>
+
+                                    <div class="space-y-3">
+                                        <div>
+                                            <span class="text-sm font-semibold text-primary-600">
+                                                Skills recherchés:
+                                            </span>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                {role.skills.map((skill) => (
+                                                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium">
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-secondary-600 font-semibold">⏰ Engagement:</span>
+                                            <span class="text-gray-600">{role.commitment}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
 
-            {
-                teamProfiles.length > 0 ? (
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
-                        {teamProfiles.map((profile) => (
-                            <TeamProfileCard
-                                name={profile.name}
-                                role={profile.role}
-                                bio={profile.bio}
-                                imageSrc={profile.imageSrc}
-                                affiliation={profile.affiliation}
-                                links={profile.links}
-                            />
-                        ))}
+            <!-- Contact CTA -->
+            <div class="text-center scroll-animate-scale">
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.01] group">
+                    <!-- Decorative background elements -->
+                    <div
+                        class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary-200 rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500">
                     </div>
-                ) : (
-                    <p class="text-center text-gray-500 text-sm">
-                        On prépare encore la galerie de l’équipe. En attendant, écris-nous si tu veux en savoir plus.
-                    </p>
-                )
-            }
-        </div>
-    </section>
+                    <div
+                        class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-secondary-200 rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500">
+                    </div>
 
-    <!-- Contact Section -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary-50 to-secondary-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="scroll-animate-scale text-center">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Nous contacter</h2>
-                <p class="text-base sm:text-lg text-gray-700 mb-6">
-                    Une question sur l’organisation, envie de filer un coup de main ou besoin d’en savoir plus avant de
-                    te lancer ?
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a
-                        href={TEAM_EMAIL}
-                        class="btn btn-primary text-sm sm:text-base px-6 py-3 hover-lift group"
-                        aria-label="Rejoindre l’équipe (contact email)"
-                        data-cta
-                        data-placement="team-contact-primary">
-                        <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">📧</span>
-                        Rejoindre l’équipe
-                    </a>
-                    <a
-                        href={DISCORD_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-secondary text-sm sm:text-base px-6 py-3 hover-lift group"
-                        aria-label="Rejoindre la communauté Discord"
-                        data-cta
-                        data-placement="team-contact-discord">
-                        <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">💬</span>
-                        Discord communauté
-                    </a>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                            Prêt·e à rejoindre le <span
+                                class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600"
+                                >troupeau</span
+                            > ? 🦙
+                        </h3>
+                        <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                            Écrivez-nous et dites-nous quel est votre super-pouvoir. On a hâte de vous rencontrer !
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <a
+                                href={`mailto:${SOCIAL_DATA.contact.team}`}
+                                class="btn btn-primary text-lg px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center group/btn"
+                                aria-label="Rejoindre l'équipe (contact email)"
+                                data-cta
+                                data-placement="team-contact-primary">
+                                <span class="mr-3 text-2xl group-hover/btn:animate-bounce-gentle" aria-hidden="true"
+                                    >📧</span
+                                >
+                                <span class="font-bold">Rejoindre l'équipe</span>
+                            </a>
+                            <a
+                                href="https://discord.gg/techwork-lyon"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-secondary text-lg px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center group/btn"
+                                aria-label="Rejoindre la communauté Discord"
+                                data-cta
+                                data-placement="team-contact-discord">
+                                <span class="mr-3 text-2xl group-hover/btn:animate-bounce-gentle" aria-hidden="true"
+                                    >💬</span
+                                >
+                                <span class="font-bold">Discord communauté</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 italic">
-                    On lit tous les messages et on essaie de répondre rapidement (promis, entre deux blagues de lama).
-                </p>
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="On se voit sur place ?"
+        description="Passe dire bonjour à l'équipe et à Ola : talks, ateliers, bonne ambiance."
+        placement="content-team-early"
+    />
 </Layout>
