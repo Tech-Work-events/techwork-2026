@@ -133,12 +133,124 @@ const testimonials = [
     const rightBtn = document.getElementById('scroll-right')
 
     if (container && leftBtn && rightBtn) {
+        // Configuration
+        const AUTO_SCROLL_INTERVAL = 4500 // 4.5 secondes entre chaque transition
+        const SCROLL_AMOUNT = 400 // Pixels à défiler
+        let autoScrollTimer: ReturnType<typeof setInterval> | null = null
+        let isPaused = false
+
+        // Fonction pour défiler vers la droite avec boucle infinie
+        const scrollNext = () => {
+            if (isPaused) return
+
+            const maxScroll = container.scrollWidth - container.clientWidth
+            const currentScroll = container.scrollLeft
+
+            // Si on est proche de la fin, revenir au début en douceur
+            if (currentScroll >= maxScroll - 10) {
+                container.scrollTo({ left: 0, behavior: 'smooth' })
+            } else {
+                container.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' })
+            }
+        }
+
+        // Démarrer le défilement automatique
+        const startAutoScroll = () => {
+            if (autoScrollTimer) return
+            autoScrollTimer = setInterval(scrollNext, AUTO_SCROLL_INTERVAL)
+        }
+
+        // Arrêter le défilement automatique
+        const stopAutoScroll = () => {
+            if (autoScrollTimer) {
+                clearInterval(autoScrollTimer)
+                autoScrollTimer = null
+            }
+        }
+
+        // Gestion du survol - pause au hover
+        container.addEventListener('mouseenter', () => {
+            isPaused = true
+        })
+
+        container.addEventListener('mouseleave', () => {
+            isPaused = false
+        })
+
+        // Pause également quand les boutons sont survolés
+        leftBtn.addEventListener('mouseenter', () => {
+            isPaused = true
+        })
+
+        leftBtn.addEventListener('mouseleave', () => {
+            isPaused = false
+        })
+
+        rightBtn.addEventListener('mouseenter', () => {
+            isPaused = true
+        })
+
+        rightBtn.addEventListener('mouseleave', () => {
+            isPaused = false
+        })
+
+        // Boutons de navigation manuelle
         leftBtn.addEventListener('click', () => {
-            container.scrollBy({ left: -400, behavior: 'smooth' })
+            const currentScroll = container.scrollLeft
+            // Si on est au début, aller à la fin
+            if (currentScroll <= 10) {
+                const maxScroll = container.scrollWidth - container.clientWidth
+                container.scrollTo({ left: maxScroll, behavior: 'smooth' })
+            } else {
+                container.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' })
+            }
         })
 
         rightBtn.addEventListener('click', () => {
-            container.scrollBy({ left: 400, behavior: 'smooth' })
+            const maxScroll = container.scrollWidth - container.clientWidth
+            const currentScroll = container.scrollLeft
+            // Si on est à la fin, revenir au début
+            if (currentScroll >= maxScroll - 10) {
+                container.scrollTo({ left: 0, behavior: 'smooth' })
+            } else {
+                container.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' })
+            }
         })
+
+        // Respecter les préférences d'accessibilité (reduced motion)
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+        if (!prefersReducedMotion.matches) {
+            // Démarrer le défilement automatique après un court délai
+            setTimeout(startAutoScroll, 1000)
+        }
+
+        // Écouter les changements de préférence
+        prefersReducedMotion.addEventListener('change', (e) => {
+            if (e.matches) {
+                stopAutoScroll()
+            } else {
+                startAutoScroll()
+            }
+        })
+
+        // Observer la visibilité de la section pour optimiser les performances
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !prefersReducedMotion.matches) {
+                        startAutoScroll()
+                    } else {
+                        stopAutoScroll()
+                    }
+                })
+            },
+            { threshold: 0.2 }
+        )
+
+        const section = container.closest('section')
+        if (section) {
+            observer.observe(section)
+        }
     }
 </script>
