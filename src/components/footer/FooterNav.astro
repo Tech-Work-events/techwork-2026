@@ -4,13 +4,13 @@ const url = import.meta.env.SITE
 ---
 
 <div class="space-y-4">
-    <a href={url} class="inline-block">
+    <div class="inline-block">
         <div class="space-y-2">
             <h3 class="text-2xl font-black text-gradient">{EVENT_DATA.event.name}</h3>
             <p class="text-gray-400 italic text-sm">{EVENT_DATA.event.tagline}</p>
-            <p class="text-primary-400 text-xs font-medium">Approuvé par 100% des lamas développeurs 🦙</p>
+            <p class="text-primary-400 text-xs font-medium">Validé par les experts, adoré par les lamas 🦙</p>
         </div>
-    </a>
+    </div>
 
     <p class="text-gray-400 text-sm leading-relaxed">
         {EVENT_DATA.event.description}
