@@ -22,25 +22,53 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
 ---
 
 <Layout title="Nos Partenaires" description="Découvrez nos partenaires qui nous soutiennent">
-    <!-- Page Header -->
-    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center scroll-animate">
-                <div
-                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
-                    <span class="mr-2 animate-bounce-gentle">🤝</span>
-                    Partenaires
-                </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                    Nos <span class="text-gradient">partenaires</span>
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    Ils croient en notre vision (et nos lamas gonflables) et nous aident à révolutionner l'événementiel
-                    tech lyonnais.
-                </p>
-                <p class="text-sm text-gray-600 mt-2">Audience dev qualifiée · Visibilité · Recrutement</p>
+    <!-- Hero Section Immersif -->
+    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-primary-900"></div>
+            <!-- Pattern décoratif -->
+            <div
+                class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
             </div>
-            <div class="mt-6">
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
+                    <span class="mr-2 animate-bounce-gentle">🤝</span>
+                    Partenaires · {EVENT_DATA.event.shortName}
+                    {EVENT_DATA.event.year}
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Les <span class="text-gradient">Éleveurs</span> du Troupeau
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
+                    Ils croient en notre vision (et nos lamas gonflables) et nous aident à faire de Tech'Work
+                    l'événement tech le plus lama-friendly de Lyon.
+                </p>
+                <p class="text-sm text-gray-300 mt-2">Audience dev qualifiée · Visibilité · Recrutement</p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section transition avec CTA -->
+    <section class="relative z-10 -mt-10 bg-white rounded-t-3xl py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-wrap justify-center gap-4">
                 <a
                     href={`mailto:${SERVICES_DATA.sponsors.contact.email}`}
                     class="btn btn-primary text-lg px-8 py-4 hover-lift group"
@@ -54,22 +82,19 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                     href={SERVICES_DATA.sponsors.docUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn btn-secondary text-lg px-8 py-4 hover-lift group ml-4"
+                    class="btn btn-secondary text-lg px-8 py-4 hover-lift group"
                     aria-label="Voir le dossier de sponsoring"
                     data-cta
                     data-placement="sponsors-header-doc">
                     <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">📄</span>
                     Dossier Sponsoring
                 </a>
-                <p class="text-sm text-gray-500 mt-2">
-                    Réponse sous 48h. On ne crache pas dans la soupe, on répond vite 🦙
-                </p>
             </div>
         </div>
     </section>
 
     <!-- Sponsors Categories -->
-    <section class="py-16 sm:py-20 lg:py-24 bg-white">
+    <section class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {
                 sponsorsCategoriesSorted.length === 0 ? (
@@ -295,18 +320,20 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
                                     {SERVICES_DATA.sponsors.contact.email}
                                 </a>
-                                <p class="text-xs text-gray-500">Réponse garantie sous 48h</p>
+                                <p class="text-xs text-gray-500">
+                                    Réponse garantie sous 48h — on est rapides, pas comme un lama au réveil 🦙
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <CTASection
-                    title="On se voit a Tech'Work ?"
-                    description="Tu veux soutenir, participer ou simplement profiter de la journee ? Reserve ta place."
-                    placement="content-sponsors"
-                />
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="Envie de rejoindre le troupeau ?"
+        description="Que tu viennes en partenaire ou en participant, réserve ta place dans la bergerie tech la plus cool de Lyon."
+        placement="content-sponsors"
+    />
 </Layout>

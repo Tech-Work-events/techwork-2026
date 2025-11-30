@@ -6,27 +6,49 @@ import CTASection from '../components/cta/CTASection.astro'
 <Layout
     title="Code de conduite - Tech'Work Lyon 2026"
     description="Code de conduite pour un environnement bienveillant et inclusif lors de Tech'Work Lyon 2026">
-    <!-- Header Section -->
-    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center scroll-animate">
+    <!-- Hero Section Immersif -->
+    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900"></div>
+            <!-- Pattern décoratif -->
+            <div
+                class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
                 <div
-                    class="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-6">
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
                     <span class="mr-2 animate-bounce-gentle">🤝</span>
                     Code de conduite
                 </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                    Ensemble pour un <span class="text-gradient">environnement bienveillant</span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Un <span class="text-gradient">troupeau bienveillant</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    Tech'Work s'engage à créer un espace sûr, inclusif et respectueux pour tous les participants
+                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
+                    Chez Tech'Work, on prend soin de notre troupeau. Espace sûr, inclusif et respectueux pour tous les
+                    participants — zéro tolérance pour les comportements toxiques.
                 </p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
             </div>
         </div>
     </section>
 
     <!-- Content Section -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <section class="relative z-10 -mt-10 bg-white rounded-t-3xl py-12 sm:py-16 lg:py-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="prose prose-lg prose-gray max-w-none text-blocks">
                 <div class="text-block">
@@ -40,7 +62,7 @@ import CTASection from '../components/cta/CTASection.astro'
                     <p>
                         Tech'Work Lyon 2026 s'engage à créer un environnement sûr, inclusif et bienveillant pour tous
                         les participants. Ce code de conduite reflète nos valeurs et notre engagement envers une
-                        communauté tech diverse et respectueuse.
+                        communauté tech diverse et respectueuse — notre troupeau veille sur chaque membre.
                     </p>
                 </div>
 
@@ -163,7 +185,7 @@ import CTASection from '../components/cta/CTASection.astro'
                         <li>
                             <strong>Sur place</strong> : Approchez n'importe quel membre de l'équipe (badges "STAFF")
                         </li>
-                        <li><strong>Email</strong> : contact@techwork.lyon (réponse sous 2h pendant l'événement)</li>
+                        <li><strong>Email</strong> : team@techwork.events (réponse rapide pendant l'événement)</li>
                         <li><strong>Signal d'urgence</strong> : Levez la main avec un "T" formé avec vos mains</li>
                         <li><strong>Personne de confiance</strong> : Demandez à quelqu'un de nous alerter pour vous</li>
                     </ol>
@@ -190,15 +212,11 @@ import CTASection from '../components/cta/CTASection.astro'
                             selon vos retours.</em
                         >
                     </p>
-                    <p><strong>Questions ? Suggestions ?</strong> Écrivez-nous à feedback@techwork.lyon</p>
+                    <p><strong>Questions ? Suggestions ?</strong> Écrivez-nous à team@techwork.events</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="text-center text-xs text-gray-400 mt-2">
-        🦙 Note mascotte&nbsp;: lama dans la d&eacute;co, on reste 100% s&eacute;rieux.
-    </div>
 
     <!-- Contact Section -->
     <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
@@ -208,25 +226,28 @@ import CTASection from '../components/cta/CTASection.astro'
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Besoin d'aide ou signalement ?</h2>
                 <p class="text-gray-600 mb-6">
                     En cas de problème ou pour signaler un comportement inapproprié, contactez immédiatement l'équipe
-                    d'organisation.
+                    d'organisation. Notre troupeau veille sur vous.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a href="mailto:contact@techwork.lyon" class="btn btn-primary hover-lift group">
+                    <a href="mailto:team@techwork.events" class="btn btn-primary hover-lift group">
                         <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
-                        contact@techwork.lyon
+                        team@techwork.events
                     </a>
                     <a href="/team" class="btn btn-secondary hover-lift group">
                         <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
-                        Contacter l'équipe
+                        Contacter le troupeau
                     </a>
                 </div>
+                <p class="text-xs text-gray-400 mt-4">
+                    🦙 Note mascotte : lama dans la déco, mais on reste 100% sérieux sur le respect.
+                </p>
             </div>
         </div>
     </section>
 
     <CTASection
-        title="Envie de participer ?"
-        description="Achete ton billet aujourd'hui, on s'occupe du reste."
+        title="Prêt·e à rejoindre un troupeau bienveillant ?"
+        description="Réserve ta place dans un événement où chacun·e est le·la bienvenu·e. On s'occupe du reste."
         placement="content-coc"
     />
 </Layout>

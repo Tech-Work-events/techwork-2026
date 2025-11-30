@@ -2,6 +2,7 @@
 import { OPENPLANNER_URL } from 'astro:env/client'
 import type { OpenPlannerType } from '../../type'
 import Layout from '../../layouts/Layout.astro'
+import CTASection from '../../components/cta/CTASection.astro'
 import { EVENT_DATA } from '../../config'
 
 // Récupération des données OpenPlanner
@@ -19,68 +20,94 @@ const speakers = openPlannerData?.speakers || []
 ---
 
 <Layout title="Nos Speakers" description="Découvrez les speakers qui vont animer Tech'Work Lyon 2026">
-    <!-- Page Header -->
-    <section class="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center scroll-animate">
+    <!-- Hero Section Immersif -->
+    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-800 via-secondary-800 to-primary-900"></div>
+            <!-- Pattern décoratif -->
+            <div
+                class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
                 <div
-                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
                     <span class="mr-2 animate-bounce-gentle">🎤</span>
-                    Speakers
+                    Speakers · {EVENT_DATA.event.shortName}
+                    {EVENT_DATA.event.year}
                 </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                    Nos <span class="text-gradient">speakers</span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Les <span class="text-gradient">Alpacas</span> de la Scène
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    Découvrez les expertes et experts qui partageront leur passion et leur expertise avec vous
+                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
+                    Des experts et expertes qui ne crachent pas que de la laine : du concret, du vécu, et des retours
+                    d'XP qui font vraiment avancer ton projet.
                 </p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
             </div>
         </div>
     </section>
 
+    <!-- Section transition -->
     <!-- Speakers Section -->
-    <section class="py-16 sm:py-20 lg:py-24 bg-white">
+    <section class="relative z-10 -mt-10 bg-white rounded-t-3xl py-16 sm:py-20 lg:py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {
                 speakers.length === 0 ? (
                     <div class="text-center space-y-8 scroll-animate-scale">
                         <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 max-w-4xl mx-auto">
-                            <div class="text-6xl mb-6">🎯</div>
+                            <div class="text-6xl mb-6">🦙</div>
                             <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
-                                Nous préparons un lineup d'exception !
+                                Le troupeau d'experts se prépare !
                             </h2>
                             <p class="text-lg text-gray-600 mb-8 leading-relaxed">
                                 {EVENT_DATA.event.shortName} réunit les meilleures expertes et experts de la tech
-                                lyonnaise et au-delà. Restez connecté·e·s pour découvrir bientôt notre sélection de
-                                speakers passionnants.
+                                lyonnaise et au-delà. Restez connecté·e·s pour découvrir bientôt notre sélection
+                                d'alpacas de la scène.
                             </p>
 
                             <div class="grid md:grid-cols-2 gap-6 mb-8">
-                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="bg-white rounded-xl p-6 border border-gray-200 hover-lift">
                                     <div class="text-3xl mb-3">🚀</div>
                                     <h3 class="font-bold text-gray-900 mb-2">Expertise technique</h3>
                                     <p class="text-sm text-gray-600">
-                                        Des talks pointus sur les dernières technologies et tendances
+                                        Des talks pointus sur les dernières technologies — pas du baratin, du concret
                                     </p>
                                 </div>
-                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="bg-white rounded-xl p-6 border border-gray-200 hover-lift">
                                     <div class="text-3xl mb-3">💡</div>
-                                    <h3 class="font-bold text-gray-900 mb-2">Retours d'expérience</h3>
+                                    <h3 class="font-bold text-gray-900 mb-2">Retours d'XP</h3>
                                     <p class="text-sm text-gray-600">
-                                        Des histoires vraies de projets et d'équipes qui inspirent
+                                        Des histoires vraies de projets, sans tondre la réalité
                                     </p>
                                 </div>
-                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="bg-white rounded-xl p-6 border border-gray-200 hover-lift">
                                     <div class="text-3xl mb-3">🌟</div>
                                     <h3 class="font-bold text-gray-900 mb-2">Diversité</h3>
                                     <p class="text-sm text-gray-600">
-                                        Une programmation inclusive et représentative de notre écosystème
+                                        Une programmation inclusive, comme un troupeau bien équilibré
                                     </p>
                                 </div>
-                                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                                <div class="bg-white rounded-xl p-6 border border-gray-200 hover-lift">
                                     <div class="text-3xl mb-3">🎤</div>
                                     <h3 class="font-bold text-gray-900 mb-2">Formats innovants</h3>
-                                    <p class="text-sm text-gray-600">Des talks, workshops et sessions interactives</p>
+                                    <p class="text-sm text-gray-600">
+                                        Talks, workshops et sessions interactives — zéro monologue soporifique
+                                    </p>
                                 </div>
                             </div>
 
@@ -100,7 +127,7 @@ const speakers = openPlannerData?.speakers || []
                                     <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">
                                         👥
                                     </span>
-                                    Contacter l'équipe
+                                    Contacter le troupeau
                                 </a>
                             </div>
                         </div>
@@ -213,18 +240,20 @@ const speakers = openPlannerData?.speakers || []
                     <div
                         class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
                         <div class="text-center">
-                            <div class="text-5xl mb-4">🎤</div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">Call for Papers</h3>
+                            <div class="text-5xl mb-4">🦙</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Rejoins le troupeau !</h3>
                             <p class="text-gray-600 mb-6 leading-relaxed">
-                                Les candidatures sont ouvertes ! Proposez votre talk et rejoignez notre lineup
-                                d'exception.
+                                Les candidatures sont ouvertes ! Propose ton talk et deviens un alpaca de la scène
+                                Tech'Work.
                             </p>
                             <div class="space-y-3">
                                 <a href="/cfp" class="btn btn-primary w-full hover-lift group">
                                     <span class="mr-2 group-hover:animate-bounce-gentle">📝</span>
                                     Proposer un talk
                                 </a>
-                                <p class="text-xs text-gray-500">Sélection sur dossier • Accompagnement personnalisé</p>
+                                <p class="text-xs text-gray-500">
+                                    Sélection sur dossier • Accompagnement personnalisé • Ola supervise 🦙
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -232,4 +261,10 @@ const speakers = openPlannerData?.speakers || []
             </div>
         </div>
     </section>
+
+    <CTASection
+        title="Prêt·e à rejoindre le troupeau ?"
+        description="Réserve ta place et viens découvrir nos alpacas de la scène en live. Talks, workshops, networking — tout ça sur ton temps de travail."
+        placement="content-speakers"
+    />
 </Layout>
