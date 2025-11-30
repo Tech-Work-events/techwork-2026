@@ -71,9 +71,9 @@ export interface EventConfig {
         date: EventDate
         duration: {
             days: number
-            hours: number
+            hours?: number
             startTime: string
-            endTime: string
+            endTime?: string
         }
         location: EventLocation
         theme: {
