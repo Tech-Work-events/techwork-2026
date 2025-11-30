@@ -29,7 +29,7 @@
         "enabled": true,
         "icon": "🤝",
         "description": "Partenaires",
-        "order": 4
+        "order": 3
     },
     {
         "label": "Code de conduite",
@@ -45,7 +45,7 @@
         "enabled": true,
         "icon": "📍",
         "description": "Lieu",
-        "order": 6
+        "order": 4
     },
     {
         "label": "Programme",
