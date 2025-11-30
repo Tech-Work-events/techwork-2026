@@ -1,0 +1,138 @@
+---
+const testimonials = [
+    {
+        content: 'Super lieu, super première édition. Bravo !!',
+        author: 'Victor G.',
+        role: 'Staff Software Engineer',
+    },
+    {
+        content:
+            "L'organisation globale était top. J'ai beaucoup apprécié le fait d'offrir l'opportunité à des novices de faire des talks.",
+        author: 'Jean-Baptiste M.',
+        role: 'Développeur',
+    },
+    {
+        content: "Honnêtement j'ai tout apprécié, et j'ai aussi beaucoup aimé l'initiative des conf buddies !",
+        author: 'Loreleï M.',
+        role: 'Développeuse Web',
+    },
+    {
+        content: 'Les conférences et leurs contenus, le lieu, le concept... tout était top.',
+        author: 'Geoffrey S.',
+        role: 'CTO',
+    },
+    {
+        content: "Le côté convivial, extérieur et relax ! L'accueil donne le ton de la conf.",
+        author: 'Guillaume B.',
+        role: 'Group Data Architect',
+    },
+    {
+        content: 'Le mix des thèmes était excellent, une très bonne ambiance.',
+        author: 'Romain C.',
+        role: 'Développeur',
+    },
+    {
+        content: "Le concept de l'événement est top, organisé par les communautés locales.",
+        author: 'Maxime B.',
+        role: 'Développeur / SRE',
+    },
+]
+---
+
+<section class="py-16 bg-gray-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-gray-900 sm:text-4xl">Ils ont aimé Tech & Wine</h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                Tech'Work reprend l'ADN de Tech & Wine : convivialité, qualité et partage. Voici ce qu'en disent les
+                participants de l'édition précédente.
+            </p>
+        </div>
+
+        <div class="relative group">
+            <!-- Gradient masks for scroll indication -->
+            <div
+                class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none">
+            </div>
+            <div
+                class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none">
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button
+                id="scroll-left"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-primary-600 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-0 -ml-4 md:-ml-6 hidden sm:block"
+                aria-label="Défiler à gauche">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+                </svg>
+            </button>
+
+            <button
+                id="scroll-right"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-gray-200 text-gray-700 hover:bg-white hover:text-primary-600 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-0 -mr-4 md:-mr-6 hidden sm:block"
+                aria-label="Défiler à droite">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                </svg>
+            </button>
+
+            <div
+                id="testimonials-container"
+                class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-4 scrollbar-hide -mx-4 sm:mx-0 scroll-smooth">
+                {
+                    testimonials.map((testimonial) => (
+                        <div class="snap-center shrink-0 w-80 md:w-96 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col">
+                            <div class="flex-grow">
+                                <div class="text-primary-600 text-4xl font-serif leading-none mb-4 opacity-30">"</div>
+                                <p class="text-gray-700 italic relative z-10 -mt-6 mb-6">{testimonial.content}</p>
+                            </div>
+                            <div class="mt-auto pt-4 border-t border-gray-50">
+                                <div class="font-bold text-gray-900">{testimonial.author}</div>
+                                <div class="text-sm text-primary-600">{testimonial.role}</div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
+<script>
+    const container = document.getElementById('testimonials-container')
+    const leftBtn = document.getElementById('scroll-left')
+    const rightBtn = document.getElementById('scroll-right')
+
+    if (container && leftBtn && rightBtn) {
+        leftBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -400, behavior: 'smooth' })
+        })
+
+        rightBtn.addEventListener('click', () => {
+            container.scrollBy({ left: 400, behavior: 'smooth' })
+        })
+    }
+</script>

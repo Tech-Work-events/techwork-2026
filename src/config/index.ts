@@ -217,6 +217,7 @@ export interface ServicesConfig {
     sponsors: {
         platform: string
         publicUrl: string
+        docUrl: string
         api: ServiceAPI
     }
     newsletter: {

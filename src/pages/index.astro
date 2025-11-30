@@ -9,7 +9,8 @@ import HomeContentBlock from '../components/home/HomeContentBlock.astro'
 
 import HomeGalleryBlock from '../components/home/HomeGalleryBlock.astro'
 import HomeTicketsBlock from '../components/home/HomeTicketsBlock.astro'
-import HomeSocialProof from '../components/home/HomeSocialProof.astro'
+
+import HomeTestimonials from '../components/home/HomeTestimonials.astro'
 import HomeFAQ from '../components/home/HomeFAQ.astro'
 
 const response = await fetch(OPENPLANNER_URL)
@@ -23,30 +24,8 @@ const tickets = await getCollection('tickets')
     <Hero />
 
     <HomeContentBlock />
-    <!-- Benefits Summary (concise, above Social Proof) -->
-    <section class="py-8 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid sm:grid-cols-3 gap-4">
-                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
-                    <div class="text-xl mb-1">🎯</div>
-                    <div class="font-semibold text-gray-900">Contenu utile</div>
-                    <p class="text-gray-600">pas de blabla</p>
-                </div>
-                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
-                    <div class="text-xl mb-1">⏰</div>
-                    <div class="font-semibold text-gray-900">Fin 17h30</div>
-                    <p class="text-gray-600">promesse tenue</p>
-                </div>
-                <div class="bg-white rounded-xl p-4 border border-gray-200 hover-lift text-sm">
-                    <div class="text-xl mb-1">🦙</div>
-                    <div class="font-semibold text-gray-900">Ambiance lama</div>
-                    <p class="text-gray-600">Ola approuve</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <HomeSocialProof />
+    <HomeTestimonials />
     <HomeTicketsBlock tickets={tickets} />
     <HomeGalleryBlock />
     <HomeFAQ />

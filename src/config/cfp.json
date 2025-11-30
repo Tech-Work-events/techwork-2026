@@ -193,33 +193,33 @@
         "items": [
             {
                 "icon": "🎯",
-                "title": "Audience qualifiée",
-                "description": "Rencontrez des développeurs passionnés et expérimentés"
+                "title": "Audience passionnée",
+                "description": "Partagez avec des pairs curieux et bienveillants"
             },
             {
                 "icon": "🤝",
-                "title": "Networking premium",
-                "description": "Connectez-vous avec les leaders tech de Lyon"
+                "title": "Échanges privilégiés",
+                "description": "Discutez simplement avec les autres acteurs de la tech"
             },
             {
                 "icon": "📹",
-                "title": "Visibilité maximale",
-                "description": "Talks enregistrés et diffusés sur nos canaux"
+                "title": "Votre talk mis en valeur",
+                "description": "Captation vidéo de qualité pour prolonger l'échange"
             },
             {
-                "icon": "🏆",
-                "title": "Reconnaissance",
-                "description": "Devenez une référence dans votre domaine"
+                "icon": "🌱",
+                "title": "Partage & Impact",
+                "description": "Aidez la communauté à grandir grâce à votre retour d'expérience"
             },
             {
-                "icon": "💼",
-                "title": "Opportunités carrière",
-                "description": "Accès privilégié aux recruteurs et startups"
+                "icon": "🕸️",
+                "title": "Développez votre réseau",
+                "description": "Rencontrez de futurs collègues ou partenaires, sans pression"
             },
             {
                 "icon": "🦙",
-                "title": "Ambiance bienveillante",
-                "description": "Ambiance chaleureuse, inclusive et respectueuse — lama friendly."
+                "title": "Ambiance au top",
+                "description": "Sérieux dans le fond, fun dans la forme (et des lamas)"
             }
         ]
     },
