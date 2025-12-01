@@ -60,7 +60,7 @@ const members = Array.isArray(team)
     title={`L'équipe ${EVENT_DATA.event.name}`}
     description={`Découvrez l'équipe qui révolutionne la tech ${EVENT_DATA.event.location.city.toLowerCase()}aise`}>
     <!-- Page Header with Hero Background -->
-    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <Picture
@@ -79,11 +79,11 @@ const members = Array.isArray(team)
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="scroll-animate">
                 <div
-                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
                     <span class="mr-2 animate-bounce-gentle">🦙</span>
                     L'équipe
                 </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-8">
                     L'<span class="text-gradient">Équipe</span> Fondatrice
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
@@ -93,9 +93,9 @@ const members = Array.isArray(team)
         </div>
 
         <!-- Scroll indicator -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20">
             <div class="animate-bounce">
-                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
                     ></path>
                 </svg>

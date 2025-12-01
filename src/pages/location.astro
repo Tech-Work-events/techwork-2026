@@ -10,7 +10,7 @@ import { TICKETING_BASE_URL } from '../config/cta'
     title={`Lieu - ${EVENT_DATA.event.name}`}
     description={`Lieu en cours de sélection à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}>
     <!-- Hero Section Immersif -->
-    <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Gradient -->
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900"></div>
@@ -25,12 +25,12 @@ import { TICKETING_BASE_URL } from '../config/cta'
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="scroll-animate">
                 <div
-                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-6">
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
                     <span class="mr-2 animate-bounce-gentle">📍</span>
                     Lieu · {EVENT_DATA.event.shortName}
                     {EVENT_DATA.event.year}
                 </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-8">
                     Le <span class="text-gradient">Pâturage</span> Tech de Lyon
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
@@ -41,9 +41,9 @@ import { TICKETING_BASE_URL } from '../config/cta'
         </div>
 
         <!-- Scroll indicator -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20">
             <div class="animate-bounce">
-                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
                     ></path>
                 </svg>
