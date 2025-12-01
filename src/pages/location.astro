@@ -8,7 +8,7 @@ import { TICKETING_BASE_URL } from '../config/cta'
 
 <Layout
     title={`Lieu - ${EVENT_DATA.event.name}`}
-    description={`Lieu en cours de sélection à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}>
+    description={`Lieu en cours de finalisation à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}>
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Gradient -->
@@ -156,8 +156,8 @@ import { TICKETING_BASE_URL } from '../config/cta'
     <section class="py-12 sm:py-16 lg:py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-animate">
-                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Nos critères de sélection</h2>
-                <p class="text-lg text-gray-600">(Parce qu'on est difficiles)</p>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Ce qui vous attend</h2>
+                <p class="text-lg text-gray-600">(On ne s'est pas moqués de vous)</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-children">
@@ -325,47 +325,6 @@ import { TICKETING_BASE_URL } from '../config/cta'
         </div>
     </section>
 
-    <!-- Call for Suggestions -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <div
-                class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100">
-                <div class="text-6xl mb-6">🏆</div>
-                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">Participez à la sélection !</h2>
-                <p class="text-lg text-gray-600 mb-8">
-                    Vous connaissez LE lieu parfait ? On est ouverts aux suggestions ! Si vous connaissez un endroit qui
-                    pourrait accueillir Tech'Work dans des conditions optimales, faites-vous connaître.
-                </p>
-
-                <div class="grid sm:grid-cols-2 gap-6 mb-8 text-left">
-                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                        <h3 class="font-bold text-gray-900 mb-3">💡 Critères techniques</h3>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Capacité : 200-300 personnes</li>
-                            <li>• 3 salles de 60-80 places chacune</li>
-                            <li>• Espaces networking pour 200+ personnes</li>
-                            <li>• Équipements A/V complets</li>
-                            <li>• Cuisine/office pour la restauration</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                        <h3 class="font-bold text-gray-900 mb-3">🎯 Bonus points si</h3>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Terrasse ou espace extérieur</li>
-                            <li>• Déco moderne/tech-friendly</li>
-                            <li>• Flexibilité sur l'aménagement</li>
-                            <li>• Équipe technique dédiée</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <p class="text-sm text-gray-500">
-                    Tu pourras proposer un lieu juste après l'annonce imminente, en bas de cette page.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Coming Soon -->
     <section
         class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
@@ -421,34 +380,6 @@ import { TICKETING_BASE_URL } from '../config/cta'
                     On utilise ton email uniquement pour la newsletter Tech'Work. Pas de spam, pas de revente. Les lamas
                     n'aiment pas ça non plus.
                 </p>
-            </div>
-
-            <div class="mt-6 flex flex-col items-center gap-3">
-                <a
-                    href="mailto:team@techwork.events"
-                    class="btn btn-secondary text-sm sm:text-base px-6 py-3 hover-lift inline-flex items-center gap-2 min-h-[44px]"
-                    aria-label="Proposer un lieu par email"
-                    data-cta
-                    data-placement="location-suggest">
-                    <span aria-hidden="true">📧</span>
-                    <span>Proposer un lieu</span>
-                </a>
-                <p class="text-xs text-gray-300 max-w-md">
-                    Tu connais un lieu qui colle à nos critères ? On regarde toutes les propositions sérieusement (même
-                    celles avec lama, tant que ce n'est pas un trek en haute montagne).
-                </p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-                <a
-                    href="/team"
-                    class="btn btn-secondary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 hover-lift inline-flex items-center gap-2 min-h-[44px] group"
-                    aria-label="Contacter l'équipe"
-                    data-cta
-                    data-placement="location-contact-team">
-                    <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">👥</span>
-                    <span>Contacter l'équipe</span>
-                </a>
             </div>
 
             <script>
