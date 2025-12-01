@@ -119,7 +119,7 @@ Ce code s'applique **partout** où Tech'Work est présent :
 
 #### Espaces numériques
 
--   **Discord** et autres plateformes officielles
+-   **WhatsApp** et autres plateformes officielles
 -   **Réseaux sociaux** avec hashtags #TechWork
 -   **Commentaires** sur nos contenus
 -   **Communications privées** entre participants si signalées

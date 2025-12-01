@@ -48,9 +48,9 @@
         }
     },
     "community": {
-        "discord": {
-            "inviteUrl": "https://discord.gg/techwork-lyon",
-            "serverId": "techwork-lyon"
+        "whatsapp": {
+            "inviteUrl": "https://chat.whatsapp.com/KpQOCcO16yC3nCxvaKcNsc",
+            "groupId": "KpQOCcO16yC3nCxvaKcNsc"
         },
         "slack": {
             "inviteUrl": null,

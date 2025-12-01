@@ -6,7 +6,7 @@ interface Props {
     skills: string[]
     contribution?: string
     applyEmailHref: string
-    discordHref: string
+    whatsappHref: string
 }
 
 const {
@@ -16,7 +16,7 @@ const {
     skills = [],
     contribution = 'Bénévolat — participation flexible',
     applyEmailHref,
-    discordHref,
+    whatsappHref,
 } = Astro.props as Props
 ---
 
@@ -80,13 +80,13 @@ const {
                 Rejoindre l’équipe
             </a>
             <a
-                href={discordHref}
+                href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn btn-secondary text-xs sm:text-sm px-4 py-2"
-                aria-label={`Discuter du rôle ${title} sur Discord`}>
+                aria-label={`Discuter du rôle ${title} sur WhatsApp`}>
                 <span aria-hidden="true" class="mr-2">💬</span>
-                Discord communauté
+                WhatsApp communauté
             </a>
         </div>
     </div>

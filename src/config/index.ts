@@ -226,9 +226,9 @@ export interface ServicesConfig {
         api: ServiceAPI
     }
     community: {
-        discord: {
+        whatsapp: {
             inviteUrl: string
-            serverId: string
+            groupId: string
         }
         slack: {
             inviteUrl: string | null

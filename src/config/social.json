@@ -1,13 +1,13 @@
 {
     "networks": [
         {
-            "id": "discord",
-            "name": "Discord",
-            "url": "https://discord.gg/techwork-lyon",
+            "id": "whatsapp",
+            "name": "WhatsApp",
+            "url": "https://chat.whatsapp.com/KpQOCcO16yC3nCxvaKcNsc",
             "icon": "💬",
-            "color": "#5865F2",
-            "description": "Rejoignez notre communauté Discord",
-            "handle": "@techwork-lyon"
+            "color": "#25D366",
+            "description": "Rejoignez notre communauté WhatsApp",
+            "handle": "Tech'Work Lyon"
         },
         {
             "id": "twitter",
