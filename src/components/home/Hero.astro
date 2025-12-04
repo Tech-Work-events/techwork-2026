@@ -84,7 +84,7 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
                         <span class="font-bold">Tech'Work</span>
                     </span>
                 </div>
-                <div class="text-4xl sm:text-5xl animate-bounce-gentle" aria-hidden="true">🦙</div>
+                <div class="llama-responsive text-4xl sm:text-5xl animate-bounce-gentle" aria-hidden="true">🦙</div>
                 <h1
                     id="event-title"
                     class="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-3 sm:mb-4 tracking-tight leading-tight">
@@ -162,3 +162,16 @@ const HERO_CTA_LABEL = labelFor(EXPERIMENTS.heroCtaVariant)
         </div>
     </div>
 </section>
+
+<style>
+    /* Hide llama emoji on short screens to prevent overlap with header */
+    .llama-responsive {
+        display: none !important;
+    }
+
+    @media (min-height: 900px) {
+        .llama-responsive {
+            display: block !important;
+        }
+    }
+</style>
