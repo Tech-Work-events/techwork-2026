@@ -91,23 +91,9 @@ const tickets = TICKETS_CONFIG.map((ticket) => ({
                                 </div>
 
                                 <div class="mt-auto pt-3">
-                                    <div class="flex justify-between items-center mb-1">
-                                        <span class="text-sm font-semibold text-gray-700">Disponibilité</span>
-                                        <span class="text-sm text-gray-600">
-                                            Restent {ticket.available}/{ticket.total}
-                                        </span>
-                                    </div>
-                                    <div
-                                        role="progressbar"
-                                        aria-valuenow={ticket.available}
-                                        aria-valuemin="0"
-                                        aria-valuemax={ticket.total}
-                                        aria-label={`Disponibilité: ${ticket.available}/${ticket.total}`}
-                                        class="w-full bg-gray-200 rounded-full h-2">
-                                        <div
-                                            class={`h-2 rounded-full ${ticket.available > ticket.total * 0.5 ? 'bg-green-500' : ticket.available > ticket.total * 0.2 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                                            style={`width: ${(ticket.available / ticket.total) * 100}%`}
-                                        />
+                                    <div class="flex justify-start items-center mb-1">
+                                        <span class="text-sm font-semibold text-gray-700">Disponibilité :&nbsp;</span>
+                                        <span class="text-sm text-gray-600">{ticket.total} billets disponibles</span>
                                     </div>
 
                                     {ticket.soldOut ? (

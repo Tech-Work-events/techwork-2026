@@ -39,11 +39,11 @@
         }
     },
     "newsletter": {
-        "platform": "Mailchimp",
-        "signupUrl": "https://mailchimp.com/signup/techwork-lyon",
+        "platform": "Brevo",
+        "signupUrl": null,
         "api": {
-            "enabled": false,
-            "endpoint": null,
+            "enabled": true,
+            "endpoint": "https://us-central1-techwork-2026.cloudfunctions.net/subscribeNewsletter",
             "key": null
         }
     },
