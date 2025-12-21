@@ -1,6 +1,6 @@
 # Techwork Website
 
-Site web pour l'événement Techwork. Les sites 2018-2024 sont [ici](https://github.com/Sunny-Tech/website/).
+Site web pour l'événement Techwork. Les sites 2018-2024 sont [ici](https://github.com/Cloud-Alpes/techwork-website/).
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/techwork/website-v2/)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/techwork/website-v2/)

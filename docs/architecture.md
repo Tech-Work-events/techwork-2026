@@ -1,8 +1,8 @@
-# Cloud Nord Fullstack Architecture Document
+# Tech'Work Fullstack Architecture Document
 
 ## Introduction
 
-This document outlines the complete fullstack architecture for Cloud Nord, including backend systems, frontend implementation, and their integration. It serves as the single source of truth for AI-driven development, ensuring consistency across the entire technology stack.
+This document outlines the complete fullstack architecture for Tech'Work, including backend systems, frontend implementation, and their integration. It serves as the single source of truth for AI-driven development, ensuring consistency across the entire technology stack.
 
 This unified approach combines what would traditionally be separate backend and frontend architecture documents, streamlining the development process for modern fullstack applications where these concerns are increasingly intertwined.
 
@@ -10,12 +10,12 @@ This unified approach combines what would traditionally be separate backend and 
 
 **Current Status:** Existing project based on Astro + Firebase stack
 
-The Cloud Nord project is built on a sophisticated foundation:
+The Tech'Work project is built on a sophisticated foundation:
 
 -   **Frontend:** Astro-based static site generation with modern tooling
 -   **Backend:** Firebase ecosystem (Hosting, Auth, Firestore, Storage, Analytics)
 -   **Infrastructure:** Terraform-managed Firebase resources with year-based organization
--   **Deployment:** Firebase Hosting with custom domain (cloudnord.fr)
+-   **Deployment:** Firebase Hosting with custom domain (techwork.events)
 -   **Development Workflow:** Taskfile automation replacing traditional shell scripts
 
 **Architectural Constraints:**
@@ -43,7 +43,7 @@ The Cloud Nord project is built on a sophisticated foundation:
 
 ### Technical Summary
 
-Cloud Nord employs a modern Jamstack architecture with Firebase as the primary backend platform. The frontend uses Astro for static site generation with dynamic capabilities, while Firebase provides authentication, database, storage, and hosting services. The infrastructure follows a year-based organization pattern managed through Terraform, enabling isolated environments for each conference iteration. This architecture achieves rapid development cycles, excellent performance through CDN distribution, and enterprise-grade security through Firebase's managed services, directly supporting the PRD goals of delivering a scalable conference website platform.
+Tech'Work employs a modern Jamstack architecture with Firebase as the primary backend platform. The frontend uses Astro for static site generation with dynamic capabilities, while Firebase provides authentication, database, storage, and hosting services. The infrastructure follows a year-based organization pattern managed through Terraform, enabling isolated environments for each conference iteration. This architecture achieves rapid development cycles, excellent performance through CDN distribution, and enterprise-grade security through Firebase's managed services, directly supporting the PRD goals of delivering a scalable conference website platform.
 
 ### Platform and Infrastructure Choice
 
