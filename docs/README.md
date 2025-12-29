@@ -41,7 +41,7 @@ Complete guide for Firebase infrastructure deployment:
 
 -   **Architecture Overview**: Year-based organization and Firebase services
 -   **Deployment Workflows**: Step-by-step infrastructure deployment
--   **Custom Domain Setup**: Automated cloudnord.fr configuration
+-   **Custom Domain Setup**: Automated techwork.events configuration
 -   **Security Configuration**: Firestore rules, IAM, and CORS
 -   **State Management**: Remote state with GCS backend
 -   **Troubleshooting**: Common issues and solutions
@@ -128,7 +128,7 @@ task destroy YEAR=2023
 │                Terraform Managed Resources                  │
 ├─────────────────────────────────────────────────────────────┤
 │ • Firebase Hosting (techwork-2025-website)               │
-│ • Custom Domain (cloudnord.fr)                             │
+│ • Custom Domain (techwork.events)                             │
 │ • Firestore Database                                       │
 │ • Firebase Storage                                          │
 │ • Firebase Authentication                                   │

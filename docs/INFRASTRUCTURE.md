@@ -9,7 +9,7 @@ The infrastructure automation provides:
 -   **Existing Project Support**: Uses manually created Firebase projects
 -   **Year-based Organization**: Isolated infrastructure per year (2025, 2026, etc.)
 -   **Complete Firebase Stack**: Hosting, Authentication, Firestore, Storage, Analytics
--   **Custom Domain**: Automated cloudnord.fr configuration with SSL
+-   **Custom Domain**: Automated techwork.events configuration with SSL
 -   **Security Best Practices**: Proper IAM, security rules, and CORS configuration
 -   **Taskfile Integration**: Modern YAML-based task management
 
@@ -203,7 +203,7 @@ existing_project_id  = "your-existing-firebase-project-id"
 # Event Configuration
 year        = "2025"
 event_name  = "techwork"
-domain_name = "cloudnord.fr"
+domain_name = "techwork.events"
 
 # Custom Domain
 enable_custom_domain = true
@@ -303,8 +303,8 @@ When `enable_custom_domain = true`, Terraform automatically:
 Point your domain to Firebase Hosting:
 
 ```text
-A    cloudnord.fr    151.101.1.195
-A    cloudnord.fr    151.101.65.195
+A    techwork.events    151.101.1.195
+A    techwork.events    151.101.65.195
 ```
 
 ### Verification
@@ -314,7 +314,7 @@ A    cloudnord.fr    151.101.65.195
 task show-outputs YEAR=2025
 
 # Test domain
-curl -I https://cloudnord.fr
+curl -I https://techwork.events
 ```
 
 ## 🔐 Security Features
@@ -344,7 +344,7 @@ service cloud.firestore {
 ### Firebase Storage
 
 -   Public read access for images and assets
--   CORS configuration for cloudnord.fr and localhost
+-   CORS configuration for techwork.events and localhost
 -   Automatic lifecycle management (365-day retention)
 
 ### Firebase Hosting
