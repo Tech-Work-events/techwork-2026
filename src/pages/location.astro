@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro'
 import { EVENT_DATA } from '../config'
 import CTASection from '../components/cta/CTASection.astro'
+import { Picture } from 'astro:assets'
+import locationHero from '../assets/location/location.webp'
 
 import { TICKETING_BASE_URL } from '../config/cta'
 ---
@@ -11,14 +13,19 @@ import { TICKETING_BASE_URL } from '../config/cta'
     description={`Lieu en cours de finalisation à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}>
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
-        <!-- Background Gradient -->
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900"></div>
-            <!-- Pattern décoratif -->
-            <div
-                class="absolute inset-0 opacity-10"
-                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
-            </div>
+            <Picture
+                src={locationHero}
+                alt="Lieu Tech'Work"
+                class="w-full h-full object-cover opacity-75"
+                style="object-position: center 40%;"
+                loading="eager"
+                widths={[640, 768, 1024, 1280, 1920]}
+                sizes="100vw"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
         </div>
 
         <!-- Content -->

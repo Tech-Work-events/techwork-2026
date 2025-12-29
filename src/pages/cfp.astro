@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import { CFP_DATA, SERVICES_DATA, EVENT_DATA } from '../config'
 import CTASection from '../components/cta/CTASection.astro'
 import { Picture } from 'astro:assets'
-import teamHero from '../assets/team/hero.webp' // Reusing for visual consistency, or we could use a different one if available
+import cfpHero from '../assets/cfp/cfp.webp'
+// import cfpVideo from '../assets/cfp/cfp.mp4' // Code vidéo commenté pour test ultérieur
 
 const cfp = CFP_DATA
 ---
@@ -11,15 +12,36 @@ const cfp = CFP_DATA
 <Layout title="CFP - Call for Papers" description={`Proposez votre talk pour ${EVENT_DATA.event.name}`}>
     <!-- Page Header with Hero Background -->
     <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
-        <!-- Background Image (Reused for consistency or use a pattern) -->
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-secondary-900"></div>
-            <!-- Optional: Overlay pattern or image if available. Using a subtle pattern here -->
-            <div
-                class="absolute inset-0 opacity-20"
-                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;">
-            </div>
+            <Picture
+                src={cfpHero}
+                alt="Call for Papers Tech'Work"
+                class="w-full h-full object-cover object-center opacity-75"
+                loading="eager"
+                widths={[640, 768, 1024, 1280, 1920]}
+                sizes="100vw"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
         </div>
+
+        <!-- Background Video (commenté pour test ultérieur) -->
+        <!--
+        <div class="absolute inset-0 z-0">
+            <video
+                src={cfpVideo}
+                autoplay
+                loop
+                muted
+                playsinline
+                class="w-full h-full object-cover opacity-75"
+                style="object-position: center 40%;"
+                aria-label="Call for Papers Tech'Work"
+            />
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
+        </div>
+        -->
 
         <!-- Content -->
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
