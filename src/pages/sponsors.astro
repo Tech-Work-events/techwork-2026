@@ -3,6 +3,8 @@ import { OPENPLANNER_URL } from 'astro:env/client'
 import type { OpenPlannerType } from '../type'
 import Layout from '../layouts/Layout.astro'
 import { SERVICES_DATA, EVENT_DATA } from '../config'
+import { Picture } from 'astro:assets'
+import sponsorsHero from '../assets/sponsors/sponsors.webp'
 
 import CTASection from '../components/cta/CTASection.astro'
 
@@ -24,14 +26,18 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
 <Layout title="Nos Partenaires" description="Découvrez nos partenaires qui nous soutiennent">
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
-        <!-- Background Gradient -->
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-primary-900"></div>
-            <!-- Pattern décoratif -->
-            <div
-                class="absolute inset-0 opacity-10"
-                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
-            </div>
+            <Picture
+                src={sponsorsHero}
+                alt="Partenaires Tech'Work"
+                class="w-full h-full object-cover object-center opacity-75"
+                loading="eager"
+                widths={[640, 768, 1024, 1280, 1920]}
+                sizes="100vw"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
         </div>
 
         <!-- Content -->
