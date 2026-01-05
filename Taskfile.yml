@@ -1069,6 +1069,12 @@ tasks:
                   exit 1
                 fi
 
+                # Ensure GOOGLE_APPLICATION_CREDENTIALS is set if provided
+                if [ -n "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
+                  export GOOGLE_APPLICATION_CREDENTIALS
+                  echo "✅ Using service account: $GOOGLE_APPLICATION_CREDENTIALS"
+                fi
+
                 # Switch to the correct Firebase project
                 firebase use "techwork-{{.YEAR}}"
 
