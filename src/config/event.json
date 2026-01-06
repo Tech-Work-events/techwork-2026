@@ -61,7 +61,8 @@
             "currency": "EUR",
             "freeForEmployees": true,
             "sponsoredByEmployers": true
-        }
+        },
+        "ticketingOpen": false
     },
     "organization": {
         "name": "Tech'Work Events",

@@ -92,6 +92,7 @@ export interface EventConfig {
             freeForEmployees: boolean
             sponsoredByEmployers: boolean
         }
+        ticketingOpen?: boolean
     }
     organization: {
         name: string

@@ -11,11 +11,11 @@
     },
     "cfp": {
         "platform": "Conference Hall",
-        "publicUrl": "https://conference-hall.io/public/event/tech-work-2026",
+        "publicUrl": "https://conference-hall.io/tech-work-lyon-2026",
         "organizerUrl": "https://conference-hall.io/team/tech-work",
         "api": {
             "enabled": true,
-            "endpoint": "https://conference-hall.io/api/v1/event/tech-work-2026",
+            "endpoint": "https://conference-hall.io/tech-work-lyon-2026",
             "key": "2dd5a5af-0aad-4028-8e5b-d11736362418"
         }
     },

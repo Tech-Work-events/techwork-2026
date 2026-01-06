@@ -1,5 +1,5 @@
 ---
-import { TICKETS_CONFIG, SERVICES_DATA } from '../../config'
+import { TICKETS_CONFIG, SERVICES_DATA, EVENT_CONFIG } from '../../config'
 
 const { loading = false, error = null } = Astro.props
 
@@ -60,6 +60,16 @@ const tickets = TICKETS_CONFIG.map((ticket) => ({
                             </div>
                         </div>
                     ))}
+                </div>
+            ) : !EVENT_CONFIG.ticketingOpen ? (
+                <div class="text-center bg-white border border-gray-200 rounded-xl p-8 sm:p-12 max-w-2xl mx-auto animate-scale-in">
+                    <span class="text-4xl mb-4 block animate-bounce-gentle">🔒</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Billetterie fermée</h3>
+                    <p class="text-gray-600">
+                        La billetterie pour l'édition {EVENT_CONFIG.year} n'est pas encore ouverte.
+                        <br />
+                        Inscrivez-vous à la newsletter pour être informé de l'ouverture !
+                    </p>
                 </div>
             ) : (
                 <div
