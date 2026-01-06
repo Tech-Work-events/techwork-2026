@@ -2,7 +2,7 @@
     "event": {
         "name": "Tech'Work Lyon 2026",
         "shortName": "Tech'Work",
-        "tagline": "La conf' tech qui ne vous prend pas pour des lamas — Data, Craft, Cloud & Networking",
+        "tagline": "La conf' tech qui ne vous prend pas pour des lamas — Data, Craft, Cloud, Agilité & Networking",
         "description": "Boostez vos compétences avec le meilleur rapport qualité/prix/lama du marché.",
         "year": "2026",
         "date": {
@@ -48,7 +48,7 @@
         },
         "theme": {
             "main": "Innovation & Révolution Tech",
-            "subThemes": ["Data / IA", "Craft", "Cloud/DevOps"]
+            "subThemes": ["Data / IA", "Craft", "Cloud/DevOps", "Agilité"]
         },
         "statistics": {
             "expectedAttendees": 300,
