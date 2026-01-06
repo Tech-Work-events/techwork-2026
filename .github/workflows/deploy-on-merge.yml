@@ -1,0 +1,99 @@
+name: Deploy on Merge
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            year:
+                description: 'Year to deploy (e.g., 2026)'
+                required: true
+                default: '2026'
+                type: string
+    repository_dispatch:
+        types: [openplanner]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
+            - name: Setup timezone
+              uses: szenius/set-timezone@v2.0
+              with:
+                  timezoneLinux: 'Europe/Paris'
+
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: 'npm'
+
+            - name: Install Task
+              uses: arduino/setup-task@v1
+              with:
+                  version: 3.x
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Get deployment year
+              id: get-year
+              run: |
+                  if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+                      echo "year=${{ github.event.inputs.year }}" >> $GITHUB_OUTPUT
+                  else
+                      # Use GitHub variable or default to 2026
+                      YEAR="${DEPLOYMENT_YEAR:-2026}"
+                      echo "year=$YEAR" >> $GITHUB_OUTPUT
+                  fi
+              env:
+                  DEPLOYMENT_YEAR: ${{ vars.DEPLOYMENT_YEAR }}
+
+            - name: Install dependencies
+              run: |
+                  npm ci
+                  cd functions && npm ci
+
+            - name: Setup Firebase CLI
+              run: |
+                  npm install -g firebase-tools
+                  # Create service account file
+                  echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TECHWORK_2026 }}' > ${HOME}/firebase-service-account.json
+                  chmod 600 ${HOME}/firebase-service-account.json
+                  # Set environment variable for Firebase CLI
+                  echo "GOOGLE_APPLICATION_CREDENTIALS=${HOME}/firebase-service-account.json" >> $GITHUB_ENV
+
+            - name: Create Functions environment file
+              run: |
+                  cd functions
+                  cat > .env << EOF
+                  BREVO_API_KEY=${{ secrets.BREVO_API_KEY }}
+                  BREVO_SENDER_EMAIL=${{ secrets.BREVO_SENDER_EMAIL }}
+                  BREVO_TO_EMAIL=${{ secrets.BREVO_TO_EMAIL }}
+                  BREVO_REPLY_TO_EMAIL=${{ secrets.BREVO_REPLY_TO_EMAIL }}
+                  PROJECT_ID=${{ secrets.PROJECT_ID }}
+                  ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
+                  DEBUG=false
+                  EOF
+
+            - name: Build Firebase Functions
+              run: cd functions && npm run build
+
+            - name: Deploy website using Task
+              run: task deploy-web YEAR=${{ steps.get-year.outputs.year }}
+              env:
+                  TF_IN_AUTOMATION: 'true'
+                  # Firebase secrets for build
+                  FIREBASE_API_KEY: '${{ secrets.FIREBASE_API_KEY }}'
+                  FIREBASE_AUTH_DOMAIN: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'
+                  FIREBASE_DATABASE_URL: '${{ secrets.FIREBASE_DATABASE_URL }}'
+                  FIREBASE_PROJECT_ID: '${{ secrets.FIREBASE_PROJECT_ID }}'
+                  FIREBASE_STORAGE_BUCKET: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'
+                  FIREBASE_MESSAGING_SENDER_ID: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'
+                  FIREBASE_APP_ID: '${{ secrets.FIREBASE_APP_ID }}'
+                  FIREBASE_MEASUREMENT_ID: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
+                  OPENPLANNER_URL: ${{ secrets.OPENPLANNER_URL }}
+                  # Firebase service account for Firebase CLI (used by Task)
+                  GOOGLE_APPLICATION_CREDENTIALS: /home/runner/firebase-service-account.json
