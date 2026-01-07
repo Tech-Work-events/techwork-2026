@@ -42,60 +42,32 @@
     ],
     "topics": [
         {
-            "id": "frontend",
-            "name": "Frontend & UX",
-            "description": "React, Vue, Angular, UX/UI Design",
-            "icon": "🎨",
-            "color": "blue"
+            "id": "data",
+            "name": "Data & IA",
+            "description": "IA Générative, LLMs, Machine Learning, Data Engineering",
+            "icon": "🤖",
+            "color": "orange"
         },
         {
-            "id": "backend",
-            "name": "Backend & API",
-            "description": "Node.js, Python, Java, Architecture",
-            "icon": "⚙️",
-            "color": "green"
+            "id": "craft",
+            "name": "Craft",
+            "description": "Software Craftsmanship, TDD, DDD, Clean Code, Architecture",
+            "icon": "🧶",
+            "color": "indigo"
         },
         {
-            "id": "devops",
-            "name": "DevOps & Cloud",
-            "description": "CI/CD, Docker, Kubernetes, AWS",
+            "id": "cloud",
+            "name": "Cloud & DevOps",
+            "description": "Kubernetes, Docker, CI/CD, Cloud Providers, Observability",
             "icon": "☁️",
             "color": "purple"
         },
         {
-            "id": "data",
-            "name": "Data & AI",
-            "description": "Machine Learning, Analytics, Big Data",
-            "icon": "📊",
-            "color": "orange"
-        },
-        {
-            "id": "mobile",
-            "name": "Mobile",
-            "description": "iOS, Android, React Native, Flutter",
-            "icon": "📱",
-            "color": "pink"
-        },
-        {
-            "id": "security",
-            "name": "Sécurité",
-            "description": "Cybersécurité, Ethical Hacking, GDPR",
-            "icon": "🔒",
-            "color": "red"
-        },
-        {
-            "id": "management",
-            "name": "Management & Carrière",
-            "description": "Leadership, Team Building, Productivité",
-            "icon": "👥",
-            "color": "indigo"
-        },
-        {
-            "id": "innovation",
-            "name": "Innovation & Tendances",
-            "description": "Blockchain, IoT, AR/VR, Quantum",
-            "icon": "🚀",
-            "color": "teal"
+            "id": "agility",
+            "name": "Agilité",
+            "description": "Scrum, Kanban, Lean, Produit, Management",
+            "icon": "🔄",
+            "color": "green"
         }
     ],
     "criteria": {
