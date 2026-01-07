@@ -13,12 +13,14 @@ import socialData from './social.json'
 import servicesData from './services.json'
 import eventData from './event.json'
 import menuData from './menu.json'
+import partnersData from './partners.json'
 
 // Export des configurations
 export const CFP_DATA = cfpData
 export const SOCIAL_DATA = socialData
 export const SERVICES_DATA = servicesData
 export const EVENT_DATA = eventData
+export const PARTNERS_DATA = partnersData
 
 // Configuration de l'équipe
 export const TEAM_CONFIG = teamData

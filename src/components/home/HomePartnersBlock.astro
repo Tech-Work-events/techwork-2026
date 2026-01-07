@@ -1,0 +1,65 @@
+---
+import { PARTNERS_DATA } from '../../config'
+import { Image } from 'astro:assets'
+
+// Dynamic imports for assets
+const icons = import.meta.glob<{ default: ImageMetadata }>('../../assets/partners/*.{png,jpg,jpeg,svg,webp}')
+
+const partners = await Promise.all(
+    PARTNERS_DATA.communityPartners.map(async (partner) => {
+        const iconPath = `../../assets/partners/${partner.logo}`
+        if (!icons[iconPath]) {
+            console.error(`Image not found: ${iconPath}`)
+            return { ...partner, image: null }
+        }
+        const image = (await icons[iconPath]()).default
+        return { ...partner, image }
+    })
+)
+---
+
+<section id="community-partners" class="py-12 sm:py-16 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 scroll-animate">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6 animate-scale-in hover-lift">
+                <span class="mr-2 animate-bounce-gentle">🤝</span>
+                Organisation
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">
+                Les <span class="text-gradient">co-organisateurs</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Ces communautés tech locales participent activement à la construction de l'édition 2026.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12 stagger-children">
+            {
+                partners.map((partner, index) => (
+                    <a
+                        href={partner.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group relative block scroll-animate-scale"
+                        style={`animation-delay: ${index * 0.1}s`}
+                        aria-label={`Site web de ${partner.name}`}>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-32 w-64 border border-gray-100 hover:border-primary-200">
+                            {partner.image ? (
+                                <Image
+                                    src={partner.image}
+                                    alt={`Logo ${partner.name}`}
+                                    class="max-h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 filter grayscale brightness-75 sepia hue-rotate-[220deg] saturate-[500%] opacity-90 group-hover:filter-none group-hover:opacity-100"
+                                    width={200}
+                                    height={80}
+                                />
+                            ) : (
+                                <span class="text-gray-400 font-bold">{partner.name}</span>
+                            )}
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>

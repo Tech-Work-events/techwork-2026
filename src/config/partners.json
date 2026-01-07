@@ -1,0 +1,22 @@
+{
+    "communityPartners": [
+        {
+            "name": "Café DevOps",
+            "url": "https://www.meetup.com/fr-fr/cafe-devops-lyon/",
+            "linkedin": "https://www.linkedin.com/company/cafedevopslyon/",
+            "logo": "cafedevops.webp"
+        },
+        {
+            "name": "CARA (Club Agile Rhône Alpes)",
+            "url": "https://www.cara-lyon.org/",
+            "linkedin": "https://www.linkedin.com/company/cara-lyon/",
+            "logo": "cara.webp"
+        },
+        {
+            "name": "SoCraTes FR",
+            "url": "https://socrates-fr.github.io/",
+            "linkedin": "https://www.linkedin.com/company/socratesfr/",
+            "logo": "socrates.webp"
+        }
+    ]
+}
