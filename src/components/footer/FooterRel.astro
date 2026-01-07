@@ -1,4 +1,6 @@
 ---
+import { EVENT_DATA } from '../../config'
+
 const footerRelBlock = [
     {
         title: "L'univers Tech'Work",
@@ -16,9 +18,10 @@ const footerRelBlock = [
                 name: 'Billetterie',
                 url: 'https://www.helloasso.com/associations/cloud-alpes/evenements/tech-work-2026',
                 newTab: true,
+                hidden: !EVENT_DATA.event.ticketingOpen,
             },
             { name: 'Partenaires', url: '/sponsors', newTab: false },
-        ],
+        ].filter((link) => !link.hidden),
     },
 ]
 ---
