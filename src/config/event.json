@@ -6,19 +6,19 @@
         "description": "Boostez vos compétences avec le meilleur rapport qualité/prix/lama du marché.",
         "year": "2026",
         "date": {
-            "full": "7 juin 2026",
-            "day": 7,
+            "full": "18 juin 2026",
+            "day": 18,
             "month": "juin",
             "year": 2026,
-            "dayOfWeek": "samedi",
-            "iso": "2026-06-07"
+            "dayOfWeek": "jeudi",
+            "iso": "2026-06-18"
         },
         "duration": {
             "days": 1,
             "startTime": "09:00"
         },
         "location": {
-            "venue": "Au coeur de Lyon",
+            "venue": "Sur la Presqu'île, au cœur de Lyon",
             "address": "Lyon, France",
             "city": "Lyon",
             "region": "Auvergne-Rhône-Alpes",
