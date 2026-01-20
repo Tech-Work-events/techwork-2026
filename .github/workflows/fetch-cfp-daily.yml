@@ -1,0 +1,45 @@
+name: Daily CFP Fetch
+
+on:
+    schedule:
+        # Run at 04:00 UTC every day
+        - cron: '0 4 * * *'
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    fetch-and-update:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version-file: .nvmrc
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Fetch CFP data
+              run: npm run fetch-cfp
+              env:
+                  CONFERENCE_HALL_API_KEY: ${{ secrets.CONFERENCE_HALL_API_KEY }}
+
+            - name: Check for changes
+              id: git-check
+              run: |
+                  git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+
+            - name: Commit and push changes
+              if: steps.git-check.outputs.changes == 'true'
+              run: |
+                  git config --global user.name 'github-actions[bot]'
+                  git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+                  git add src/config/cfp.json
+                  git commit -m "chore: update CFP data"
+                  git push

@@ -14,9 +14,30 @@ import servicesData from './services.json'
 import eventData from './event.json'
 import menuData from './menu.json'
 import partnersData from './partners.json'
+// Calcul de l'état du CFP
+const now = new Date()
+// On utilise isOpen du fichier de config qui est mis à jour par le script fetch-cfp
+let isCfpOpen = cfpData.cfp.isOpen
+
+// Si deadlineISO est présent (ajouté par le script), on peut recalculer pour être sûr
+const deadlineISO = (cfpData.cfp as any).deadlineISO
+if (deadlineISO) {
+    // deadlineISO est une string, on la convertit
+    const cfpDeadline = new Date(deadlineISO)
+    isCfpOpen = now < cfpDeadline
+}
+
+// Mise à jour de la configuration CFP dynamique
+const updatedCfpData = {
+    ...cfpData,
+    cfp: {
+        ...cfpData.cfp,
+        isOpen: isCfpOpen,
+    },
+}
 
 // Export des configurations
-export const CFP_DATA = cfpData
+export const CFP_DATA = updatedCfpData
 export const SOCIAL_DATA = socialData
 export const SERVICES_DATA = servicesData
 export const EVENT_DATA = eventData

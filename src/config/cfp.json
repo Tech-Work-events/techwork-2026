@@ -8,11 +8,12 @@
     "cfp": {
         "isOpen": true,
         "openDate": "1 janvier 2026",
-        "deadline": "15 février 2026",
+        "deadline": "2 mars 2026",
         "notificationDate": "1 mars 2026",
         "submissionUrl": "https://conference-hall.io/tech-work-lyon-2026",
         "maxSubmissions": 3,
-        "languages": ["Français", "Anglais"]
+        "languages": ["Français", "Anglais"],
+        "deadlineISO": "2026-03-02T23:59:59.999Z"
     },
     "formats": [
         {

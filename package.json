@@ -10,7 +10,8 @@
         "astro": "astro",
         "prepare": "husky",
         "test": "vitest run",
-        "lhci": "npm run build && npx -y @lhci/cli autorun"
+        "lhci": "npm run build && npx -y @lhci/cli autorun",
+        "fetch-cfp": "node scripts/fetch-cfp.js"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.4",
