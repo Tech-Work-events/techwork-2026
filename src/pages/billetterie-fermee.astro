@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { EVENT_DATA, SOCIAL_DATA } from '../config'
+
+const event = EVENT_DATA.event
+const contact = SOCIAL_DATA.contact
+---
+
+<Layout title="Billetterie fermée" description={`La billetterie pour ${event.name} est actuellement fermée.`}>
+    <div class="min-h-[70vh] flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="text-center max-w-2xl mx-auto space-y-8">
+            <div class="text-6xl mb-4">🎫</div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900">
+                La billetterie est <span class="text-gradient">fermée</span>
+            </h1>
+
+            <p class="text-xl text-gray-600 leading-relaxed">
+                Les billets pour {event.name} ne sont pas encore disponibles (ou c'est déjà fini !).
+                <br />
+                Revenez bientôt ou suivez-nous pour ne pas rater l'ouverture.
+            </p>
+
+            <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="/" class="btn btn-secondary px-8 py-3 rounded-full font-bold transition-all">
+                    Retour à l'accueil
+                </a>
+
+                <a
+                    href={`mailto:${contact.general}`}
+                    class="btn btn-primary px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all">
+                    Nous contacter
+                </a>
+            </div>
+
+            <div class="pt-12 text-sm text-gray-500">
+                <p>
+                    Une question ? Écrivez-nous à <a
+                        href={`mailto:${contact.general}`}
+                        class="text-primary-600 hover:underline">{contact.general}</a
+                    >
+                </p>
+            </div>
+        </div>
+    </div>
+</Layout>

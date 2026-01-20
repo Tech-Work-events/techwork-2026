@@ -1,15 +1,19 @@
 ---
 import { TICKETING_BASE_URL } from '../../config/cta'
+import { EVENT_DATA } from '../../config'
 import { EXPERIMENTS, labelFor } from '../../config/experiments'
+
+const isTicketingOpen = EVENT_DATA.event.ticketingOpen
 const CTA_LABEL = labelFor(EXPERIMENTS.ctaLabelVariant)
+const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
 ---
 
 <a
-    href={TICKETING_BASE_URL}
+    href={TARGET_URL}
     class="btn btn-primary inline-flex items-center gap-2 hover-lift"
     data-cta
     data-placement="header"
-    data-base-href={TICKETING_BASE_URL}
+    data-base-href={TARGET_URL}
     aria-label={CTA_LABEL}>
     <span>🎫</span>
     <span>{CTA_LABEL}</span>

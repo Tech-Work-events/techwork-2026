@@ -6,6 +6,9 @@ import { Picture } from 'astro:assets'
 import locationHero from '../assets/location/location.webp'
 
 import { TICKETING_BASE_URL } from '../config/cta'
+
+const isTicketingOpen = EVENT_DATA.event.ticketingOpen
+const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
 ---
 
 <Layout
@@ -72,11 +75,11 @@ import { TICKETING_BASE_URL } from '../config/cta'
             </p>
             <div class="flex flex-col items-center gap-3">
                 <a
-                    href={TICKETING_BASE_URL}
+                    href={TARGET_URL}
                     class="btn btn-primary text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
                     data-cta
                     data-placement="location-hero"
-                    data-base-href={TICKETING_BASE_URL}
+                    data-base-href={TARGET_URL}
                     aria-label="Réserver ma place pour Tech'Work Lyon 2026 depuis la page Lieu">
                     <span>🎫</span>
                     <span>Réserver ma place</span>
@@ -146,11 +149,11 @@ import { TICKETING_BASE_URL } from '../config/cta'
                     Tu profites de tout ça dans une ambiance fun et conviviale — networking de qualité garanti 🦙
                 </p>
                 <a
-                    href={TICKETING_BASE_URL}
+                    href={TARGET_URL}
                     class="btn btn-primary text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
                     data-cta
                     data-placement="content-location-guarantees"
-                    data-base-href={TICKETING_BASE_URL}
+                    data-base-href={TARGET_URL}
                     aria-label="Réserver ma place depuis les garanties lieu">
                     <span>🎫</span>
                     <span>Réserver ma place</span>
