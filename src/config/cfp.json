@@ -19,26 +19,26 @@
         {
             "id": "talk",
             "name": "Conférence",
-            "duration": "45 minutes",
-            "description": "Présentation approfondie d'un sujet technique",
+            "duration": "50 min",
+            "description": "Présentation approfondie d'un sujet technique avec Q&A inclus",
             "icon": "🎤",
-            "slots": 16
+            "slots": 20
         },
         {
             "id": "lightning",
             "name": "Lightning Talk",
-            "duration": "15 minutes",
-            "description": "Présentation courte et percutante",
+            "duration": "20 min",
+            "description": "Présentation courte et percutante avec Q&A inclus",
             "icon": "⚡",
-            "slots": 8
+            "slots": 4
         },
         {
             "id": "workshop",
-            "name": "Atelier",
-            "duration": "2 heures",
+            "name": "Workshop",
+            "duration": "120 min",
             "description": "Session pratique avec les participants",
             "icon": "🛠️",
-            "slots": 4
+            "slots": 2
         }
     ],
     "topics": [
