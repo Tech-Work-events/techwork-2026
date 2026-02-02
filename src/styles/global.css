@@ -143,26 +143,31 @@
     }
 
     /* Amélioration de l'accessibilité - Focus visible amélioré */
-    *:focus {
+    *:focus-visible {
         outline: 2px solid theme('colors.primary.500');
         outline-offset: 2px;
     }
 
+    /* Supprimer l'outline au clic (souris) tout en le gardant au clavier */
+    *:focus:not(:focus-visible) {
+        outline: none;
+    }
+
     /* Focus visible pour les éléments interactifs */
-    button:focus:not(.btn),
-    a:focus:not(.btn),
-    input:focus,
-    textarea:focus,
-    select:focus,
-    [role='button']:focus:not(.btn),
-    [tabindex]:focus:not(.btn) {
+    button:focus-visible:not(.btn),
+    a:focus-visible:not(.btn),
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [role='button']:focus-visible:not(.btn),
+    [tabindex]:focus-visible:not(.btn) {
         outline: 2px solid theme('colors.primary.500');
         outline-offset: 2px;
     }
 
     /* Amélioration du contraste pour les focus sur fond sombre */
-    .bg-gray-800 *:focus,
-    .bg-gray-900 *:focus {
+    .bg-gray-800 *:focus-visible,
+    .bg-gray-900 *:focus-visible {
         outline-color: theme('colors.primary.400');
     }
 
@@ -180,7 +185,8 @@
     }
 
     /* Focus visible pour sr-only */
-    .sr-only:focus {
+    .sr-only:focus,
+    .sr-only:focus-visible {
         position: static;
         width: auto;
         height: auto;
@@ -217,7 +223,8 @@
         transition: top 0.2s ease;
     }
 
-    .skip-link:focus {
+    .skip-link:focus,
+    .skip-link:focus-visible {
         top: 6px;
     }
 

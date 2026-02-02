@@ -42,7 +42,7 @@ const isActiveRoute = (route: string) => {
             </div>
 
             <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden md:flex items-center space-x-8">
+            <nav id="desktop-nav" aria-label="Navigation principale" class="hidden md:flex items-center space-x-8">
                 {
                     navigation.map((nav) => (
                         <a
@@ -214,7 +214,7 @@ const isActiveRoute = (route: string) => {
                                                 ))
                                         }
                                     </div>
-                                    <p class="text-xs text-gray-400">© 2026 Tech'Work Lyon</p>
+                                    <p class="text-xs text-gray-600">© 2026 Tech'Work Lyon</p>
                                 </div>
                             </div>
                         </div>
@@ -259,8 +259,8 @@ const isActiveRoute = (route: string) => {
     }
 
     /* Amélioration du focus visible */
-    .nav-drawer a:focus,
-    label[for='nav-trigger']:focus {
+    .nav-drawer a:focus-visible,
+    label[for='nav-trigger']:focus-visible {
         @apply outline-none ring-2 ring-primary-500 ring-offset-2;
     }
 </style>

@@ -85,14 +85,14 @@ const tickets = TICKETS_CONFIG.map((ticket) => ({
                                     </h3>
                                     <div class="flex items-baseline gap-1">
                                         {ticket.originalPrice && (
-                                            <span class="text-gray-400 line-through">{ticket.originalPrice}€</span>
+                                            <span class="text-gray-500 line-through">{ticket.originalPrice}€</span>
                                         )}
                                         <span
                                             class={`text-3xl font-black ${ticket.price === 0 ? 'text-green-600' : 'text-primary-600'}`}>
                                             {ticket.price}€
                                         </span>
                                     </div>
-                                    <p class="text-xs text-gray-500 leading-5 sm:leading-6">
+                                    <p class="text-xs text-gray-600 leading-5 sm:leading-6">
                                         Prix TTC — des frais de plateforme peuvent s’appliquer
                                     </p>
                                     <p class="text-sm text-gray-600 mt-1 leading-6 sm:leading-7">
