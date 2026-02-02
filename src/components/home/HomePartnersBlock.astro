@@ -52,6 +52,8 @@ const partners = await Promise.all(
                                     class="max-h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105 filter grayscale brightness-75 sepia hue-rotate-[220deg] saturate-[500%] opacity-90 group-hover:filter-none group-hover:opacity-100"
                                     width={200}
                                     height={80}
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             ) : (
                                 <span class="text-gray-400 font-bold">{partner.name}</span>

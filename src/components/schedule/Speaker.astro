@@ -9,7 +9,15 @@ const { id, photoUrl, name, company, size, socials } = Astro.props
     <Cluster space="var(--s-3) var(--s-2)" align="center" nowrap>
         {
             photoUrl && (
-                <img alt={`Photo de ${name}`} class="speaker-photo" src={photoUrl} loading="lazy" decoding="async" />
+                <img
+                    alt={`Photo de ${name}`}
+                    class="speaker-photo"
+                    src={photoUrl}
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
+                />
             )
         }
         {!photoUrl && <span class="speaker-photo-fallback">{name.charAt(0).toUpperCase()}</span>}
