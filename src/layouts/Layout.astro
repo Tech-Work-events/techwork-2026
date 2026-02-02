@@ -5,6 +5,7 @@ import Menu from '../components/Menu.astro'
 import CookieConsent from '../components/legal/CookieConsent.astro'
 import JsonLd from '../components/seo/JsonLd.astro'
 import EVENT_DATA from '../config/event.json'
+import AccessibilityPanel from '../components/accessibility/AccessibilityPanel.astro'
 
 import '../styles/global.css'
 
@@ -93,6 +94,8 @@ const eventSchema = {
         <!-- Font performance hints -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Police OpenDyslexic pour l'accessibilité -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
@@ -213,6 +216,9 @@ const eventSchema = {
 
         <!-- Gestion des cookies RGPD -->
         <CookieConsent />
+
+        <!-- Panneau d'accessibilité -->
+        <AccessibilityPanel />
 
         <!-- Script optimisé pour les animations au scroll -->
         <script>
