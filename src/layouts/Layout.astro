@@ -3,6 +3,8 @@ import { ClientRouter } from 'astro:transitions'
 import FooterBlock from '../components/footer/FooterBlock.astro'
 import Menu from '../components/Menu.astro'
 import CookieConsent from '../components/legal/CookieConsent.astro'
+import JsonLd from '../components/seo/JsonLd.astro'
+import EVENT_DATA from '../config/event.json'
 
 import '../styles/global.css'
 
@@ -30,6 +32,44 @@ const keywords =
 const organizerName = "Tech'Work Lyon"
 const organizerTwitter = '@techworklyon'
 const GA_ID = import.meta.env.PUBLIC_GA_ID
+
+const isHomePage = Astro.url.pathname === '/'
+
+const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: "Tech'Work",
+    url: 'https://techwork.events',
+    logo: 'https://techwork.events/logo.png',
+}
+
+const eventSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: EVENT_DATA.event.name,
+    description: EVENT_DATA.event.tagline,
+    startDate: `${EVENT_DATA.event.date.iso}T${EVENT_DATA.event.duration.startTime}:00+02:00`,
+    endDate: `${EVENT_DATA.event.date.iso}T18:00:00+02:00`,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: {
+        '@type': 'Place',
+        name: EVENT_DATA.event.location.venue,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: EVENT_DATA.event.location.city,
+            addressRegion: EVENT_DATA.event.location.region,
+            addressCountry: 'FR',
+        },
+    },
+    organizer: {
+        '@type': 'Organization',
+        name: "Tech'Work",
+        url: 'https://techwork.events',
+    },
+    image: 'https://techwork.events/social-share.png',
+    url: 'https://techwork.events',
+}
 ---
 
 <!doctype html>
@@ -99,6 +139,10 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
         <meta content={shareImage} name="twitter:image" />
 
         <title>{fullPageTitle}</title>
+
+        <!-- Schema.org structured data -->
+        <JsonLd data={organizationSchema} />
+        {isHomePage && <JsonLd data={eventSchema} />}
 
         <slot name="head" />
 
