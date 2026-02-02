@@ -13,7 +13,6 @@ interface Props {
     category: string
     salary: string | null
     description: string
-    tags: string[]
     applyUrl: string
     publishedAt: string
     remoteLabel: string
@@ -32,7 +31,6 @@ const {
     category,
     salary,
     description,
-    tags,
     applyUrl,
     publishedAt,
     remoteLabel,
@@ -73,7 +71,6 @@ const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
     data-category={category}
     data-company={company.name.toLowerCase()}
     data-title={title.toLowerCase()}
-    data-tags={tags.join(',').toLowerCase()}
     style={`animation-delay: ${index * 0.08}s`}>
     <!-- Header: Company -->
     <div class="px-6 pt-6 pb-4 flex items-center gap-4 border-b border-gray-100">
@@ -137,20 +134,9 @@ const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
         </div>
 
         <!-- Description -->
-        <p class="text-sm text-gray-600 leading-relaxed line-clamp-3">
+        <p class="text-sm text-gray-600 leading-relaxed line-clamp-3 mt-auto">
             {description}
         </p>
-
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-1.5 mt-auto pt-2">
-            {
-                tags.map((tag) => (
-                    <span class="px-2 py-0.5 bg-gray-50 text-gray-600 rounded-md text-xs font-mono border border-gray-200">
-                        {tag}
-                    </span>
-                ))
-            }
-        </div>
     </div>
 
     <!-- Footer: CTA -->

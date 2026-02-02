@@ -84,7 +84,7 @@ const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
                         <input
                             type="search"
                             id="job-search"
-                            placeholder="Rechercher par titre, entreprise, technologie..."
+                            placeholder="Rechercher par titre, entreprise..."
                             class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors duration-200"
                             aria-label="Rechercher une offre d'emploi"
                         />
@@ -312,13 +312,11 @@ const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
                 const cardContract = card.dataset.contract || ''
                 const cardTitle = card.dataset.title || ''
                 const cardCompany = card.dataset.company || ''
-                const cardTags = card.dataset.tags || ''
 
                 const matchesCategory = !category || cardCategory === category
                 const matchesRemote = !remote || cardRemote === remote
                 const matchesContract = !contract || cardContract === contract
-                const matchesSearch =
-                    !search || cardTitle.includes(search) || cardCompany.includes(search) || cardTags.includes(search)
+                const matchesSearch = !search || cardTitle.includes(search) || cardCompany.includes(search)
 
                 const isVisible = matchesCategory && matchesRemote && matchesContract && matchesSearch
 
