@@ -49,11 +49,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
 
         <link href="/manifest.json" rel="manifest" />
         <!-- Performance hints -->
-        <!-- Analytics performance hints -->
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <!-- Analytics performance hints (chargés conditionnellement via JS selon le consentement) -->
         <!-- Font performance hints -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,21 +98,64 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
 
         <slot name="head" />
 
-        {
-            GA_ID && (
-                <>
-                    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-                    <script is:inline>
-                        {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${GA_ID}', { anonymize_ip: true });
-                    `}
-                    </script>
-                </>
-            )
-        }
+        {GA_ID && <meta name="ga-id" content={GA_ID} />}
+        <script is:inline>
+            ;(function () {
+                var gaIdMeta = document.querySelector('meta[name="ga-id"]')
+                if (!gaIdMeta) return
+                var GA_ID = gaIdMeta.getAttribute('content')
+                if (!GA_ID) return
+
+                function hasAnalyticsConsent() {
+                    try {
+                        var stored = localStorage.getItem('cookie-consent')
+                        if (!stored) return false
+                        var consent = JSON.parse(stored)
+                        return consent && consent.analytics === true
+                    } catch (e) {
+                        return false
+                    }
+                }
+
+                function loadGA() {
+                    if (window.__gaLoaded) return
+                    window.__gaLoaded = true
+
+                    var preconnect1 = document.createElement('link')
+                    preconnect1.rel = 'preconnect'
+                    preconnect1.href = 'https://www.googletagmanager.com'
+                    document.head.appendChild(preconnect1)
+
+                    var preconnect2 = document.createElement('link')
+                    preconnect2.rel = 'preconnect'
+                    preconnect2.href = 'https://www.google-analytics.com'
+                    document.head.appendChild(preconnect2)
+
+                    var script = document.createElement('script')
+                    script.async = true
+                    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID
+                    document.head.appendChild(script)
+
+                    window.dataLayer = window.dataLayer || []
+                    function gtag() {
+                        window.dataLayer.push(arguments)
+                    }
+                    window.gtag = gtag
+                    gtag('js', new Date())
+                    gtag('config', GA_ID, { anonymize_ip: true })
+                }
+
+                if (hasAnalyticsConsent()) {
+                    loadGA()
+                }
+
+                window.addEventListener('cookie-consent-updated', function () {
+                    if (hasAnalyticsConsent()) {
+                        loadGA()
+                    }
+                })
+            })()
+        </script>
         <ClientRouter />
     </head>
     <body class="antialiased">

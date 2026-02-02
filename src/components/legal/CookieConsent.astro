@@ -99,6 +99,9 @@
 
         localStorage.setItem('cookie-consent', JSON.stringify(consentData))
 
+        // Notifier les autres scripts du changement de consentement
+        window.dispatchEvent(new CustomEvent('cookie-consent-updated'))
+
         // Appliquer les préférences
         applyCookieSettings(consent)
 
