@@ -76,27 +76,27 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID
         <meta content={keywords} name="keywords" />
         <meta content={organizerName} name="author" />
 
-        <!-- Facebook sharing meta data -->
+        <!-- Open Graph meta data -->
         <meta content={pageTitle} property="og:title" />
-        <meta content={siteNameWithTagline} property="og:site_name" />
+        <meta content={siteName} property="og:site_name" />
         <meta content="website" property="og:type" />
         <meta content={canonical} property="og:url" />
         <meta content={pageDescription} property="og:description" />
-        <meta content="fr" property="og:locale" />
+        <meta content="fr_FR" property="og:locale" />
         <meta content={shareImage} property="og:image" />
         <meta content="image/png" property="og:image:type" />
         <meta content="1200" property="og:image:width" />
         <meta content="630" property="og:image:height" />
         <meta content="Lama Tech'Work Lyon" property="og:image:alt" />
-        <!-- PNG fallback for platforms not supporting SVG in OG -->
-        <meta content={url + '/social-share.png'} property="og:image" />
 
-        <!-- Twitter meta data -->
+        <!-- Twitter Cards meta data -->
         <meta content="summary_large_image" name="twitter:card" />
         <meta content={organizerTwitter} name="twitter:site" />
+        <meta content={organizerTwitter} name="twitter:creator" />
         <meta content={pageTitle} name="twitter:title" />
         <meta content={pageDescription} name="twitter:description" />
         <meta content={shareImage} name="twitter:image" />
+        <meta content="Lama Tech'Work Lyon" name="twitter:image:alt" />
 
         <title>{fullPageTitle}</title>
 
