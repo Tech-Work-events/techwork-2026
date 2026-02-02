@@ -3,56 +3,67 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="404 - Page introuvable" description="Cette page n'existe pas sur le site Tech'Work Lyon">
-    <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-24">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 hero-gradient"></div>
+        <!-- Decorative blobs -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="scroll-animate">
-                <!-- Error Code -->
-                <div class="mb-8">
-                    <h1 class="text-8xl sm:text-9xl md:text-[12rem] font-black text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text animate-gradient">
-                        404
-                    </h1>
+                <!-- Badge -->
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8 animate-scale-in">
+                    Erreur 404
                 </div>
 
-                <!-- Error Message -->
-                <div class="space-y-6 mb-12">
-                    <div class="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold animate-scale-in">
-                        <span class="mr-2">🚫</span>
-                        Erreur de compilation
-                    </div>
-                    
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-6">
-                        Page <span class="text-gradient">introuvable</span>
-                    </h2>
-                    
-                    <div class="bg-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 max-w-2xl mx-auto hover-lift">
-                        <div class="font-mono text-sm sm:text-base leading-relaxed text-left">
-                            <div class="text-red-400 mb-2">// Erreur détectée :</div>
-                            <div class="text-blue-300">const</div> <div class="text-yellow-300 inline">page</div> = <div class="text-purple-300 inline">findRoute</div>(<span class="text-green-300">window.location.pathname</span>);
-                            <div class="mt-2 text-red-500">// ❌ Error: Page not found in routes</div>
-                            <div class="mt-4 text-green-400">// Solution suggérée :</div>
-                            <div class="text-blue-300">return</div> <div class="text-purple-300">redirect</div>(<span class="text-green-300">"/"</span>); <div class="text-gray-400">// Retour à l'accueil</div>
+                <!-- Big 404 number -->
+                <h1
+                    class="text-[8rem] sm:text-[10rem] md:text-[14rem] leading-none font-black text-transparent bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-400 bg-clip-text animate-gradient select-none"
+                    aria-hidden="true">
+                    404
+                </h1>
+
+                <!-- Title -->
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
+                    Page <span class="text-gradient">introuvable</span>
+                </h2>
+
+                <!-- Subtitle -->
+                <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-4">
+                    La page que vous cherchez n'existe pas ou a été déplacée.
+                </p>
+                <p class="text-base text-gray-400 max-w-xl mx-auto mb-12">
+                    Même nos lamas n'ont pas réussi à la retrouver... et pourtant ils connaissent bien le terrain.
+                </p>
+
+                <!-- Code block hint -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 max-w-lg mx-auto mb-12">
+                    <div class="font-mono text-sm text-left leading-relaxed">
+                        <div class="text-gray-500">// La page demandée</div>
+                        <div>
+                            <span class="text-blue-300">const</span>
+                            <span class="text-yellow-300"> page</span>
+                            <span class="text-white"> = </span>
+                            <span class="text-red-400">undefined</span><span class="text-white">;</span>
+                        </div>
+                        <div class="mt-2 text-green-400">// Suggestion : retournez à l'accueil</div>
+                        <div>
+                            <span class="text-blue-300">return</span>
+                            <span class="text-purple-300"> redirect</span>(<span class="text-green-300">"/"</span>)<span
+                                class="text-white">;</span
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
+                <!-- Action buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="/" class="btn btn-primary text-lg px-8 py-4 hover-lift group">
-                        <span class="mr-2 group-hover:animate-bounce-gentle">🏠</span>
-                        Retour à l'accueil
-                    </a>
-                    <a href="/team" class="btn btn-secondary text-lg px-8 py-4 hover-lift group">
-                        <span class="mr-2 group-hover:animate-bounce-gentle">👥</span>
-                        Contacter l'équipe
-                    </a>
-                </div>
-
-                <!-- Fun Tech Message -->
-                <div class="mt-12 bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 border border-primary-100 max-w-2xl mx-auto">
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>Fun fact :</strong> Cette page n'existe pas plus que l'équilibre parfait entre work et life 
-                        (mais on travaille dessus ! 😄)
-                    </p>
+                    <a href="/" class="btn btn-primary text-lg px-8 py-4 hover-lift"> Retour à l'accueil </a>
+                    <a href="/schedule" class="btn btn-secondary text-lg px-8 py-4 hover-lift"> Voir le programme </a>
                 </div>
             </div>
         </div>
