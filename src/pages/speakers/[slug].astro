@@ -58,6 +58,8 @@ const { name, company, bio, jobTitle, socials, photoUrl, geolocation, email, pho
                                     class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
                                     src={photoUrl}
                                     alt={name}
+                                    width="128"
+                                    height="128"
                                     decoding="async"
                                     loading="lazy"
                                 />
@@ -162,10 +164,11 @@ const { name, company, bio, jobTitle, socials, photoUrl, geolocation, email, pho
                                                 class="w-12 h-12 rounded-lg object-contain bg-white p-1"
                                                 src={companyLogoUrl}
                                                 alt={company}
+                                                width="48"
+                                                height="48"
                                                 loading="lazy"
                                                 decoding="async"
                                                 fetchpriority="low"
-                                                loading="lazy"
                                             />
                                         )}
                                         <div>

@@ -132,9 +132,19 @@
     }
 }
 
+/* Font fallback to reduce CLS during font loading */
+@font-face {
+    font-family: 'Inter fallback';
+    src: local('Arial');
+    size-adjust: 107%;
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+}
+
 @layer base {
     html {
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: 'Inter', 'Inter fallback', system-ui, sans-serif;
         overflow-x: hidden;
     }
 
@@ -232,6 +242,16 @@
     svg {
         max-width: 100%;
         height: auto;
+    }
+
+    /* Prevent CLS for circular avatar images */
+    img[class*='rounded-full'] {
+        aspect-ratio: 1 / 1;
+    }
+
+    /* Prevent CLS for logo images with explicit dimensions */
+    img[class*='object-contain'][width][height] {
+        aspect-ratio: attr(width) / attr(height);
     }
 
     h1,

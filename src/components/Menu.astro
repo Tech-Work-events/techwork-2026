@@ -358,7 +358,7 @@ const isActiveRoute = (route: string) => {
     }
 
     window.addEventListener('scroll', updateHeaderOnScroll, { passive: true })
-    window.addEventListener('resize', updateHeaderOnScroll)
+    window.addEventListener('resize', updateHeaderOnScroll, { passive: true })
     document.addEventListener('astro:page-load', updateHeaderOnScroll)
 
     // Handle mobile menu avec support accessibilité

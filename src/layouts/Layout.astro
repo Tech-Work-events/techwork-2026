@@ -89,12 +89,17 @@ const eventSchema = {
 
         <link href="/manifest.json" rel="manifest" />
         <!-- Performance hints -->
+        <meta http-equiv="x-dns-prefetch-control" content="on" />
         <!-- Analytics performance hints (chargés conditionnellement via JS selon le consentement) -->
         <!-- Font performance hints -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <!-- OpenPlanner / Firebase performance hints -->
+        <link rel="preconnect" href="https://storage.googleapis.com" crossorigin />
+        <link rel="dns-prefetch" href="//storage.googleapis.com" />
+        <link rel="dns-prefetch" href="//firebaseinstallations.googleapis.com" />
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta content="yes" name="mobile-web-app-capable" />
@@ -376,18 +381,22 @@ const eventSchema = {
                 setupResizeHandler() {
                     let resizeTimer: ReturnType<typeof setTimeout> | null = null
 
-                    window.addEventListener('resize', () => {
-                        if (resizeTimer) {
-                            clearTimeout(resizeTimer)
-                        }
-                        resizeTimer = setTimeout(() => {
-                            this.config = getAnimationConfig()
-
-                            if (!this.config.enabled) {
-                                this.disableAllAnimations()
+                    window.addEventListener(
+                        'resize',
+                        () => {
+                            if (resizeTimer) {
+                                clearTimeout(resizeTimer)
                             }
-                        }, 250)
-                    })
+                            resizeTimer = setTimeout(() => {
+                                this.config = getAnimationConfig()
+
+                                if (!this.config.enabled) {
+                                    this.disableAllAnimations()
+                                }
+                            }, 250)
+                        },
+                        { passive: true }
+                    )
                 }
 
                 optimizeExistingAnimations() {
@@ -443,17 +452,27 @@ const eventSchema = {
                     const parallaxElements = document.querySelectorAll('.parallax')
 
                     if (parallaxElements.length > 0) {
-                        window.addEventListener('scroll', () => {
-                            const scrolled = window.scrollY
-
-                            parallaxElements.forEach((el) => {
-                                if (el instanceof HTMLElement) {
-                                    const speed = parseFloat(el.dataset.speed || '0.5')
-                                    const yPos = -(scrolled * speed)
-                                    el.style.transform = `translate3d(0, ${yPos}px, 0)`
+                        let parallaxTicking = false
+                        window.addEventListener(
+                            'scroll',
+                            () => {
+                                if (!parallaxTicking) {
+                                    requestAnimationFrame(() => {
+                                        const scrolled = window.scrollY
+                                        parallaxElements.forEach((el) => {
+                                            if (el instanceof HTMLElement) {
+                                                const speed = parseFloat(el.dataset.speed || '0.5')
+                                                const yPos = -(scrolled * speed)
+                                                el.style.transform = `translate3d(0, ${yPos}px, 0)`
+                                            }
+                                        })
+                                        parallaxTicking = false
+                                    })
+                                    parallaxTicking = true
                                 }
-                            })
-                        })
+                            },
+                            { passive: true }
+                        )
                     }
                 }
 
