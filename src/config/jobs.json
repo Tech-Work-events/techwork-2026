@@ -28,19 +28,19 @@
     "jobs": [
         {
             "id": "1",
-            "title": "Lead Frontend Engineer",
+            "title": "🦙 Lama en chef du Job Board (poste fictif)",
             "company": {
-                "name": "Nom de l'entreprise",
-                "logoUrl": "https://placehold.co/200x80/4f46e5/ffffff?text=Logo",
-                "website": "https://example.com"
+                "name": "Tech'Work Lyon",
+                "logoUrl": "/og/llama-default.svg",
+                "website": "https://techwork.events"
             },
             "location": "Lyon",
             "remote": "hybrid",
             "contractType": "cdi",
             "category": "frontend",
-            "salary": "55-70K€",
-            "description": "Description courte du poste (2-3 phrases). Décrivez le contexte, les missions principales et ce qui rend le poste attractif.",
-            "applyUrl": "https://example.com/jobs/apply",
+            "salary": "Illimité en carottes 🥕",
+            "description": "Ce poste n'existe pas — notre lama s'ennuie tout seul ici ! Devenez sponsor Tech'Work et publiez vos vraies offres pour rejoindre la communauté. Contactez-nous à team@techwork.events pour faire apparaître votre entreprise sur ce board.",
+            "applyUrl": "mailto:team@techwork.events?subject=Sponsoring%20Job%20Board%20Tech'Work",
             "publishedAt": "2026-01-20"
         }
     ]
