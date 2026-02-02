@@ -33,6 +33,7 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                 alt="Partenaires Tech'Work"
                 class="w-full h-full object-cover object-center opacity-75"
                 loading="eager"
+                fetchpriority="high"
                 widths={[640, 768, 1024, 1280, 1920]}
                 sizes="100vw"
             />
@@ -211,6 +212,8 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
                                                     class="w-full h-16 sm:h-20 object-contain group-hover:scale-110 transition-transform duration-300"
                                                     src={sponsor.logoUrl}
                                                     alt={sponsor.name}
+                                                    width="200"
+                                                    height="80"
                                                     loading="lazy"
                                                     decoding="async"
                                                     fetchpriority="low"

@@ -58,6 +58,8 @@ const gallery = allPhotos.slice(0, 9)
                             class={`w-full object-contain block transform-gpu group-hover:scale-105 transition-transform duration-500 ${index === 0 ? 'min-h-[220px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[340px]' : 'h-[160px] sm:h-[170px] md:h-[180px] lg:h-[200px]'}`}
                             src={photo}
                             alt={`Photo de l'événement ${EVENT_DATA.event.name} - Image ${index + 1}`}
+                            width="400"
+                            height="300"
                             loading="lazy"
                             decoding="async"
                             fetchpriority="low"
