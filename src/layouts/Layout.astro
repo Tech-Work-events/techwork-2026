@@ -8,14 +8,20 @@ import EVENT_DATA from '../config/event.json'
 
 import '../styles/global.css'
 
+interface BreadcrumbItem {
+    name: string
+    url: string
+}
+
 interface Props {
     title: string
     description?: string
     metaImage?: string | null
     robots?: string
+    breadcrumbs?: BreadcrumbItem[]
 }
 
-const { title, description, metaImage, robots } = Astro.props
+const { title, description, metaImage, robots, breadcrumbs } = Astro.props
 const url = import.meta.env.SITE
 const canonical = new URL(Astro.url.pathname, url).href
 const shareImage = metaImage || url + '/social-share.png'
@@ -70,6 +76,23 @@ const eventSchema = {
     image: 'https://techwork.events/social-share.png',
     url: 'https://techwork.events',
 }
+
+const breadcrumbListSchema =
+    breadcrumbs && breadcrumbs.length > 0
+        ? {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Accueil', item: url },
+                  ...breadcrumbs.map((crumb, index) => ({
+                      '@type': 'ListItem',
+                      position: index + 2,
+                      name: crumb.name,
+                      item: new URL(crumb.url, url).href,
+                  })),
+              ],
+          }
+        : null
 ---
 
 <!doctype html>
@@ -86,6 +109,7 @@ const eventSchema = {
         <meta name="apple-mobile-web-app-title" content="Tech'work" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang="fr" href={canonical} />
 
         <link href="/manifest.json" rel="manifest" />
         <!-- Performance hints -->
@@ -95,6 +119,8 @@ const eventSchema = {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+        <meta name="theme-color" content="#4f46e5" />
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta content="yes" name="mobile-web-app-capable" />
@@ -139,6 +165,7 @@ const eventSchema = {
         <!-- Schema.org structured data -->
         <JsonLd data={organizationSchema} />
         {isHomePage && <JsonLd data={eventSchema} />}
+        {breadcrumbListSchema && <JsonLd data={breadcrumbListSchema} />}
 
         <slot name="head" />
 

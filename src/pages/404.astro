@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="404 - Page introuvable" description="Cette page n'existe pas sur le site Tech'Work Lyon">
+<Layout
+    title="404 - Page introuvable"
+    description="Cette page n'existe pas sur le site Tech'Work Lyon"
+    robots="noindex, nofollow">
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-24">
         <!-- Background gradient -->
@@ -21,16 +24,16 @@ import Layout from '../layouts/Layout.astro'
                 </div>
 
                 <!-- Big 404 number -->
-                <h1
+                <div
                     class="text-[8rem] sm:text-[10rem] md:text-[14rem] leading-none font-black text-transparent bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-400 bg-clip-text animate-gradient select-none"
                     aria-hidden="true">
                     404
-                </h1>
+                </div>
 
                 <!-- Title -->
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
                     Page <span class="text-gradient">introuvable</span>
-                </h2>
+                </h1>
 
                 <!-- Subtitle -->
                 <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-4">
