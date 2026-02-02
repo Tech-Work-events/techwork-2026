@@ -1,0 +1,210 @@
+{
+    "meta": {
+        "title": "Job Board",
+        "description": "Offres d'emploi tech proposées par nos partenaires — un avantage exclusif sponsors Tech'Work Lyon.",
+        "sponsorCtaEmail": "team@techwork.events"
+    },
+    "categories": [
+        { "id": "frontend", "label": "Frontend & UX", "icon": "🎨" },
+        { "id": "backend", "label": "Backend & API", "icon": "⚙️" },
+        { "id": "devops", "label": "DevOps & Cloud", "icon": "☁️" },
+        { "id": "data", "label": "Data & IA", "icon": "📊" },
+        { "id": "mobile", "label": "Mobile", "icon": "📱" },
+        { "id": "security", "label": "Sécurité", "icon": "🔒" },
+        { "id": "management", "label": "Management", "icon": "👥" },
+        { "id": "fullstack", "label": "Fullstack", "icon": "🔀" }
+    ],
+    "remoteOptions": [
+        { "id": "onsite", "label": "Sur site" },
+        { "id": "hybrid", "label": "Hybride" },
+        { "id": "remote", "label": "Full remote" }
+    ],
+    "contractTypes": [
+        { "id": "cdi", "label": "CDI" },
+        { "id": "cdd", "label": "CDD" },
+        { "id": "freelance", "label": "Freelance" },
+        { "id": "internship", "label": "Stage / Alternance" }
+    ],
+    "jobs": [
+        {
+            "id": "1",
+            "title": "Lead Frontend Engineer",
+            "company": {
+                "name": "LyonTech Solutions",
+                "logoUrl": "https://placehold.co/200x80/4f46e5/ffffff?text=LyonTech",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 3e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "frontend",
+            "salary": "55-70K€",
+            "description": "Pilotez la refonte de notre plateforme SaaS B2B avec une stack React/TypeScript moderne. Vous encadrerez une équipe de 4 développeurs et participerez aux choix d'architecture frontend.",
+            "tags": ["React", "TypeScript", "Next.js", "Design System"],
+            "applyUrl": "https://example.com/jobs/lead-frontend",
+            "publishedAt": "2026-01-20"
+        },
+        {
+            "id": "2",
+            "title": "Développeur·se Backend Python Senior",
+            "company": {
+                "name": "DataRhône",
+                "logoUrl": "https://placehold.co/200x80/10b981/ffffff?text=DataRh%C3%B4ne",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 7e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "backend",
+            "salary": "50-65K€",
+            "description": "Rejoignez notre équipe data engineering pour concevoir et maintenir nos pipelines de traitement de données à grande échelle. Environnement Python/FastAPI avec infrastructure cloud AWS.",
+            "tags": ["Python", "FastAPI", "PostgreSQL", "AWS"],
+            "applyUrl": "https://example.com/jobs/backend-python",
+            "publishedAt": "2026-01-18"
+        },
+        {
+            "id": "3",
+            "title": "DevOps / SRE Engineer",
+            "company": {
+                "name": "CloudAlpes",
+                "logoUrl": "https://placehold.co/200x80/8b5cf6/ffffff?text=CloudAlpes",
+                "website": "https://example.com"
+            },
+            "location": "Grenoble",
+            "remote": "remote",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "50-60K€",
+            "description": "Automatisez et fiabilisez notre infrastructure multi-cloud (GCP + AWS). Vous mettrez en place les pratiques SRE et améliorerez notre observabilité sur un parc de 200+ services.",
+            "tags": ["Kubernetes", "Terraform", "GCP", "Prometheus"],
+            "applyUrl": "https://example.com/jobs/devops-sre",
+            "publishedAt": "2026-01-25"
+        },
+        {
+            "id": "4",
+            "title": "Data Scientist — NLP & LLM",
+            "company": {
+                "name": "DataRhône",
+                "logoUrl": "https://placehold.co/200x80/10b981/ffffff?text=DataRh%C3%B4ne",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 7e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "data",
+            "salary": "55-75K€",
+            "description": "Développez des solutions NLP innovantes en exploitant les derniers modèles de langage. Vous travaillerez sur des cas d'usage concrets : extraction d'information, classification de documents, chatbots métier.",
+            "tags": ["Python", "LLM", "NLP", "PyTorch", "RAG"],
+            "applyUrl": "https://example.com/jobs/data-scientist-nlp",
+            "publishedAt": "2026-01-22"
+        },
+        {
+            "id": "5",
+            "title": "Développeur·se Mobile Flutter",
+            "company": {
+                "name": "AppFactory",
+                "logoUrl": "https://placehold.co/200x80/f59e0b/ffffff?text=AppFactory",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 2e",
+            "remote": "onsite",
+            "contractType": "cdi",
+            "category": "mobile",
+            "salary": "42-55K€",
+            "description": "Concevez et développez des applications mobiles cross-platform pour nos clients grands comptes. Stack Flutter/Dart avec architecture Clean et CI/CD automatisée.",
+            "tags": ["Flutter", "Dart", "Firebase", "CI/CD"],
+            "applyUrl": "https://example.com/jobs/mobile-flutter",
+            "publishedAt": "2026-01-15"
+        },
+        {
+            "id": "6",
+            "title": "Ingénieur·e Sécurité Applicative",
+            "company": {
+                "name": "CyberLyon",
+                "logoUrl": "https://placehold.co/200x80/ef4444/ffffff?text=CyberLyon",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 6e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "security",
+            "salary": "50-65K€",
+            "description": "Intégrez la sécurité au cœur du cycle de développement. Audits de code, pentests applicatifs, mise en place de SAST/DAST et accompagnement des équipes dev sur les bonnes pratiques.",
+            "tags": ["AppSec", "OWASP", "Pentest", "DevSecOps"],
+            "applyUrl": "https://example.com/jobs/appsec-engineer",
+            "publishedAt": "2026-01-28"
+        },
+        {
+            "id": "7",
+            "title": "Engineering Manager",
+            "company": {
+                "name": "LyonTech Solutions",
+                "logoUrl": "https://placehold.co/200x80/4f46e5/ffffff?text=LyonTech",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 3e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "management",
+            "salary": "65-80K€",
+            "description": "Managez 2 feature teams (12 personnes) dans un contexte de forte croissance. Vous serez garant·e de la qualité technique, de la vélocité et de l'épanouissement de vos équipes.",
+            "tags": ["Leadership", "Agile", "Coaching", "Roadmap"],
+            "applyUrl": "https://example.com/jobs/engineering-manager",
+            "publishedAt": "2026-01-30"
+        },
+        {
+            "id": "8",
+            "title": "Développeur·se Fullstack TypeScript",
+            "company": {
+                "name": "CloudAlpes",
+                "logoUrl": "https://placehold.co/200x80/8b5cf6/ffffff?text=CloudAlpes",
+                "website": "https://example.com"
+            },
+            "location": "Grenoble",
+            "remote": "remote",
+            "contractType": "freelance",
+            "category": "fullstack",
+            "salary": "450-550€/j",
+            "description": "Mission longue durée sur un projet greenfield : plateforme de monitoring cloud. Stack Node.js/NestJS côté API, React côté front, le tout en TypeScript strict.",
+            "tags": ["TypeScript", "React", "NestJS", "PostgreSQL"],
+            "applyUrl": "https://example.com/jobs/fullstack-ts",
+            "publishedAt": "2026-02-01"
+        },
+        {
+            "id": "9",
+            "title": "Alternance — Développeur·se Backend Java",
+            "company": {
+                "name": "AppFactory",
+                "logoUrl": "https://placehold.co/200x80/f59e0b/ffffff?text=AppFactory",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 2e",
+            "remote": "onsite",
+            "contractType": "internship",
+            "category": "backend",
+            "salary": null,
+            "description": "Intégrez une équipe bienveillante pour monter en compétences sur Java/Spring Boot. Vous participerez au développement d'APIs REST pour des applications métier critiques.",
+            "tags": ["Java", "Spring Boot", "REST API", "Docker"],
+            "applyUrl": "https://example.com/jobs/alternance-java",
+            "publishedAt": "2026-01-10"
+        },
+        {
+            "id": "10",
+            "title": "Architecte Cloud GCP",
+            "company": {
+                "name": "CyberLyon",
+                "logoUrl": "https://placehold.co/200x80/ef4444/ffffff?text=CyberLyon",
+                "website": "https://example.com"
+            },
+            "location": "Lyon 6e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "65-80K€",
+            "description": "Définissez et mettez en œuvre l'architecture cloud de nos clients grands comptes. Migration, optimisation des coûts, sécurité et conformité sur Google Cloud Platform.",
+            "tags": ["GCP", "Architecture", "Sécurité Cloud", "FinOps"],
+            "applyUrl": "https://example.com/jobs/cloud-architect",
+            "publishedAt": "2026-01-26"
+        }
+    ]
+}

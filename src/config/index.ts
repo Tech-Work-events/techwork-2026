@@ -13,6 +13,7 @@ import socialData from './social.json'
 import servicesData from './services.json'
 import eventData from './event.json'
 import menuData from './menu.json'
+import jobsData from './jobs.json'
 import partnersData from './partners.json'
 // Calcul de l'état du CFP
 const now = new Date()
@@ -51,6 +52,9 @@ export const TICKETS_CONFIG = ticketsData
 
 // Configuration du menu
 export const MENU_CONFIG = menuData
+
+// Configuration du job board
+export const JOBS_DATA = jobsData
 
 // Configuration générale de l'événement (deprecated - use EVENT_DATA instead)
 export const EVENT_CONFIG = eventData.event

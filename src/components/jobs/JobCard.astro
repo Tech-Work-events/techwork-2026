@@ -1,0 +1,177 @@
+---
+interface Props {
+    id: string
+    title: string
+    company: {
+        name: string
+        logoUrl: string
+        website: string
+    }
+    location: string
+    remote: string
+    contractType: string
+    category: string
+    salary: string | null
+    description: string
+    tags: string[]
+    applyUrl: string
+    publishedAt: string
+    remoteLabel: string
+    contractLabel: string
+    categoryLabel: string
+    categoryIcon: string
+    index?: number
+}
+
+const {
+    title,
+    company,
+    location,
+    remote,
+    contractType,
+    category,
+    salary,
+    description,
+    tags,
+    applyUrl,
+    publishedAt,
+    remoteLabel,
+    contractLabel,
+    categoryLabel,
+    categoryIcon,
+    index = 0,
+} = Astro.props
+
+const remoteColorMap: Record<string, string> = {
+    onsite: 'bg-orange-100 text-orange-700',
+    hybrid: 'bg-blue-100 text-blue-700',
+    remote: 'bg-green-100 text-green-700',
+}
+
+const contractColorMap: Record<string, string> = {
+    cdi: 'bg-primary-100 text-primary-700',
+    cdd: 'bg-yellow-100 text-yellow-700',
+    freelance: 'bg-purple-100 text-purple-700',
+    internship: 'bg-pink-100 text-pink-700',
+}
+
+const remoteColor = remoteColorMap[remote] || 'bg-gray-100 text-gray-700'
+const contractColor = contractColorMap[contractType] || 'bg-gray-100 text-gray-700'
+
+const publishedDate = new Date(publishedAt)
+const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+})
+---
+
+<article
+    class="card hover-lift scroll-animate-scale h-full flex flex-col"
+    data-job-id={category}
+    data-remote={remote}
+    data-contract={contractType}
+    data-category={category}
+    data-company={company.name.toLowerCase()}
+    data-title={title.toLowerCase()}
+    data-tags={tags.join(',').toLowerCase()}
+    style={`animation-delay: ${index * 0.08}s`}>
+    <!-- Header: Company -->
+    <div class="px-6 pt-6 pb-4 flex items-center gap-4 border-b border-gray-100">
+        <a
+            href={company.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 w-12 h-12 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center overflow-hidden hover:border-primary-300 transition-colors duration-200"
+            title={`Voir le site de ${company.name}`}>
+            <img
+                src={company.logoUrl}
+                alt={company.name}
+                class="w-full h-full object-contain p-1"
+                loading="lazy"
+                decoding="async"
+            />
+        </a>
+        <div class="min-w-0 flex-1">
+            <a
+                href={company.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors duration-200 truncate block">
+                {company.name}
+            </a>
+            <div class="flex items-center gap-2 text-xs text-gray-500 mt-0.5">
+                <span>📍 {location}</span>
+                <span class="text-gray-300">·</span>
+                <time datetime={publishedAt}>{formattedDate}</time>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body -->
+    <div class="px-6 py-4 flex-1 flex flex-col gap-3">
+        <!-- Title -->
+        <h3 class="text-lg font-bold text-gray-900 leading-snug">
+            {title}
+        </h3>
+
+        <!-- Badges -->
+        <div class="flex flex-wrap gap-2">
+            <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${contractColor}`}>
+                {contractLabel}
+            </span>
+            <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${remoteColor}`}>
+                {remoteLabel}
+            </span>
+            <span
+                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                {categoryIcon}
+                {categoryLabel}
+            </span>
+            {
+                salary && (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200">
+                        💰 {salary}
+                    </span>
+                )
+            }
+        </div>
+
+        <!-- Description -->
+        <p class="text-sm text-gray-600 leading-relaxed line-clamp-3">
+            {description}
+        </p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-1.5 mt-auto pt-2">
+            {
+                tags.map((tag) => (
+                    <span class="px-2 py-0.5 bg-gray-50 text-gray-600 rounded-md text-xs font-mono border border-gray-200">
+                        {tag}
+                    </span>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Footer: CTA -->
+    <div class="px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+        <a
+            href={applyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary w-full text-sm py-2.5 group"
+            aria-label={`Postuler à l'offre ${title} chez ${company.name}`}>
+            <span class="mr-2 group-hover:animate-bounce-gentle" aria-hidden="true">🚀</span>
+            Voir l'offre
+        </a>
+    </div>
+</article>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
