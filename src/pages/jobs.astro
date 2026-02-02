@@ -1,0 +1,378 @@
+---
+import Layout from '../layouts/Layout.astro'
+import JobCard from '../components/jobs/JobCard.astro'
+import CTASection from '../components/cta/CTASection.astro'
+import { EVENT_DATA } from '../config'
+import jobsData from '../config/jobs.json'
+
+const { meta, categories, remoteOptions, contractTypes, jobs } = jobsData
+
+// Build lookup maps for labels
+const categoryMap = Object.fromEntries(categories.map((c) => [c.id, c]))
+const remoteMap = Object.fromEntries(remoteOptions.map((r) => [r.id, r.label]))
+const contractMap = Object.fromEntries(contractTypes.map((c) => [c.id, c.label]))
+
+// Sort jobs by publishedAt desc
+const sortedJobs = [...jobs].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+// Stats
+const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
+---
+
+<Layout title={`${meta.title} — ${EVENT_DATA.event.shortName} ${EVENT_DATA.event.year}`} description={meta.description}>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden hero-gradient py-24 sm:py-32">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
+                    <span class="mr-2 animate-bounce-gentle">💼</span>
+                    Job Board · {EVENT_DATA.event.shortName}
+                    {EVENT_DATA.event.year}
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Trouvez votre <span class="text-gradient">prochain job</span> tech
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Nos partenaires recrutent ! Découvrez les offres d'emploi des entreprises qui soutiennent
+                    l'écosystème tech lyonnais.
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{jobs.length}</div>
+                        <div class="text-sm text-gray-400 mt-1">offres</div>
+                    </div>
+                    <div class="w-px h-10 bg-white/20 hidden sm:block"></div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{uniqueCompanies}</div>
+                        <div class="text-sm text-gray-400 mt-1">entreprises</div>
+                    </div>
+                    <div class="w-px h-10 bg-white/20 hidden sm:block"></div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{categories.length}</div>
+                        <div class="text-sm text-gray-400 mt-1">catégories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="relative z-10 -mt-8 pb-4">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 sm:p-6" id="job-filters">
+                <!-- Search -->
+                <div class="mb-4">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400" aria-hidden="true">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </span>
+                        <input
+                            type="search"
+                            id="job-search"
+                            placeholder="Rechercher par titre, entreprise..."
+                            class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors duration-200"
+                            aria-label="Rechercher une offre d'emploi"
+                        />
+                    </div>
+                </div>
+
+                <!-- Filter chips -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <!-- Category filter -->
+                    <div class="flex-1">
+                        <label for="filter-category" class="sr-only">Catégorie</label>
+                        <select
+                            id="filter-category"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-700 bg-white focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors duration-200 appearance-none cursor-pointer"
+                            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.5rem;">
+                            <option value="">Toutes catégories</option>
+                            {
+                                categories.map((cat) => (
+                                    <option value={cat.id}>
+                                        {cat.icon} {cat.label}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Remote filter -->
+                    <div class="flex-1">
+                        <label for="filter-remote" class="sr-only">Modalité</label>
+                        <select
+                            id="filter-remote"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-700 bg-white focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors duration-200 appearance-none cursor-pointer"
+                            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.5rem;">
+                            <option value="">Toutes modalités</option>
+                            {remoteOptions.map((opt) => <option value={opt.id}>{opt.label}</option>)}
+                        </select>
+                    </div>
+
+                    <!-- Contract type filter -->
+                    <div class="flex-1">
+                        <label for="filter-contract" class="sr-only">Type de contrat</label>
+                        <select
+                            id="filter-contract"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-700 bg-white focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors duration-200 appearance-none cursor-pointer"
+                            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.5rem;">
+                            <option value="">Tous contrats</option>
+                            {contractTypes.map((ct) => <option value={ct.id}>{ct.label}</option>)}
+                        </select>
+                    </div>
+
+                    <!-- Reset button -->
+                    <button
+                        id="filter-reset"
+                        class="btn btn-ghost text-xs px-4 py-2.5 rounded-xl hidden"
+                        aria-label="Réinitialiser les filtres"
+                        type="button">
+                        ✕ Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job count + Grid -->
+    <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Job count -->
+            <div class="flex items-center justify-between mb-8">
+                <p class="text-sm text-gray-600" id="job-count">
+                    <span class="font-semibold text-gray-900" id="job-count-number">{sortedJobs.length}</span> offre{
+                        sortedJobs.length > 1 ? 's' : ''
+                    } disponible{sortedJobs.length > 1 ? 's' : ''}
+                </p>
+            </div>
+
+            <!-- Job cards grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children" id="job-grid">
+                {
+                    sortedJobs.map((job, index) => (
+                        <JobCard
+                            {...job}
+                            remoteLabel={remoteMap[job.remote] || job.remote}
+                            contractLabel={contractMap[job.contractType] || job.contractType}
+                            categoryLabel={categoryMap[job.category]?.label || job.category}
+                            categoryIcon={categoryMap[job.category]?.icon || '💼'}
+                            index={index}
+                        />
+                    ))
+                }
+            </div>
+
+            <!-- Empty state (hidden by default, shown by JS when no results) -->
+            <div class="hidden text-center py-16" id="job-empty-state">
+                <div
+                    class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 max-w-2xl mx-auto">
+                    <div class="text-6xl mb-6">🔍</div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                        Aucune offre ne correspond à vos critères
+                    </h3>
+                    <p class="text-gray-600 mb-6">Essayez d'élargir votre recherche ou de modifier vos filtres.</p>
+                    <button
+                        class="btn btn-secondary hover-lift"
+                        type="button"
+                        id="empty-state-reset"
+                        aria-label="Réinitialiser les filtres">
+                        Voir toutes les offres
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsor CTA -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="scroll-animate-left">
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6">Vous recrutez ?</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🎯</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Audience qualifiée</h3>
+                                <p class="text-gray-600">
+                                    Vos offres vues par {EVENT_DATA.event.statistics.expectedAttendees}+ développeurs
+                                    passionnés de la région lyonnaise.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-secondary-100 text-secondary-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">⭐</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Avantage sponsor exclusif</h3>
+                                <p class="text-gray-600">
+                                    Le job board est réservé à nos partenaires. Devenez sponsor pour y publier vos
+                                    offres.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-xl">🦙</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-2">Visibilité lama-proof</h3>
+                                <p class="text-gray-600">
+                                    Votre marque employeur associée à l'événement tech le plus mémorable de Lyon.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-animate-right">
+                    <div
+                        class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 hover-lift">
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">💼</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Publiez vos offres</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Devenez partenaire Tech'Work et accédez au job board pour toucher notre communauté de
+                                développeurs.
+                            </p>
+                            <div class="space-y-3">
+                                <a
+                                    href={`mailto:${meta.sponsorCtaEmail}?subject=Job Board — Partenariat Tech'Work ${EVENT_DATA.event.year}`}
+                                    class="btn btn-primary w-full hover-lift group"
+                                    aria-label="Contacter l'équipe pour publier des offres">
+                                    <span class="mr-2 group-hover:animate-bounce-gentle">📧</span>
+                                    Devenir partenaire
+                                </a>
+                                <a href="/sponsors" class="btn btn-secondary w-full hover-lift">
+                                    Voir nos partenaires
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        title="Envie de rejoindre l'aventure ?"
+        description="Que tu viennes pour recruter ou pour découvrir, réserve ta place dans la bergerie tech la plus cool de Lyon."
+        placement="content-jobs"
+    />
+</Layout>
+
+<script>
+    function initJobFilters() {
+        const searchInput = document.getElementById('job-search') as HTMLInputElement | null
+        const categorySelect = document.getElementById('filter-category') as HTMLSelectElement | null
+        const remoteSelect = document.getElementById('filter-remote') as HTMLSelectElement | null
+        const contractSelect = document.getElementById('filter-contract') as HTMLSelectElement | null
+        const resetButton = document.getElementById('filter-reset') as HTMLButtonElement | null
+        const emptyStateReset = document.getElementById('empty-state-reset') as HTMLButtonElement | null
+        const jobGrid = document.getElementById('job-grid')
+        const jobCountNumber = document.getElementById('job-count-number')
+        const jobCount = document.getElementById('job-count')
+        const emptyState = document.getElementById('job-empty-state')
+
+        if (!searchInput || !categorySelect || !remoteSelect || !contractSelect || !jobGrid) return
+
+        const jobCards = Array.from(jobGrid.querySelectorAll<HTMLElement>('article[data-job-id]'))
+
+        function applyFilters() {
+            const search = searchInput!.value.toLowerCase().trim()
+            const category = categorySelect!.value
+            const remote = remoteSelect!.value
+            const contract = contractSelect!.value
+
+            let visibleCount = 0
+
+            jobCards.forEach((card) => {
+                const cardCategory = card.dataset.category || ''
+                const cardRemote = card.dataset.remote || ''
+                const cardContract = card.dataset.contract || ''
+                const cardTitle = card.dataset.title || ''
+                const cardCompany = card.dataset.company || ''
+
+                const matchesCategory = !category || cardCategory === category
+                const matchesRemote = !remote || cardRemote === remote
+                const matchesContract = !contract || cardContract === contract
+                const matchesSearch = !search || cardTitle.includes(search) || cardCompany.includes(search)
+
+                const isVisible = matchesCategory && matchesRemote && matchesContract && matchesSearch
+
+                card.style.display = isVisible ? '' : 'none'
+                if (isVisible) visibleCount++
+            })
+
+            // Update count
+            if (jobCountNumber && jobCount) {
+                jobCountNumber.textContent = String(visibleCount)
+                const suffix = visibleCount > 1 ? 's' : ''
+                jobCount.innerHTML = `<span class="font-semibold text-gray-900" id="job-count-number">${visibleCount}</span> offre${suffix} disponible${suffix}`
+            }
+
+            // Toggle empty state
+            if (emptyState) {
+                emptyState.classList.toggle('hidden', visibleCount > 0)
+            }
+            if (jobGrid) {
+                jobGrid.classList.toggle('hidden', visibleCount === 0)
+            }
+
+            // Toggle reset button
+            const hasFilters = search || category || remote || contract
+            if (resetButton) {
+                resetButton.classList.toggle('hidden', !hasFilters)
+            }
+        }
+
+        function resetFilters() {
+            searchInput!.value = ''
+            categorySelect!.value = ''
+            remoteSelect!.value = ''
+            contractSelect!.value = ''
+            applyFilters()
+        }
+
+        // Debounce for search input
+        let searchTimeout: ReturnType<typeof setTimeout>
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout)
+            searchTimeout = setTimeout(applyFilters, 200)
+        })
+
+        categorySelect.addEventListener('change', applyFilters)
+        remoteSelect.addEventListener('change', applyFilters)
+        contractSelect.addEventListener('change', applyFilters)
+
+        if (resetButton) {
+            resetButton.addEventListener('click', resetFilters)
+        }
+        if (emptyStateReset) {
+            emptyStateReset.addEventListener('click', resetFilters)
+        }
+    }
+
+    // Initialize on page load and after Astro view transitions
+    document.addEventListener('astro:page-load', initJobFilters)
+</script>

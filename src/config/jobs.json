@@ -1,0 +1,47 @@
+{
+    "meta": {
+        "title": "Job Board",
+        "description": "Offres d'emploi tech proposées par nos partenaires — un avantage exclusif sponsors Tech'Work Lyon.",
+        "sponsorCtaEmail": "team@techwork.events"
+    },
+    "categories": [
+        { "id": "frontend", "label": "Frontend & UX", "icon": "🎨" },
+        { "id": "backend", "label": "Backend & API", "icon": "⚙️" },
+        { "id": "devops", "label": "DevOps & Cloud", "icon": "☁️" },
+        { "id": "data", "label": "Data & IA", "icon": "📊" },
+        { "id": "mobile", "label": "Mobile", "icon": "📱" },
+        { "id": "security", "label": "Sécurité", "icon": "🔒" },
+        { "id": "management", "label": "Management", "icon": "👥" },
+        { "id": "fullstack", "label": "Fullstack", "icon": "🔀" }
+    ],
+    "remoteOptions": [
+        { "id": "onsite", "label": "Sur site" },
+        { "id": "hybrid", "label": "Hybride" },
+        { "id": "remote", "label": "Full remote" }
+    ],
+    "contractTypes": [
+        { "id": "cdi", "label": "CDI" },
+        { "id": "cdd", "label": "CDD" },
+        { "id": "freelance", "label": "Freelance" },
+        { "id": "internship", "label": "Stage / Alternance" }
+    ],
+    "jobs": [
+        {
+            "id": "1",
+            "title": "🦙 Lama en chef du Job Board (poste fictif)",
+            "company": {
+                "name": "Tech'Work Lyon",
+                "logoUrl": "https://t4.ftcdn.net/jpg/14/59/93/07/360_F_1459930785_Yrw9f5JnGSJCHScTFctzRx1DFqYJTBZe.jpg",
+                "website": "https://techwork.events"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "frontend",
+            "salary": "Illimité en carottes 🥕",
+            "description": "Ce poste n'existe pas — notre lama s'ennuie tout seul ici ! Devenez sponsor Tech'Work et publiez vos vraies offres pour rejoindre la communauté. Contactez-nous à team@techwork.events pour faire apparaître votre entreprise sur ce board.",
+            "applyUrl": "mailto:team@techwork.events?subject=Sponsoring%20Job%20Board%20Tech'Work",
+            "publishedAt": "2026-01-20"
+        }
+    ]
+}

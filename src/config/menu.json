@@ -48,6 +48,14 @@
         "order": 4
     },
     {
+        "label": "Jobs",
+        "route": "/jobs",
+        "enabled": true,
+        "icon": "💼",
+        "description": "Job Board",
+        "order": 6
+    },
+    {
         "label": "Programme",
         "route": "/schedule",
         "enabled": false,
