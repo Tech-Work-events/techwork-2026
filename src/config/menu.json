@@ -58,7 +58,7 @@
     {
         "label": "FAQ",
         "route": "/faq",
-        "enabled": true,
+        "enabled": false,
         "icon": "❓",
         "description": "Questions fréquentes",
         "order": 7
