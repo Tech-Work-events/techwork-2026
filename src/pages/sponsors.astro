@@ -23,7 +23,10 @@ const sponsorCategories = openPlannerData?.sponsors || []
 const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.order)
 ---
 
-<Layout title="Nos Partenaires" description="Découvrez nos partenaires qui nous soutiennent">
+<Layout
+    title="Nos Partenaires"
+    description="Découvrez nos partenaires qui nous soutiennent"
+    breadcrumbs={[{ name: 'Partenaires', url: '/sponsors' }]}>
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Image -->
@@ -232,9 +235,9 @@ const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.or
 
                         <div class="text-center mt-16 scroll-animate">
                             <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-100 max-w-2xl mx-auto">
-                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
                                     Vous aussi, rejoignez nos partenaires !
-                                </h3>
+                                </h2>
                                 <p class="text-gray-600 mb-6">
                                     Plusieurs formules de partenariat sont disponibles pour s'adapter à vos besoins et
                                     votre budget.

@@ -9,7 +9,10 @@ import cfpHero from '../assets/cfp/cfp.webp'
 const cfp = CFP_DATA
 ---
 
-<Layout title="CFP - Call for Papers" description={`Proposez votre talk pour ${EVENT_DATA.event.name}`}>
+<Layout
+    title="CFP - Call for Papers"
+    description={`Proposez votre talk pour ${EVENT_DATA.event.name}`}
+    breadcrumbs={[{ name: 'Call for Papers', url: '/cfp' }]}>
     <!-- Page Header with Hero Background -->
     <section class="relative min-h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Image -->
@@ -116,9 +119,9 @@ const cfp = CFP_DATA
                             </div>
                         ) : (
                             <div class="inline-block p-8 bg-gray-50 rounded-2xl border border-gray-100">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                                <h2 class="text-xl font-bold text-gray-900 mb-2">
                                     Le CFP est fermé pour cette édition
-                                </h3>
+                                </h2>
                                 <p class="text-gray-600 mb-6">Mais on est toujours ravis de papoter !</p>
                                 <a
                                     href={`mailto:${cfp.contact.email}`}
@@ -265,10 +268,10 @@ const cfp = CFP_DATA
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-20">
                     <!-- Conseils -->
                     <div class="scroll-animate-left">
-                        <h3 class="text-2xl font-black text-gray-900 mb-8 flex items-center">
+                        <h2 class="text-2xl font-black text-gray-900 mb-8 flex items-center">
                             <span class="text-3xl mr-3">💡</span>
                             {cfp.tips.title}
-                        </h3>
+                        </h2>
                         <div class="grid gap-6">
                             {
                                 cfp.tips.items.map((tip, index) => (
@@ -299,10 +302,10 @@ const cfp = CFP_DATA
 
                     <!-- Avantages -->
                     <div class="scroll-animate-right">
-                        <h3 class="text-2xl font-black text-gray-900 mb-8 flex items-center">
+                        <h2 class="text-2xl font-black text-gray-900 mb-8 flex items-center">
                             <span class="text-3xl mr-3">🎁</span>
                             {cfp.benefits.title}
-                        </h3>
+                        </h2>
                         <div class="grid gap-6">
                             {
                                 cfp.benefits.items.map((benefit, index) => (

@@ -19,7 +19,10 @@ const sortedJobs = [...jobs].sort((a, b) => new Date(b.publishedAt).getTime() - 
 const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
 ---
 
-<Layout title={`${meta.title} — ${EVENT_DATA.event.shortName} ${EVENT_DATA.event.year}`} description={meta.description}>
+<Layout
+    title={`${meta.title} — ${EVENT_DATA.event.shortName} ${EVENT_DATA.event.year}`}
+    description={meta.description}
+    breadcrumbs={[{ name: 'Job Board', url: '/jobs' }]}>
     <!-- Hero Section -->
     <section class="relative overflow-hidden hero-gradient py-24 sm:py-32">
         <!-- Decorative elements -->
@@ -181,9 +184,9 @@ const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
                 <div
                     class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 border border-primary-100 max-w-2xl mx-auto">
                     <div class="text-6xl mb-6">🔍</div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
                         Aucune offre ne correspond à vos critères
-                    </h3>
+                    </h2>
                     <p class="text-gray-600 mb-6">Essayez d'élargir votre recherche ou de modifier vos filtres.</p>
                     <button
                         class="btn btn-secondary hover-lift"

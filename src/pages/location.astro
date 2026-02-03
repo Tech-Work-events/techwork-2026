@@ -13,7 +13,8 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
 
 <Layout
     title={`Lieu - ${EVENT_DATA.event.name}`}
-    description={`Lieu sur la Presqu'île à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}>
+    description={`Lieu sur la Presqu'île à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}
+    breadcrumbs={[{ name: 'Lieu', url: '/location' }]}>
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
         <!-- Background Image -->
@@ -466,7 +467,7 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
             <div
                 class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300">
                 <div class="text-6xl mb-6">🗺️</div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Carte & itinéraires en 1 clic</h3>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Carte & itinéraires en 1 clic</h2>
                 <p class="text-gray-600 mb-2">
                     Dès l'annonce du lieu, tu auras ici les itinéraires en 1 clic (TCL, voiture, vélo).
                 </p>
