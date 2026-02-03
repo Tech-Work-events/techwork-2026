@@ -33,7 +33,7 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
             el.classList.toggle('hidden', !shouldShow)
         }
         window.addEventListener('scroll', update, { passive: true })
-        window.addEventListener('resize', update)
+        window.addEventListener('resize', update, { passive: true })
         document.addEventListener('astro:page-load', update)
         update()
     }

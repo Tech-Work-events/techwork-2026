@@ -101,7 +101,7 @@ const gallery = allPhotos.slice(0, 9)
                     }
 
                     imgs.forEach(adjustWhenLoaded)
-                    window.addEventListener('resize', applyResponsiveHeights)
+                    window.addEventListener('resize', applyResponsiveHeights, { passive: true })
                 } catch (e) {
                     // no-op
                 }
