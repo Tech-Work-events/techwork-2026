@@ -107,7 +107,7 @@ const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
     </div>
 
     <!-- Body -->
-    <div class="px-6 py-4 flex-1 flex flex-col gap-3">
+    <div class="px-6 py-5 flex-1 flex flex-col gap-3 min-h-[10rem]">
         <!-- Title -->
         <h3 class="text-lg font-bold text-gray-900 leading-snug">
             {title}
@@ -135,8 +135,8 @@ const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
             }
         </div>
 
-        <!-- Description -->
-        <p class="text-sm text-gray-600 leading-relaxed line-clamp-3 mt-auto">
+        <!-- Description (texte intégral visible) -->
+        <p class="text-sm text-gray-600 leading-relaxed flex-1">
             {description}
         </p>
     </div>
@@ -154,12 +154,3 @@ const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
         </a>
     </div>
 </article>
-
-<style>
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-</style>
