@@ -4,6 +4,108 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================
+   Accessibilité — variables et styles
+   ============================================= */
+
+:root {
+    --accessibility-font-size: 1rem;
+    --accessibility-line-height: 1.5;
+    --accessibility-letter-spacing: 0;
+}
+
+html {
+    font-size: var(--accessibility-font-size);
+}
+
+body,
+body * {
+    line-height: var(--accessibility-line-height);
+    letter-spacing: var(--accessibility-letter-spacing);
+}
+
+/* Police adaptée aux dyslexiques */
+.dyslexic-font,
+.dyslexic-font * {
+    font-family:
+        'OpenDyslexic',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif !important;
+    word-spacing: 0.1em;
+}
+
+/* Contraste élevé */
+.high-contrast body,
+.high-contrast main,
+.high-contrast section,
+.high-contrast article,
+.high-contrast div {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast h4,
+.high-contrast h5,
+.high-contrast h6,
+.high-contrast p,
+.high-contrast span,
+.high-contrast li,
+.high-contrast td,
+.high-contrast th,
+.high-contrast div {
+    color: #000000 !important;
+}
+
+.high-contrast a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+}
+
+.high-contrast button,
+.high-contrast .btn {
+    border: 2px solid #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+    border: 2px solid #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.high-contrast *:focus-visible {
+    outline: 3px solid #000000;
+    outline-offset: 3px;
+}
+
+/* Ne pas appliquer le contraste élevé au panneau d'accessibilité lui-même */
+.high-contrast #accessibility-overlay,
+.high-contrast #accessibility-overlay * {
+    background-color: revert !important;
+    color: revert !important;
+    border-color: revert !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dyslexic-font * {
+        transition: none !important;
+        animation: none !important;
+    }
+    * {
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Fix pour le z-index du menu mobile */
 .z-60 {
     z-index: 60;
@@ -143,26 +245,31 @@
     }
 
     /* Amélioration de l'accessibilité - Focus visible amélioré */
-    *:focus {
+    *:focus-visible {
         outline: 2px solid theme('colors.primary.500');
         outline-offset: 2px;
     }
 
+    /* Supprimer l'outline au clic (souris) tout en le gardant au clavier */
+    *:focus:not(:focus-visible) {
+        outline: none;
+    }
+
     /* Focus visible pour les éléments interactifs */
-    button:focus:not(.btn),
-    a:focus:not(.btn),
-    input:focus,
-    textarea:focus,
-    select:focus,
-    [role='button']:focus:not(.btn),
-    [tabindex]:focus:not(.btn) {
+    button:focus-visible:not(.btn),
+    a:focus-visible:not(.btn),
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [role='button']:focus-visible:not(.btn),
+    [tabindex]:focus-visible:not(.btn) {
         outline: 2px solid theme('colors.primary.500');
         outline-offset: 2px;
     }
 
     /* Amélioration du contraste pour les focus sur fond sombre */
-    .bg-gray-800 *:focus,
-    .bg-gray-900 *:focus {
+    .bg-gray-800 *:focus-visible,
+    .bg-gray-900 *:focus-visible {
         outline-color: theme('colors.primary.400');
     }
 
@@ -180,7 +287,8 @@
     }
 
     /* Focus visible pour sr-only */
-    .sr-only:focus {
+    .sr-only:focus,
+    .sr-only:focus-visible {
         position: static;
         width: auto;
         height: auto;
@@ -217,7 +325,8 @@
         transition: top 0.2s ease;
     }
 
-    .skip-link:focus {
+    .skip-link:focus,
+    .skip-link:focus-visible {
         top: 6px;
     }
 

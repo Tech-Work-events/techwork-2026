@@ -42,7 +42,7 @@ const isActiveRoute = (route: string) => {
             </div>
 
             <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden md:flex items-center space-x-8">
+            <nav id="desktop-nav" aria-label="Navigation principale" class="hidden md:flex items-center space-x-8">
                 {
                     navigation.map((nav) => (
                         <a
@@ -62,8 +62,27 @@ const isActiveRoute = (route: string) => {
                 }
             </nav>
 
-            <!-- Desktop CTA -->
-            <div class="hidden md:block">
+            <!-- Desktop: Accessibility + CTA -->
+            <div class="hidden md:flex items-center gap-3">
+                <button
+                    id="accessibility-toggle-desktop"
+                    class={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 ${
+                        routeName === '/'
+                            ? 'text-white/80 hover:text-white hover:bg-white/10'
+                            : 'text-gray-500 hover:text-primary-600 hover:bg-gray-100'
+                    }`}
+                    aria-label="Paramètres d'accessibilité"
+                    aria-expanded="false"
+                    aria-controls="accessibility-overlay">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                        ></path>
+                    </svg>
+                </button>
                 <PrimaryCTA />
             </div>
 
@@ -214,7 +233,7 @@ const isActiveRoute = (route: string) => {
                                                 ))
                                         }
                                     </div>
-                                    <p class="text-xs text-gray-400">© 2026 Tech'Work Lyon</p>
+                                    <p class="text-xs text-gray-600">© 2026 Tech'Work Lyon</p>
                                 </div>
                             </div>
                         </div>
@@ -259,8 +278,8 @@ const isActiveRoute = (route: string) => {
     }
 
     /* Amélioration du focus visible */
-    .nav-drawer a:focus,
-    label[for='nav-trigger']:focus {
+    .nav-drawer a:focus-visible,
+    label[for='nav-trigger']:focus-visible {
         @apply outline-none ring-2 ring-primary-500 ring-offset-2;
     }
 </style>
@@ -312,6 +331,16 @@ const isActiveRoute = (route: string) => {
             mobileLabel.className =
                 'flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-200 cursor-pointer ' +
                 (isScrolled ? 'hover:bg-gray-100 active:bg-gray-200' : 'hover:bg-white/20 active:bg-white/30')
+        }
+
+        // Desktop accessibility button
+        const a11yBtn = header.querySelector('#accessibility-toggle-desktop') as HTMLElement | null
+        if (a11yBtn) {
+            a11yBtn.className =
+                'flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 ' +
+                (isScrolled
+                    ? 'text-gray-500 hover:text-primary-600 hover:bg-gray-100'
+                    : 'text-white/80 hover:text-white hover:bg-white/10')
         }
 
         // Hamburger icon lines color
