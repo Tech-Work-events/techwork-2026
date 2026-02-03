@@ -1,0 +1,567 @@
+---
+import Layout from '../layouts/Layout.astro'
+import CTASection from '../components/cta/CTASection.astro'
+import { EVENT_DATA } from '../config'
+---
+
+<Layout
+    title="FAQ - Tech'Work Lyon 2026"
+    description="Questions fréquentes sur Tech'Work Lyon 2026 : billetterie, programme, accès, sponsors et informations pratiques.">
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] min-h-[350px] flex items-center justify-center overflow-hidden py-24">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-600/20 via-transparent to-transparent">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
+                    <span class="mr-2 animate-bounce-gentle">&#10068;</span>
+                    FAQ
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-8">
+                    Questions <span class="text-gradient">fréquentes</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
+                    Tout ce que vous devez savoir sur <strong>{EVENT_DATA.event.name}</strong>. Si vous ne trouvez pas
+                    la réponse ici, contactez-nous à <a
+                        href="mailto:team@techwork.events"
+                        class="underline hover:text-white">team@techwork.events</a
+                    >.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="animate-bounce">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="relative z-10 -mt-10 bg-white rounded-t-3xl py-12 sm:py-16 lg:py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section: L'événement -->
+            <div class="mb-12 scroll-animate">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">&#127915;</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900">L'événement</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Qu'est-ce que Tech'Work Lyon ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>{EVENT_DATA.event.name}</strong> est une conférence tech qui se déroule à Lyon.
+                                {EVENT_DATA.event.tagline}. Notre mission : {
+                                    EVENT_DATA.organization.mission.toLowerCase()
+                                }. L'événement réunit {EVENT_DATA.event.statistics.expectedAttendees} participant·e·s autour
+                                de talks inspirants, d'ateliers pratiques et de networking de qualité.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Quand et où a lieu l'événement ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                L'événement aura lieu le <strong
+                                    >{EVENT_DATA.event.date.dayOfWeek} {EVENT_DATA.event.date.full}</strong
+                                >,
+                                <strong>{EVENT_DATA.event.location.venue}</strong> ({
+                                    EVENT_DATA.event.location.address
+                                }). L'adresse exacte sera communiquée prochainement.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Combien de temps dure l'événement ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Tech'Work se déroule sur <strong>{EVENT_DATA.event.duration.days} journée</strong>, avec
+                                un début à <strong>{EVENT_DATA.event.duration.startTime}</strong>. Le programme inclut
+                                des talks, des ateliers, une pause déjeuner et se termine en fin d'après-midi.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Est-ce que l'événement est accessible aux personnes à mobilité réduite ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>Oui</strong>, le lieu est entièrement accessible PMR (ascenseur, rampes,
+                                toilettes accessibles). L'accessibilité est un critère fondamental dans le choix de
+                                notre lieu. Si vous avez des besoins spécifiques, n'hésitez pas à nous contacter à
+                                <a href="mailto:team@techwork.events" class="text-primary-600 hover:underline"
+                                    >team@techwork.events</a
+                                >
+                                pour que nous puissions vous accueillir dans les meilleures conditions.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Section: Billetterie -->
+            <div class="mb-12 scroll-animate">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">&#127915;</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900">Billetterie</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Comment acheter un billet ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Les billets sont disponibles via notre plateforme de billetterie. Rendez-vous sur la <a
+                                    href="/"
+                                    class="text-primary-600 hover:underline">page d'accueil</a
+                                >
+                                pour accéder au lien de réservation. L'inscription se fait en quelques clics.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Quel est le prix des billets ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Tech'Work est <strong>gratuit pour les salarié·e·s</strong> : le billet est sponsorisé par
+                                l'employeur. C'est le principe fondateur de Tech'Work : permettre aux développeur·euse·s
+                                de se former sur leur temps de travail, sans avancer de frais personnels. Consultez la page
+                                d'accueil pour découvrir les différentes formules disponibles.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Puis-je me faire rembourser ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Si vous ne pouvez plus assister à l'événement, contactez-nous à
+                                <a href="mailto:team@techwork.events" class="text-primary-600 hover:underline"
+                                    >team@techwork.events</a
+                                >
+                                le plus tôt possible. Nous étudierons chaque demande au cas par cas. Vous pouvez également
+                                transférer votre billet à un·e collègue.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Est-ce que mon entreprise peut acheter plusieurs billets ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>Oui</strong>, la billetterie groupée est disponible. Votre entreprise peut
+                                réserver plusieurs places en une seule commande. Pour les commandes de plus de 10
+                                billets, contactez-nous directement à
+                                <a href="mailto:team@techwork.events" class="text-primary-600 hover:underline"
+                                    >team@techwork.events</a
+                                >
+                                pour un accompagnement personnalisé.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Section: Programme -->
+            <div class="mb-12 scroll-animate">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">&#128218;</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900">Programme</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Comment est organisé le programme ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Le programme est organisé autour de <strong
+                                    >{EVENT_DATA.event.statistics.talks} talks</strong
+                                > et
+                                <strong>{EVENT_DATA.event.statistics.workshops} ateliers</strong>, répartis dans
+                                {EVENT_DATA.event.location.rooms.length} salles. Les thématiques couvrent : {
+                                    EVENT_DATA.event.theme.subThemes.join(', ')
+                                }. Le format alterne entre conférences plénières, sessions parallèles et ateliers
+                                hands-on.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Puis-je proposer un talk ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>Oui !</strong> Nous accueillons les propositions via notre Call for Papers (CFP).
+                                Rendez-vous sur la <a href="/cfp" class="text-primary-600 hover:underline">page CFP</a>
+                                pour soumettre votre proposition. Tous les niveaux et profils sont les bienvenus, que vous
+                                soyez speaker confirmé·e ou que ce soit votre première prise de parole.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Les talks seront-ils filmés ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                C'est en cours de confirmation. Si les talks sont filmés, les replays seront disponibles
+                                sur notre
+                                <a
+                                    href="https://youtube.com/@techworklyon"
+                                    class="text-primary-600 hover:underline"
+                                    target="_blank"
+                                    rel="noopener noreferrer">chaîne YouTube</a
+                                >. Restez informé·e·s via nos réseaux sociaux pour les annonces.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Section: Pratique -->
+            <div class="mb-12 scroll-animate">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">&#128204;</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900">Pratique</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Y a-t-il un parking ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                L'adresse exacte du lieu sera annoncée prochainement. Des parkings publics sont
+                                généralement disponibles à proximité des lieux sur la Presqu'île. Nous communiquerons
+                                les informations de stationnement détaillées dès que le lieu sera confirmé. Nous
+                                recommandons toutefois de privilégier les transports en commun.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Comment venir en transport en commun ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Le lieu se situe sur la Presqu'île de Lyon, un quartier très bien desservi par les
+                                transports en commun TCL :
+                            </p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>
+                                    <strong>Métro</strong> : lignes A et D (stations Bellecour, Cordeliers, Hôtel de Ville)
+                                </li>
+                                <li><strong>Tram</strong> : ligne T1 (arrêts sur le quai)</li>
+                                <li><strong>Bus</strong> : de nombreuses lignes desservent la Presqu'île</li>
+                                <li><strong>Vélo'v</strong> : stations disponibles à proximité</li>
+                            </ul>
+                            <p class="mt-2">
+                                Plus de détails sur la <a href="/location" class="text-primary-600 hover:underline"
+                                    >page Lieu</a
+                                >.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Y a-t-il de la restauration sur place ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>Oui</strong>, la pause café et le déjeuner sont inclus dans votre billet. Des
+                                options végétariennes, vegan et sans gluten seront disponibles. Le tout préparé avec
+                                soin pour que vous puissiez profiter pleinement de la journée.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Le WiFi est-il disponible ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                <strong>Oui</strong>, un WiFi performant sera disponible dans l'ensemble du lieu. Les
+                                identifiants de connexion seront communiqués le jour de l'événement.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Section: Sponsors & Partenaires -->
+            <div class="mb-12 scroll-animate">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">&#129309;</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900">Sponsors & Partenaires</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Comment devenir sponsor ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>
+                                Vous souhaitez sponsoriser Tech'Work Lyon ? Consultez notre
+                                <a href="/sponsors" class="text-primary-600 hover:underline">page Partenaires</a>
+                                pour découvrir les formules de sponsoring disponibles, ou contactez-nous directement à
+                                <a href="mailto:team@techwork.events" class="text-primary-600 hover:underline"
+                                    >team@techwork.events</a
+                                >. Nous serons ravis d'échanger avec vous sur les opportunités de partenariat.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group border border-gray-200 rounded-xl overflow-hidden">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                            <span>Quels sont les avantages sponsors ?</span>
+                            <svg
+                                class="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <p>En devenant sponsor, vous bénéficiez de :</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>
+                                    <strong>Visibilité</strong> : logo sur le site, les supports de communication et sur
+                                    place
+                                </li>
+                                <li>
+                                    <strong>Job board</strong> : accès au job board de l'événement pour vos offres d'emploi
+                                </li>
+                                <li>
+                                    <strong>Networking</strong> : accès privilégié aux participant·e·s et aux speakers
+                                </li>
+                                <li>
+                                    <strong>Stand</strong> : espace dédié pour rencontrer les développeur·euse·s (selon la
+                                    formule)
+                                </li>
+                                <li><strong>Billets</strong> : places offertes pour vos équipes</li>
+                            </ul>
+                            <p class="mt-2">
+                                Consultez la <a href="/sponsors" class="text-primary-600 hover:underline"
+                                    >page Partenaires</a
+                                >
+                                pour le détail des formules.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="scroll-animate">
+                <div
+                    class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 text-center border border-primary-100">
+                    <div class="text-4xl mb-4">&#128172;</div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Vous n'avez pas trouvé votre réponse ?</h2>
+                    <p class="text-gray-600 mb-6">
+                        N'hésitez pas à nous contacter, l'équipe Tech'Work se fera un plaisir de vous répondre.
+                    </p>
+                    <a
+                        href="mailto:team@techwork.events"
+                        class="btn btn-primary hover-lift group inline-flex items-center gap-2">
+                        <span class="group-hover:animate-bounce-gentle">&#128231;</span>
+                        <span>team@techwork.events</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CTASection
+        title="Convaincu·e ? Réserve ta place !"
+        description="Rejoins-nous le {EVENT_DATA.event.date.full} pour une journée de talks, d'ateliers et de rencontres exceptionnelles."
+        placement="content-faq"
+    />
+</Layout>
