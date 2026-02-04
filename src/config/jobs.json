@@ -55,7 +55,7 @@
             "remote": "hybrid",
             "contractType": "cdi",
             "category": "fullstack",
-            "salary": "41-70k€/an (selon localisation)",
+            "salary": "47-74k€/an",
             "description": "Rejoignez Hoppr Tech en tant que consultant(e) Fullstack Craft. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
             "applyUrl": "https://hoppr-tech.notion.site/Offre-Consultant-e-Fullstack-Craft-39ead4a1b5a54cf1aacc82f4490e6b0a?pvs=4",
             "publishedAt": "2026-02-03"
@@ -72,7 +72,7 @@
             "remote": "hybrid",
             "contractType": "cdi",
             "category": "devops",
-            "salary": "41-70k€/an (selon localisation)",
+            "salary": "47-74k€/an",
             "description": "Rejoignez Hoppr Tech en tant que consultant(e) Cloud Ops. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
             "applyUrl": "https://www.notion.so/hoppr-tech/Consultant-e-Cloud-Ops-2c3f4462cd388085b086c69c34eeaea7",
             "publishedAt": "2026-02-03"
@@ -89,7 +89,7 @@
             "remote": "hybrid",
             "contractType": "cdi",
             "category": "devops",
-            "salary": "41-70k€/an (selon localisation)",
+            "salary": "47-74k€/an",
             "description": "Rejoignez Hoppr Tech en tant que consultant(e) Ops for Dev. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
             "applyUrl": "https://www.notion.so/hoppr-tech/Consultant-e-Ops-for-Dev-563ddbbf1aa64082aab7e4d1bfdc9612",
             "publishedAt": "2026-02-03"
@@ -106,10 +106,27 @@
             "remote": "hybrid",
             "contractType": "cdi",
             "category": "backend",
-            "salary": "45-70k€/an (selon localisation)",
+            "salary": "47-74k€/an",
             "description": "Rejoignez Hoppr Tech en tant que consultant(e) Software Architecte. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
             "applyUrl": "https://www.notion.so/hoppr-tech/Offre-Consultant-e-Software-Architecte-be6d5168caa64f3bab82f4d3abf19288",
             "publishedAt": "2026-02-03"
+        },
+        {
+            "id": "6",
+            "title": "Lead Agency Paris - Consultant(e) Fullstack Craft",
+            "company": {
+                "name": "Hoppr Tech",
+                "logoUrl": "https://assets.softr-files.com/applications/2e449802-3027-4504-ae99-3ce370ee894e/assets/017215ca-ded8-4424-b724-96d0d1fefadc.png",
+                "website": "https://www.hoppr.tech"
+            },
+            "location": "Paris",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "fullstack",
+            "salary": "47-74k€/an",
+            "description": "Rejoignez Hoppr Tech en tant que Lead Agency Paris - Consultant(e) Fullstack Craft. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
+            "applyUrl": "https://hoppr-tech.notion.site/Offre-Lead-Agency-Paris-Consultant-e-Fullstack-Craft-cc6b19a39699459a93b9e6487cb9be8f",
+            "publishedAt": "2026-02-04"
         }
     ]
 }
