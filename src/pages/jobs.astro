@@ -164,7 +164,7 @@ const uniqueCompanies = new Set(jobs.map((j) => j.company.name)).size
             </div>
 
             <!-- Job cards grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children" id="job-grid">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 stagger-children" id="job-grid">
                 {
                     sortedJobs.map((job, index) => (
                         <JobCard
