@@ -13,7 +13,7 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
 
 <Layout
     title={`Lieu - ${EVENT_DATA.event.name}`}
-    description={`Lieu sur la Presqu'île à Lyon pour ${EVENT_DATA.event.name} — accès simple & confort, ambiance décalée et networking exceptionnel. Artisans locaux et rencontres mémorables 🦙`}
+    description={`UCLy Campus Saint-Paul, 10 Place des Archives, Lyon 2e — le lieu de ${EVENT_DATA.event.name}. Accès simple, confort optimal, ambiance décalée et networking exceptionnel 🦙`}
     breadcrumbs={[{ name: 'Lieu', url: '/location' }]}>
     <!-- Hero Section Immersif -->
     <section class="relative min-h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
@@ -46,8 +46,9 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                     Le <span class="text-gradient">Pâturage</span> Tech de Lyon
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
-                    Sur la <strong>Presqu'île, au cœur de Lyon</strong>, un lieu où même les lamas se sentent chez eux.
-                    Accès facile, confort optimal, zéro galère — Ola a des exigences, on les respecte à la lettre 🦙
+                    À l'<strong>UCLy - Campus Saint-Paul</strong>, en plein cœur de la Presqu'île de Lyon, un lieu où
+                    même les lamas se sentent chez eux. Accès facile, confort optimal, zéro galère — Ola a des
+                    exigences, on les respecte à la lettre 🦙
                 </p>
             </div>
         </div>
@@ -106,8 +107,8 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                     Ce qu'<span class="text-gradient">Ola exige</span> pour le lieu
                 </h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">
-                    Notre lama mascotte a des standards élevés. Même si l'adresse exacte reste à annoncer, on verrouille
-                    déjà le confort, l'accès et l'ambiance — Ola ne négocie pas là-dessus.
+                    Notre lama mascotte a des standards élevés. L'UCLy Campus Saint-Paul coche toutes les cases — Ola ne
+                    négocie pas sur le confort, l'accès et l'ambiance.
                 </p>
             </div>
 
@@ -117,7 +118,7 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                     <div class="text-3xl mb-3">📍</div>
                     <h3 class="text-lg font-bold text-gray-900 mb-3">Localisation</h3>
                     <ul class="space-y-2 text-sm text-gray-600">
-                        <li>• Sur la Presqu'île, au cœur de Lyon</li>
+                        <li>• UCLy Campus Saint-Paul, Presqu'île de Lyon</li>
                         <li>• Métro/tram &lt; 10 min</li>
                         <li>• Vue sympa (si possible)</li>
                     </ul>
@@ -139,9 +140,9 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                     <div class="text-3xl mb-3">🍕</div>
                     <h3 class="text-lg font-bold text-gray-900 mb-3">Restauration</h3>
                     <ul class="space-y-2 text-sm text-gray-600">
-                        <li>• Vrais croissants le matin</li>
-                        <li>• Café de qualité</li>
-                        <li>• Options végé/vegan/sans gluten/etc.</li>
+                        <li>• Pauses café & déjeuner inclus</li>
+                        <li>• Options végé/vegan/sans gluten</li>
+                        <li>• <em>Devis en cours auprès de traiteurs locaux</em></li>
                     </ul>
                 </div>
             </div>
@@ -260,7 +261,7 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                                     class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
                                     >🏛️</span
                                 >
-                                3 salles streams
+                                4 salles de conférences
                             </li>
                             <li class="flex items-center">
                                 <span
@@ -337,148 +338,86 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
         </div>
     </section>
 
-    <!-- Coming Soon -->
+    <!-- Adresse & Infos pratiques -->
     <section
         class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
             <div class="mb-8">
                 <div
                     class="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-white/10 border border-white/20 text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-white/80">
-                    <span class="mr-2" aria-hidden="true">🚨</span>
-                    <span>Annonce lieu à venir</span>
+                    <span class="mr-2" aria-hidden="true">📍</span>
+                    <span>Le lieu</span>
                 </div>
-                <div class="text-6xl mb-4" aria-hidden="true">🔥</div>
+                <div class="text-6xl mb-4" aria-hidden="true">🏛️</div>
                 <h2 class="text-4xl sm:text-5xl font-black mb-4 leading-tight text-white drop-shadow-md">
-                    Annonce imminente&nbsp;!
+                    UCLy — Campus Saint-Paul
                 </h2>
-                <p class="text-lg sm:text-xl text-gray-100/90 mb-8">
-                    Restez connecté·e·s ! Ola le lama est en train de finaliser les négociations pour le meilleur spot.
+                <p class="text-lg sm:text-xl text-gray-100/90 mb-4">10 Place des Archives, 69002 Lyon</p>
+                <p class="text-base text-gray-200/80">
+                    En plein cœur de la Presqu'île, un campus moderne et accessible pour une journée tech mémorable 🦙
                 </p>
             </div>
 
-            <div
-                class="bg-white/95 text-gray-900 rounded-2xl p-8 border border-primary-100 shadow-xl shadow-primary-900/20 mb-8">
-                <p class="text-xs font-semibold tracking-[0.25em] uppercase text-primary-600 mb-3">
-                    Avantage newsletter
-                </p>
-
-                <p class="text-base text-gray-700">
-                    Les abonné·e·s newsletter auront un accès privilégié aux billets Early Bird le jour de l'annonce du
-                    lieu.
-                </p>
+            <div class="grid sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
+                    <div class="text-2xl mb-2">🚇</div>
+                    <p class="text-sm font-semibold text-white">Métro A — Perrache</p>
+                    <p class="text-xs text-gray-300">5 min à pied</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
+                    <div class="text-2xl mb-2">🚋</div>
+                    <p class="text-sm font-semibold text-white">Tram T1 — Perrache</p>
+                    <p class="text-xs text-gray-300">5 min à pied</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
+                    <div class="text-2xl mb-2">🚗</div>
+                    <p class="text-sm font-semibold text-white">Parking Perrache</p>
+                    <p class="text-xs text-gray-300">À proximité</p>
+                </div>
             </div>
 
-            <!-- Newsletter Form -->
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-6">
-                <h3 class="text-xl font-bold mb-4 text-white">📧 Inscription Newsletter</h3>
-                <form id="location-newsletter-form" class="flex flex-col sm:flex-row gap-4">
-                    <input
-                        id="location-newsletter-email"
-                        name="email"
-                        type="email"
-                        placeholder="votre@email.com"
-                        class="flex-1 px-4 py-3 bg-white/90 border border-white/20 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white"
-                        required
-                    />
-                    <button
-                        type="submit"
-                        id="location-newsletter-submit-btn"
-                        class="px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-800 disabled:opacity-50 disabled:cursor-not-allowed">
-                        S'inscrire
-                    </button>
-                </form>
-                <div id="location-newsletter-message" class="text-sm text-center mt-3 hidden"></div>
-                <p class="mt-3 text-xs text-gray-300">
-                    On utilise ton email uniquement pour la newsletter Tech'Work. Pas de spam, pas de revente. Les lamas
-                    n'aiment pas ça non plus.
-                </p>
-            </div>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const form = document.getElementById('location-newsletter-form') as HTMLFormElement
-                    const submitBtn = document.getElementById('location-newsletter-submit-btn') as HTMLButtonElement
-                    const messageDiv = document.getElementById('location-newsletter-message') as HTMLDivElement
-
-                    if (!form || !submitBtn || !messageDiv) return
-
-                    function showMessage(message: string, isError: boolean = false) {
-                        messageDiv.textContent = message
-                        messageDiv.className = `text-sm text-center mt-3 ${isError ? 'text-red-200' : 'text-green-200'}`
-                        messageDiv.classList.remove('hidden')
-
-                        setTimeout(() => {
-                            messageDiv.classList.add('hidden')
-                        }, 5000)
-                    }
-
-                    form.addEventListener('submit', async function (e) {
-                        e.preventDefault()
-
-                        const email = (document.getElementById('location-newsletter-email') as HTMLInputElement).value
-
-                        if (!email) {
-                            showMessage('Veuillez saisir votre adresse email', true)
-                            return
-                        }
-
-                        submitBtn.disabled = true
-                        submitBtn.textContent = 'Inscription...'
-
-                        try {
-                            const response = await fetch(
-                                'https://us-central1-techwork-2026.cloudfunctions.net/subscribeNewsletter',
-                                {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({
-                                        email: email,
-                                        source: 'location',
-                                    }),
-                                }
-                            )
-
-                            const result = await response.json()
-
-                            if (result.success) {
-                                showMessage('✅ Inscription réussie ! Un email de bienvenue vous a été envoyé.', false)
-                                form.reset()
-                            } else {
-                                showMessage(result.error || "Erreur lors de l'inscription", true)
-                            }
-                        } catch (error) {
-                            console.error('Erreur:', error)
-                            showMessage('Erreur réseau. Réessayez plus tard.', true)
-                        } finally {
-                            submitBtn.disabled = false
-                            submitBtn.textContent = "S'inscrire"
-                        }
-                    })
-                })
-            </script>
+            <a
+                href={TARGET_URL}
+                class="btn bg-white text-primary-600 hover:bg-gray-50 text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
+                data-cta
+                data-placement="location-address"
+                data-base-href={TARGET_URL}>
+                <span>🎫</span>
+                <span>Réserver ma place</span>
+            </a>
         </div>
     </section>
 
-    <!-- Interactive Map Placeholder -->
+    <!-- Carte interactive -->
     <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <div
-                class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-12 border-2 border-dashed border-gray-300">
-                <div class="text-6xl mb-6">🗺️</div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Carte & itinéraires en 1 clic</h2>
-                <p class="text-gray-600 mb-2">
-                    Dès l'annonce du lieu, tu auras ici les itinéraires en 1 clic (TCL, voiture, vélo).
-                </p>
-                <p class="text-gray-500 text-sm italic">On n'affiche rien avant pour éviter les fausses pistes 📍</p>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Comment venir</h2>
+            <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+                <iframe
+                    title="UCLy Campus Saint-Paul — 10 Place des Archives, 69002 Lyon"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=4.8230%2C45.7550%2C4.8330%2C45.7610&layer=mapnik&marker=45.7580%2C4.8280"
+                    width="100%"
+                    height="400"
+                    style="border:0;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
+            <p class="text-sm text-gray-500 mt-4">
+                <a
+                    href="https://www.openstreetmap.org/?mlat=45.7580&mlon=4.8280#map=17/45.7580/4.8280"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline hover:text-primary-600">
+                    Ouvrir dans OpenStreetMap
+                </a>
+            </p>
         </div>
     </section>
 
     <CTASection
         title="Accessibilité simple, confort, ambiance lama"
-        description="Sur la Presqu'île, au cœur de Lyon — accès facile, setup A/V, artisans locaux, café & déjeuner de qualité — une expérience de networking mémorable dans une ambiance fun et décalée 🦙"
+        description="UCLy Campus Saint-Paul, Presqu'île de Lyon — accès facile, setup A/V, artisans locaux, café & déjeuner de qualité — une expérience de networking mémorable dans une ambiance fun et décalée 🦙"
         placement="content-location"
     />
 </Layout>

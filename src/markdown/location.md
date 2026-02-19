@@ -1,83 +1,46 @@
-## Le lieu mystère de Tech'Work 2026
+## UCLy — Campus Saint-Paul
 
-**🕵️ Actuellement en cours de sélection...**
+**📍 10 Place des Archives, 69002 Lyon**
 
-**Spoiler alert :** Ce sera à Lyon et ce sera génial !
+En plein cœur de la Presqu'île, le campus Saint-Paul de l'UCLy accueille Tech'Work 2026 !
 
-## Nos critères de sélection (parce qu'on est difficiles)
+## Accès
 
-### 🚇 Accessibilité (pour les vrais)
+### 🚇 Transports en commun
 
--   Accessible en TCL (métro/tram/bus)
--   Parking disponible (pour ceux qui roulent encore au fossile)
--   Accessibilité PMR complète (évidemment)
--   Pas au 42ème étage sans ascenseur
+-   Métro A — station Perrache (5 min à pied)
+-   Tram T1 — arrêt Perrache (5 min à pied)
+-   Bus — nombreuses lignes desservent la Presqu'île
+-   Vélo'v — stations disponibles à proximité
 
-### 🏢 Technique et confort
+### 🚗 En voiture
 
--   Wifi qui supporte 200+ devs en simultané
--   Prises électriques partout (vos laptops nous remercient)
--   Clim qui fonctionne (même en juin)
--   Acoustique digne de ce nom (pas de "PEUX-TU RÉPÉTER ?")
+-   Parking Perrache à proximité
+-   Accessibilité PMR complète
 
-### 🎯 Espace et fonctionnalités
+## Équipements
 
--   3 salles pour nos streams (pas des placards)
--   Espaces de networking généreux
--   Zones de détente pour les introverti·e·s
--   Cuisine équipée (pour les vrais croissants)
+### 🏢 Espaces
 
-## Ce qu'on peut déjà vous promettre
+-   4 salles de conférences + 1 salle atelier
+-   Zones de networking généreuses
+-   Espaces détente
+-   Terrasse / espace extérieur
 
-### 📍 Localisation :
+### 🔧 Technique
 
--   Dans Lyon ou proche banlieue
--   Métro/tram à moins de 10 minutes
--   Restaurants/cafés à proximité
--   Vue sympa (si possible)
-
-### 🔧 Équipements garantis :
-
+-   Wifi performant
 -   Sono de qualité dans chaque salle
--   Vidéoprojecteurs 4K
--   Streaming setup pour les sessions à distance
--   Réseau qui tient la charge (testé avec 200+ connexions)
+-   Vidéoprojecteurs
+-   Prises électriques partout
+-   Climatisation
 
-### 🍕 Restauration :
+### 🍕 Restauration
 
--   Vrais croissants le matin
--   Café de qualité (pas de l'eau chaude colorée)
--   Déjeuner digne de ce nom
+-   Pauses café & déjeuner inclus dans le billet
 -   Options végé/vegan/sans gluten
+-   _Devis en cours auprès de traiteurs locaux_
 
-## Participez à la sélection
+## Contact
 
-**🏆 Vous connaissez LE lieu parfait ?**
-
-On est ouverts aux suggestions ! Si vous connaissez un endroit qui pourrait accueillir Tech'Work dans des conditions optimales, faites-vous connaître.
-
-**💡 Critères techniques :**
-
--   Capacité : 200-300 personnes
--   3 salles de 60-80 places chacune
--   Espaces de networking pour 200+ personnes
--   Équipements A/V complets
--   Cuisine/office pour la restauration
-
-**🎯 Bonus points si :**
-
--   Terrasse ou espace extérieur
--   Déco moderne/tech-friendly
--   Flexibilité sur l'aménagement
--   Équipe technique dédiée
-
-**Contact suggestions :** team@techwork.events
-
-## Annonce imminente
-
-**🔥 Restez connecté·e·s !**
-
-L'annonce du lieu se fera très prochainement. Inscrivez-vous à notre newsletter pour être alerté·e en priorité !
-
-**🎁 Insider info :**
-Les abonné·e·s newsletter auront un accès privilégié aux billets Early Bird le jour de l'annonce du lieu.
+**Une question sur le lieu ?** team@techwork.events

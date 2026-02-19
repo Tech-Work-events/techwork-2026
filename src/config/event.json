@@ -18,29 +18,39 @@
             "startTime": "09:00"
         },
         "location": {
-            "venue": "Sur la Presqu'île, au cœur de Lyon",
-            "address": "Lyon, France",
+            "venue": "UCLy - Campus Saint-Paul",
+            "address": "10 Place des Archives, 69002 Lyon",
             "city": "Lyon",
             "region": "Auvergne-Rhône-Alpes",
             "country": "France",
             "coordinates": {
-                "lat": 45.764,
-                "lng": 4.8357
+                "lat": 45.758,
+                "lng": 4.828
             },
             "capacity": 300,
             "rooms": [
                 {
-                    "name": "Auditorium Principal",
+                    "name": "Salle de conférence 1",
                     "capacity": 200,
                     "type": "conference"
                 },
                 {
-                    "name": "Salle Atelier 1",
-                    "capacity": 50,
-                    "type": "workshop"
+                    "name": "Salle de conférence 2",
+                    "capacity": 200,
+                    "type": "conference"
                 },
                 {
-                    "name": "Salle Atelier 2",
+                    "name": "Salle de conférence 3",
+                    "capacity": 200,
+                    "type": "conference"
+                },
+                {
+                    "name": "Salle de conférence 4",
+                    "capacity": 200,
+                    "type": "conference"
+                },
+                {
+                    "name": "Salle Atelier",
                     "capacity": 50,
                     "type": "workshop"
                 }
