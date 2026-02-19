@@ -3,7 +3,7 @@ import { TICKETS_CONFIG, SERVICES_DATA, EVENT_CONFIG } from '../../config'
 
 const { loading = false, error = null } = Astro.props
 
-const orderMap: Record<string, number> = { 'early-adopter': 0, standard: 1, sponsored: 2 }
+const orderMap: Record<string, number> = { 'early-lama': 0, 'ola-and-co': 1, sponsored: 2 }
 const tickets = TICKETS_CONFIG.map((ticket) => ({
     ...ticket,
     available: ticket.ticketsCount,

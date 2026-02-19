@@ -1,38 +1,38 @@
 [
     {
-        "id": "early-adopter",
-        "name": "Early Adopter",
-        "price": 50,
-        "originalPrice": 65,
+        "id": "early-lama",
+        "name": "Pass Early Lama",
+        "price": 55,
+        "originalPrice": 80,
         "url": "https://www.helloasso.com/associations/cloud-alpes/evenements/tech-work-2026",
         "ticketsCount": 50,
         "available": true,
         "soldOut": false,
         "highlighted": true,
         "badge": "PROMO",
-        "description": "Pour les early adopters qui croient en notre révolution",
+        "description": "Accès complet à tarif privilégié pour les 50 plus rapides. Inclut : 4 tracks de conférences (Cloud, Data, Craft, Agilité), accès au Village des artisans / sponsors et toutes les pauses gourmandes.",
         "features": [
-            "Accès à toutes les conférences",
-            "Pauses café et déjeuner inclus",
-            "Accès prioritaire aux ateliers",
-            "Goodies exclusifs"
+            "4 tracks de conférences (Cloud, Data, Craft, Agilité)",
+            "Village des artisans / sponsors",
+            "Pauses gourmandes incluses",
+            "Premier·ère·s arrivé·e·s, premier·ère·s servi·e·s"
         ]
     },
     {
-        "id": "standard",
-        "name": "Plein tarif",
-        "price": 65,
+        "id": "ola-and-co",
+        "name": "Pass Ola & Co",
+        "price": 80,
         "url": "https://www.helloasso.com/associations/cloud-alpes/evenements/tech-work-2026",
-        "ticketsCount": 100,
+        "ticketsCount": 250,
         "available": true,
         "soldOut": false,
         "highlighted": false,
-        "description": "Le tarif standard pour l'événement tech de l'année",
+        "description": "Votre accès complet à l'expérience Tech'Work : 4 tracks de conférences techniques, networking avec nos partenaires et le village des artisans.",
         "features": [
-            "Accès à toutes les conférences",
-            "Pauses café et déjeuner inclus",
-            "Networking avec les speakers",
-            "Certificat de participation"
+            "4 tracks de conférences techniques",
+            "Networking avec nos partenaires",
+            "Village des artisans",
+            "Rejoignez la communauté"
         ]
     },
     {
