@@ -62,7 +62,7 @@
             "freeForEmployees": true,
             "sponsoredByEmployers": true
         },
-        "ticketingOpen": false
+        "ticketingOpen": true
     },
     "organization": {
         "name": "Tech'Work Events",
