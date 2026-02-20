@@ -10,7 +10,7 @@
         "soldOut": false,
         "highlighted": true,
         "badge": "PROMO",
-        "description": "Accès complet à tarif privilégié pour les 50 plus rapides. Inclut : 4 tracks de conférences (Cloud, Data, Craft, Agilité), accès au Village des artisans / sponsors et toutes les pauses gourmandes.",
+        "description": "Le même pass que Ola & Co, mais à tarif réduit pour les 50 premiers acheteurs. Même accès, même expérience, juste un meilleur prix pour les plus rapides.",
         "features": [
             "4 tracks de conférences (Cloud, Data, Craft, Agilité)",
             "Village des artisans / sponsors",
@@ -27,7 +27,7 @@
         "available": true,
         "soldOut": false,
         "highlighted": false,
-        "description": "Votre accès complet à l'expérience Tech'Work : 4 tracks de conférences techniques, networking avec nos partenaires et le village des artisans.",
+        "description": "Accès complet à l'expérience Tech'Work : 4 tracks de conférences (Cloud, Data, Craft, Agilité), village des artisans / sponsors et toutes les pauses gourmandes.",
         "features": [
             "4 tracks de conférences techniques",
             "Networking avec nos partenaires",

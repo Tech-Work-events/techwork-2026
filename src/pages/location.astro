@@ -15,13 +15,45 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
     title={`Lieu - ${EVENT_DATA.event.name}`}
     description={`UCLy Campus Saint-Paul, 10 Place des Archives, Lyon 2e — le lieu de ${EVENT_DATA.event.name}. Accès simple, confort optimal, ambiance décalée et networking exceptionnel 🦙`}
     breadcrumbs={[{ name: 'Lieu', url: '/location' }]}>
-    <!-- Hero Section Immersif -->
-    <section class="relative min-h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden py-24">
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden py-24">
+        <!-- Floating decorative elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index:1;" aria-hidden="true">
+            <div
+                class="absolute top-20 left-4 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 bg-white/10 rounded-full animate-float"
+                style="animation-delay: 0s;">
+            </div>
+            <div
+                class="absolute top-32 sm:top-40 right-4 sm:right-20 w-4 h-4 sm:w-6 sm:h-6 bg-primary-300/20 rounded-full animate-float"
+                style="animation-delay: 1s;">
+            </div>
+            <div
+                class="absolute bottom-32 sm:bottom-40 left-4 sm:left-20 w-2 h-2 sm:w-3 sm:h-3 bg-secondary-300/20 rounded-full animate-float"
+                style="animation-delay: 2s;">
+            </div>
+            <div
+                class="hidden sm:block absolute top-60 left-1/3 w-5 h-5 bg-white/5 rounded-full animate-float"
+                style="animation-delay: 0.5s;">
+            </div>
+            <div
+                class="hidden sm:block absolute bottom-20 right-1/4 w-4 h-4 bg-primary-200/15 rounded-full animate-float"
+                style="animation-delay: 1.5s;">
+            </div>
+        </div>
+
+        <!-- Radial dot pattern overlay -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="z-index:1;" aria-hidden="true">
+            <div
+                class="absolute inset-0 animate-gradient bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-primary-600/10"
+                style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;">
+            </div>
+        </div>
+
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <Picture
                 src={locationHero}
-                alt="Lieu Tech'Work"
+                alt="UCLy Campus Saint-Paul"
                 class="w-full h-full object-cover opacity-75"
                 style="object-position: center 40%;"
                 loading="eager"
@@ -29,395 +61,302 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
                 widths={[640, 768, 1024, 1280, 1920]}
                 sizes="100vw"
             />
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
+            <!-- Multi-layer overlay -->
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-primary-900/80 via-primary-800/70 to-secondary-900/80 animate-gradient">
+            </div>
+            <!-- Radial vignette for central readability -->
+            <div
+                class="absolute inset-0"
+                style="background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.5) 100%);">
+            </div>
         </div>
 
-        <!-- Content -->
-        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
             <div class="scroll-animate">
                 <div
                     class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
-                    <span class="mr-2 animate-bounce-gentle">📍</span>
-                    Lieu · {EVENT_DATA.event.shortName}
+                    <span class="mr-2 animate-bounce-gentle">&#128205;</span>
+                    Lieu &middot; {EVENT_DATA.event.shortName}
                     {EVENT_DATA.event.year}
                 </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-8">
-                    Le <span class="text-gradient">Pâturage</span> Tech de Lyon
+                <h1 class="text-4xl sm:text-5xl font-black text-white mb-6 location-hero-title">
+                    UCLy &mdash; Campus Saint-Paul
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto">
-                    À l'<strong>UCLy - Campus Saint-Paul</strong>, en plein cœur de la Presqu'île de Lyon, un lieu où
-                    même les lamas se sentent chez eux. Accès facile, confort optimal, zéro galère — Ola a des
-                    exigences, on les respecte à la lettre 🦙
+                <p class="text-xl text-gray-200 max-w-2xl mx-auto font-medium">
+                    Une ancienne prison r&eacute;habilit&eacute;e en campus ultra-moderne au c&oelig;ur de Lyon.
                 </p>
             </div>
         </div>
 
         <!-- Scroll indicator -->
-        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20">
-            <div class="animate-bounce">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    ></path>
-                </svg>
-            </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
+            <svg class="w-6 h-6 text-white/60 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                ></path>
+            </svg>
         </div>
     </section>
 
-    <!-- Section de transition avec CTA -->
-    <section class="relative z-10 -mt-10 bg-white rounded-t-3xl py-12 sm:py-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-4">
-                Transports &lt; 10 min, A/V pro, wifi solide, PMR complète, vrais croissants et surtout <strong
-                    >lama friendly</strong
-                > 🦙
-            </p>
-            <p class="text-sm text-gray-500 mb-6">
-                Une journée pensée pour le networking et le partage — avec des animations par des artisans locaux. Pas
-                de drama‑lama, que du bon 🦙
-            </p>
-            <div class="flex flex-col items-center gap-3">
-                <a
-                    href={TARGET_URL}
-                    class="btn btn-primary text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
-                    data-cta
-                    data-placement="location-hero"
-                    data-base-href={TARGET_URL}
-                    aria-label="Réserver ma place pour Tech'Work Lyon 2026 depuis la page Lieu">
-                    <span>🎫</span>
-                    <span>Réserver ma place</span>
-                </a>
-                <p class="text-sm text-gray-500">
-                    Ton billet inclut : talks, ateliers, café & déjeuner — sans empiéter sur ta soirée.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Guarantees Section -->
-    <section class="py-10 sm:py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50">
+    <!-- 1. L'ESSENTIEL (Adresse & Acces) -->
+    <section class="relative z-20 -mt-10 bg-white rounded-t-3xl shadow-2xl pt-16 pb-12 sm:pb-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10 scroll-animate">
-                <div
-                    class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-                    <span class="mr-2 animate-bounce-gentle">✅</span>
-                    Nos garanties
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-3">
-                    Ce qu'<span class="text-gradient">Ola exige</span> pour le lieu
-                </h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Notre lama mascotte a des standards élevés. L'UCLy Campus Saint-Paul coche toutes les cases — Ola ne
-                    négocie pas sur le confort, l'accès et l'ambiance.
-                </p>
-            </div>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate-left">
+                    <h2 class="text-3xl font-black text-gray-900 mb-8 italic">L'essentiel pour venir &#129433;</h2>
 
-            <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Localisation -->
-                <div class="bg-white rounded-2xl p-6 border border-gray-200 hover-lift scroll-animate-left">
-                    <div class="text-3xl mb-3">📍</div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Localisation</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>• UCLy Campus Saint-Paul, Presqu'île de Lyon</li>
-                        <li>• Métro/tram &lt; 10 min</li>
-                        <li>• Vue sympa (si possible)</li>
-                    </ul>
+                    <div class="space-y-8 stagger-children">
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-2xl flex items-center justify-center text-2xl">
+                                &#128205;
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">Adresse</h3>
+                                <p class="text-gray-600">10 Place des Archives, 69002 Lyon</p>
+                                <p class="text-sm text-gray-400 mt-1">Quartier Confluence / Perrache</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-secondary-100 rounded-2xl flex items-center justify-center text-2xl">
+                                &#128647;
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">Acc&egrave;s TCL</h3>
+                                <p class="text-gray-600">
+                                    <strong>M&eacute;tro A</strong>, <strong>Tram T1 &amp; T2</strong>
+                                </p>
+                                <p class="text-gray-600">Arr&ecirc;t <strong>Perrache</strong> (5 min &agrave; pied)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-2xl">
+                                &#128663;
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">Venir en voiture</h3>
+                                <p class="text-gray-600">Parking <strong>Q-Park Lyon Perrache Archives</strong></p>
+                                <p class="text-sm text-gray-400 mt-1">Situ&eacute; juste en face de l'entr&eacute;e</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-2xl">
+                                &#128690;
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg">V&eacute;lo'v</h3>
+                                <p class="text-gray-600">Station <strong>Place des Archives</strong></p>
+                                <p class="text-sm text-gray-400 mt-1">Juste devant l'entr&eacute;e du campus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex flex-wrap gap-4">
+                        <a
+                            href={TARGET_URL}
+                            class="btn btn-primary px-8 py-3 hover-lift inline-flex items-center gap-2">
+                            <span>&#127915;</span>
+                            <span>R&eacute;server ma place</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Équipements garantis -->
-                <div class="bg-white rounded-2xl p-6 border border-gray-200 hover-lift scroll-animate-scale">
-                    <div class="text-3xl mb-3">🔧</div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Équipements garantis</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>• Sono de qualité dans chaque salle</li>
-                        <li>• Vidéoprojecteurs 4K</li>
-                        <li>• Wifi performante</li>
-                    </ul>
+                <!-- 2. LE PLAN -->
+                <div class="scroll-animate-right">
+                    <div
+                        class="bg-gradient-to-br from-primary-100 to-secondary-100 p-1.5 rounded-3xl hover-lift shadow-2xl group/map">
+                        <div class="rounded-[1.25rem] overflow-hidden bg-white h-[400px] relative">
+                            <iframe
+                                title="UCLy Campus Saint-Paul — 10 Place des Archives, 69002 Lyon"
+                                class="w-full h-full transition-all duration-700"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=4.8213%2C45.7443%2C4.8313%2C45.7503&layer=mapnik&marker=45.7473%2C4.8263"
+                                style="border:0;"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <!-- Overlay coloré qui disparaît au hover -->
+                            <div
+                                class="absolute inset-0 bg-primary-600/20 group-hover/map:opacity-0 transition-opacity duration-700 pointer-events-none"
+                                aria-hidden="true">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center mt-4">
+                        <a
+                            href="https://www.openstreetmap.org/?mlat=45.7473&mlon=4.8263#map=17/45.7473/4.8263"
+                            target="_blank"
+                            class="inline-flex items-center gap-1.5 text-sm text-primary-600 hover:text-primary-700 transition-colors font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                ></path></svg
+                            >
+                            Ouvrir dans OpenStreetMap
+                        </a>
+                    </p>
                 </div>
-
-                <!-- Restauration -->
-                <div class="bg-white rounded-2xl p-6 border border-gray-200 hover-lift scroll-animate-right">
-                    <div class="text-3xl mb-3">🍕</div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Restauration</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>• Pauses café & déjeuner inclus</li>
-                        <li>• Options végé/vegan/sans gluten</li>
-                        <li>• <em>Devis en cours auprès de traiteurs locaux</em></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mt-8 flex flex-col items-center gap-2 text-center">
-                <p class="text-sm text-gray-600">
-                    Tu profites de tout ça dans une ambiance fun et conviviale — networking de qualité garanti 🦙
-                </p>
-                <a
-                    href={TARGET_URL}
-                    class="btn btn-primary text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
-                    data-cta
-                    data-placement="content-location-guarantees"
-                    data-base-href={TARGET_URL}
-                    aria-label="Réserver ma place depuis les garanties lieu">
-                    <span>🎫</span>
-                    <span>Réserver ma place</span>
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Selection Criteria -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <!-- 3. SERVICES & LOGISTIQUE -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 scroll-animate">
-                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-6">Ce qui vous attend</h2>
-                <p class="text-lg text-gray-600">(On ne s'est pas moqués de vous)</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-children">
-                <!-- Accessibilité -->
-                <div class="card hover-lift scroll-animate-scale">
-                    <div class="p-6">
-                        <div class="text-4xl mb-4 text-center">🚇</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Accessibilité</h3>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >✓</span
-                                >
-                                TCL à proximité
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >✓</span
-                                >
-                                Parking disponible
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >✓</span
-                                >
-                                PMR complète (ascenseur, rampes, toilettes accessibles)
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >✓</span
-                                >
-                                Pas au 42ème étage
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Technique -->
-                <div class="card hover-lift scroll-animate-scale">
-                    <div class="p-6">
-                        <div class="text-4xl mb-4 text-center">🔧</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Technique</h3>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >📶</span
-                                >
-                                Wifi ultra-performant
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🔌</span
-                                >
-                                Prises partout
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >❄️</span
-                                >
-                                Clim qui fonctionne
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🔊</span
-                                >
-                                Acoustique parfaite
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Espace -->
-                <div class="card hover-lift scroll-animate-scale">
-                    <div class="p-6">
-                        <div class="text-4xl mb-4 text-center">🏢</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Espaces</h3>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🏛️</span
-                                >
-                                4 salles de conférences
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🤝</span
-                                >
-                                Zones networking
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >😊</span
-                                >
-                                Espaces détente
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🍽️</span
-                                >
-                                Cuisine équipée
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Bonus -->
-                <div class="card hover-lift scroll-animate-scale">
-                    <div class="p-6">
-                        <div class="text-4xl mb-4 text-center">🎯</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Bonus Points</h3>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >☀️</span
-                                >
-                                Terrasse/extérieur
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >✨</span
-                                >
-                                Déco moderne
-                            </li>
-
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >📸</span
-                                >
-                                Photo spot pour vos selfies (lama‑compatible)
-                            </li>
-
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >🔄</span
-                                >
-                                Flexibilité
-                            </li>
-                            <li class="flex items-center">
-                                <span
-                                    class="w-4 h-4 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xs mr-3"
-                                    >👥</span
-                                >
-                                Équipe dédiée
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Adresse & Infos pratiques -->
-    <section
-        class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <div class="mb-8">
-                <div
-                    class="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-white/10 border border-white/20 text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-white/80">
-                    <span class="mr-2" aria-hidden="true">📍</span>
-                    <span>Le lieu</span>
-                </div>
-                <div class="text-6xl mb-4" aria-hidden="true">🏛️</div>
-                <h2 class="text-4xl sm:text-5xl font-black mb-4 leading-tight text-white drop-shadow-md">
-                    UCLy — Campus Saint-Paul
-                </h2>
-                <p class="text-lg sm:text-xl text-gray-100/90 mb-4">10 Place des Archives, 69002 Lyon</p>
-                <p class="text-base text-gray-200/80">
-                    En plein cœur de la Presqu'île, un campus moderne et accessible pour une journée tech mémorable 🦙
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">Services &amp; Logistique &#128295;</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Tout est pr&ecirc;t pour vous accueillir dans les meilleures conditions.
                 </p>
-            </div>
-
-            <div class="grid sm:grid-cols-3 gap-4 mb-8">
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
-                    <div class="text-2xl mb-2">🚇</div>
-                    <p class="text-sm font-semibold text-white">Métro A — Perrache</p>
-                    <p class="text-xs text-gray-300">5 min à pied</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
-                    <div class="text-2xl mb-2">🚋</div>
-                    <p class="text-sm font-semibold text-white">Tram T1 — Perrache</p>
-                    <p class="text-xs text-gray-300">5 min à pied</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
-                    <div class="text-2xl mb-2">🚗</div>
-                    <p class="text-sm font-semibold text-white">Parking Perrache</p>
-                    <p class="text-xs text-gray-300">À proximité</p>
+                <div class="mt-6 mx-auto w-24 h-1 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full">
                 </div>
             </div>
 
-            <a
-                href={TARGET_URL}
-                class="btn bg-white text-primary-600 hover:bg-gray-50 text-base sm:text-lg px-8 py-3 hover-lift inline-flex items-center gap-2"
-                data-cta
-                data-placement="location-address"
-                data-base-href={TARGET_URL}>
-                <span>🎫</span>
-                <span>Réserver ma place</span>
-            </a>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-sm hover-lift scroll-animate-scale overflow-hidden group relative">
+                    <div class="h-1.5 bg-gradient-to-r from-amber-400 to-orange-500" aria-hidden="true"></div>
+                    <div class="p-8 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"
+                            aria-hidden="true">
+                        </div>
+                        <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            &#127869;&#65039;
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Restauration</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Petit-d&eacute;jeuner, d&eacute;jeuner complet (traiteur local) et pauses caf&eacute;
+                            inclus. Options v&eacute;g&eacute;/vegan garanties.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-sm hover-lift scroll-animate-scale overflow-hidden group relative">
+                    <div class="h-1.5 bg-gradient-to-r from-blue-400 to-indigo-600" aria-hidden="true"></div>
+                    <div class="p-8 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"
+                            aria-hidden="true">
+                        </div>
+                        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            &#9889;
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Technique</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Wifi disponible, prises &eacute;lectriques accessibles partout et salles climatis&eacute;es.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-sm hover-lift scroll-animate-scale overflow-hidden group relative">
+                    <div class="h-1.5 bg-gradient-to-r from-green-400 to-emerald-600" aria-hidden="true"></div>
+                    <div class="p-8 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"
+                            aria-hidden="true">
+                        </div>
+                        <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            &#9855;
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Accessibilit&eacute;</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Campus 100% accessible aux PMR (ascenseurs, rampes, sanitaires adapt&eacute;s).
+                            Signal&eacute;tique claire.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-sm hover-lift scroll-animate-scale overflow-hidden group relative">
+                    <div class="h-1.5 bg-gradient-to-r from-purple-400 to-pink-500" aria-hidden="true"></div>
+                    <div class="p-8 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"
+                            aria-hidden="true">
+                        </div>
+                        <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            &#129509;
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Confort</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Vestiaire s&eacute;curis&eacute; et espaces de networking g&eacute;n&eacute;reux pour
+                            &eacute;changer entre les talks.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Carte interactive -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Comment venir</h2>
-            <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
-                <iframe
-                    title="UCLy Campus Saint-Paul — 10 Place des Archives, 69002 Lyon"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=4.8230%2C45.7550%2C4.8330%2C45.7610&layer=mapnik&marker=45.7580%2C4.8280"
-                    width="100%"
-                    height="400"
-                    style="border:0;"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+    <!-- 4. LE CADRE -->
+    <section class="py-24 bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-hidden relative">
+        <!-- Floating decorative elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <div
+                class="absolute top-10 right-10 w-3 h-3 bg-primary-200/30 rounded-full animate-float"
+                style="animation-delay: 0s;">
             </div>
-            <p class="text-sm text-gray-500 mt-4">
-                <a
-                    href="https://www.openstreetmap.org/?mlat=45.7580&mlon=4.8280#map=17/45.7580/4.8280"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline hover:text-primary-600">
-                    Ouvrir dans OpenStreetMap
-                </a>
+            <div
+                class="absolute bottom-20 left-10 w-4 h-4 bg-secondary-200/30 rounded-full animate-float"
+                style="animation-delay: 1.5s;">
+            </div>
+            <div
+                class="hidden sm:block absolute top-1/2 right-1/4 w-2 h-2 bg-primary-300/20 rounded-full animate-float"
+                style="animation-delay: 0.8s;">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center scroll-animate relative z-10">
+            <div
+                class="mb-10 inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-3xl shadow-lg">
+                <span class="text-5xl">&#127963;&#65039;</span>
+            </div>
+            <h2 class="text-4xl font-black text-gray-900 mb-4">Un cadre unique &agrave; Lyon</h2>
+            <div class="mx-auto w-24 h-1 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full mb-8"></div>
+            <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                Le Campus Saint-Paul de l'UCLy est une ancienne prison du XIXe si&egrave;cle magnifiquement
+                r&eacute;habilit&eacute;e. Entre h&eacute;ritage historique et design contemporain, les grandes
+                verri&egrave;res et les pierres dor&eacute;es offrent un cadre inspirant, calme et id&eacute;alement
+                situ&eacute; pour Tech'Work 2026.
             </p>
+            <div
+                class="inline-flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-sm border border-white/80 rounded-full shadow-sm text-primary-600 font-bold text-lg">
+                <span class="animate-bounce-gentle">&#129433;</span>
+                <span>Ola a valid&eacute; le confort des lieux</span>
+            </div>
         </div>
     </section>
 
     <CTASection
-        title="Accessibilité simple, confort, ambiance lama"
-        description="UCLy Campus Saint-Paul, Presqu'île de Lyon — accès facile, setup A/V, artisans locaux, café & déjeuner de qualité — une expérience de networking mémorable dans une ambiance fun et décalée 🦙"
+        title="Rejoignez-nous à l'UCLy"
+        description="Vivez une expérience tech mémorable dans un lieu d'exception. Ne tardez pas, le nombre de places est limité."
         placement="content-location"
     />
 </Layout>
+
+<style>
+    .location-hero-title {
+        text-shadow:
+            0 0 30px rgba(255, 255, 255, 0.15),
+            0 0 60px rgba(255, 255, 255, 0.08),
+            0 4px 12px rgba(0, 0, 0, 0.4),
+            0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .location-hero-title {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    }
+</style>

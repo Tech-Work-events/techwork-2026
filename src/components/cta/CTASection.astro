@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-    title = 'Réserver ma place',
-    description = 'Rejoins-nous pour une journée de talks, ateliers et rencontres — lama‑friendly.',
+    title = 'R&eacute;server ma place',
+    description = 'Rejoins-nous pour une journ&eacute;e de talks, ateliers et rencontres &mdash; lama&#8209;friendly.',
     placement = 'content',
 } = Astro.props as Props
 
@@ -29,8 +29,8 @@ const TARGET_URL = isTicketingOpen ? TICKETING_BASE_URL : '/billetterie-fermee'
             data-placement={placement}
             data-base-href={TARGET_URL}
             aria-label="Réserver ma place">
-            <span>🎫</span>
-            <span>Réserver ma place</span>
+            <span>&#127915;</span>
+            <span>R&eacute;server ma place</span>
         </a>
     </div>
 </section>

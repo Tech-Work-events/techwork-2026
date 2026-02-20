@@ -1,45 +1,35 @@
-## UCLy — Campus Saint-Paul
+# Lieu : UCLy — Campus Saint-Paul
 
 **📍 10 Place des Archives, 69002 Lyon**
 
 En plein cœur de la Presqu'île, le campus Saint-Paul de l'UCLy accueille Tech'Work 2026 !
 
-## Accès
+## L'essentiel pour venir
 
-### 🚇 Transports en commun
+### 🚇 Accès TCL
 
--   Métro A — station Perrache (5 min à pied)
--   Tram T1 — arrêt Perrache (5 min à pied)
--   Bus — nombreuses lignes desservent la Presqu'île
--   Vélo'v — stations disponibles à proximité
+-   **Métro A**, **Tram T1 & T2**
+-   Arrêt **Perrache** (5 min à pied)
 
-### 🚗 En voiture
+### 🚗 En voiture / Vélo
 
--   Parking Perrache à proximité
--   Accessibilité PMR complète
+-   Parking **Q-Park Lyon Perrache Archives** (face à l'entrée)
+-   Stations **Vélo'v** à proximité immédiate
 
-## Équipements
+---
 
-### 🏢 Espaces
+## Services & Logistique
 
--   4 salles de conférences + 1 salle atelier
--   Zones de networking généreuses
--   Espaces détente
--   Terrasse / espace extérieur
+-   **🍽️ Restauration** : Petit-déjeuner, déjeuner complet et pauses café inclus. Options végé/vegan garanties. Traiteur local engagé.
+-   **⚡ Technique** : Wifi fibre ultra-performant, prises accessibles partout, salles climatisées.
+-   **♿ Accessibilité** : Campus 100% accessible PMR (ascenseurs, rampes, sanitaires adaptés).
+-   **🧥 Confort** : Vestiaire sécurisé, zones de networking généreuses, terrasses extérieures.
 
-### 🔧 Technique
+---
 
--   Wifi performant
--   Sono de qualité dans chaque salle
--   Vidéoprojecteurs
--   Prises électriques partout
--   Climatisation
+## Le Cadre
 
-### 🍕 Restauration
-
--   Pauses café & déjeuner inclus dans le billet
--   Options végé/vegan/sans gluten
--   _Devis en cours auprès de traiteurs locaux_
+Le Campus Saint-Paul est une ancienne prison du XIXe siècle magnifiquement réhabilitée. Entre héritage historique et design contemporain, les grandes verrières et les pierres dorées offrent un cadre unique pour cette journée.
 
 ## Contact
 
