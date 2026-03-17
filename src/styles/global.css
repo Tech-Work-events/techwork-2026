@@ -426,6 +426,11 @@ body * {
         @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
     }
 
+    /* Higher contrast gradient on dark hero backgrounds */
+    .hero-gradient .text-gradient {
+        @apply bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent;
+    }
+
     .glass {
         @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
     }

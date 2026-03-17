@@ -1,18 +1,14 @@
 ---
-import { OPENPLANNER_URL } from 'astro:env/client'
-import type { Category, OpenPlannerType, Session, Speaker, Track } from '../../type'
-import Cluster from '../../components/ui-elements/Cluster.astro'
-import ButtonLink from '../../components/ui-elements/ButtonLink.astro'
-import LayoutWithTitle from '../../layouts/LayoutWithTitle.astro'
-import DaySchedule from '../../components/schedule/DaySchedule.astro'
+import type { Category, Session, Speaker, Track } from '../../type'
+import Layout from '../../layouts/Layout.astro'
+import ScheduleSessionCard from '../../components/schedule/ScheduleSessionCard.astro'
 import UserSchedule from '../../components/schedule/UserSchedule.astro'
+import CTASection from '../../components/cta/CTASection.astro'
+import { EVENT_DATA } from '../../config'
+import { getScheduleData } from '../../data/conference-hall'
 
 export async function getStaticPaths() {
-    const response = await fetch(OPENPLANNER_URL)
-    const openPlannerData: OpenPlannerType = await response.json()
-
-    const { event, speakers, sessions } = openPlannerData
-    const { tracks, categories } = event
+    const { sessions, speakers, tracks, categories, commonSessions } = getScheduleData()
 
     const augmentedSessions = sessions.map((session) => {
         const sessionSpeakers = speakers.filter((speaker) => session.speakerIds.includes(speaker.id))
@@ -48,14 +44,21 @@ export async function getStaticPaths() {
 
     const sortedDays = Array.from(sessionsByDay.keys()).sort()
 
+    // Stats
+    const uniqueSpeakers = new Set(sessions.flatMap((s) => s.speakerIds)).size
+    const uniqueTracks = tracks.filter((t) => !t.name.startsWith('Workshop')).length
+
     return [
         ...sortedDays.map((day, index) => ({
             params: { num: index + 1 },
             props: {
                 day,
                 sessions: sessionsByDay.get(day) || [],
+                allSessions: augmentedSessions,
                 days: sortedDays,
                 tracks,
+                commonSessions,
+                stats: { sessions: sessions.length, speakers: uniqueSpeakers, tracks: uniqueTracks },
             },
         })),
         {
@@ -63,36 +66,493 @@ export async function getStaticPaths() {
             props: {
                 day: 'favorite',
                 sessions: augmentedSessions,
+                allSessions: augmentedSessions,
                 days: sortedDays,
                 tracks,
+                commonSessions,
+                stats: { sessions: sessions.length, speakers: uniqueSpeakers, tracks: uniqueTracks },
             },
         },
     ]
 }
 
-const { day, sessions, days, tracks } = Astro.props
+const { day, sessions, allSessions, days, tracks, stats, commonSessions: commonSessionsData } = Astro.props
 
 const pageTitle =
     day === 'favorite' ? 'Mon programme' : `Programme ${new Date(day).toLocaleDateString('fr', { dateStyle: 'long' })}`
+
+import type { CommonSession } from '../../data/conference-hall'
+
+type AugmentedSession = Session & { track: Track | undefined; speakers: Speaker[]; category: Category | undefined }
+
+// Build columns dynamically from CH tracks, excluding "Commun"
+const TRACK_COLORS: Record<string, { icon: string; color: string }> = {
+    'agilit-': { icon: '🔄', color: '#e67e22' },
+    craft: { icon: '🛠️', color: '#2ecc71' },
+    devops: { icon: '☁️', color: '#3498db' },
+    data: { icon: '📊', color: '#9b59b6' },
+    workshop: { icon: '🧪', color: '#f59e0b' },
+}
+const DEFAULT_TRACK_STYLE = { icon: '🎯', color: '#6b7280' }
+
+const GRID_COLUMNS = tracks
+    .filter((t) => t.id !== 'commun')
+    .map((t) => ({
+        trackId: t.id,
+        name: t.name,
+        icon: (TRACK_COLORS[t.id] || DEFAULT_TRACK_STYLE).icon,
+        color: (TRACK_COLORS[t.id] || DEFAULT_TRACK_STYLE).color,
+    }))
+
+const TRACK_SLOTS = [
+    { start: '10:00', end: '10:50' },
+    { start: '11:10', end: '12:00' },
+    { start: '13:15', end: '14:05' },
+    { start: '14:15', end: '15:05' },
+    { start: '15:15', end: '15:40' },
+    { start: '16:00', end: '16:50' },
+]
+
+// Build unified timeline sorted by time, each entry gets a grid row number
+type TimelineEntry =
+    | { type: 'common'; session: CommonSession; gridRow: number }
+    | { type: 'tracks'; slot: (typeof TRACK_SLOTS)[0]; slotIndex: number; gridRow: number }
+
+const rawTimeline: { type: 'common' | 'tracks'; time: number; data: any }[] = []
+
+for (const cs of (commonSessionsData || []) as CommonSession[]) {
+    rawTimeline.push({ type: 'common', time: new Date(cs.dateStart).getTime(), data: cs })
+}
+for (let i = 0; i < TRACK_SLOTS.length; i++) {
+    rawTimeline.push({
+        type: 'tracks',
+        time: new Date(`2026-06-18T${TRACK_SLOTS[i].start}:00.000`).getTime(),
+        data: { slot: TRACK_SLOTS[i], slotIndex: i },
+    })
+}
+rawTimeline.sort((a, b) => a.time - b.time)
+
+const timeline: TimelineEntry[] = []
+// Row 1 = header, data starts at row 2
+let currentRow = 2
+for (const item of rawTimeline) {
+    if (item.type === 'common') {
+        timeline.push({ type: 'common', session: item.data, gridRow: currentRow })
+    } else {
+        timeline.push({ type: 'tracks', slot: item.data.slot, slotIndex: item.data.slotIndex, gridRow: currentRow })
+    }
+    currentRow++
+}
+
+const totalGridRows = currentRow - 1
+
+const COMMON_ICONS: Record<string, string> = {
+    Accueil: '☕',
+    Introduction: '🎬',
+    Keynote: '🎬',
+    Pause: '☕',
+    déjeuner: '🍽️',
+    Remerciements: '🎤',
+    Afterwork: '🍻',
+}
+
+function getCommonIcon(title: string): string {
+    for (const [key, icon] of Object.entries(COMMON_ICONS)) {
+        if (title.includes(key)) return icon
+    }
+    return '📌'
+}
+
+// Find session for a slot + track, and compute how many GRID ROWS it spans (including common rows in between)
+function getSessionForSlot(
+    slot: (typeof TRACK_SLOTS)[0],
+    trackId: string
+): { session: AugmentedSession; gridRowSpan: number } | null {
+    const allAugmented = sessions as AugmentedSession[]
+    const session = allAugmented.find((s) => {
+        if (!s.dateStart || !s.trackId) return false
+        const sessionTime = new Date(s.dateStart).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })
+        return sessionTime === slot.start && s.trackId === trackId
+    })
+    if (!session || !session.dateEnd) return null
+
+    // Find the grid row where this session starts
+    const startEntry = timeline.find((e) => e.type === 'tracks' && e.slot.start === slot.start)
+    if (!startEntry) return null
+
+    const sessionEndTime = new Date(session.dateEnd).getTime()
+
+    // Find the last timeline entry that this session covers
+    let lastRow = startEntry.gridRow
+    for (const entry of timeline) {
+        if (entry.gridRow <= startEntry.gridRow) continue
+        const entryTime =
+            entry.type === 'common'
+                ? new Date(entry.session.dateStart).getTime()
+                : new Date(`2026-06-18T${entry.slot.start}:00.000`).getTime()
+        if (sessionEndTime > entryTime) {
+            lastRow = entry.gridRow
+        }
+    }
+
+    return { session, gridRowSpan: lastRow - startEntry.gridRow + 1 }
+}
+
+// Check if a cell is occupied by a session that started earlier and spans into this row
+function isCellOccupied(gridRow: number, trackId: string): boolean {
+    for (const entry of timeline) {
+        if (entry.type !== 'tracks' || entry.gridRow >= gridRow) continue
+        const result = getSessionForSlot(entry.slot, trackId)
+        if (result && entry.gridRow + result.gridRowSpan > gridRow) return true
+    }
+    return false
+}
 ---
 
-<LayoutWithTitle title={pageTitle}>
-    <Cluster slot="description">
-        {
-            days.map((d, index) => (
-                <ButtonLink href={`/schedule/day-${index + 1}`} variant={d === day ? 'primary' : 'transparent'}>
-                    {new Date(d).toLocaleDateString('fr', { weekday: 'long', day: 'numeric' })}
-                </ButtonLink>
-            ))
-        }
-        <ButtonLink href="/schedule/day-favorite" variant={day === 'favorite' ? 'primary' : 'transparent'}>
-            <user-avatar></user-avatar> Mon programme
-        </ButtonLink>
-    </Cluster>
+<Layout
+    title={`${pageTitle} — ${EVENT_DATA.event.shortName} ${EVENT_DATA.event.year}`}
+    description={`Découvrez le programme de ${EVENT_DATA.event.shortName} ${EVENT_DATA.event.year} : conférences, workshops et lightning talks.`}>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden hero-gradient py-24 sm:py-32">
+        <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl"></div>
+        </div>
 
-    {day === 'favorite' && <UserSchedule tracks={tracks} sessions={sessions} />}
-    {day !== 'favorite' && <DaySchedule tracks={tracks} sessions={sessions} />}
-</LayoutWithTitle>
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-semibold mb-8">
+                    <span class="mr-2 animate-bounce-gentle">📅</span>
+                    Programme · {EVENT_DATA.event.shortName}
+                    {EVENT_DATA.event.year}
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+                    Le <span class="text-gradient">programme</span> de la journée
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Conférences, workshops et lightning talks — une journée complète pour explorer les dernières
+                    tendances tech.
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{stats.sessions}</div>
+                        <div class="text-sm text-gray-400 mt-1">sessions</div>
+                    </div>
+                    <div class="w-px h-10 bg-white/20 hidden sm:block"></div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{stats.speakers}</div>
+                        <div class="text-sm text-gray-400 mt-1">speakers</div>
+                    </div>
+                    <div class="w-px h-10 bg-white/20 hidden sm:block"></div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-white">{stats.tracks}</div>
+                        <div class="text-sm text-gray-400 mt-1">tracks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day selector (overlapping hero like job filters) -->
+    <section class="relative z-10 -mt-8 pb-4">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 sm:p-6">
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    {
+                        days.map((d, index) => {
+                            const isActive = d === day
+                            const dayLabel = new Date(d).toLocaleDateString('fr', {
+                                weekday: 'long',
+                                day: 'numeric',
+                                month: 'long',
+                            })
+                            return (
+                                <a
+                                    href={`/schedule/day-${index + 1}`}
+                                    class={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                                        isActive
+                                            ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25'
+                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    }`}>
+                                    <span class="mr-2">📅</span>
+                                    <span class="capitalize">{dayLabel}</span>
+                                </a>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule content -->
+    <section class="pt-4 pb-8 sm:pb-12 lg:pb-16 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            {day === 'favorite' && <UserSchedule tracks={tracks} sessions={allSessions} />}
+
+            {
+                day !== 'favorite' && (
+                    <div
+                        class="schedule-grid"
+                        style={`--col-count: ${GRID_COLUMNS.length}; grid-template-rows: auto repeat(${totalGridRows - 1}, auto)`}>
+                        {/* Row 1: Column headers */}
+                        <div class="schedule-grid-corner" style="grid-row: 1; grid-column: 1;" />
+                        {GRID_COLUMNS.map((col, ci) => (
+                            <div
+                                class="schedule-grid-col-header"
+                                style={`grid-row: 1; grid-column: ${ci + 2}; background-color: ${col.color}`}>
+                                {col.name}
+                            </div>
+                        ))}
+
+                        {/* Timeline entries */}
+                        {timeline.map((entry) => {
+                            if (entry.type === 'common') {
+                                const cs = entry.session
+                                const startTime = new Date(cs.dateStart).toLocaleTimeString('fr', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })
+                                const endTime = new Date(cs.dateEnd).toLocaleTimeString('fr', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })
+                                const icon = getCommonIcon(cs.title)
+
+                                // Common rows span all columns EXCEPT those occupied by a spanning session
+                                // Find the last free column from the right
+                                let lastFreeCol = GRID_COLUMNS.length + 2 // default: span to end (-1)
+                                for (let ci = GRID_COLUMNS.length - 1; ci >= 0; ci--) {
+                                    if (isCellOccupied(entry.gridRow, GRID_COLUMNS[ci].trackId)) {
+                                        lastFreeCol = ci + 2 // stop before this column
+                                    } else {
+                                        break // found a free column, stop
+                                    }
+                                }
+
+                                return (
+                                    <>
+                                        <div
+                                            class="schedule-grid-time schedule-grid-time--common"
+                                            style={`grid-row: ${entry.gridRow}; grid-column: 1;`}>
+                                            <span class="schedule-grid-time-start">{startTime}</span>
+                                            <span class="schedule-grid-time-end">{endTime}</span>
+                                        </div>
+                                        <div
+                                            class="schedule-common-content"
+                                            style={`grid-row: ${entry.gridRow}; grid-column: 2 / ${lastFreeCol > GRID_COLUMNS.length + 1 ? -1 : lastFreeCol};`}>
+                                            <span class="schedule-common-icon">{icon}</span>
+                                            <span class="schedule-common-title">{cs.title}</span>
+                                            <span class="schedule-common-duration">{cs.durationMinutes} min</span>
+                                        </div>
+                                    </>
+                                )
+                            }
+
+                            const slot = entry.slot
+                            const gridRow = entry.gridRow
+
+                            return (
+                                <>
+                                    <div class="schedule-grid-time" style={`grid-row: ${gridRow}; grid-column: 1;`}>
+                                        <span class="schedule-grid-time-start">{slot.start}</span>
+                                        <span class="schedule-grid-time-end">{slot.end}</span>
+                                    </div>
+
+                                    {GRID_COLUMNS.map((col, ci) => {
+                                        if (isCellOccupied(gridRow, col.trackId)) return null
+
+                                        const result = getSessionForSlot(slot, col.trackId)
+                                        const gridCol = ci + 2
+
+                                        return result ? (
+                                            <a
+                                                href={`/sessions/${result.session.id}`}
+                                                class="schedule-grid-cell schedule-grid-cell--filled"
+                                                style={`grid-row: ${gridRow} / span ${result.gridRowSpan}; grid-column: ${gridCol}; border-left: 3px solid ${col.color}`}>
+                                                <div class="schedule-grid-cell-time">
+                                                    {new Date(result.session.dateStart!).toLocaleTimeString('fr', {
+                                                        hour: '2-digit',
+                                                        minute: '2-digit',
+                                                    })}
+                                                    {result.session.dateEnd &&
+                                                        ` — ${new Date(result.session.dateEnd).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })}`}
+                                                    <span class="schedule-grid-cell-duration">
+                                                        {result.session.durationMinutes} min
+                                                    </span>
+                                                </div>
+                                                <h3 class="schedule-grid-cell-title">{result.session.title}</h3>
+                                                {result.session.level && (
+                                                    <span
+                                                        class={`schedule-grid-cell-level ${
+                                                            result.session.level === 'BEGINNER'
+                                                                ? 'bg-green-100 text-green-700'
+                                                                : result.session.level === 'INTERMEDIATE'
+                                                                  ? 'bg-yellow-100 text-yellow-700'
+                                                                  : 'bg-red-100 text-red-700'
+                                                        }`}>
+                                                        {result.session.level === 'BEGINNER'
+                                                            ? 'Débutant'
+                                                            : result.session.level === 'INTERMEDIATE'
+                                                              ? 'Intermédiaire'
+                                                              : 'Avancé'}
+                                                    </span>
+                                                )}
+                                                {result.session.speakers.length > 0 && (
+                                                    <div class="schedule-grid-cell-speakers">
+                                                        {result.session.speakers.map((speaker) => (
+                                                            <div class="schedule-grid-cell-speaker">
+                                                                <img
+                                                                    class="w-5 h-5 rounded-full object-cover flex-shrink-0"
+                                                                    src={speaker.photoUrl || '/favicon-96x96.png'}
+                                                                    alt={speaker.name}
+                                                                    width="20"
+                                                                    height="20"
+                                                                    loading="lazy"
+                                                                    decoding="async"
+                                                                    onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                                                />
+                                                                <span>{speaker.name}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </a>
+                                        ) : (
+                                            <div
+                                                class="schedule-grid-cell schedule-grid-cell--empty"
+                                                style={`grid-row: ${gridRow}; grid-column: ${gridCol};`}>
+                                                <span>à confirmer</span>
+                                            </div>
+                                        )
+                                    })}
+                                </>
+                            )
+                        })}
+                    </div>
+                )
+            }
+
+            {/* Mobile list view */}
+            {
+                day !== 'favorite' && (
+                    <div class="schedule-mobile">
+                        {timeline.map((entry) => {
+                            if (entry.type === 'common') {
+                                const cs = entry.session
+                                const startTime = new Date(cs.dateStart).toLocaleTimeString('fr', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })
+                                const icon = getCommonIcon(cs.title)
+                                return (
+                                    <div class="schedule-mobile-slot">
+                                        <div class="schedule-mobile-time">
+                                            <span class="schedule-mobile-time-label">{startTime}</span>
+                                            <div class="schedule-mobile-time-line" />
+                                        </div>
+                                        <div class="schedule-mobile-common">
+                                            <span>{icon}</span>
+                                            <span class="schedule-mobile-common-title">{cs.title}</span>
+                                            <span class="schedule-mobile-common-duration">
+                                                {cs.durationMinutes} min
+                                            </span>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            const slot = entry.slot
+                            // Collect all sessions for this time slot across all tracks
+                            const slotSessions = GRID_COLUMNS.map((col) => {
+                                const result = getSessionForSlot(slot, col.trackId)
+                                return result ? { ...result, col } : null
+                            }).filter(Boolean) as {
+                                session: AugmentedSession
+                                gridRowSpan: number
+                                col: (typeof GRID_COLUMNS)[0]
+                            }[]
+
+                            if (slotSessions.length === 0) return null
+
+                            return (
+                                <div class="schedule-mobile-slot">
+                                    <div class="schedule-mobile-time">
+                                        <span class="schedule-mobile-time-label">{slot.start}</span>
+                                        <span class="schedule-mobile-time-end">— {slot.end}</span>
+                                        <div class="schedule-mobile-time-line" />
+                                    </div>
+                                    {slotSessions.map(({ session: s, col }) => (
+                                        <a
+                                            href={`/sessions/${s.id}`}
+                                            class="schedule-mobile-session"
+                                            style={`border-left: 3px solid ${col.color}`}>
+                                            <div class="schedule-mobile-session-header">
+                                                <span
+                                                    class="schedule-mobile-session-track"
+                                                    style={`background-color: ${col.color}`}>
+                                                    {col.name}
+                                                </span>
+                                                <span class="schedule-mobile-session-duration">
+                                                    {s.durationMinutes} min
+                                                </span>
+                                            </div>
+                                            <h3 class="text-sm font-bold text-gray-900">{s.title}</h3>
+                                            {s.level && (
+                                                <span
+                                                    class={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium w-fit ${
+                                                        s.level === 'BEGINNER'
+                                                            ? 'bg-green-100 text-green-700'
+                                                            : s.level === 'INTERMEDIATE'
+                                                              ? 'bg-yellow-100 text-yellow-700'
+                                                              : 'bg-red-100 text-red-700'
+                                                    }`}>
+                                                    {s.level === 'BEGINNER'
+                                                        ? 'Débutant'
+                                                        : s.level === 'INTERMEDIATE'
+                                                          ? 'Intermédiaire'
+                                                          : 'Avancé'}
+                                                </span>
+                                            )}
+                                            {s.speakers.length > 0 && (
+                                                <div class="flex flex-wrap gap-2 pt-1">
+                                                    {s.speakers.map((speaker) => (
+                                                        <div class="flex items-center gap-1.5">
+                                                            <img
+                                                                class="w-5 h-5 rounded-full object-cover"
+                                                                src={speaker.photoUrl || '/favicon-96x96.png'}
+                                                                alt={speaker.name}
+                                                                width="20"
+                                                                height="20"
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                                            />
+                                                            <span class="text-xs text-gray-600">{speaker.name}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </a>
+                                    ))}
+                                </div>
+                            )
+                        })}
+                    </div>
+                )
+            }
+        </div>
+    </section>
+
+    <CTASection
+        title="Prêt·e à vivre cette journée ?"
+        description="Réserve ta place et viens rencontrer les speakers en live. Talks, workshops, networking — tout ça sur ton temps de travail."
+        placement="content-schedule"
+    />
+</Layout>
 
 <script>
     import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -123,3 +583,271 @@ const pageTitle =
 
     customElements.define('user-avatar', UserAvatar)
 </script>
+
+<style>
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: 64px repeat(var(--col-count, 4), 1fr);
+        gap: 6px;
+    }
+
+    .schedule-grid-corner {
+        min-width: 64px;
+    }
+
+    .schedule-grid-col-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 8px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .schedule-grid-time {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 12px 6px 0 0;
+        min-width: 64px;
+    }
+
+    .schedule-grid-time--common {
+        justify-content: center;
+        padding-top: 0;
+    }
+
+    /* Common session rows (spans all 4 track columns) */
+    .schedule-common-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 10px 16px;
+    }
+
+    .schedule-common-icon {
+        font-size: 1.1rem;
+    }
+
+    .schedule-common-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .schedule-common-duration {
+        margin-left: auto;
+        font-size: 0.7rem;
+        color: #94a3b8;
+    }
+
+    .schedule-grid-time-start {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1;
+    }
+
+    .schedule-grid-time-end {
+        font-size: 0.7rem;
+        color: #9ca3af;
+        margin-top: 2px;
+    }
+
+    .schedule-grid-cell {
+        border-radius: 12px;
+        padding: 12px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .schedule-grid-cell--filled {
+        background: white;
+        border: 1px solid #e5e7eb;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s;
+    }
+
+    .schedule-grid-cell--filled:hover {
+        border-color: #9ca3af;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+    }
+
+    .schedule-grid-cell--empty {
+        background: #f9fafb;
+        border: 1px dashed #d1d5db;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-style: italic;
+    }
+
+    .schedule-grid-cell-time {
+        font-size: 0.7rem;
+        color: #6b7280;
+        margin-bottom: 2px;
+    }
+
+    .schedule-grid-cell-duration {
+        margin-left: 6px;
+        color: #9ca3af;
+    }
+
+    .schedule-grid-cell-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .schedule-grid-cell-level {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 9999px;
+        font-size: 0.625rem;
+        font-weight: 500;
+        width: fit-content;
+    }
+
+    .schedule-grid-cell-speakers {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: auto;
+        padding-top: 6px;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .schedule-grid-cell-speaker {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.7rem;
+        color: #4b5563;
+    }
+
+    /* Mobile: hide the grid, show the mobile list */
+    .schedule-mobile {
+        display: none;
+    }
+
+    @media (max-width: 900px) {
+        .schedule-grid {
+            display: none !important;
+        }
+
+        .schedule-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .schedule-mobile-slot {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .schedule-mobile-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0 4px;
+        }
+
+        .schedule-mobile-time-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            white-space: nowrap;
+        }
+
+        .schedule-mobile-time-end {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .schedule-mobile-time-line {
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .schedule-mobile-common {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
+        .schedule-mobile-common-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .schedule-mobile-common-duration {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+        .schedule-mobile-session {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .schedule-mobile-session:hover {
+            border-color: #9ca3af;
+        }
+
+        .schedule-mobile-session-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .schedule-mobile-session-track {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .schedule-mobile-session-duration {
+            font-size: 0.7rem;
+            color: #9ca3af;
+        }
+    }
+</style>

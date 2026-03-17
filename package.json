@@ -11,7 +11,8 @@
         "prepare": "husky",
         "test": "vitest run",
         "lhci": "npm run build && npx -y @lhci/cli autorun",
-        "fetch-cfp": "node scripts/fetch-cfp.js"
+        "fetch-cfp": "node scripts/fetch-cfp.js",
+        "fetch-schedule": "node scripts/fetch-schedule.js"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.4",

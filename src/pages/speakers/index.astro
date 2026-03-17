@@ -1,22 +1,10 @@
 ---
-import { OPENPLANNER_URL } from 'astro:env/client'
-import type { OpenPlannerType } from '../../type'
 import Layout from '../../layouts/Layout.astro'
 import CTASection from '../../components/cta/CTASection.astro'
 import { EVENT_DATA } from '../../config'
+import { getScheduleData } from '../../data/conference-hall'
 
-// Récupération des données OpenPlanner
-let openPlannerData: OpenPlannerType | null = null
-try {
-    const response = await fetch(OPENPLANNER_URL)
-    if (response.ok) {
-        openPlannerData = await response.json()
-    }
-} catch (error) {
-    console.warn('Erreur lors de la récupération des données OpenPlanner:', error)
-}
-
-const speakers = openPlannerData?.speakers || []
+const { speakers } = getScheduleData()
 ---
 
 <Layout title="Nos Speakers" description="Découvrez les speakers qui vont animer Tech'Work Lyon 2026">
@@ -139,40 +127,30 @@ const speakers = openPlannerData?.speakers || []
                                 href={`/speakers/${speaker.id}`}
                                 class="speaker-card group block"
                                 style={`animation-delay: ${index * 0.1}s`}>
-                                <div class="bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-primary-300 transition-all duration-300 hover-lift scroll-animate-scale">
-                                    <div class="text-center">
+                                <div class="bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-primary-300 transition-all duration-300 hover-lift scroll-animate-scale h-full">
+                                    <div class="text-center flex flex-col items-center h-full">
                                         <div class="relative mb-4">
-                                            {speaker.photoUrl ? (
-                                                <img
-                                                    class="w-20 h-20 rounded-full mx-auto object-cover group-hover:scale-110 transition-transform duration-300"
-                                                    src={speaker.photoUrl}
-                                                    alt={speaker.name}
-                                                    width="80"
-                                                    height="80"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-                                            ) : (
-                                                <div class="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full mx-auto flex items-center justify-center text-2xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">
-                                                    {speaker.name.charAt(0).toUpperCase()}
-                                                </div>
-                                            )}
+                                            <img
+                                                class="w-20 h-20 rounded-full mx-auto object-cover group-hover:scale-110 transition-transform duration-300"
+                                                src={speaker.photoUrl || '/favicon-96x96.png'}
+                                                alt={speaker.name}
+                                                width="80"
+                                                height="80"
+                                                loading="lazy"
+                                                decoding="async"
+                                                onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                            />
                                         </div>
                                         <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
                                             {speaker.name}
                                         </h3>
-                                        {speaker.company && (
-                                            <p class="text-sm text-gray-600 mb-2">
-                                                {speaker.jobTitle ? `${speaker.jobTitle} • ` : ''}
-                                                {speaker.company}
-                                            </p>
-                                        )}
-                                        {speaker.geolocation && (
-                                            <p class="text-xs text-gray-500 flex items-center justify-center">
-                                                <span class="mr-1">📍</span>
-                                                {speaker.geolocation}
-                                            </p>
-                                        )}
+                                        <p class="text-sm text-gray-600 line-clamp-1">
+                                            {speaker.company
+                                                ? speaker.jobTitle
+                                                    ? `${speaker.jobTitle} • ${speaker.company}`
+                                                    : speaker.company
+                                                : '\u00A0'}
+                                        </p>
                                     </div>
                                 </div>
                             </a>

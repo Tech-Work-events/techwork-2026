@@ -17,10 +17,23 @@ const { id, photoUrl, name, company, size, socials } = Astro.props
                     height="48"
                     loading="lazy"
                     decoding="async"
+                    onerror="this.onerror=null;this.src='/favicon-96x96.png'"
                 />
             )
         }
-        {!photoUrl && <span class="speaker-photo-fallback">{name.charAt(0).toUpperCase()}</span>}
+        {
+            !photoUrl && (
+                <img
+                    alt={`Photo de ${name}`}
+                    class="speaker-photo"
+                    src="/favicon-96x96.png"
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
+                />
+            )
+        }
         <a href={`/speakers/${id}`} style="line-height: 1.2;">{name}</a>
     </Cluster>
 
