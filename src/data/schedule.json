@@ -39,22 +39,69 @@
             "proposal": null
         },
         {
-            "id": "cmmt4f9fp05p701nvp9sdsduw",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T14:05:00.000Z",
-            "track": "Craft",
-            "title": "Talk 50'",
+            "id": "cmn5w1ey601g401pr096knqf7",
+            "start": "2026-06-18T09:50:00.000Z",
+            "end": "2026-06-18T09:55:00.000Z",
+            "track": "Data",
+            "title": null,
             "language": null,
             "proposal": null
         },
         {
+            "id": "cmmt4f9fp05p701nvp9sdsduw",
+            "start": "2026-06-18T13:15:00.000Z",
+            "end": "2026-06-18T14:05:00.000Z",
+            "track": "Craft",
+            "title": "Le Software Craftsmanship s'est-il perdu sur le chemin de l'excellence ?",
+            "language": "fr",
+            "proposal": {
+                "id": "cmkv0ggcg002901k2cp9rpr2v",
+                "proposalNumber": 26,
+                "abstract": "Depuis plus de quinze ans, le Software Craftsmanship défend une ambition claire : élever le niveau de qualité du logiciel produit. Clean code, tests automatisés, conception soignée, pratiques professionnelles… autant de notions largement débattues, parfois enseignées, mais encore loin d’être universellement comprises, acceptées ou appliquées.\n\nDans de nombreuses organisations, l’excellence technique reste un idéal, parfois perçu comme un luxe, parfois comme une contrainte, souvent comme un sujet secondaire face aux enjeux de délais et de coûts. Et pourtant, même lorsqu’elle est atteinte, une autre question émerge : est-elle suffisante pour produire de bonnes solutions ?\n\nCette conférence propose d’explorer les limites d’une approche centrée sur la technique. Comprendre le vrai problème, naviguer dans l’ambiguïté, dialoguer avec des acteurs aux intérêts divergents, arbitrer, renoncer parfois : ce sont ces compétences humaines qui font souvent la différence entre un logiciel “bien fait” et un logiciel réellement utile.\n\nL’essor de l’intelligence artificielle rend ce constat encore plus troublant. À mesure que produire du code, des tests ou des architectures devient plus accessible, la question de la valeur se déplace. Que reste-t-il lorsque la solution devient commoditisée ? Où se situe alors l’excellence, et que signifie encore « faire du bon logiciel » ?\nLe Software Craftsmanship s’est-il perdu sur le chemin de l’excellence, où bien est-ce notre définition de l’excellence qui mérite d’être interrogée ?",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Craft"],
+                "speakers": [
+                    {
+                        "id": "cmkv0ggc6002801k2e1jmawaf",
+                        "name": "Edouard CATTEZ",
+                        "bio": "Head of Craft chez HoppR mais avant tout consultant crafter, j’accompagne les équipes et les organisations dans la construction de systèmes logiciels durables. Mon travail se situe à l’intersection de l’excellence technique, de la compréhension du problème et du développement des compétences humaines, convaincu que la qualité d’un logiciel dépend autant des pratiques que des personnes qui les portent.",
+                        "company": "HoppR",
+                        "picture": "https://media.licdn.com/dms/image/v2/D4E03AQFZo0av822Zkw/profile-displayphoto-shrink_800_800/B4EZse5ogaKMAc-/0/1765749983805?e=1775088000&v=beta&t=DkG-axKuz-DFqvg_1_uysB7XSky3uAHKDBsBPfWM_hg",
+                        "socialLinks": ["https://github.com/ecattez", "https://x.com/ecattez"]
+                    }
+                ]
+            }
+        },
+        {
             "id": "cmmt4f4kr05p601nvxzmr1yu6",
             "start": "2026-06-18T14:15:00.000Z",
-            "end": "2026-06-18T15:00:00.000Z",
+            "end": "2026-06-18T15:05:00.000Z",
             "track": "Craft",
-            "title": "Talk 50'",
-            "language": null,
-            "proposal": null
+            "title": "Coder sans se noyer dans la complexité",
+            "language": "fr",
+            "proposal": {
+                "id": "cmlkkb2my02c601k2g5l27p24",
+                "proposalNumber": 58,
+                "abstract": "**Nous sommes submergés de code.**\n\nEt aujourd’hui, avec l’IA, ce déluge s’accélère : des milliers de lignes générées en quelques secondes, qui viennent s’ajouter à des bases de code déjà immenses, parfois vieilles de dix ou vingt ans.\n\nChaque jour, les développeurs doivent **lire, comprendre, corriger et faire évoluer** du code legacy, du code généré par des humains, et maintenant du code généré par des machines.\n\nLe vrai problème n’est pas seulement technique. Il est cognitif… et humain.\n\nCar lire du code, c’est consommer une ressource rare : l’attention et l’énergie mentale.\nQuand cette charge devient trop lourde, elle ne reste pas au bureau : elle se transforme en fatigue, frustration, perte de confiance… et parfois en épuisement.\n\nAlors comment continuer à produire de la qualité sans sacrifier notre bien-être ?\n\nLa réponse se trouve dans le **fonctionnement de notre cerveau**.\n\nDans cette conférence inspirée des travaux de Felienne Hermans (The Programmer’s Brain), vous découvrirez :\n- ce qui se passe dans notre cerveau quand on lit du code complexe\n- pourquoi ce code est souvent plus coûteux mentalement qu’on ne l’imagine\n- comment réduire la surcharge cognitive quand on navigue dans de grandes bases de code\n- le lien entre **Clean Code, lisibilité et santé mentale**\n- des techniques concrètes pour lire, vérifier et maintenir du code plus sereinement\n- comment préserver votre énergie dans un monde où le volume de code explose\n\nVous repartirez avec des outils pour mieux comprendre le code, mieux travailler… et mieux vivre votre quotidien de développeur.\n\nPréparez-vous à apprendre… sans vous épuiser. 🧠✨",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Craft"],
+                "speakers": [
+                    {
+                        "id": "cmlkk7nl802c201k2hx4vrlv4",
+                        "name": "Yoan Thirion",
+                        "bio": "J'accompagne les équipes pour qu'elles s'améliorent dans la livraison de logiciels grâce aux pratiques Craft et Agile. \nJe les forme et les aide à mettre en œuvre des pratiques telles que Scrum, Kanban, XP, Domain Driven Design, Clean Code et bien d'autres encore...",
+                        "company": "Coda School",
+                        "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHs8qwJJqYAjg/profile-displayphoto-shrink_800_800/B4EZPjInezGYAo-/0/1734682507700?e=1750291200&v=beta&t=gMX6MTp3nTw_GeKVnv8_hwvapPnE3gE2tGUfhIuiOZI",
+                        "socialLinks": [
+                            "https://github.com/ythirion",
+                            "https://www.linkedin.com/in/yoanthirion/",
+                            "https://x.com/yot88"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt55pwz05qj01nvfoeg0je1",
@@ -127,6 +174,15 @@
             "proposal": null
         },
         {
+            "id": "cmn2z9pff005v01prfn3tvgvz",
+            "start": "2026-06-18T10:00:00.000Z",
+            "end": "2026-06-18T10:50:00.000Z",
+            "track": "Craft",
+            "title": null,
+            "language": null,
+            "proposal": null
+        },
+        {
             "id": "cmmt4dlqt05oz01nvsq355d96",
             "start": "2026-06-18T10:00:00.000Z",
             "end": "2026-06-18T10:50:00.000Z",
@@ -194,6 +250,32 @@
             "title": "Remerciements + Keynote de fin",
             "language": null,
             "proposal": null
+        },
+        {
+            "id": "cmn2z82un005t01prv9hvn0y9",
+            "start": "2026-06-18T16:00:00.000Z",
+            "end": "2026-06-18T16:50:00.000Z",
+            "track": "Craft",
+            "title": "Devons-nous sacrifier la qualité avec l’IA ?",
+            "language": "fr",
+            "proposal": {
+                "id": "cmlxdy2ln005j01qlt69e0px2",
+                "proposalNumber": 79,
+                "abstract": "L’IA génère du code.\nSouvent rapidement.\nParfois différemment de ce que nous aurions écrit.\n\nAprès des années à perfectionner notre craft — design patterns, clean architecture, SOLID, DDD — nous avons construit des standards exigeants pour garantir la qualité et la maintenabilité. Mais ces standards ont été pensés pour compenser nos limites humaines : mémoire imparfaite, fatigue, difficulté à maintenir du code complexe.\n\nAlors que se passe-t-il quand une IA, capable de régénérer, refactorer et tester massivement, entre dans l’équation ?\n\nDans ce retour d’expérience de CTO, nous questionnerons :\n - Ce que nous appelons vraiment “qualité”\n - Le rôle de l’ego et de l’identité du développeur face à l’IA\n - Les standards qui restent essentiels… et ceux qui méritent d’être repensés\n\nCe talk ne cherche pas à opposer humains et IA.\nIl explore comment notre définition du craft est en train d’évoluer — et ce que cela implique pour les équipes techniques aujourd’hui.",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Craft", "Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmlxdy2lh005i01qlm3erekiu",
+                        "name": "Kevin Delfour",
+                        "bio": "Développeur expérimenté et CTO, j’accompagne des équipes techniques dans la conception de produits robustes et scalables. Passionné par le craftsmanship, l’architecture logicielle et la qualité du code, j’ai longtemps défendu des standards exigeants en matière de conception et de maintenabilité.\n\nEntrepreneur engagé, je m’intéresse particulièrement à l’évolution des organisations techniques, aux modèles de gouvernance responsabilisants et à l’impact de l’intelligence artificielle sur nos métiers.\nAujourd’hui, j’explore une question centrale : comment l’IA transforme-t-elle notre définition de la qualité logicielle — et notre identité de développeur ?",
+                        "company": null,
+                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJ61LaEDskpN46nmb5_A4_HpfEUGYti5uyL18ZbN4Y9PVoBxybACw=s96-c",
+                        "socialLinks": []
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt4f9w605p801nvqmrc6vwk",
@@ -268,18 +350,124 @@
             "start": "2026-06-18T11:10:00.000Z",
             "end": "2026-06-18T12:00:00.000Z",
             "track": "Craft",
-            "title": "Talk 50'",
-            "language": null,
-            "proposal": null
+            "title": "(Re)Découvrir le front par les tests",
+            "language": "fr",
+            "proposal": {
+                "id": "cmkqptvda003y01s4ybxjlh6j",
+                "proposalNumber": 13,
+                "abstract": "On a longtemps été des développeurs fullstack qui ne faisait que du back (et qui détestait le CSS).\n\nPar cette méconnaissance du front, on a pu créer des soupes de div pour essayer de placer correctement un élément, ne pas écrire de tests unitaires et préférer des tests e2e lents (et flaky).\n\nSi vous êtes dans ce cas, le front devient vite une application sur laquelle on redoute d’intervenir. Le code est de plus en plus compliqué à maintenir et peut devenir un goulot d’étranglement pour la livraison de valeur.\n\nDans nos expériences récentes, nous nous sommes réintéressés au front en y appliquant les mêmes réflexions qu’au back (comment bien tester, comment faciliter les développements).\n\nNous vous dévoilerons lors d’un live-coding sur un front en React, comment utiliser correctement les différents niveaux de test, tester unitairement ses composants et supprimer les freins à l’écriture des tests.",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Craft"],
+                "speakers": [
+                    {
+                        "id": "cmkqpru7h003o01s4ukqu45xb",
+                        "name": "Yann Bouvet",
+                        "bio": "Développeur Fullstack Senior chez [Shodo Lyon](https://shodo.io/), je suis tombé dans le software craft récemment.\n\nSes pratiques et méthodes m'émerveillent et facilite mon travail, c'est pour ça que j'aime en parler.",
+                        "company": "Shodo Lyon",
+                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJhrYvM7OKifi-7chzyCa5q9bFGk4uRZYb7QcXTfLeIZxcY5QgoWkX0uahjolq6sqhIgmY9dQihpbeJsAyehURTjxo=s288-c-no",
+                        "socialLinks": []
+                    },
+                    {
+                        "id": "cmkqpru8n003p01s4dhjgenq9",
+                        "name": "Jérémy CHAUVIN",
+                        "bio": "Développeur un peu touche à tout, je possède une certaine appétence pour le front et les interfaces élégantes et intuitives, même si un bon backend fait toujours plaisir.\n\nVéritable technophile dans une esprit craftsman et agile, j'aime à ce que l'amélioration continue, la qualité et le partage ne soient pas que des mots.",
+                        "company": "Shodo Lyon",
+                        "picture": "https://lh3.googleusercontent.com/a-/ALV-UjXvXK7QKYarz-ATGq7uyd9hGAfT9GB8SzNdZetQ08y6S65GYMUDG1rNoOySpSvyO80YDq1WE60zuPi8p5ygNui2ukZ3bCJJCG_owJ_BhQ_E4tlsNEr8PXSWJB2bbvcD9caADyi1kKoHFjJUMobEzsvMk34mM7Z_d9ugI_j4hUbi4uHeHpDd-kyahJkEDB3Q3GiyfA9l-2gnBAl-Zf7frSAGJ-VaEmkiy_Z1Zx2kkxJoC_52_NwBJbEIos2msX1l8fCMBFBPaktfc67Dp8YrTmONaT-KdeH7LnnjLF6FNQxet3_VId-ZqEZtMfAp4mqtxQsLYfQ6tSK95hgrbP1NOEx67kAqc7aUMbvIhIGauOaEtAV5vbg6FAwJp7R13DV1D6REbBga3JEOyxwZcLcdFxlI6Qm3LheEVJj304WjX69YeK4ZiY0p1uedICF7C3cNci3u5ec2mVho7ShrT1YQUHPIP6gxNndMcY0kf0WIc3nIjhbiG3KtUjQYuDyKEmrh8HnsrM4zE-uBJoHBs8ZVD744psB7l2MxBxmIlAWGdfe5gt-lIVJ4nFsaYKmiADBiV8cm4OFNI5ma2enDbb5CupZMe_mkztY8AMnWwKN9Znw0CcrltYZf8bjilTjpj_dwByykMyBVpuXrSaLc5YK_QzIRcB0tButO930gn4Lbr8xdiKlLaPD8cZduluUK-He7vOHgq28vWQCTeLE10pZbekav1SQ0T8cH3eOtG5Rhysp1Orjh_UhumyDiJAua6SUXnxT_m1eqri6UyTkg6xDTrAFwn1HZKgZC3jxwJKM3eKVhrPpPa4sZowqih6q9ugHSmiTMbAbYXcWplVMcYcfa9WGYD8h8mwbUkIS-zCxQB4Q82Raj46uW8zlo-T_3z70-AgYJk_gZnueSr1UwksBCKJsYh6UaR5962Z_ONT4y8bZ8OwuiqrdaKwVHFmnZWGNQlIFPfnHAu2ieCGb8tZ-usPfYWgxD=s576-c-no",
+                        "socialLinks": ["https://www.linkedin.com/in/j%C3%A9r%C3%A9my-chauvin-b33923196/"]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "cmn7ffegt01pj01prlzg1qeah",
+            "start": "2026-06-18T13:15:00.000Z",
+            "end": "2026-06-18T14:05:00.000Z",
+            "track": "Data",
+            "title": "REX : Notre IA et nous contre le legacy : REX d'une reprise de contrôle assistée",
+            "language": "fr",
+            "proposal": {
+                "id": "cmlp8ypjg009p01phg7yt1yup",
+                "proposalNumber": 62,
+                "abstract": "Ce projet legacy. Vous savez, celui que personne ne veut toucher. Celui où chaque commit est une prière et où l'on vous dit : \"Surtout, ne casse rien, mais ajoute-moi cette feature pour demain.\"\n\nLe rêve ? Tout jeter et repartir de zéro.\nLa réalité ? On *doit* faire avec. Stabiliser, et vite.\n\nMais comment s'attaquer à une base de code tentaculaire sans y perdre sa santé mentale ? Et si l'IA, loin d'être un simple gadget, devenait votre co-pilote le plus précieux pour cette mission ?\n\nÀ travers ce Retour d'Expérience (REX) pragmatique, nous partageons notre journal de bord. Oubliez le \"hands-on\" théorique : ici, on vous montre les cicatrices et les victoires d'une aventure bien réelle pour :\n\n- **Plonger dans l'inconnu :** Cartographier et comprendre des pans entiers de code \"spaghetti\" grâce à l'IA.\n- **Éteindre les incendies :** Générer des tests et ajouter des garde-fous (sécurité, validation) pour stabiliser l'existant avant de le modifier.\n- **Dresser l'assistant :** Configurer et \"prompter\" notre IA pour qu'elle devienne une experte de *notre* code, pas juste un générateur de snippets.\n- **Construire l'avenir :** Démarrer un refactoring stratégique (extraire un service, moderniser une brique) en tandem avec l'IA, sans paralyser le produit.\n\nLoin du discours marketing, on vous montre comment garder la maîtrise, éviter les hallucinations de l'IA, et transformer une corvée en un défi technique stimulant.\n\n*Ce talk est animé par deux développeurs : le \"Prudent\" (qui craint l'effet \"boîte noire\") et \"l'Enthousiaste\" (prêt à tout automatiser). Une dynamique qui reflète les débats de votre propre équipe !*",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmlp8ypj3009n01pheiounnkk",
+                        "name": "Benjamin Lacroix",
+                        "bio": "Développeur mobile, Web & Back j'aide nos clients à choisir, puis à implémenter la meilleure stack pour leurs besoins.\n\nJ'adore apprendre, bidouiller et entreprendre, je le raconte au détour de différentes conférences : XebiCon, DevFest, Android Makers et en interne.",
+                        "company": "Shodo Studio",
+                        "picture": "https://gravatar.com/avatar/eb25bd4e2953b8e32b5057f5a7953bc5ce382e35579e29db6cf7a0c755750b09?v=1675763392000&size=512",
+                        "socialLinks": ["https://github.com/blacroix", "https://x.com/benjlacroix"]
+                    },
+                    {
+                        "id": "cmlp8ypj8009o01phi7m13kbm",
+                        "name": "Jordan NOURRY",
+                        "bio": "Cofondateur de Shodo Studio, je construis depuis 15 ans du code durable et accompagne des équipes sur leurs projets les plus critiques. Convaincu que le développement est un artisanat qui se transmet, je partage mon savoir-faire avec la communauté sous plusieurs formats : articles, talks, et au sein de CraftsRecords, un collectif de passionnés.\n\nAujourd'hui, j'explore comment l'IA peut devenir un véritable allié dans la reprise de contrôle sur le legacy — à condition de garder la main et d'éviter les promesses marketing.",
+                        "company": "Shodo Studio",
+                        "picture": "https://media.licdn.com/dms/image/v2/D4E03AQHsk5O25htc6g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1680858694099?e=1775088000&v=beta&t=c0IJNrOCgM6mIYtAAZIr4bjv7fTdBUYQhft1VadRvEE",
+                        "socialLinks": ["https://www.linkedin.com/in/jordan-nourry-20377a50/"]
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt7doe905vj01nv8na1ialr",
             "start": "2026-06-18T11:10:00.000Z",
             "end": "2026-06-18T12:00:00.000Z",
             "track": "Data",
-            "title": "Talk 50'",
-            "language": null,
-            "proposal": null
+            "title": "Context Engineering : pas des modèles plus malins, du contexte plus malin",
+            "language": "fr",
+            "proposal": {
+                "id": "cmlsglj5g00sw01phwfp5jndr",
+                "proposalNumber": 65,
+                "abstract": "\"Trop de slop.\" \"Usine à dette technique.\" \"Ça marche pas sur les gros repos.\"\n\nOn a tous vécu ça : on lance un agent IA sur un vrai projet, et le résultat est générique, inadapté, voire cassé. La réaction classique, c'est d'attendre des modèles plus intelligents. Mais le problème n'est pas l'intelligence du modèle, c'est ce qu'on lui donne à manger.\n\nDans ce talk, je vous montre pourquoi le context engineering, la discipline de gérer ce qui entre dans la fenêtre de contexte d'un LLM, est la compétence la plus importante pour tirer parti des outils IA en développement.\n\nOn verra :\n  - Pourquoi les LLMs sont des fonctions stateless, et ce que ça implique concrètement\n  - Ce qui bouffe le contexte avant même que l'agent commence à coder\n  - La technique de compaction intentionnelle pour garder le savoir sans le bruit\n  - Comment les micro-agents permettent de contrôler la qualité en isolant l'exploration\n  - Le workflow Research → Plan → Implement qui garde chaque session dans la \"smart zone\"\n  - Comment structurer un CLAUDE.md (ou équivalent) pour que l'agent démarre informé\n\nCe talk s'appuie sur le travail de Dex Horthy (HumanLayer, 12-Factor Agents) et sur des exemples concrets tirés de mes propres expérience avec mon équipe. Pas de théorie abstraite : des techniques applicables dès lundi.",
+                "level": "BEGINNER",
+                "formats": ["Conférence", "Lightning Talk"],
+                "categories": ["Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmlsglj4b00sv01phpwszh5ve",
+                        "name": "Mehdi Lahmam",
+                        "bio": "I’m the co-founder and CPTO of Grinta, a platform helping retailers and amateur sports clubs connect through tailored online shops.\n\nBefore that, I was CTO at act for sport, a company I co-founded and later sold. Earlier in my career, I worked at Captain Train (now Trainline) after running a small consultancy where I helped 40+ startups build and grow their products over seven years.\n\nOutside of work, I enjoy spending time with my kids and lately pretending to be a DJ with living room sets. My toughest crowd yet!\n\nI also share my thoughts through public speaking. You can find some of my talks on my Speakerdeck.\n\nI keep a low profile online, but you can still find me on Linkedin or GitHub. Feel free to say hi!",
+                        "company": "Grinta",
+                        "picture": "https://avatars3.githubusercontent.com/u/224928?v=4",
+                        "socialLinks": [
+                            "https://github.com/mehlah",
+                            "https://x.com/mehlah",
+                            "https://www.linkedin.com/in/mehlah/"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "cmn7fi88901pk01prs3qw6tan",
+            "start": "2026-06-18T14:15:00.000Z",
+            "end": "2026-06-18T15:05:00.000Z",
+            "track": "Data",
+            "title": "GenUI: The Future of Apps?",
+            "language": "fr",
+            "proposal": {
+                "id": "cmlgkkyxf01j301k2d8s6sd5x",
+                "proposalNumber": 52,
+                "abstract": "As an app developer, you may have heard that \"apps are dead\" and \"the future of software is conversational\". Indeed, we can see many use cases that were fulfilled with apps are now covered by chat based apps. Those general chat based solutions can be convenient, but they offer a limited user experience since they rely on text only interactions. What if we could make our app shine by combining the best of both worlds: the convenience of having an user friendly conversational experience with our users and transforming the text-based interactions with interactive experiences? The GenUI SDK allows us to do exactly that by orchestrating the flow of information between the user, our own Flutter widgets and the AI agent of your choice. In this session, I'll introduce you to the concept behind it, how it works, and of course, a demo!",
+                "level": "BEGINNER",
+                "formats": ["Conférence"],
+                "categories": ["Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmlgkk4kg01iz01k2h9u4v144",
+                        "name": "Elaine Dias Batista",
+                        "bio": "Elaine has been working with mobile apps development for more than 10 years. Since the launch of the Google Assistant, she has been following the developments around that area. She truly believes that interacting with technology using natural language will define the future of computing. Born and raised in Brazil, she's been living in France since 2004 and loves everything multicultural. She's a GDE for the Flutter and Dart.",
+                        "company": "SFEIR",
+                        "picture": "https://pbs.twimg.com/profile_images/1785639222084292608/Gw6lM5Vb_400x400.jpg",
+                        "socialLinks": ["https://github.com/elainedb", "https://x.com/elainedbatista"]
+                    }
+                ]
+            }
         },
         {
             "id": "cmmuqlmye07me01nvn1kefqj4",
@@ -287,6 +475,24 @@
             "end": "2026-06-18T09:00:00.000Z",
             "track": "Commun",
             "title": "Accueil et viennoiseries",
+            "language": null,
+            "proposal": null
+        },
+        {
+            "id": "cmn7fjrqu01pl01prpeyu4hjy",
+            "start": "2026-06-18T16:00:00.000Z",
+            "end": "2026-06-18T16:50:00.000Z",
+            "track": "Data",
+            "title": "IA générative et réchauffement climatique : comment réduire la facture?",
+            "language": null,
+            "proposal": null
+        },
+        {
+            "id": "cmn7fku2t01pm01pro70gj4l0",
+            "start": "2026-06-18T15:20:00.000Z",
+            "end": "2026-06-18T15:40:00.000Z",
+            "track": "Data",
+            "title": null,
             "language": null,
             "proposal": null
         },
@@ -354,15 +560,6 @@
             }
         },
         {
-            "id": "cmmt4gnbo05pd01nv87xyd3bj",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T10:50:00.000Z",
-            "track": "Craft",
-            "title": "Talk 50'",
-            "language": null,
-            "proposal": null
-        },
-        {
             "id": "cmmt4bdbo05or01nvnqap2fkt",
             "start": "2026-06-18T13:15:00.000Z",
             "end": "2026-06-18T15:15:00.000Z",
@@ -419,9 +616,34 @@
             "start": "2026-06-18T10:00:00.000Z",
             "end": "2026-06-18T10:50:00.000Z",
             "track": "Data",
-            "title": "Talk 50'",
-            "language": null,
-            "proposal": null
+            "title": "REX Malt : De l'expérimentation à la production, adapter son infrastructure d'Observabilité pour la GenAI",
+            "language": "fr",
+            "proposal": {
+                "id": "cmm924q2i00vt01nsjtpxs8j0",
+                "proposalNumber": 98,
+                "abstract": "L’usage interne et le déploiement massif en production de solutions utilisant l’IA générative apportent leur lot de challenges : explosion des coûts, enjeux de confidentialité, SLA ou encore non-déterminisme dans l’exécution. Dans cette situation, comment garder le contrôle ?\n\nUne première réponse que nous avons apportée chez Malt a été de mettre à jour notre stack d’observabilité pour répondre à ces nouveaux besoins.\n\nDans ce retour d'expérience technique, nous vous proposerons d’explorer les coulisses de notre architecture :\n- Standardisation OpenTelemetry : Comment nous utilisons OTEL comme standard pour les traces LLM et comment nous l'avons adapté à nos différentes stacks techniques (Python et écosystème JVM/Spring).\n- Architecture & Data Pipeline : La configuration de notre pipeline de collecte (OTEL Collector, routage sélectif vers Datadog)  ainsi que les astuces pour le déboguer efficacement.\n- Piloter le ROI : Comment nous monitorons l’adoption et les coûts de l'IA en interne, notamment les agents de code utilisés par nos développeurs (Claude Code).\n- Démocratisation avec Langfuse : Pourquoi et comment nous avons donné l’accès aux traces au plus grand nombre via cette “LLM engineering platform”.\n\nEn bref : les bonnes pratiques, les standards de demain et les erreurs à éviter pour opérer vos LLM en toute sérénité.",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Cloud & DevOps", "Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmm3k33yz007f01nswm5bi5ab",
+                        "name": "Julien Aubert",
+                        "bio": "Développeur Java de formation (2009), j'ai forgé mon expérience sur des projets critiques, notamment la construction du SI Linky chez Enedis. C’est dans ce contexte de performance et haute disponibilité que j'ai pivoté vers l'univers Cloud et DevOps.\n\nDepuis 2019, j'officie en tant que Tech Lead de l’équipe Platform/SRE chez Malt. Passionné par l'efficience opérationnelle, je concentre aujourd'hui mon expertise sur l’optimisation des coûts (FinOps), l’automatisation à l'échelle et l’amélioration de la Developer Experience (DevEx).",
+                        "company": "Malt",
+                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJRXtqEHL504l3qdYpERXhC_Hj1NdPyUpp7EKHUxWZVRNzt65w=s96-c",
+                        "socialLinks": ["https://www.linkedin.com/in/j-aubert/"]
+                    },
+                    {
+                        "id": "cmm3hmy60006j01ns5x40orao",
+                        "name": "Nicolas Mauti",
+                        "bio": "Diplômé en Juillet 2014 du département informatique de l'INSA de Lyon, j'ai travaillé pendant plusieurs années en tant qu'ingénieur logiciel, notamment en Java et C++.\n\nC'est à partir de 2019 que j'ai commencé à m'intéresser et travailler sur des sujets Data, d'abord en tant que Data Scientist. A ce titre j'ai pu développer et déployer avec succès plusieurs modèles de machines learning dans le domaine de la NLP (Natural Language Processing) et les systèmes de recommendation.\n\nA partir de 2021, j'ai voulu apporter mon expérience en développement logiciel et méthode devOps au service des équipes Data Science et à ce titre occuper un poste de MLOps Engineer.\n\nAvec l'avènement des LLM en production, j'accompagne maintenant non seulement les équipes data mais aussi engineering à l'adoption et à la bonne intégration de ces technologies dans nos produits\n\nEn parallèle, j'ai la chance d'enseigner en école d'ingénieur depuis plusieurs années et sur plusieurs cours différents : Big Data, Java, Data, MLOps.",
+                        "company": "Malt",
+                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocLA8hU2ZVOcjfdqdz2OsogA8Tp_5xxB3wg6MdwnXd-fff0ddaI=s96-c",
+                        "socialLinks": ["https://www.linkedin.com/in/nicolasmauti/"]
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt51jmb05qc01nvghs29fx4",
