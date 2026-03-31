@@ -17,6 +17,11 @@
             "url": "https://socrates-fr.github.io/",
             "linkedin": "https://www.linkedin.com/company/socratesfr/",
             "logo": "socrates.webp"
+        },
+        {
+            "name": "GenAi France",
+            "url": "https://www.generativeai.paris/",
+            "logo": "genai-france.webp"
         }
     ]
 }
