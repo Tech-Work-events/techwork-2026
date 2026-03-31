@@ -147,11 +147,41 @@
     {
       "id": "cmmuqfq9n07m701nvs8qh8m83",
       "start": "2026-06-18T09:00:00.000Z",
-      "end": "2026-06-18T09:50:00.000Z",
+      "end": "2026-06-18T09:10:00.000Z",
       "track": "Commun",
-      "title": "Introduction + Keynote d'ouverture",
+      "title": "Introduction",
       "language": null,
       "proposal": null
+    },
+    {
+      "id": "cmnel49cx00mz01pf1l8224uu",
+      "start": "2026-06-18T09:10:00.000Z",
+      "end": "2026-06-18T09:50:00.000Z",
+      "track": "Commun",
+      "title": "Pas besoin de berger : faire émerger le leadership sans y laisser sa laine",
+      "language": "fr",
+      "proposal": {
+        "id": "cmnefp8qy00kv01pfkwh78d3w",
+        "proposalNumber": 107,
+        "abstract": "Dans beaucoup d’équipes tech, tout remonte au “berger”.\nLes décisions, les arbitrages, les tensions.\n\nRésultat : goulots d’étranglement, fatigue managériale, désengagement.\nEt dès que le terrain devient escarpé, le drama s’installe.\n\nEt si le problème n’était pas les personnes, mais le système ?\n\nLe leadership n’est pas une question de charisme ni de titre.\nC’est une propriété émergente d’un collectif bien conçu.\n\nDans cette keynote inspirante et concrète, Alexis Monville partagera 30 ans d’expérience, des startups à Red Hat, pour montrer comment créer les conditions où chacun peut dire : « Je suis en charge. »\n\nVous découvrirez :\n\n• Pourquoi le contrôle affaiblit les équipes, et comment l’alignement clair remplace avantageusement la surveillance\n• Les 3 conditions de l’émergence : clarté d’intention, espace d’initiative, responsabilité assumée\n• Ce que l’open source nous apprend sur la distribution du leadership dans des environnements complexes\n• Comment sortir du cycle drama / escalade / épuisement pour entrer dans un mode flux et impact\n\nObjectif : repartir avec une grille de lecture simple et des leviers actionnables pour transformer votre équipe en une force collective autonome, engagée et robuste.\n\nPas besoin de berger.\nMais un système qui permet aux leaders d’émerger.",
+        "level": "BEGINNER",
+        "formats": [
+          "Keynote"
+        ],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmnefokqu00ku01pfsfq8kyxn",
+            "name": "Alexis Monville",
+            "bio": "Alexis Monville est co-fondateur de Pearlside et coach de dirigeants dans la tech.\nIl accompagne les organisations qui veulent passer d’un leadership centré sur le contrôle à un leadership qui fait émerger responsabilité et impact.\n\nAncien Chief of Staff du CTO chez Red Hat, il a évolué pendant plus de 30 ans dans des\nenvironnements open source, startups et grandes organisations internationales.\n\nAuteur de Changing Your Team from the Inside et I Am a Software Engineer and I Am in\nCharge, il travaille aujourd’hui avec des leaders qui veulent construire des organisations\noù chacun prend sa part, sans attendre qu’on lui dise quoi faire.",
+            "company": "Pearlside",
+            "picture": "https://media.licdn.com/dms/image/v2/C5103AQElbYnsvbgLZg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516243734165?e=1776297600&v=beta&t=W95SCNdlAGAqKhBqdMvlKVMGgDbapSoh_yOVqgAM2vg",
+            "socialLinks": [
+              "https://www.linkedin.com/in/alexismonville/"
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "cmmt511y805qa01nvslwak7lo",
@@ -270,6 +300,15 @@
       }
     },
     {
+      "id": "cmmuqhojk07m901nv04qqv4qr",
+      "start": "2026-06-18T17:00:00.000Z",
+      "end": "2026-06-18T17:10:00.000Z",
+      "track": "Commun",
+      "title": "Remerciements",
+      "language": null,
+      "proposal": null
+    },
+    {
       "id": "cmmt57yhm05qo01nv5kxm73bc",
       "start": "2026-06-18T15:15:00.000Z",
       "end": "2026-06-18T15:40:00.000Z",
@@ -304,13 +343,34 @@
       }
     },
     {
-      "id": "cmmuqhojk07m901nv04qqv4qr",
-      "start": "2026-06-18T17:00:00.000Z",
+      "id": "cmnel6occ00n101pfeu4j4nvj",
+      "start": "2026-06-18T17:10:00.000Z",
       "end": "2026-06-18T17:40:00.000Z",
       "track": "Commun",
-      "title": "Remerciements + Keynote de fin",
-      "language": null,
-      "proposal": null
+      "title": "Quand l'IA sait tout faire, qu'est-ce qui nous reste ?",
+      "language": "fr",
+      "proposal": {
+        "id": "cmnem2fbf00nr01pfhqva3h3u",
+        "proposalNumber": 108,
+        "abstract": "L'IA code, résume, décide, architecte. En quelques années, elle a compressé les écarts de compétences techniques vers le haut — ce que tout le monde savait faire \"bien\" ne suffit plus à se démarquer. Alors qu'est-ce qui reste, quand les hard skills deviennent commodité ?\n\nDonatien — ancien militaire devenu développeur, puis product, puis coach — raconte comment une suite de signaux écoutés (et parfois ignorés) l'a mené en 7 ans à travers 5 métiers, 3 surmenages, et un podcast où il décortique les parcours de dizaines de profils tech. \nCe qu’il en a appris : **il n'y a pas de bon chemin dans la tech — il y a le sien.** Et la compétence qui traverse toutes les ères technologiques n'est pas technique : c'est la capacité à s'écouter, à naviguer l'incertitude, et à faire le choix qui résonne plutôt que celui qui rassure.\n\nUn talk personnel, ancré dans le réel, qui pose une question simple : et si ce qu'on ne vous a jamais appris était précisément ce qui vous rend irremplaçable ?",
+        "level": "BEGINNER",
+        "formats": [
+          "Keynote"
+        ],
+        "categories": [],
+        "speakers": [
+          {
+            "id": "cmnem29kw00nq01pfkwmisqro",
+            "name": "Donatien Delalu Möller",
+            "bio": "Donatien Delalu Möller a passé 4 ans dans le milieu militaire avant de se reconvertir dans la tech. D'abord développeur full stack, il évolue rapidement vers des rôles plus hybrides : Tech & Product Lead, Product Engineer, CPTO. À chaque étape, il s'éloigne un peu plus du code pour adresser ce qui l'anime vraiment : la structuration produit, l'alignement tech-business, et les dynamiques humaines dans les organisations.\n\nEn parallèle, il lance le podcast *Developer Experience* — à date, plus de quarante épisodes qui décortiquent les parcours et les questionnements de profils tech. En 2025, il se forme au coaching avec une méthode basée sur les neurosciences grâce à 108 Milliards. Aujourd'hui, il accompagne des profils tech, produit et non-tech — managers, dirigeants, entrepreneurs — et co-anime le meetup Dev With AI à Lyon.\n\n## Références\n\n- 🎙️ Podcast *[Developer Experience](https://smartlink.ausha.co/developer-experience)* — 40+ épisodes sur les parcours tech\n- 🧠 Coach certifié 108 Milliards — méthode basée sur les neurosciences\n- 🤖 Co-animateur du meetup [Dev With AI (Lyon)](https://www.devw.ai/)",
+            "company": "Freelance",
+            "picture": "https://media.licdn.com/dms/image/v2/D4D03AQGIDyVU6nMhhg/profile-displayphoto-crop_800_800/B4DZnNC4SWHwAI-/0/1760081709370?e=1776297600&v=beta&t=Tgsh1ZBmaZPQdEzpaFkpRYs5pOllj4HepTV43FOToGc",
+            "socialLinks": [
+              "https://www.linkedin.com/in/donatien-d/"
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "cmn2z82un005t01prv9hvn0y9",
