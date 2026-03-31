@@ -97,6 +97,7 @@ export function getScheduleData(): ScheduleResult {
     const data = scheduleData as CHSchedule
 
     // Only keep confirmed sessions (with a proposal)
+    // Include keynotes from track "Commun" that have a proposal with format "Keynote"
     const confirmedSessions = data.sessions.filter((s) => s.proposal !== null)
 
     // Extract ALL tracks (including those with only placeholders) to show full schedule structure
@@ -148,7 +149,8 @@ export function getScheduleData(): ScheduleResult {
         const durationMinutes = Math.round((new Date(dateEnd).getTime() - new Date(dateStart).getTime()) / 60000)
 
         const normalizedTrack = normalizeTrackName(s.track)
-        const trackId = tracks.find((t) => t.name === normalizedTrack)?.id || null
+        const isKeynote = s.track === 'Commun' && s.proposal!.formats?.includes('Keynote')
+        const trackId = isKeynote ? null : tracks.find((t) => t.name === normalizedTrack)?.id || null
         const categoryId = s.proposal!.categories[0]
             ? categories.find((c) => c.name === s.proposal!.categories[0])?.id || null
             : null
@@ -180,9 +182,11 @@ export function getScheduleData(): ScheduleResult {
         }
     })
 
-    // Extract common sessions (track "Commun" - keynotes, pauses, etc.)
+    // Extract common sessions (track "Commun" - pauses, accueil, etc.)
+    // Exclude keynotes (they are now promoted to full Session objects)
+    const isKeynoteSession = (s: CHSession) => s.proposal !== null && s.proposal.formats?.includes('Keynote')
     const commonSessions: CommonSession[] = data.sessions
-        .filter((s) => s.track === 'Commun')
+        .filter((s) => s.track === 'Commun' && !isKeynoteSession(s))
         .map((s) => ({
             id: s.id,
             title: s.title,

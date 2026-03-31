@@ -44,6 +44,18 @@ export async function getStaticPaths() {
 
     const sortedDays = Array.from(sessionsByDay.keys()).sort()
 
+    // Extract keynote sessions (trackId null = from track "Commun", formatId 'Keynote')
+    const keynotesByDay = augmentedSessions
+        .filter((s) => s.formatId === 'Keynote' && !s.trackId && s.dateStart)
+        .reduce((acc, session) => {
+            const date = new Date(session.dateStart!)
+            date.setHours(0, 0, 0, 0)
+            const ts = date.getTime()
+            if (!acc.has(ts)) acc.set(ts, [])
+            acc.get(ts)!.push(session)
+            return acc
+        }, new Map<number, (Session & { track: Track | undefined; speakers: Speaker[]; category: Category | undefined })[]>())
+
     // Stats
     const uniqueSpeakers = new Set(sessions.flatMap((s) => s.speakerIds)).size
     const uniqueTracks = tracks.filter((t) => !t.name.startsWith('Workshop')).length
@@ -54,6 +66,7 @@ export async function getStaticPaths() {
             props: {
                 day,
                 sessions: sessionsByDay.get(day) || [],
+                keynotes: keynotesByDay.get(day) || [],
                 allSessions: augmentedSessions,
                 days: sortedDays,
                 tracks,
@@ -66,6 +79,7 @@ export async function getStaticPaths() {
             props: {
                 day: 'favorite',
                 sessions: augmentedSessions,
+                keynotes: augmentedSessions.filter((s) => s.formatId === 'Keynote' && !s.trackId),
                 allSessions: augmentedSessions,
                 days: sortedDays,
                 tracks,
@@ -76,7 +90,16 @@ export async function getStaticPaths() {
     ]
 }
 
-const { day, sessions, allSessions, days, tracks, stats, commonSessions: commonSessionsData } = Astro.props
+const {
+    day,
+    sessions,
+    keynotes: keynoteSessionsData,
+    allSessions,
+    days,
+    tracks,
+    stats,
+    commonSessions: commonSessionsData,
+} = Astro.props
 
 const pageTitle =
     day === 'favorite' ? 'Mon programme' : `Programme ${new Date(day).toLocaleDateString('fr', { dateStyle: 'long' })}`
@@ -113,15 +136,24 @@ const TRACK_SLOTS = [
     { start: '16:00', end: '16:50' },
 ]
 
+// Keynote sessions passed as prop (promoted from common, formatId === 'Keynote', trackId === null)
+const keynoteSessions = (keynoteSessionsData || []) as AugmentedSession[]
+
 // Build unified timeline sorted by time, each entry gets a grid row number
 type TimelineEntry =
     | { type: 'common'; session: CommonSession; gridRow: number }
+    | { type: 'keynote'; session: AugmentedSession; gridRow: number }
     | { type: 'tracks'; slot: (typeof TRACK_SLOTS)[0]; slotIndex: number; gridRow: number }
 
-const rawTimeline: { type: 'common' | 'tracks'; time: number; data: any }[] = []
+const rawTimeline: { type: 'common' | 'keynote' | 'tracks'; time: number; data: any }[] = []
 
 for (const cs of (commonSessionsData || []) as CommonSession[]) {
     rawTimeline.push({ type: 'common', time: new Date(cs.dateStart).getTime(), data: cs })
+}
+for (const ks of keynoteSessions) {
+    if (ks.dateStart) {
+        rawTimeline.push({ type: 'keynote', time: new Date(ks.dateStart).getTime(), data: ks })
+    }
 }
 for (let i = 0; i < TRACK_SLOTS.length; i++) {
     rawTimeline.push({
@@ -138,6 +170,8 @@ let currentRow = 2
 for (const item of rawTimeline) {
     if (item.type === 'common') {
         timeline.push({ type: 'common', session: item.data, gridRow: currentRow })
+    } else if (item.type === 'keynote') {
+        timeline.push({ type: 'keynote', session: item.data, gridRow: currentRow })
     } else {
         timeline.push({ type: 'tracks', slot: item.data.slot, slotIndex: item.data.slotIndex, gridRow: currentRow })
     }
@@ -189,7 +223,9 @@ function getSessionForSlot(
         const entryTime =
             entry.type === 'common'
                 ? new Date(entry.session.dateStart).getTime()
-                : new Date(`2026-06-18T${entry.slot.start}:00.000`).getTime()
+                : entry.type === 'keynote'
+                  ? new Date(entry.session.dateStart!).getTime()
+                  : new Date(`2026-06-18T${entry.slot.start}:00.000`).getTime()
         if (sessionEndTime > entryTime) {
             lastRow = entry.gridRow
         }
@@ -352,6 +388,65 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                 )
                             }
 
+                            if (entry.type === 'keynote') {
+                                const ks = entry.session
+                                const startTime = new Date(ks.dateStart!).toLocaleTimeString('fr', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })
+                                const endTime = ks.dateEnd
+                                    ? new Date(ks.dateEnd).toLocaleTimeString('fr', {
+                                          hour: '2-digit',
+                                          minute: '2-digit',
+                                      })
+                                    : ''
+
+                                return (
+                                    <>
+                                        <div
+                                            class="schedule-grid-time schedule-grid-time--common"
+                                            style={`grid-row: ${entry.gridRow}; grid-column: 1;`}>
+                                            <span class="schedule-grid-time-start">{startTime}</span>
+                                            <span class="schedule-grid-time-end">{endTime}</span>
+                                        </div>
+                                        <a
+                                            href={`/sessions/${ks.id}`}
+                                            class="schedule-keynote-card"
+                                            style={`grid-row: ${entry.gridRow}; grid-column: 2 / -1;`}>
+                                            <div class="schedule-keynote-header">
+                                                <span class="schedule-keynote-badge">Keynote</span>
+                                                <span class="schedule-grid-cell-time">
+                                                    {startTime} — {endTime}
+                                                    <span class="schedule-grid-cell-duration">
+                                                        {ks.durationMinutes} min
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <h3 class="schedule-keynote-title">{ks.title}</h3>
+                                            {ks.speakers.length > 0 && (
+                                                <div class="schedule-keynote-speakers">
+                                                    {ks.speakers.map((speaker) => (
+                                                        <div class="schedule-grid-cell-speaker">
+                                                            <img
+                                                                class="w-5 h-5 rounded-full object-cover flex-shrink-0"
+                                                                src={speaker.photoUrl || '/favicon-96x96.png'}
+                                                                alt={speaker.name}
+                                                                width="20"
+                                                                height="20"
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                                            />
+                                                            <span>{speaker.name}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </a>
+                                    </>
+                                )
+                            }
+
                             const slot = entry.slot
                             const gridRow = entry.gridRow
 
@@ -461,6 +556,57 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                                 {cs.durationMinutes} min
                                             </span>
                                         </div>
+                                    </div>
+                                )
+                            }
+
+                            if (entry.type === 'keynote') {
+                                const ks = entry.session
+                                const startTime = new Date(ks.dateStart!).toLocaleTimeString('fr', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                })
+                                return (
+                                    <div class="schedule-mobile-slot">
+                                        <div class="schedule-mobile-time">
+                                            <span class="schedule-mobile-time-label">{startTime}</span>
+                                            <div class="schedule-mobile-time-line" />
+                                        </div>
+                                        <a
+                                            href={`/sessions/${ks.id}`}
+                                            class="schedule-mobile-session"
+                                            style="border-left: 3px solid #6366f1">
+                                            <div class="schedule-mobile-session-header">
+                                                <span
+                                                    class="schedule-mobile-session-track"
+                                                    style="background-color: #6366f1">
+                                                    Keynote
+                                                </span>
+                                                <span class="schedule-mobile-session-duration">
+                                                    {ks.durationMinutes} min
+                                                </span>
+                                            </div>
+                                            <h3 class="text-sm font-bold text-gray-900">{ks.title}</h3>
+                                            {ks.speakers.length > 0 && (
+                                                <div class="flex flex-wrap gap-2 pt-1">
+                                                    {ks.speakers.map((speaker) => (
+                                                        <div class="flex items-center gap-1.5">
+                                                            <img
+                                                                class="w-5 h-5 rounded-full object-cover"
+                                                                src={speaker.photoUrl || '/favicon-96x96.png'}
+                                                                alt={speaker.name}
+                                                                width="20"
+                                                                height="20"
+                                                                loading="lazy"
+                                                                decoding="async"
+                                                                onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                                            />
+                                                            <span class="text-xs text-gray-600">{speaker.name}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </a>
                                     </div>
                                 )
                             }
@@ -648,6 +794,60 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
         margin-left: auto;
         font-size: 0.7rem;
         color: #94a3b8;
+    }
+
+    /* Keynote card (clickable, full-width) */
+    .schedule-keynote-card {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+        border: 1px solid #c7d2fe;
+        border-radius: 12px;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s;
+    }
+
+    .schedule-keynote-card:hover {
+        border-color: #818cf8;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        transform: translateY(-1px);
+    }
+
+    .schedule-keynote-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .schedule-keynote-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 10px;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        background-color: #e0e7ff;
+        color: #4338ca;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .schedule-keynote-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #1e1b4b;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .schedule-keynote-speakers {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-left: 2px;
     }
 
     .schedule-grid-time-start {
