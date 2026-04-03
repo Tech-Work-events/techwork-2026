@@ -1,19 +1,11 @@
 [
     {
-        "label": "CFP",
-        "route": "/cfp",
-        "enabled": false,
-        "icon": "🎤",
-        "description": "Microphone",
+        "label": "Programme",
+        "route": "/schedule",
+        "enabled": true,
+        "icon": "📅",
+        "description": "Programme",
         "order": 1
-    },
-    {
-        "label": "Équipe",
-        "route": "/team",
-        "enabled": false,
-        "icon": "👥",
-        "description": "Équipe",
-        "order": 2
     },
     {
         "label": "Speakers",
@@ -24,22 +16,6 @@
         "order": 2
     },
     {
-        "label": "Partenaires",
-        "route": "/sponsors",
-        "enabled": true,
-        "icon": "🤝",
-        "description": "Partenaires",
-        "order": 4
-    },
-    {
-        "label": "Code de conduite",
-        "route": "/coc",
-        "enabled": false,
-        "icon": "🤝",
-        "description": "Code de conduite",
-        "order": 5
-    },
-    {
         "label": "Lieu",
         "route": "/location",
         "enabled": true,
@@ -48,12 +24,44 @@
         "order": 3
     },
     {
+        "label": "Équipe",
+        "route": "/team",
+        "enabled": true,
+        "icon": "👥",
+        "description": "Équipe organisatrice",
+        "order": 4
+    },
+    {
+        "label": "Partenaires",
+        "route": "/sponsors",
+        "enabled": true,
+        "icon": "🤝",
+        "description": "Partenaires",
+        "order": 5
+    },
+    {
         "label": "Jobs",
         "route": "/jobs",
         "enabled": true,
         "icon": "💼",
         "description": "Job Board",
-        "order": 5
+        "order": 6
+    },
+    {
+        "label": "CFP",
+        "route": "/cfp",
+        "enabled": false,
+        "icon": "🎤",
+        "description": "Microphone",
+        "order": 7
+    },
+    {
+        "label": "Code de conduite",
+        "route": "/coc",
+        "enabled": false,
+        "icon": "🤝",
+        "description": "Code de conduite",
+        "order": 8
     },
     {
         "label": "FAQ",
@@ -61,15 +69,7 @@
         "enabled": false,
         "icon": "❓",
         "description": "Questions fréquentes",
-        "order": 7
-    },
-    {
-        "label": "Programme",
-        "route": "/schedule",
-        "enabled": true,
-        "icon": "📅",
-        "description": "Programme",
-        "order": 1
+        "order": 9
     },
     {
         "label": "Blog",
@@ -77,6 +77,6 @@
         "enabled": false,
         "icon": "📝",
         "description": "Blog",
-        "order": 9
+        "order": 10
     }
 ]
