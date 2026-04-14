@@ -127,6 +127,91 @@
             "description": "Rejoignez Hoppr Tech en tant que Lead Agency Paris - Consultant(e) Fullstack Craft. Consultez l'offre complète sur Notion pour le détail des missions et modalités.",
             "applyUrl": "https://hoppr-tech.notion.site/Offre-Lead-Agency-Paris-Consultant-e-Fullstack-Craft-cc6b19a39699459a93b9e6487cb9be8f",
             "publishedAt": "2026-02-04"
+        },
+        {
+            "id": "7",
+            "title": "Ingénieur SysOps H/F",
+            "company": {
+                "name": "Inetum",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGXCWtYPQqNWA/company-logo_200_200/B4EZwJQyCRGsAM-/0/1769681920574/inetum_logo?e=2147483647&v=beta&t=jvibj0YqoKePH3LgaWpFTGuEj4RJ1WMSuVeMkzlsx8o",
+                "website": "https://www.inetum.com"
+            },
+            "location": "Lyon / Grenoble",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "security",
+            "salary": "Selon profil",
+            "description": "Inetum recherche un(e) Ingénieur(e) SysOps pour assurer le MCO/MCS d'infrastructures PKI, renforcer l'automatisation (Ansible, Jenkins), finaliser les outils d'exploitation et contribuer à la documentation de service dans un environnement Linux/Windows sécurisé.",
+            "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/ec19a30c-2011-4282-8405-c8f19e1860f3.html",
+            "publishedAt": "2026-04-14"
+        },
+        {
+            "id": "8",
+            "title": "Product Owner H/F",
+            "company": {
+                "name": "Inetum",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGXCWtYPQqNWA/company-logo_200_200/B4EZwJQyCRGsAM-/0/1769681920574/inetum_logo?e=2147483647&v=beta&t=jvibj0YqoKePH3LgaWpFTGuEj4RJ1WMSuVeMkzlsx8o",
+                "website": "https://www.inetum.com"
+            },
+            "location": "Lyon / Grenoble",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "management",
+            "salary": "Selon profil",
+            "description": "Inetum recrute un(e) Product Owner pour definir la vision produit, piloter et prioriser le backlog, rediger les user stories, coordonner les parties prenantes et suivre les sprints dans des environnements Agile sur des projets grands comptes.",
+            "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/bf110828-9497-4511-89b7-e4552b727b6f.html",
+            "publishedAt": "2026-04-14"
+        },
+        {
+            "id": "9",
+            "title": "Scrum Master H/F",
+            "company": {
+                "name": "Inetum",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGXCWtYPQqNWA/company-logo_200_200/B4EZwJQyCRGsAM-/0/1769681920574/inetum_logo?e=2147483647&v=beta&t=jvibj0YqoKePH3LgaWpFTGuEj4RJ1WMSuVeMkzlsx8o",
+                "website": "https://www.inetum.com"
+            },
+            "location": "Lyon / Grenoble",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "management",
+            "salary": "Selon profil",
+            "description": "Inetum recherche un(e) Scrum Master pour faciliter 2 equipes en contexte banque/finance/assurance, animer les ceremonies Scrum, coordonner avec les Product Owners, suivre les indicateurs et garantir la fluidite des activites dans un environnement multi-acteurs.",
+            "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/27bb2cc8-24d3-4367-a702-7fe5c8ea5cd1.html",
+            "publishedAt": "2026-04-14"
+        },
+        {
+            "id": "10",
+            "title": "Developpeur Fullstack Craftmanship H/F",
+            "company": {
+                "name": "Inetum",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGXCWtYPQqNWA/company-logo_200_200/B4EZwJQyCRGsAM-/0/1769681920574/inetum_logo?e=2147483647&v=beta&t=jvibj0YqoKePH3LgaWpFTGuEj4RJ1WMSuVeMkzlsx8o",
+                "website": "https://www.inetum.com"
+            },
+            "location": "Lyon / Grenoble",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "fullstack",
+            "salary": "Selon profil",
+            "description": "Inetum recrute un(e) Developpeur(se) Fullstack confirme(e) pour concevoir et maintenir des applications Java/Angular en environnement Agile, avec un fort niveau d'exigence sur la qualite logicielle (TDD, clean code, clean architecture, tests unitaires/integration, CI/CD) et la collaboration produit/metier.",
+            "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/1de93eb3-d836-48c1-b327-7b26aaa0f02b.html",
+            "publishedAt": "2026-04-14"
+        },
+        {
+            "id": "11",
+            "title": "Ingenieur DevOps H/F",
+            "company": {
+                "name": "Inetum",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGXCWtYPQqNWA/company-logo_200_200/B4EZwJQyCRGsAM-/0/1769681920574/inetum_logo?e=2147483647&v=beta&t=jvibj0YqoKePH3LgaWpFTGuEj4RJ1WMSuVeMkzlsx8o",
+                "website": "https://www.inetum.com"
+            },
+            "location": "Lyon / Grenoble",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Inetum recherche un(e) Ingenieur(e) DevOps pour industrialiser les chaines CI/CD, automatiser l'infrastructure (Terraform, Ansible, Kubernetes), piloter les migrations cloud AWS/Azure, renforcer la supervision (Datadog, Prometheus, Grafana) et diffuser les pratiques DevSecOps sur des projets a forts enjeux.",
+            "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/d83efdbc-977a-4346-831c-78d3f6f89aea.html",
+            "publishedAt": "2026-04-14"
         }
     ]
 }
