@@ -211,7 +211,92 @@
             "salary": "Selon profil",
             "description": "Inetum recherche un(e) Ingenieur(e) DevOps pour industrialiser les chaines CI/CD, automatiser l'infrastructure (Terraform, Ansible, Kubernetes), piloter les migrations cloud AWS/Azure, renforcer la supervision (Datadog, Prometheus, Grafana) et diffuser les pratiques DevSecOps sur des projets a forts enjeux.",
             "applyUrl": "https://www.inetum.com/fr/accueil/carrieres/d83efdbc-977a-4346-831c-78d3f6f89aea.html",
-            "publishedAt": "2026-04-14"
+            "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "12",
+            "title": "Ingénieur Systèmes H/F",
+            "company": {
+                "name": "ITS Services",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQEeHX2r0xVfKA/company-logo_200_200/company-logo_200_200/0/1719923399375/itsservices_logo?e=1778112000&v=beta&t=NsKWwMt1wr_27ESfQF-BJEUFqS8rI_OWmuFnEnuxqoI",
+                "website": "https://www.itsservices.fr/"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Intégré(e) à une équipe technique dédiée, vous serez au cœur de missions à forts enjeux, couvrant l’administration, la migration, le MCO et l’optimisation des environnements serveurs.",
+            "applyUrl": "https://carriere.itsgroup.fr/3507/detail_annonce.php",
+            "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "13",
+            "title": "Ingénieur Cloud H/F",
+            "company": {
+                "name": "ITS Services",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQEeHX2r0xVfKA/company-logo_200_200/company-logo_200_200/0/1719923399375/itsservices_logo?e=1778112000&v=beta&t=NsKWwMt1wr_27ESfQF-BJEUFqS8rI_OWmuFnEnuxqoI",
+                "website": "https://www.itsservices.fr/"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Intégré(e) au sein de notre agence lyonnaise, vous interviendrez sur des projets stratégiques alliant architecture, sécurisation, automatisation et opérations Cloud dans des environnements exigeants.",
+            "applyUrl": "https://carriere.itsgroup.fr/3508/detail_annonce.php",
+            "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "14",
+            "title": "Ingénieur(e) DevSecOps H/F",
+            "company": {
+                "name": "ITS Services",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQEeHX2r0xVfKA/company-logo_200_200/company-logo_200_200/0/1719923399375/itsservices_logo?e=1778112000&v=beta&t=NsKWwMt1wr_27ESfQF-BJEUFqS8rI_OWmuFnEnuxqoI",
+                "website": "https://www.itsservices.fr/"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "security",
+            "salary": "Selon profil",
+            "description": "Intégré(e) à une équipe pluridisciplinaire, vous interviendrez sur des missions à forts enjeux techniques, mêlant automatisation, sécurité, maintien en conditions opérationnelles et optimisation continue des environnements.",
+            "applyUrl": "https://carriere.itsgroup.fr/3506/detail_annonce.php",
+            "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "15",
+            "title": "Intégrateur DevOps H/F",
+            "company": {
+                "name": "ITS Services",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQEeHX2r0xVfKA/company-logo_200_200/company-logo_200_200/0/1719923399375/itsservices_logo?e=1778112000&v=beta&t=NsKWwMt1wr_27ESfQF-BJEUFqS8rI_OWmuFnEnuxqoI",
+                "website": "https://www.itsservices.fr/"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Dans le cadre de notre croissance, nous recherchons un(e) Intégrateur(trice) DevOps pour contribuer à l’intégration, l’automatisation et l’optimisation des déploiements applicatifs dans un contexte agile et orienté DevOps.",
+            "applyUrl": "https://carriere.itsgroup.fr/3504/detail_annonce.php",
+            "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "16",
+            "title": "Ingénieur Infrastructure H/F",
+            "company": {
+                "name": "ITS Services",
+                "logoUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQEeHX2r0xVfKA/company-logo_200_200/company-logo_200_200/0/1719923399375/itsservices_logo?e=1778112000&v=beta&t=NsKWwMt1wr_27ESfQF-BJEUFqS8rI_OWmuFnEnuxqoI",
+                "website": "https://www.itsservices.fr/"
+            },
+            "location": "Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Vous interviendrez au cœur des enjeux de performance, de résilience, de scalabilité et d’automatisation, en collaboration étroite avec les équipes internes (Systèmes, Réseaux, Cybersécurité, DevOps) et les partenaires externes.",
+            "applyUrl": "https://carriere.itsgroup.fr/3502/detail_annonce.php",
+            "publishedAt": "2026-04-21"
         }
     ]
 }
