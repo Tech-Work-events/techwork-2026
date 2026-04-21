@@ -125,7 +125,10 @@ const GRID_COLUMNS = tracks
         name: t.name,
         icon: (TRACK_COLORS[t.id] || DEFAULT_TRACK_STYLE).icon,
         color: (TRACK_COLORS[t.id] || DEFAULT_TRACK_STYLE).color,
+        widthFr: t.id === 'workshop' ? 2 : 1,
     }))
+
+const GRID_COLUMN_TEMPLATE = `64px ${GRID_COLUMNS.map((c) => `${c.widthFr}fr`).join(' ')}`
 
 const TRACK_SLOTS = [
     { start: '10:00', end: '10:50' },
@@ -197,49 +200,52 @@ function getCommonIcon(title: string): string {
     return '📌'
 }
 
-// Find session for a slot + track, and compute how many GRID ROWS it spans (including common rows in between)
-function getSessionForSlot(
+// Find all sessions for a slot + track, and compute how many GRID ROWS each spans.
+// Returns an array because tracks like "Workshop" can have multiple concurrent streams.
+function getSessionsForSlot(
     slot: (typeof TRACK_SLOTS)[0],
     trackId: string
-): { session: AugmentedSession; gridRowSpan: number } | null {
+): { session: AugmentedSession; gridRowSpan: number }[] {
     const allAugmented = sessions as AugmentedSession[]
-    const session = allAugmented.find((s) => {
-        if (!s.dateStart || !s.trackId) return false
+    const matching = allAugmented.filter((s) => {
+        if (!s.dateStart || !s.dateEnd || !s.trackId) return false
         const sessionTime = new Date(s.dateStart).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })
         return sessionTime === slot.start && s.trackId === trackId
     })
-    if (!session || !session.dateEnd) return null
+    if (matching.length === 0) return []
 
-    // Find the grid row where this session starts
     const startEntry = timeline.find((e) => e.type === 'tracks' && e.slot.start === slot.start)
-    if (!startEntry) return null
+    if (!startEntry) return []
 
-    const sessionEndTime = new Date(session.dateEnd).getTime()
+    return matching.map((session) => {
+        const sessionEndTime = new Date(session.dateEnd!).getTime()
 
-    // Find the last timeline entry that this session covers
-    let lastRow = startEntry.gridRow
-    for (const entry of timeline) {
-        if (entry.gridRow <= startEntry.gridRow) continue
-        const entryTime =
-            entry.type === 'common'
-                ? new Date(entry.session.dateStart).getTime()
-                : entry.type === 'keynote'
-                  ? new Date(entry.session.dateStart!).getTime()
-                  : new Date(`2026-06-18T${entry.slot.start}:00.000`).getTime()
-        if (sessionEndTime > entryTime) {
-            lastRow = entry.gridRow
+        let lastRow = startEntry.gridRow
+        for (const entry of timeline) {
+            if (entry.gridRow <= startEntry.gridRow) continue
+            const entryTime =
+                entry.type === 'common'
+                    ? new Date(entry.session.dateStart).getTime()
+                    : entry.type === 'keynote'
+                      ? new Date(entry.session.dateStart!).getTime()
+                      : new Date(`2026-06-18T${entry.slot.start}:00.000`).getTime()
+            if (sessionEndTime > entryTime) {
+                lastRow = entry.gridRow
+            }
         }
-    }
 
-    return { session, gridRowSpan: lastRow - startEntry.gridRow + 1 }
+        return { session, gridRowSpan: lastRow - startEntry.gridRow + 1 }
+    })
 }
 
 // Check if a cell is occupied by a session that started earlier and spans into this row
 function isCellOccupied(gridRow: number, trackId: string): boolean {
     for (const entry of timeline) {
         if (entry.type !== 'tracks' || entry.gridRow >= gridRow) continue
-        const result = getSessionForSlot(entry.slot, trackId)
-        if (result && entry.gridRow + result.gridRowSpan > gridRow) return true
+        const results = getSessionsForSlot(entry.slot, trackId)
+        for (const result of results) {
+            if (entry.gridRow + result.gridRowSpan > gridRow) return true
+        }
     }
     return false
 }
@@ -333,7 +339,7 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                 day !== 'favorite' && (
                     <div
                         class="schedule-grid"
-                        style={`--col-count: ${GRID_COLUMNS.length}; grid-template-rows: auto repeat(${totalGridRows - 1}, auto)`}>
+                        style={`grid-template-columns: ${GRID_COLUMN_TEMPLATE}; grid-template-rows: auto repeat(${totalGridRows - 1}, auto)`}>
                         {/* Row 1: Column headers */}
                         <div class="schedule-grid-corner" style="grid-row: 1; grid-column: 1;" />
                         {GRID_COLUMNS.map((col, ci) => (
@@ -460,67 +466,89 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                     {GRID_COLUMNS.map((col, ci) => {
                                         if (isCellOccupied(gridRow, col.trackId)) return null
 
-                                        const result = getSessionForSlot(slot, col.trackId)
+                                        const results = getSessionsForSlot(slot, col.trackId)
                                         const gridCol = ci + 2
 
-                                        return result ? (
-                                            <a
-                                                href={`/sessions/${result.session.id}`}
-                                                class="schedule-grid-cell schedule-grid-cell--filled"
-                                                style={`grid-row: ${gridRow} / span ${result.gridRowSpan}; grid-column: ${gridCol}; border-left: 3px solid ${col.color}`}>
-                                                <div class="schedule-grid-cell-time">
-                                                    {new Date(result.session.dateStart!).toLocaleTimeString('fr', {
-                                                        hour: '2-digit',
-                                                        minute: '2-digit',
-                                                    })}
-                                                    {result.session.dateEnd &&
-                                                        ` — ${new Date(result.session.dateEnd).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })}`}
-                                                    <span class="schedule-grid-cell-duration">
-                                                        {result.session.durationMinutes} min
-                                                    </span>
+                                        if (results.length === 0) {
+                                            return (
+                                                <div
+                                                    class="schedule-grid-cell schedule-grid-cell--empty"
+                                                    style={`grid-row: ${gridRow}; grid-column: ${gridCol};`}>
+                                                    <span>Ola n'a pas encore craché le morceau 🦙</span>
                                                 </div>
-                                                <h3 class="schedule-grid-cell-title">{result.session.title}</h3>
-                                                {result.session.level && (
-                                                    <span
-                                                        class={`schedule-grid-cell-level ${
-                                                            result.session.level === 'BEGINNER'
-                                                                ? 'bg-green-100 text-green-700'
-                                                                : result.session.level === 'INTERMEDIATE'
-                                                                  ? 'bg-yellow-100 text-yellow-700'
-                                                                  : 'bg-red-100 text-red-700'
-                                                        }`}>
-                                                        {result.session.level === 'BEGINNER'
-                                                            ? 'Débutant'
-                                                            : result.session.level === 'INTERMEDIATE'
-                                                              ? 'Intermédiaire'
-                                                              : 'Avancé'}
-                                                    </span>
-                                                )}
-                                                {result.session.speakers.length > 0 && (
-                                                    <div class="schedule-grid-cell-speakers">
-                                                        {result.session.speakers.map((speaker) => (
-                                                            <div class="schedule-grid-cell-speaker">
-                                                                <img
-                                                                    class="w-5 h-5 rounded-full object-cover flex-shrink-0"
-                                                                    src={speaker.photoUrl || '/favicon-96x96.png'}
-                                                                    alt={speaker.name}
-                                                                    width="20"
-                                                                    height="20"
-                                                                    loading="lazy"
-                                                                    decoding="async"
-                                                                    onerror="this.onerror=null;this.src='/favicon-96x96.png'"
-                                                                />
-                                                                <span>{speaker.name}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </a>
-                                        ) : (
+                                            )
+                                        }
+
+                                        const rowSpan = Math.max(...results.map((r) => r.gridRowSpan))
+                                        const isMulti = results.length > 1
+
+                                        return (
                                             <div
-                                                class="schedule-grid-cell schedule-grid-cell--empty"
-                                                style={`grid-row: ${gridRow}; grid-column: ${gridCol};`}>
-                                                <span>Ola n'a pas encore craché le morceau 🦙</span>
+                                                class={
+                                                    isMulti
+                                                        ? 'schedule-grid-cell--multi'
+                                                        : 'schedule-grid-cell--single-wrapper'
+                                                }
+                                                style={`grid-row: ${gridRow} / span ${rowSpan}; grid-column: ${gridCol};`}>
+                                                {results.map((result) => (
+                                                    <a
+                                                        href={`/sessions/${result.session.id}`}
+                                                        class={`schedule-grid-cell schedule-grid-cell--filled ${isMulti ? 'schedule-grid-cell--mini' : ''}`}
+                                                        style={`border-left: 3px solid ${col.color}`}>
+                                                        <div class="schedule-grid-cell-time">
+                                                            {new Date(result.session.dateStart!).toLocaleTimeString(
+                                                                'fr',
+                                                                {
+                                                                    hour: '2-digit',
+                                                                    minute: '2-digit',
+                                                                }
+                                                            )}
+                                                            {result.session.dateEnd &&
+                                                                ` — ${new Date(result.session.dateEnd).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })}`}
+                                                            <span class="schedule-grid-cell-duration">
+                                                                {result.session.durationMinutes} min
+                                                            </span>
+                                                        </div>
+                                                        <h3 class="schedule-grid-cell-title">{result.session.title}</h3>
+                                                        {result.session.level && (
+                                                            <span
+                                                                class={`schedule-grid-cell-level ${
+                                                                    result.session.level === 'BEGINNER'
+                                                                        ? 'bg-green-100 text-green-700'
+                                                                        : result.session.level === 'INTERMEDIATE'
+                                                                          ? 'bg-yellow-100 text-yellow-700'
+                                                                          : 'bg-red-100 text-red-700'
+                                                                }`}>
+                                                                {result.session.level === 'BEGINNER'
+                                                                    ? 'Débutant'
+                                                                    : result.session.level === 'INTERMEDIATE'
+                                                                      ? 'Intermédiaire'
+                                                                      : 'Avancé'}
+                                                            </span>
+                                                        )}
+                                                        {result.session.speakers.length > 0 && (
+                                                            <div class="schedule-grid-cell-speakers">
+                                                                {result.session.speakers.map((speaker) => (
+                                                                    <div class="schedule-grid-cell-speaker">
+                                                                        <img
+                                                                            class="w-5 h-5 rounded-full object-cover flex-shrink-0"
+                                                                            src={
+                                                                                speaker.photoUrl || '/favicon-96x96.png'
+                                                                            }
+                                                                            alt={speaker.name}
+                                                                            width="20"
+                                                                            height="20"
+                                                                            loading="lazy"
+                                                                            decoding="async"
+                                                                            onerror="this.onerror=null;this.src='/favicon-96x96.png'"
+                                                                        />
+                                                                        <span>{speaker.name}</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </a>
+                                                ))}
                                             </div>
                                         )
                                     })}
@@ -612,15 +640,9 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                             }
 
                             const slot = entry.slot
-                            // Collect all sessions for this time slot across all tracks
-                            const slotSessions = GRID_COLUMNS.map((col) => {
-                                const result = getSessionForSlot(slot, col.trackId)
-                                return result ? { ...result, col } : null
-                            }).filter(Boolean) as {
-                                session: AugmentedSession
-                                gridRowSpan: number
-                                col: (typeof GRID_COLUMNS)[0]
-                            }[]
+                            const slotSessions = GRID_COLUMNS.flatMap((col) =>
+                                getSessionsForSlot(slot, col.trackId).map((result) => ({ ...result, col }))
+                            )
 
                             if (slotSessions.length === 0) return null
 
@@ -733,7 +755,6 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
 <style>
     .schedule-grid {
         display: grid;
-        grid-template-columns: 64px repeat(var(--col-count, 4), 1fr);
         gap: 6px;
     }
 
@@ -884,6 +905,29 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
         border-color: #9ca3af;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         transform: translateY(-1px);
+    }
+
+    .schedule-grid-cell--single-wrapper {
+        display: grid;
+    }
+
+    .schedule-grid-cell--multi {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .schedule-grid-cell--mini {
+        padding: 10px;
+        min-width: 0;
+    }
+
+    .schedule-grid-cell--mini .schedule-grid-cell-title {
+        font-size: 0.75rem;
+    }
+
+    .schedule-grid-cell--mini .schedule-grid-cell-time {
+        font-size: 0.65rem;
     }
 
     .schedule-grid-cell--empty {
