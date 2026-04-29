@@ -1,0 +1,30 @@
+---
+import { PARTNERS_DATA } from '../../config'
+import type { PartnersConfig } from '../../types/partner'
+import PartnerLogoCard from './PartnerLogoCard.astro'
+
+const partners = (PARTNERS_DATA as unknown as PartnersConfig).animationPartners
+---
+
+<section
+    id="animation-partners-sponsors"
+    class="py-12 sm:py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 border-t border-amber-100"
+    aria-labelledby="animation-partners-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 scroll-animate">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold mb-4">
+                <span class="mr-2" aria-hidden="true">🎨</span>
+                Animations & Artisans
+            </div>
+            <h2 id="animation-partners-title" class="text-2xl sm:text-3xl font-black text-gray-900 mb-4">
+                Animations & <span class="text-gradient">Artisans</span>
+            </h2>
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Présents le 18 juin 2026.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 stagger-children">
+            {partners.map((partner) => <PartnerLogoCard partner={partner} size="small" />)}
+        </div>
+    </div>
+</section>

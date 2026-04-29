@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets'
+import type { Partner, AnimationPartner } from '../../types/partner'
+import { pickPrimaryUrl, hasLogo } from '../../utils/partners'
+
+interface Props {
+    partner: Partner | AnimationPartner
+    size?: 'small' | 'large'
+}
+
+const { partner, size = 'small' } = Astro.props
+
+// Dynamic imports for partner logo assets
+const icons = import.meta.glob<{ default: ImageMetadata }>('../assets/partners/*.{png,jpg,jpeg,svg,webp}')
+
+const logoHeight = size === 'large' ? 'h-16 sm:h-20' : 'h-10 sm:h-12'
+
+const primaryUrl = pickPrimaryUrl(partner)
+const showLogo = hasLogo(partner)
+const tooltip = partner.tagline ?? partner.name
+
+let resolvedImage: ImageMetadata | null = null
+if (showLogo && partner.logo) {
+    const iconPath = `../assets/partners/${partner.logo}`
+    const loader = icons[iconPath]
+    if (!loader) {
+        console.error(`Image not found: ${iconPath}`)
+    } else {
+        resolvedImage = (await loader()).default
+    }
+}
+---
+
+<a
+    href={primaryUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={tooltip}
+    aria-label={`Site de ${partner.name}`}
+    class="group flex items-center justify-center bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px] min-w-[44px]">
+    {
+        resolvedImage ? (
+            <Image
+                src={resolvedImage}
+                alt={`Logo ${partner.name}`}
+                class={`${logoHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
+                loading="lazy"
+                decoding="async"
+            />
+        ) : (
+            <span class={`${logoHeight} flex items-center font-bold text-gray-700 text-sm sm:text-base`}>
+                {partner.name}
+            </span>
+        )
+    }
+</a>
