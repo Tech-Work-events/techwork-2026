@@ -3,11 +3,11 @@ import { PARTNERS_DATA } from '../../config'
 import { Image } from 'astro:assets'
 
 // Dynamic imports for assets
-const icons = import.meta.glob<{ default: ImageMetadata }>('../../assets/partners/*.{png,jpg,jpeg,svg,webp}')
+const icons = import.meta.glob<{ default: ImageMetadata }>('../assets/partners/*.{png,jpg,jpeg,svg,webp}')
 
 const partners = await Promise.all(
     PARTNERS_DATA.communityPartners.map(async (partner) => {
-        const iconPath = `../../assets/partners/${partner.logo}`
+        const iconPath = `../assets/partners/${partner.logo}`
         if (!icons[iconPath]) {
             console.error(`Image not found: ${iconPath}`)
             return { ...partner, image: null }
@@ -43,6 +43,7 @@ const partners = await Promise.all(
                         rel="noopener noreferrer"
                         class="group relative block scroll-animate-scale"
                         style={`animation-delay: ${index * 0.1}s`}
+                        title={partner.name}
                         aria-label={`Site web de ${partner.name}`}>
                         <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-32 w-full xs:w-64 border border-gray-100 hover:border-primary-200">
                             {partner.image ? (
