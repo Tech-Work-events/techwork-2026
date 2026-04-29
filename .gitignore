@@ -56,3 +56,11 @@ functions/*.log
 CLAUDE.md
 CLAUDE.md.*
 backlog/
+
+# Local QA artefacts (Playwright MCP, screenshots, coverage)
+.playwright-mcp/
+coverage/
+*.png
+!src/**/*.png
+!public/**/*.png
+qa-tour*-snapshot.yml
