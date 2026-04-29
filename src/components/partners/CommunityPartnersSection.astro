@@ -1,0 +1,32 @@
+---
+import { PARTNERS_DATA } from '../../config'
+import type { PartnersConfig } from '../../types/partner'
+import PartnerLogoCard from './PartnerLogoCard.astro'
+
+const partners = (PARTNERS_DATA as unknown as PartnersConfig).communityPartners
+---
+
+<section
+    id="community-partners-sponsors"
+    class="py-12 sm:py-16 bg-white border-t border-gray-200"
+    aria-labelledby="community-partners-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 scroll-animate">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
+                <span class="mr-2" aria-hidden="true">🤝</span>
+                Communautés
+            </div>
+            <h2 id="community-partners-title" class="text-2xl sm:text-3xl font-black text-gray-900 mb-4">
+                Communautés et associations <span class="text-gradient">partenaires</span>
+            </h2>
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                Ces communautés tech et associations soutiennent l'édition 2026 et participent à sa construction.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 stagger-children">
+            {partners.map((partner) => <PartnerLogoCard partner={partner} size="small" />)}
+        </div>
+    </div>
+</section>

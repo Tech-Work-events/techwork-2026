@@ -14,6 +14,7 @@ import HomeTestimonials from '../components/home/HomeTestimonials.astro'
 import HomeFAQ from '../components/home/HomeFAQ.astro'
 import HomeCommunityBlock from '../components/home/HomeCommunityBlock.astro'
 import HomePartnersBlock from '../components/home/HomePartnersBlock.astro'
+import AnimationPartnersSection from '../components/partners/AnimationPartnersSection.astro'
 
 const response = await fetch(OPENPLANNER_URL)
 const openPlannerData: OpenPlannerType = await response.json()
@@ -35,6 +36,7 @@ const tickets = await getCollection('tickets')
 
     <HomePartnersBlock />
     <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
+    <AnimationPartnersSection />
 </Layout>
 
 <style is:global>
