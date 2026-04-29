@@ -14,6 +14,11 @@ const { partner, size = 'small' } = Astro.props
 const icons = import.meta.glob<{ default: ImageMetadata }>('../assets/partners/*.{png,jpg,jpeg,svg,webp}')
 
 const logoHeight = size === 'large' ? 'h-16 sm:h-20' : 'h-12 sm:h-12'
+const cardSpacing = size === 'large' ? 'p-6 sm:p-8' : 'p-3'
+const cardChrome =
+    size === 'large'
+        ? 'border-2 border-gray-100 hover:border-primary-300 hover-lift'
+        : 'shadow-sm hover:shadow-lg transform hover:-translate-y-0.5'
 
 const primaryUrl = pickPrimaryUrl(partner)
 const showLogo = hasLogo(partner)
@@ -37,7 +42,7 @@ if (showLogo && partner.logo) {
     rel="noopener noreferrer"
     title={tooltip}
     aria-label={`Site de ${partner.name}`}
-    class="group flex items-center justify-center bg-white rounded-2xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px] min-w-[44px]">
+    class={`group flex items-center justify-center bg-white rounded-2xl ${cardSpacing} ${cardChrome} transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[44px] min-w-[44px]`}>
     {
         resolvedImage ? (
             <Image
