@@ -49,3 +49,10 @@ terraform/outputs-*.json
 # Functions
 functions/node_modules/
 functions/*.log
+
+# AI / Claude / tooling local — non tracké
+.claude/
+.mcp.json
+CLAUDE.md
+CLAUDE.md.*
+backlog/
