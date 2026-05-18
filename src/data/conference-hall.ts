@@ -61,10 +61,11 @@ const CATEGORY_COLORS: Record<string, { color: string; colorSecondary: string }>
     'Data & IA': { color: '#9b59b6', colorSecondary: '#e8daef' },
 }
 
-// Conference-Hall returns local times with a misleading Z suffix.
-// Strip it so JS treats them as local wall-clock times.
+// Conference-Hall returns local wall-clock times with a timezone suffix
+// (either misleading "Z" or "+02:00"). Strip it so JS treats them as
+// naive local times, avoiding offset shifts on UTC build servers.
 function fixTimestamp(iso: string): string {
-    return iso.replace('Z', '')
+    return iso.replace(/Z$|[+-]\d{2}:\d{2}$/, '')
 }
 
 // Normalize workshop track names
