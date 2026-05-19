@@ -1,12 +1,12 @@
 {
     "name": "Tech'Work 2026 schedule",
-    "days": ["2026-06-18T00:00:00.000Z"],
+    "days": ["2026-06-18T00:00:00.000+02:00"],
     "timeZone": "Europe/Paris",
     "sessions": [
         {
             "id": "cmmt4f37m05p301nvcg23xauv",
-            "start": "2026-06-18T16:00:00.000Z",
-            "end": "2026-06-18T16:50:00.000Z",
+            "start": "2026-06-18T16:00:00.000+02:00",
+            "end": "2026-06-18T16:50:00.000+02:00",
             "track": "Agilité",
             "title": "S'endetter pour Se Développer : Stratégies d’Investissement en Dette Technique",
             "language": "fr",
@@ -31,8 +31,8 @@
         },
         {
             "id": "cmmuqcnhk07m401nvvq8s0mma",
-            "start": "2026-06-18T12:00:00.000Z",
-            "end": "2026-06-18T13:15:00.000Z",
+            "start": "2026-06-18T12:00:00.000+02:00",
+            "end": "2026-06-18T13:15:00.000+02:00",
             "track": "Commun",
             "title": "Pause déjeuner",
             "language": null,
@@ -40,8 +40,8 @@
         },
         {
             "id": "cmmt4f9fp05p701nvp9sdsduw",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T14:05:00.000Z",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T14:05:00.000+02:00",
             "track": "Craft",
             "title": "Le Software Craftsmanship s'est-il perdu sur le chemin de l'excellence ?",
             "language": "fr",
@@ -66,8 +66,8 @@
         },
         {
             "id": "cmmt4f4kr05p601nvxzmr1yu6",
-            "start": "2026-06-18T14:15:00.000Z",
-            "end": "2026-06-18T15:05:00.000Z",
+            "start": "2026-06-18T14:15:00.000+02:00",
+            "end": "2026-06-18T15:05:00.000+02:00",
             "track": "Craft",
             "title": "Coder sans se noyer dans la complexité",
             "language": "fr",
@@ -96,8 +96,8 @@
         },
         {
             "id": "cmmt55pwz05qj01nvfoeg0je1",
-            "start": "2026-06-18T14:15:00.000Z",
-            "end": "2026-06-18T15:05:00.000Z",
+            "start": "2026-06-18T14:15:00.000+02:00",
+            "end": "2026-06-18T15:05:00.000+02:00",
             "track": "DevOps",
             "title": "Tilt : Développer vos applications directement dans Kubernetes + REX",
             "language": "fr",
@@ -122,8 +122,8 @@
         },
         {
             "id": "cmmuqfq9n07m701nvs8qh8m83",
-            "start": "2026-06-18T09:00:00.000Z",
-            "end": "2026-06-18T09:10:00.000Z",
+            "start": "2026-06-18T09:00:00.000+02:00",
+            "end": "2026-06-18T09:10:00.000+02:00",
             "track": "Commun",
             "title": "Introduction",
             "language": null,
@@ -131,8 +131,8 @@
         },
         {
             "id": "cmo70qbum003701mkozdnxn0y",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "Workshop2",
             "title": "1h50min pour créer une App Front avec la Clean Archigonale ©️",
             "language": "fr",
@@ -157,16 +157,42 @@
                         "name": "Dorian Lamandé",
                         "bio": "À la fois formateur et leader d'équipe, Dorian partage avec enthousiasme ses compétences humaines et techniques pour inspirer et guider chacun vers l'exploitation totale de leurs capacités. Ces 10 dernières années, il a notamment travaillé, en tant que Tech Lead, à la formation des développeurs aux pratiques du software craftsmanship.",
                         "company": null,
-                        "picture": "https://sessionize.com/image/860d-200o200o2-af67621f-91b1-453a-8f1d-d0a857a71aee.jpg",
+                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocL_nhuuLNqYmLMTTz7tDD8DpbYBB9YcG08Trw4JCV5vvd5pWRah=s576-c-no",
                         "socialLinks": ["https://github.com/dlamande"]
                     }
                 ]
             }
         },
         {
+            "id": "cmpb78c5z00f901p1kpyab5ok",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T14:05:00.000+02:00",
+            "track": "DevOps",
+            "title": "Shift Left Gone Wrong: A Platform Engineering Recovery Story",
+            "language": "fr",
+            "proposal": {
+                "id": "cmkmuks5b00er01s45guqp93l",
+                "proposalNumber": 5,
+                "abstract": "**\"You build it, you run it\"** was supposed to empower developers. At Hyland, the reality was different: deploying a simple todolist app took 5 weeks and ended in giving up. Access requests, approval chains, manual configurations, chasing colleagues for reviews. Developers were drowning in infrastructure complexity instead of shipping features. \"Shift left\" had become \"shift everything onto developers.\"\n\nPlatform engineering offers a way out, but only when done right. The key insight: the goal is not to give developers more tools, it's to reduce their cognitive load. This means building golden paths with the right abstractions, treating the platform as a product, and measuring success by adoption rather than enforcement.\n\nThis session walks through a real transformation at Hyland: from that painful 5-week journey to nowhere, to a platform where the same deployment takes hours. The new architecture leverages Backstage as a developer portal, KNative for unified serverless workloads, and ArgoCD for GitOps-driven deployments—all wrapped in self-service workflows that handle security, scaling, and observability by default. AI plays a key role: from generating golden paths tailored to each project, to augmented coding that unlocked features previously out of reach, like developing Kubernetes operators with a small team.\n\nAttendees will leave with:\n- Anti-patterns that turn DevOps into developer burden\n- Principles for designing platforms that developers actually adopt\n- Concrete technical patterns: golden paths, escape hatches, and platform-as-product metrics\n- How AI can accelerate platform engineering—both for users and builders\n\n---\n\n**French:** \"Shift Left Qui Dérape : Une Histoire de Platform Engineering\"\n\n**« You build it, you run it »** devait rendre les développeurs autonomes. Chez Hyland, la réalité était autre : déployer une simple application todolist a pris 5 semaines, pour finalement abandonner. Demandes d'accès, chaînes d'approbation, configurations manuelles, relances de collègues pour des reviews. Les développeurs se noyaient dans la complexité de l'infrastructure au lieu de livrer des fonctionnalités. « Shift left » était devenu « tout balancer sur les développeurs ».\n\nLa platform engineering offre une solution mais seulement si elle est bien faite. L'insight clé : l'objectif n'est pas de donner plus d'outils aux développeurs, c'est de réduire leur charge cognitive. Cela signifie construire des golden paths avec les bonnes abstractions, traiter la plateforme comme un produit, et mesurer le succès par l'adoption plutôt que par l'obligation.\n\nCette session présente une transformation réelle chez Hyland : de ce parcours douloureux de 5 semaines vers nulle part, à une plateforme où le même déploiement prend quelques heures. La nouvelle architecture s'appuie sur Backstage comme portail développeur, KNative pour des workloads serverless unifiés, et ArgoCD pour les déploiements. Le tout est décoré de workflows self-service qui gèrent la sécurité, le scaling et et l'observabilité par défaut.  L'IA joue un rôle clé : de la génération de golden paths adaptés à chaque projet, au coding augmenté qui a débloqué des fonctionnalités auparavant hors de portée comme le développement d'opérateurs Kubernetes avec une petite équipe.\n\nLes participants repartiront avec :\n- Les anti-patterns qui transforment le DevOps en fardeau développeur\n- Les principes pour concevoir des plateformes que les développeurs adoptent vraiment\n- Des patterns techniques concrets : golden paths, escape hatches, et métriques platform-as-product\n- Comment l'IA peut accélérer la platform engineering—pour les utilisateurs comme pour les bâtisseurs",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Cloud & DevOps"],
+                "speakers": [
+                    {
+                        "id": "cmkmuks4j00eq01s4lf4nlxv4",
+                        "name": "Damien Metzler",
+                        "bio": "Damien Metzler is a Cloud Architect at Hyland, where he leads platform engineering efforts for cloud-native teams. With over 20 years in software development, his journey spans nearly a decade building Nuxeo's cloud platform and four years advising AWS customers as a Solutions Architect. He believes developers are craftsmen, not factory workers—and that platforms should absorb complexity, not shift it. Damien speaks regularly at AWS User Groups and regional tech events, sharing practical insights grounded in real production experience.\n\n---\n\nDamien Metzler est Cloud Architect chez Hyland, où il dirige les efforts de platform engineering pour les équipes cloud-native. Son parcours de plus de 20 ans couvre près d'une décennie à construire la plateforme cloud de Nuxeo et quatre ans à conseiller des clients AWS en tant que Solutions Architect. Convaincu que les développeurs sont des artisans et non des ouvriers, il croit que les plateformes doivent absorber la complexité, pas la transférer. Damien intervient régulièrement aux AWS User Groups et événements tech régionaux, partageant des retours d'expérience concrets issus de la production.",
+                        "company": "Hyland",
+                        "picture": "https://avatars.githubusercontent.com/u/111077?v=4",
+                        "socialLinks": ["https://www.linkedin.com/in/damienmetzler/"]
+                    }
+                ]
+            }
+        },
+        {
             "id": "cmnel49cx00mz01pf1l8224uu",
-            "start": "2026-06-18T09:10:00.000Z",
-            "end": "2026-06-18T09:50:00.000Z",
+            "start": "2026-06-18T09:10:00.000+02:00",
+            "end": "2026-06-18T09:50:00.000+02:00",
             "track": "Commun",
             "title": "Pas besoin de berger : faire émerger le leadership sans y laisser sa laine",
             "language": "fr",
@@ -191,8 +217,8 @@
         },
         {
             "id": "cmmt511y805qa01nvslwak7lo",
-            "start": "2026-06-18T11:10:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T11:10:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "DevOps",
             "title": "Démocratiser l'observabilité grâce au C4 Model",
             "language": "fr",
@@ -217,8 +243,8 @@
         },
         {
             "id": "cmmuqgw9v07m801nvoj5qc1ov",
-            "start": "2026-06-18T15:40:00.000Z",
-            "end": "2026-06-18T16:00:00.000Z",
+            "start": "2026-06-18T15:40:00.000+02:00",
+            "end": "2026-06-18T16:00:00.000+02:00",
             "track": "Commun",
             "title": "Pause",
             "language": null,
@@ -226,17 +252,34 @@
         },
         {
             "id": "cmnd1a2bw00do01pfy22quxq6",
-            "start": "2026-06-18T15:15:00.000Z",
-            "end": "2026-06-18T15:40:00.000Z",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
             "track": "Craft",
-            "title": null,
-            "language": null,
-            "proposal": null
+            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
+            "language": "fr",
+            "proposal": {
+                "id": "cmnx1eqdp009w01o256hey1tc",
+                "proposalNumber": 110,
+                "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n",
+                "level": "INTERMEDIATE",
+                "formats": ["Lightning Talk"],
+                "categories": ["Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmor96vmt000001pxnxo5in7e",
+                        "name": "Leo Bourrel",
+                        "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
+                        "company": "IALAb",
+                        "picture": null,
+                        "socialLinks": []
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt4dlqt05oz01nvsq355d96",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T10:50:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T10:50:00.000+02:00",
             "track": "Agilité",
             "title": "Le Coaching Agile Tech - la pièce manquante de votre organisation",
             "language": "fr",
@@ -265,8 +308,8 @@
         },
         {
             "id": "cmn2z9pff005v01prfn3tvgvz",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T10:50:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T10:50:00.000+02:00",
             "track": "Craft",
             "title": "Peut-on faire du BDD sans Gherkin et Cucumber ?",
             "language": "fr",
@@ -291,8 +334,8 @@
         },
         {
             "id": "cmmuqhojk07m901nv04qqv4qr",
-            "start": "2026-06-18T17:00:00.000Z",
-            "end": "2026-06-18T17:10:00.000Z",
+            "start": "2026-06-18T17:00:00.000+02:00",
+            "end": "2026-06-18T17:10:00.000+02:00",
             "track": "Commun",
             "title": "Remerciements",
             "language": null,
@@ -300,8 +343,8 @@
         },
         {
             "id": "cmmt57yhm05qo01nv5kxm73bc",
-            "start": "2026-06-18T15:15:00.000Z",
-            "end": "2026-06-18T15:40:00.000Z",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
             "track": "DevOps",
             "title": "Recyclez vos vieux PC en homelab kubernetes",
             "language": "fr",
@@ -330,8 +373,8 @@
         },
         {
             "id": "cmnel6occ00n101pfeu4j4nvj",
-            "start": "2026-06-18T17:10:00.000Z",
-            "end": "2026-06-18T17:40:00.000Z",
+            "start": "2026-06-18T17:10:00.000+02:00",
+            "end": "2026-06-18T17:40:00.000+02:00",
             "track": "Commun",
             "title": "Quand l'IA sait tout faire, qu'est-ce qui nous reste ?",
             "language": "fr",
@@ -356,8 +399,8 @@
         },
         {
             "id": "cmn2z82un005t01prv9hvn0y9",
-            "start": "2026-06-18T16:00:00.000Z",
-            "end": "2026-06-18T16:50:00.000Z",
+            "start": "2026-06-18T16:00:00.000+02:00",
+            "end": "2026-06-18T16:50:00.000+02:00",
             "track": "Craft",
             "title": "Devons-nous sacrifier la qualité avec l’IA ?",
             "language": "fr",
@@ -382,8 +425,8 @@
         },
         {
             "id": "cmmt4f9w605p801nvqmrc6vwk",
-            "start": "2026-06-18T11:10:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T11:10:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "Agilité",
             "title": "La face cachée de la performance des équipes de développements",
             "language": "fr",
@@ -411,8 +454,8 @@
         },
         {
             "id": "cmmt582cb05qp01nvq65qdbvl",
-            "start": "2026-06-18T16:00:00.000Z",
-            "end": "2026-06-18T16:50:00.000Z",
+            "start": "2026-06-18T16:00:00.000+02:00",
+            "end": "2026-06-18T16:50:00.000+02:00",
             "track": "DevOps",
             "title": "Pimp my Shell",
             "language": "fr",
@@ -441,8 +484,8 @@
         },
         {
             "id": "cmmuqigt107ma01nvc5jgouj7",
-            "start": "2026-06-18T17:40:00.000Z",
-            "end": "2026-06-18T19:00:00.000Z",
+            "start": "2026-06-18T17:40:00.000+02:00",
+            "end": "2026-06-18T19:00:00.000+02:00",
             "track": "Commun",
             "title": "Afterwork",
             "language": null,
@@ -450,8 +493,8 @@
         },
         {
             "id": "cmmt7cwtt05vf01nvzwl7fkhx",
-            "start": "2026-06-18T11:10:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T11:10:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "Craft",
             "title": "(Re)Découvrir le front par les tests",
             "language": "fr",
@@ -484,8 +527,8 @@
         },
         {
             "id": "cmn7ffegt01pj01prlzg1qeah",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T14:05:00.000Z",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T14:05:00.000+02:00",
             "track": "Data",
             "title": "REX : Notre IA et nous contre le legacy : REX d'une reprise de contrôle assistée",
             "language": "fr",
@@ -518,8 +561,8 @@
         },
         {
             "id": "cmnd1dii600dr01pft8waebb7",
-            "start": "2026-06-18T16:00:00.000Z",
-            "end": "2026-06-18T16:50:00.000Z",
+            "start": "2026-06-18T16:00:00.000+02:00",
+            "end": "2026-06-18T16:50:00.000+02:00",
             "track": "Data",
             "title": "Datadog: Observabilité et Sécurité à l'ère de l'IA",
             "language": null,
@@ -534,7 +577,7 @@
                     {
                         "id": "cmnx16jpj009s01o2pe6cyrlb",
                         "name": "Pierre Quemard",
-                        "bio": null,
+                        "bio": "Architecte Solutions chez Datadog passionné d'innovation, qui fait de l'observabilité un moteur de transformation pour les partenaires à travers l'EMEA",
                         "company": "Datadog",
                         "picture": null,
                         "socialLinks": []
@@ -544,8 +587,8 @@
         },
         {
             "id": "cmmt7doe905vj01nv8na1ialr",
-            "start": "2026-06-18T11:10:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T11:10:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "Data",
             "title": "Context Engineering : pas des modèles plus malins, du contexte plus malin",
             "language": "fr",
@@ -565,8 +608,8 @@
                         "picture": "https://avatars3.githubusercontent.com/u/224928?v=4",
                         "socialLinks": [
                             "https://github.com/mehlah",
-                            "https://x.com/mehlah",
-                            "https://www.linkedin.com/in/mehlah/"
+                            "https://www.linkedin.com/in/mehlah/",
+                            "https://mehdi.lahmam.com"
                         ]
                     }
                 ]
@@ -574,8 +617,8 @@
         },
         {
             "id": "cmn7fi88901pk01prs3qw6tan",
-            "start": "2026-06-18T14:15:00.000Z",
-            "end": "2026-06-18T15:05:00.000Z",
+            "start": "2026-06-18T14:15:00.000+02:00",
+            "end": "2026-06-18T15:05:00.000+02:00",
             "track": "Data",
             "title": "GenUI: The Future of Apps?",
             "language": "fr",
@@ -600,8 +643,8 @@
         },
         {
             "id": "cmmuqlmye07me01nvn1kefqj4",
-            "start": "2026-06-18T08:30:00.000Z",
-            "end": "2026-06-18T09:00:00.000Z",
+            "start": "2026-06-18T08:30:00.000+02:00",
+            "end": "2026-06-18T09:00:00.000+02:00",
             "track": "Commun",
             "title": "Accueil et viennoiseries",
             "language": null,
@@ -609,24 +652,24 @@
         },
         {
             "id": "cmn7fku2t01pm01pro70gj4l0",
-            "start": "2026-06-18T15:15:00.000Z",
-            "end": "2026-06-18T15:40:00.000Z",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
             "track": "Data",
-            "title": "Lightning Talk IA",
+            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
             "language": "fr",
             "proposal": {
                 "id": "cmnx1eqdp009w01o256hey1tc",
                 "proposalNumber": 110,
-                "abstract": "To be announced",
+                "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n",
                 "level": "INTERMEDIATE",
                 "formats": ["Lightning Talk"],
-                "categories": [],
+                "categories": ["Data & IA"],
                 "speakers": [
                     {
-                        "id": "cmnx1eo9r009v01o246f5vxzs",
-                        "name": "Lightning Talk IA",
-                        "bio": null,
-                        "company": null,
+                        "id": "cmor96vmt000001pxnxo5in7e",
+                        "name": "Leo Bourrel",
+                        "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
+                        "company": "IALAb",
                         "picture": null,
                         "socialLinks": []
                     }
@@ -635,8 +678,8 @@
         },
         {
             "id": "cmmt43krv05nu01nv42xhh9fe",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T14:05:00.000Z",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T14:05:00.000+02:00",
             "track": "Agilité",
             "title": "Le consultant augmenté : Comment fonctionner comme les grands… tout en restant petit ?",
             "language": "fr",
@@ -661,8 +704,8 @@
         },
         {
             "id": "cmmt4d6ct05oy01nv6jpx7y0k",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T12:00:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
             "track": "Workshop1",
             "title": "Le jeu des cartes : résoudre un problème et non trouver une solution",
             "language": "fr",
@@ -698,8 +741,8 @@
         },
         {
             "id": "cmmt4bdbo05or01nvnqap2fkt",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T15:15:00.000Z",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T15:15:00.000+02:00",
             "track": "Workshop1",
             "title": "Codez votre Game Master de JDR grâce à l'IA agentique et le SDK Strands Agents.",
             "language": "fr",
@@ -739,7 +782,7 @@
                         "id": "cmkqkin6r00te01s45dntruj7",
                         "name": "Tiffany Souterre",
                         "bio": "I'm Tiffany, Senior Developer Advocate in AI/ML at AWS 💻. I previously worked as a Data/ML engineer and Developer Relations at Microsoft. I'm also a recurring speaker in the Underscore talk-show. I love engaging with developers about technologies, innovations and help them use our tools. My main focus are Artificial Intelligence 🤖 and Cloud technologies ☁️ but I also love astronomy 🚀, genetic engineering 🧬, outdoors activities 🏔️ and sharing a meal in good compagnie 🍲",
-                        "company": "Microsoft",
+                        "company": "AWS",
                         "picture": "https://lh3.googleusercontent.com/-0XDx36TcjxU/AAAAAAAAAAI/AAAAAAABQkA/-hqGP4ktCDY/photo.jpg",
                         "socialLinks": ["https://github.com/amagash", "https://x.com/tiffanysouterre"]
                     },
@@ -761,8 +804,8 @@
         },
         {
             "id": "cmmt4t8o205q301nvbuq1s27u",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T10:50:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T10:50:00.000+02:00",
             "track": "DevOps",
             "title": "Cloud-Native: toujours plus automatiser pour rendre encore plus bête ?",
             "language": "fr",
@@ -795,8 +838,8 @@
         },
         {
             "id": "cmmt4f2r605p201nvdff4zjqq",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T15:15:00.000Z",
+            "start": "2026-06-18T13:15:00.000+02:00",
+            "end": "2026-06-18T15:15:00.000+02:00",
             "track": "Workshop2",
             "title": "Quand l’accessibilité rencontre le Mob : pratiquer, tester, corriger ensemble",
             "language": "fr",
@@ -834,8 +877,8 @@
         },
         {
             "id": "cmmt4gmb505pc01nv7js5sdsr",
-            "start": "2026-06-18T10:00:00.000Z",
-            "end": "2026-06-18T10:50:00.000Z",
+            "start": "2026-06-18T10:00:00.000+02:00",
+            "end": "2026-06-18T10:50:00.000+02:00",
             "track": "Data",
             "title": "REX Malt : De l'expérimentation à la production, adapter son infrastructure d'Observabilité pour la GenAI",
             "language": "fr",
@@ -867,35 +910,9 @@
             }
         },
         {
-            "id": "cmmt51jmb05qc01nvghs29fx4",
-            "start": "2026-06-18T13:15:00.000Z",
-            "end": "2026-06-18T14:05:00.000Z",
-            "track": "DevOps",
-            "title": "Comment les agents ont colonisé Carrefour",
-            "language": "fr",
-            "proposal": {
-                "id": "cmkstamdy000t01tfjrs5gk3g",
-                "proposalNumber": 24,
-                "abstract": "Les agents ont commencé à conquérir le monde en 2025. Carrefour a aussi été envahi ! Et cela change notre façon de travailler, d'interagir et notre vélocité sur différents sujets. Venez découvrir comment cela a commencé, les différentes itérations et les équipes impactées, ainsi que les plans pour le futur. Apprenez les différentes étapes, nos difficultés et les victoires rapides. Et retournez au travail pour commencer la conquête agentique dans votre équipe !",
-                "level": "INTERMEDIATE",
-                "formats": ["Conférence"],
-                "categories": ["Cloud & DevOps"],
-                "speakers": [
-                    {
-                        "id": "cmksta1zu000p01tfexaxa5hz",
-                        "name": "guillaume blaquiere",
-                        "bio": "Guillaume is a Google Developer Expert on Cloud Platform since 2019 and works at Carrefour as Group Data Architect. \nJava developer for more than 15 years, and despite positions of responsibilities, he has always kept his wish to create, develop, discover and test new solutions, especially in the Cloud, the machine learning or Python and Go language. \nInnovation addict and Google Cloud 3x certified, writer and speaker in his free time, he's fascinated by the serverless solution and all the \"usual\" problems that it solves.\nMore generally, he likes helping people stucks on Google Cloud; you can find him on Stack Overflow (guillaume-blaquiere), Medium (@guillaume-blaquiere) and Twitter (@gblaquiere)\n\n\nGuillaume est Google Developer Expert sur Cloud Platform et travaille chez Carrefour en tant que Architect Data Groupe. \nDéveloppeur Java depuis plus de 15 ans, et malgré des précédents postes à responsabilités, il a toujours conservé son envie de créer, de développer, de découvrir et de tester de nouvelles solutions, notamment dans le Cloud, le machine learning ou les langages Go et Python.\nPassionné d’innovation et certifié 3x Google Cloud, writer et speaker sur son temps libre, il est fasciné par le serverless et les problèmes “traditionnels” qu’il résout.\nPlus généralement, il aime aider les personnes bloquées sur Google Cloud. Vous pouvez le croiser sur Stack Overflow (guillaume-blaquiere), Medium (@guillaume-blaquiere) et Twitter (@gblaquiere)",
-                        "company": "Carrefour",
-                        "picture": "https://lh5.googleusercontent.com/-FQBr5NRaPHA/AAAAAAAAAAI/AAAAAAAAdFA/LL7UhMB5N1Y/photo.jpg",
-                        "socialLinks": ["https://github.com/guillaumeblaquiere", "https://x.com/gblaquiere"]
-                    }
-                ]
-            }
-        },
-        {
             "id": "cmmuqc0dy07lz01nv93k0ulut",
-            "start": "2026-06-18T10:50:00.000Z",
-            "end": "2026-06-18T11:10:00.000Z",
+            "start": "2026-06-18T10:50:00.000+02:00",
+            "end": "2026-06-18T11:10:00.000+02:00",
             "track": "Commun",
             "title": "Pause",
             "language": null,
@@ -903,8 +920,8 @@
         },
         {
             "id": "cmmt4o5lf05po01nvi5nb657c",
-            "start": "2026-06-18T14:15:00.000Z",
-            "end": "2026-06-18T15:05:00.000Z",
+            "start": "2026-06-18T14:15:00.000+02:00",
+            "end": "2026-06-18T15:05:00.000+02:00",
             "track": "Agilité",
             "title": "Pairing is caring!",
             "language": "fr",
@@ -932,8 +949,8 @@
         },
         {
             "id": "cmmt4b9uc05op01nv6i6b2xcy",
-            "start": "2026-06-18T15:15:00.000Z",
-            "end": "2026-06-18T15:40:00.000Z",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
             "track": "Agilité",
             "title": "Claude a codé, OpenAI a parlé, j'ai facturé : bienvenue dans le futur du consulting",
             "language": "fr",
