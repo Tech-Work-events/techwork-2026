@@ -297,6 +297,91 @@
             "description": "Vous interviendrez au cœur des enjeux de performance, de résilience, de scalabilité et d’automatisation, en collaboration étroite avec les équipes internes (Systèmes, Réseaux, Cybersécurité, DevOps) et les partenaires externes.",
             "applyUrl": "https://carriere.itsgroup.fr/3502/detail_annonce.php",
             "publishedAt": "2026-04-21"
+        },
+        {
+            "id": "17",
+            "title": "Senior Software Engineer F/H",
+            "company": {
+                "name": "evryg",
+                "logoUrl": "/logos/evryg.svg",
+                "website": "https://www.evryg.com"
+            },
+            "location": "Paris 9e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "fullstack",
+            "salary": "Selon profil",
+            "description": "Chez evryg, tu interviens en régie en tant que Software Engineer Senior (5-8 ans d'expérience) sur des problématiques web complexes front/back. Tu travailles en binôme avec des seniors ou fondateurs, participeras aux décisions d'architecture et mentoreras des profils plus juniors dans une culture Lean et software craftsmanship.",
+            "applyUrl": "https://evryg.notion.site/evryg-carri-res-1bb7d53fe21c80a4a2ecfb5c7695fe57?p=1bb7d53fe21c80018326fc3a013a5321&pm=s",
+            "publishedAt": "2026-05-21"
+        },
+        {
+            "id": "18",
+            "title": "Software Engineer Confirmé(e) F/H",
+            "company": {
+                "name": "evryg",
+                "logoUrl": "/logos/evryg.svg",
+                "website": "https://www.evryg.com"
+            },
+            "location": "Paris 9e / Lyon",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "fullstack",
+            "salary": "Selon profil",
+            "description": "Chez evryg, tu interviens en régie en tant que Software Engineer Confirmé (3-5 ans d'expérience) sur des problématiques web complexes front/back. Tu progresseras aux côtés de seniors et fondateurs toujours en mission, contribueras aux décisions d'architecture et au CI/CD dans une équipe Lean exigeante sur la qualité.",
+            "applyUrl": "https://evryg.notion.site/evryg-carri-res-1bb7d53fe21c80a4a2ecfb5c7695fe57?p=1f97d53fe21c80a895b5fa7684263b39&pm=s",
+            "publishedAt": "2026-05-21"
+        },
+        {
+            "id": "19",
+            "title": "DevOps Intermediate F/H",
+            "company": {
+                "name": "evryg",
+                "logoUrl": "/logos/evryg.svg",
+                "website": "https://www.evryg.com"
+            },
+            "location": "Paris 9e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "devops",
+            "salary": "Selon profil",
+            "description": "Chez evryg, tu interviens en régie en tant que DevOps Intermediate (3-5 ans d'expérience) avec un objectif clair : réduire le lead time et garantir une mise en production fluide et continue. Tu gères des clusters Kubernetes/OpenShift, conçois des pipelines CI/CD, industrialises l'infra (Terraform, Ansible) et mets en place l'observabilité (Prometheus, Grafana) dans une culture Lean.",
+            "applyUrl": "https://evryg.notion.site/DevOps-intermediate-2617d53fe21c80458e84fe073bbb58f3",
+            "publishedAt": "2026-05-21"
+        },
+        {
+            "id": "20",
+            "title": "Machine Learning Engineer Senior F/H",
+            "company": {
+                "name": "evryg",
+                "logoUrl": "/logos/evryg.svg",
+                "website": "https://www.evryg.com"
+            },
+            "location": "Lyon / Paris 9e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "data",
+            "salary": "Selon profil",
+            "description": "Chez evryg, tu interviens en régie en tant que Machine Learning Engineer Senior (5-8 ans d'expérience) sur la conception, l'entraînement et le déploiement de modèles ML/IA à l'échelle. Tu mets en place les pratiques MLOps (CI/CD, monitoring, gestion des dérives, versioning) et mentores des profils plus juniors, en binôme permanent avec des seniors ou fondateurs.",
+            "applyUrl": "https://evryg.notion.site/Machine-Learning-Engineer-Senior-1f97d53fe21c80ecb509f7a6acb48d0d",
+            "publishedAt": "2026-05-21"
+        },
+        {
+            "id": "21",
+            "title": "Machine Learning Engineer F/H",
+            "company": {
+                "name": "evryg",
+                "logoUrl": "/logos/evryg.svg",
+                "website": "https://www.evryg.com"
+            },
+            "location": "Paris 9e",
+            "remote": "hybrid",
+            "contractType": "cdi",
+            "category": "data",
+            "salary": "Selon profil",
+            "description": "Chez evryg, tu interviens en régie en tant que Machine Learning Engineer (3-5 ans d'expérience) sur la conception, le déploiement et l'industrialisation de solutions ML et d'IA générative. Tu mets en place les pratiques MLOps (CI/CD, MLflow, Docker, monitoring) et travailles en binôme permanent avec des ingénieurs seniors pour monter en compétences sur des projets exigeants.",
+            "applyUrl": "https://evryg.notion.site/Machine-Learning-Engineer-2387d53fe21c80a39ee2f1e604c9da9d",
+            "publishedAt": "2026-05-21"
         }
     ]
 }
