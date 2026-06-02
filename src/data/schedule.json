@@ -251,32 +251,6 @@
             "proposal": null
         },
         {
-            "id": "cmnd1a2bw00do01pfy22quxq6",
-            "start": "2026-06-18T15:15:00.000+02:00",
-            "end": "2026-06-18T15:40:00.000+02:00",
-            "track": "Craft",
-            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
-            "language": "fr",
-            "proposal": {
-                "id": "cmnx1eqdp009w01o256hey1tc",
-                "proposalNumber": 110,
-                "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n",
-                "level": "INTERMEDIATE",
-                "formats": ["Lightning Talk"],
-                "categories": ["Data & IA"],
-                "speakers": [
-                    {
-                        "id": "cmor96vmt000001pxnxo5in7e",
-                        "name": "Leo Bourrel",
-                        "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
-                        "company": "IALAb",
-                        "picture": null,
-                        "socialLinks": []
-                    }
-                ]
-            }
-        },
-        {
             "id": "cmmt4dlqt05oz01nvsq355d96",
             "start": "2026-06-18T10:00:00.000+02:00",
             "end": "2026-06-18T10:50:00.000+02:00",
