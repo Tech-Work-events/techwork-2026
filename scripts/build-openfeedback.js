@@ -8,6 +8,15 @@ const __dirname = path.dirname(__filename)
 const INPUT_FILE = path.resolve(__dirname, '../src/data/schedule.json')
 const OUTPUT_FILE = path.resolve(__dirname, '../public/openfeedback.json')
 
+// Speakers without a valid picture fall back to the site logo, exactly like the
+// agenda detail page (/favicon-96x96.png). OpenFeedback rejects the whole model
+// if any speaker has an empty / non-http(s) / missing photoUrl.
+const FALLBACK_SPEAKER_PHOTO = 'https://techwork.events/favicon-96x96.png'
+
+function validPhotoUrl(picture) {
+    return typeof picture === 'string' && /^https?:\/\//.test(picture) ? picture : FALLBACK_SPEAKER_PHOTO
+}
+
 // Infer the social network name from a raw profile URL.
 // OpenFeedback expects socials as { name, link }.
 function inferSocialName(url) {
@@ -52,7 +61,7 @@ function toOpenFeedback(schedule) {
             speakers[sp.id] = {
                 id: sp.id,
                 name: sp.name,
-                ...(sp.picture ? { photoUrl: sp.picture } : {}),
+                photoUrl: validPhotoUrl(sp.picture),
                 ...(sp.bio ? { bio: sp.bio } : {}),
                 ...(sp.company ? { company: sp.company } : {}),
                 socials: (sp.socialLinks ?? []).map((link) => ({
