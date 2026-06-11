@@ -1,0 +1,937 @@
+{
+    "sessions": {
+        "cmmt4f37m05p301nvcg23xauv": {
+            "id": "cmmt4f37m05p301nvcg23xauv",
+            "title": "S'endetter pour Se Développer : Stratégies d’Investissement en Dette Technique",
+            "startTime": "2026-06-18T16:00:00.000+02:00",
+            "endTime": "2026-06-18T16:50:00.000+02:00",
+            "speakers": ["cmkmgpzo5009z01s4acjpfkbl"],
+            "trackTitle": "Agilité",
+            "tags": ["Agilité"],
+            "language": "fr",
+            "abstract": "Dans le monde du développement logiciel, la dette technique est souvent perçue comme un fardeau à éviter à tout prix. Pourtant, à l’image d’un prêt bancaire bien maîtrisé, elle peut être un levier puissant pour accélérer l’innovation et répondre rapidement aux défis du marché. Cette conférence propose d’explorer la dette technique sous un angle inédit : celui de l’investissement stratégique.\n\nEn comparant la dette technique à la dette bancaire, nous verrons comment, pourquoi et à quel moment il peut être bénéfique d’en contracter, notamment en phase de Product-Market Fit (PMF). Nous aborderons les différents types de dette technique, leurs avantages et leurs risques, tout en expliquant comment les gérer de manière optimale pour maximiser le retour sur investissement (ROI).\n\n La conférence se conclura par des stratégies concrètes pour \"rembourser\" cette dette, et des conseils pratiques pour intégrer la gestion de la dette technique dans les processus de développement et les pratiques agiles.\n\n**Public visé :** Développeurs, lead devs, CTO, Product Owners, et toute personne impliquée dans la gestion de projets logiciels.\n\n**Objectifs :**\n\n- Démythifier la dette technique et la considérer comme un investissement stratégique.\n- Identifier les moments clés où contracter de la dette technique peut accélérer le développement produit.\n- Fournir des outils et des méthodes pour gérer efficacement la dette technique et en tirer le meilleur parti."
+        },
+        "cmmuqcnhk07m401nvvq8s0mma": {
+            "id": "cmmuqcnhk07m401nvvq8s0mma",
+            "title": "Pause déjeuner",
+            "startTime": "2026-06-18T12:00:00.000+02:00",
+            "endTime": "2026-06-18T13:15:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmmt4f9fp05p701nvp9sdsduw": {
+            "id": "cmmt4f9fp05p701nvp9sdsduw",
+            "title": "Le Software Craftsmanship s'est-il perdu sur le chemin de l'excellence ?",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T14:05:00.000+02:00",
+            "speakers": ["cmkv0ggc6002801k2e1jmawaf"],
+            "trackTitle": "Craft",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "Depuis plus de quinze ans, le Software Craftsmanship défend une ambition claire : élever le niveau de qualité du logiciel produit. Clean code, tests automatisés, conception soignée, pratiques professionnelles… autant de notions largement débattues, parfois enseignées, mais encore loin d’être universellement comprises, acceptées ou appliquées.\n\nDans de nombreuses organisations, l’excellence technique reste un idéal, parfois perçu comme un luxe, parfois comme une contrainte, souvent comme un sujet secondaire face aux enjeux de délais et de coûts. Et pourtant, même lorsqu’elle est atteinte, une autre question émerge : est-elle suffisante pour produire de bonnes solutions ?\n\nCette conférence propose d’explorer les limites d’une approche centrée sur la technique. Comprendre le vrai problème, naviguer dans l’ambiguïté, dialoguer avec des acteurs aux intérêts divergents, arbitrer, renoncer parfois : ce sont ces compétences humaines qui font souvent la différence entre un logiciel “bien fait” et un logiciel réellement utile.\n\nL’essor de l’intelligence artificielle rend ce constat encore plus troublant. À mesure que produire du code, des tests ou des architectures devient plus accessible, la question de la valeur se déplace. Que reste-t-il lorsque la solution devient commoditisée ? Où se situe alors l’excellence, et que signifie encore « faire du bon logiciel » ?\nLe Software Craftsmanship s’est-il perdu sur le chemin de l’excellence, où bien est-ce notre définition de l’excellence qui mérite d’être interrogée ?"
+        },
+        "cmmt4f4kr05p601nvxzmr1yu6": {
+            "id": "cmmt4f4kr05p601nvxzmr1yu6",
+            "title": "Coder sans se noyer dans la complexité",
+            "startTime": "2026-06-18T14:15:00.000+02:00",
+            "endTime": "2026-06-18T15:05:00.000+02:00",
+            "speakers": ["cmlkk7nl802c201k2hx4vrlv4"],
+            "trackTitle": "Craft",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "**Nous sommes submergés de code.**\n\nEt aujourd’hui, avec l’IA, ce déluge s’accélère : des milliers de lignes générées en quelques secondes, qui viennent s’ajouter à des bases de code déjà immenses, parfois vieilles de dix ou vingt ans.\n\nChaque jour, les développeurs doivent **lire, comprendre, corriger et faire évoluer** du code legacy, du code généré par des humains, et maintenant du code généré par des machines.\n\nLe vrai problème n’est pas seulement technique. Il est cognitif… et humain.\n\nCar lire du code, c’est consommer une ressource rare : l’attention et l’énergie mentale.\nQuand cette charge devient trop lourde, elle ne reste pas au bureau : elle se transforme en fatigue, frustration, perte de confiance… et parfois en épuisement.\n\nAlors comment continuer à produire de la qualité sans sacrifier notre bien-être ?\n\nLa réponse se trouve dans le **fonctionnement de notre cerveau**.\n\nDans cette conférence inspirée des travaux de Felienne Hermans (The Programmer’s Brain), vous découvrirez :\n- ce qui se passe dans notre cerveau quand on lit du code complexe\n- pourquoi ce code est souvent plus coûteux mentalement qu’on ne l’imagine\n- comment réduire la surcharge cognitive quand on navigue dans de grandes bases de code\n- le lien entre **Clean Code, lisibilité et santé mentale**\n- des techniques concrètes pour lire, vérifier et maintenir du code plus sereinement\n- comment préserver votre énergie dans un monde où le volume de code explose\n\nVous repartirez avec des outils pour mieux comprendre le code, mieux travailler… et mieux vivre votre quotidien de développeur.\n\nPréparez-vous à apprendre… sans vous épuiser. 🧠✨"
+        },
+        "cmmt55pwz05qj01nvfoeg0je1": {
+            "id": "cmmt55pwz05qj01nvfoeg0je1",
+            "title": "Tilt : Développer vos applications directement dans Kubernetes + REX",
+            "startTime": "2026-06-18T14:15:00.000+02:00",
+            "endTime": "2026-06-18T15:05:00.000+02:00",
+            "speakers": ["cmm232wyr00nw01qlhmhzk6jm"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "Bien souvent, l'environnement local sur le laptop d'un développeur est assez éloigné de l'environnement de production où l'application sera déployée. Pourtant on sait que réduire ces différences et garantir une parité entre dev/prod est l'un des facteurs clés pour le développement d'une application cloud-native.\nAlors si votre cible est de la déployer dans Kubernetes, pourquoi ne pas la développer directement dans Kubernetes ?\n\nLa première partie de ce talk sera consacrée à la présentation de Tilt, un outil répondant à cette question. Nous parlerons de son fonctionnement, ses avantages, ses inconvénients et une démo live.\n\nLa seconde partie se concentrera sur un retour d'expérience. Nous utilisons Tilt depuis 2 ans à 365Talents pour notre cas d'usage un peu particulier. Tilt aide nos développeurs à débuguer et reproduire plus facilement des problèmes sur des environnements identiques à la production. Loin d'être une solution miracle, nous parlerons évidemment des contraintes et limitations.\n\nÀ l'issue de ce talk, vous aurez les clés pour évaluer si ce type d'outil peut s'appliquer à vos cas d'usage."
+        },
+        "cmmuqfq9n07m701nvs8qh8m83": {
+            "id": "cmmuqfq9n07m701nvs8qh8m83",
+            "title": "Introduction",
+            "startTime": "2026-06-18T09:00:00.000+02:00",
+            "endTime": "2026-06-18T09:10:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmo70qbum003701mkozdnxn0y": {
+            "id": "cmo70qbum003701mkozdnxn0y",
+            "title": "1h50min pour créer une App Front avec la Clean Archigonale ©️",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cml4yilnr01h201k2vie5iwwr", "cml4yilok01h301k2ioht63pf"],
+            "trackTitle": "Workshop2",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "**Tout le monde pense que la \"Clean Architecture / Architecture Hexagonale\" se fait uniquement côté Back.**  \nDans cet **atelier**, nous allons vous montrer que cela fonctionne également **côté Front**.\n\nEt oui, Redux n'est pas le Silver Bullet des applications front-end.  \nEt oui, Les Stores ne sont pas toujours obligatoires, mais ceci est une autre histoire !\n\nOn va coder ensemble une petit App Front pour voir comment mettre en place cela.\n\n**Take away :**\n- Comprendre et manipuler les concepts.\n- Architecture Logicielle\n- Stratégie de Tests"
+        },
+        "cmpb78c5z00f901p1kpyab5ok": {
+            "id": "cmpb78c5z00f901p1kpyab5ok",
+            "title": "Shift Left Gone Wrong: A Platform Engineering Recovery Story",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T14:05:00.000+02:00",
+            "speakers": ["cmkmuks4j00eq01s4lf4nlxv4"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "**\"You build it, you run it\"** was supposed to empower developers. At Hyland, the reality was different: deploying a simple todolist app took 5 weeks and ended in giving up. Access requests, approval chains, manual configurations, chasing colleagues for reviews. Developers were drowning in infrastructure complexity instead of shipping features. \"Shift left\" had become \"shift everything onto developers.\"\n\nPlatform engineering offers a way out, but only when done right. The key insight: the goal is not to give developers more tools, it's to reduce their cognitive load. This means building golden paths with the right abstractions, treating the platform as a product, and measuring success by adoption rather than enforcement.\n\nThis session walks through a real transformation at Hyland: from that painful 5-week journey to nowhere, to a platform where the same deployment takes hours. The new architecture leverages Backstage as a developer portal, KNative for unified serverless workloads, and ArgoCD for GitOps-driven deployments—all wrapped in self-service workflows that handle security, scaling, and observability by default. AI plays a key role: from generating golden paths tailored to each project, to augmented coding that unlocked features previously out of reach, like developing Kubernetes operators with a small team.\n\nAttendees will leave with:\n- Anti-patterns that turn DevOps into developer burden\n- Principles for designing platforms that developers actually adopt\n- Concrete technical patterns: golden paths, escape hatches, and platform-as-product metrics\n- How AI can accelerate platform engineering—both for users and builders\n\n---\n\n**French:** \"Shift Left Qui Dérape : Une Histoire de Platform Engineering\"\n\n**« You build it, you run it »** devait rendre les développeurs autonomes. Chez Hyland, la réalité était autre : déployer une simple application todolist a pris 5 semaines, pour finalement abandonner. Demandes d'accès, chaînes d'approbation, configurations manuelles, relances de collègues pour des reviews. Les développeurs se noyaient dans la complexité de l'infrastructure au lieu de livrer des fonctionnalités. « Shift left » était devenu « tout balancer sur les développeurs ».\n\nLa platform engineering offre une solution mais seulement si elle est bien faite. L'insight clé : l'objectif n'est pas de donner plus d'outils aux développeurs, c'est de réduire leur charge cognitive. Cela signifie construire des golden paths avec les bonnes abstractions, traiter la plateforme comme un produit, et mesurer le succès par l'adoption plutôt que par l'obligation.\n\nCette session présente une transformation réelle chez Hyland : de ce parcours douloureux de 5 semaines vers nulle part, à une plateforme où le même déploiement prend quelques heures. La nouvelle architecture s'appuie sur Backstage comme portail développeur, KNative pour des workloads serverless unifiés, et ArgoCD pour les déploiements. Le tout est décoré de workflows self-service qui gèrent la sécurité, le scaling et et l'observabilité par défaut.  L'IA joue un rôle clé : de la génération de golden paths adaptés à chaque projet, au coding augmenté qui a débloqué des fonctionnalités auparavant hors de portée comme le développement d'opérateurs Kubernetes avec une petite équipe.\n\nLes participants repartiront avec :\n- Les anti-patterns qui transforment le DevOps en fardeau développeur\n- Les principes pour concevoir des plateformes que les développeurs adoptent vraiment\n- Des patterns techniques concrets : golden paths, escape hatches, et métriques platform-as-product\n- Comment l'IA peut accélérer la platform engineering—pour les utilisateurs comme pour les bâtisseurs"
+        },
+        "cmnel49cx00mz01pf1l8224uu": {
+            "id": "cmnel49cx00mz01pf1l8224uu",
+            "title": "Pas besoin de berger : faire émerger le leadership sans y laisser sa laine",
+            "startTime": "2026-06-18T09:10:00.000+02:00",
+            "endTime": "2026-06-18T09:50:00.000+02:00",
+            "speakers": ["cmnefokqu00ku01pfsfq8kyxn"],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "language": "fr",
+            "abstract": "Dans beaucoup d’équipes tech, tout remonte au “berger”.\nLes décisions, les arbitrages, les tensions.\n\nRésultat : goulots d’étranglement, fatigue managériale, désengagement.\nEt dès que le terrain devient escarpé, le drama s’installe.\n\nEt si le problème n’était pas les personnes, mais le système ?\n\nLe leadership n’est pas une question de charisme ni de titre.\nC’est une propriété émergente d’un collectif bien conçu.\n\nDans cette keynote inspirante et concrète, Alexis Monville partagera 30 ans d’expérience, des startups à Red Hat, pour montrer comment créer les conditions où chacun peut dire : « Je suis en charge. »\n\nVous découvrirez :\n\n• Pourquoi le contrôle affaiblit les équipes, et comment l’alignement clair remplace avantageusement la surveillance\n• Les 3 conditions de l’émergence : clarté d’intention, espace d’initiative, responsabilité assumée\n• Ce que l’open source nous apprend sur la distribution du leadership dans des environnements complexes\n• Comment sortir du cycle drama / escalade / épuisement pour entrer dans un mode flux et impact\n\nObjectif : repartir avec une grille de lecture simple et des leviers actionnables pour transformer votre équipe en une force collective autonome, engagée et robuste.\n\nPas besoin de berger.\nMais un système qui permet aux leaders d’émerger."
+        },
+        "cmmt511y805qa01nvslwak7lo": {
+            "id": "cmmt511y805qa01nvslwak7lo",
+            "title": "Démocratiser l'observabilité grâce au C4 Model",
+            "startTime": "2026-06-18T11:10:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cmmb28izl01oy01ns0ed9ugzt"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "Grafana, Prometheus, Loki... Ces outils sont devenus incontournables dans nos stacks cloud native. Pourtant, dans la plupart des organisations, ils restent le domaine réservé des SRE.\n\nPourquoi ? Regardez vos labels Prometheus. env=prod, app=monolith-v2-legacy, instance=10.0.42.17:8080... Entre la cardinalité explosive, les noms incompréhensibles et l'absence de normalisation, nos métriques sont devenues inutilisables pour la majorité de l'entreprise. Le savoir pour naviguer dans ce chaos reste tribal.\n\nEt si la clé était dans une méthodologie que nous utilisons déjà pour l'architecture ? Le C4 Model.\n\nDans ce talk, je vous montrerai comment appliquer les principes du C4 Model (Context, Container, Component, Code) à votre stack d'observabilité pour :\n\n- Normaliser vos labels avec une convention lisible à chaque niveau d'abstraction\n- Créer des dashboards navigables du contexte métier jusqu'au code\n- Rendre l'observabilité accessible à tous : devs, support, product owners\n\nAvec des exemples concrets de labels \"avant/après\" et une démo, vous repartirez avec une approche actionnable pour enfin démocratiser l'observabilité dans votre organisation."
+        },
+        "cmmuqgw9v07m801nvoj5qc1ov": {
+            "id": "cmmuqgw9v07m801nvoj5qc1ov",
+            "title": "Pause",
+            "startTime": "2026-06-18T15:40:00.000+02:00",
+            "endTime": "2026-06-18T16:00:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmnd1a2bw00do01pfy22quxq6": {
+            "id": "cmnd1a2bw00do01pfy22quxq6",
+            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
+            "startTime": "2026-06-18T15:15:00.000+02:00",
+            "endTime": "2026-06-18T15:40:00.000+02:00",
+            "speakers": ["cmor96vmt000001pxnxo5in7e"],
+            "trackTitle": "Craft",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n"
+        },
+        "cmmt4dlqt05oz01nvsq355d96": {
+            "id": "cmmt4dlqt05oz01nvsq355d96",
+            "title": "Le Coaching Agile Tech - la pièce manquante de votre organisation",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T10:50:00.000+02:00",
+            "speakers": ["cmlkk7nl802c201k2hx4vrlv4"],
+            "trackTitle": "Agilité",
+            "tags": ["Craft", "Agilité"],
+            "language": "fr",
+            "abstract": "Pour réussir leurs transformations \"digitales\", les organisations dépensent énormément d’énergie (et d'argent) sur l’accompagnement de nouveaux rôles tels que Product Owners, Scrum Masters, Facilitateurs, et bien d'autres...\n\nLa volonté d'adaptation et la réduction du fameux \"Time To Market\" nécessitent également de changer les manières de délivrer des équipes de réalisation / développement.\n\nElles ont besoin d'appréhender comment travailler de manière itérative et incrémentale de manière concrète.\nLe problème : **qui les accompagne et les \"coach\" sur ces sujets ?**\n\nDurant cette session, je partagerai mes **succès, mes échecs et mes apprentissages** dans des environnements variés : e‑commerce, banque, assurance.\n\nNous verrons concrètement :\n* Comment **former les équipes** aux pratiques qui rendent la livraison plus efficace (Learning Hours, Coding Dojos, Mob Programming)\n* Comment **mentorer les tech leads**, en particulier sur leur posture et leur leadership technique\n* Comment favoriser la **collaboration entre architectes et équipes autonomes**\n* Comment **accompagner et dynamiser les communautés de pratiques**\n* Et comment **casser les silos** dans des organisations ultra-pyramidales\n\n\nJe partagerai avec vous comment, à mon humble échelle, j'essaie de réconcilier les DEVs avec l'agilité et vous verrez que cela passe principalement par les valeurs et principes du manifeste Agile."
+        },
+        "cmn2z9pff005v01prfn3tvgvz": {
+            "id": "cmn2z9pff005v01prfn3tvgvz",
+            "title": "Peut-on faire du BDD sans Gherkin et Cucumber ?",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T10:50:00.000+02:00",
+            "speakers": ["cmlniwgq5001k01phg6v9tsm5"],
+            "trackTitle": "Craft",
+            "tags": ["Craft", "Agilité"],
+            "language": "fr",
+            "abstract": "Talk pour un format plutôt long (40-45 min)\nTout public/profils : dev, QA, product\n\nEst-ce que vous aussi vous avez déjà été séduits par l'apparente facilité du langage Gherkin ? Est-ce que vous aussi vous l'avez essayé sur un projet (personnel ou professionnel) ?\nEt finalement, est-ce que vous avez rejoint le groupe des quelques amoureux du BDD ou celui de ses nombreux haters ???\n\nOn dit souvent que si les gens n'aiment pas le BDD, c'est parce qu'ils le pratiquent mal. C'est vrai... partiellement seulement.\nEffectivement, maîtriser les outils (notamment la rédaction des scénarios Gherkin) nécessite une vraie montée en compétence qui est souvent négligée.  Mais le problème vient surtout de la confusion entre \"pratiquer le BDD\" et \"utiliser les outils du BDD\" (i.e. Gherkin/Cucumber). \n\nPuisque la difficulté dans la pratique du BDD ce sont ses outils, est-ce qu'il serait possible de pratiquer le BDD sans eux ?\n\nButs du talk : \n- montrer que l'essence du BDD est dans la collaboration et pourquoi c'est la seule chose qui compte,\n- décorreler le BDD de ses outils (Gherkin/Cucumber) et proposer des alternatives,\n- rappeler le seul vrai intérêt de Gherkin/Cucumber : avoir une documentation toujours à jour.\n\nPlan / idées clés :\n1- Le BDD : une évolution du TDD\nRetour sur les origines du BDD et de ses outils. Mêmes logiques et méthodo que TDD, simplement ramener du sens (métier) dans les tests.\n\n2- La collaboration au centre (indispensable)\n- sens métier = PO => collaboration\n- objectif : être alignés, car le produit qui sort n'est pas ce qu'a présenté le PO, mais ce que le dev a compris.\n- tuer les incompréhensions : exemples et ubiquitous language.\n- co-créer la spec\n\nPratiques : \n- 3 amigos\n- example mapping\n\n3- Automatiser ses tests : pas besoin de Gherkin (ni de Cucumber et cie)\nAutomatisation = filet de sécurité contre les régressions inaperçues, sérénité.\n- une même règle métier peut être automatisée à différents niveaux : choisir intelligemment.\n\n4- Quel intérêt d'utiliser Gherkin et Cucumber ?\n- seul intérêt : documentation vivante. Or cet aspect est très souvent oublié/ignoré. Et sans l'effort de monter en compétence sur la rédaction des scénarios Gherkin, cet intérêt est de toutes façons manqué.\n-> éléments clés \n-> conseils : ne pas exprimer ses scénarios avec des détails d'implémentation (// bonne pratique : BRIEF)\n\n5- Mise en perspective \n- specs par l'exemple \n- autres outils existants (FitNesse, Concordion, ...)\n- Avec l'IA : regain d'importance de l'essence du BDD (spécifier clairement et aligner)"
+        },
+        "cmmuqhojk07m901nv04qqv4qr": {
+            "id": "cmmuqhojk07m901nv04qqv4qr",
+            "title": "Remerciements",
+            "startTime": "2026-06-18T17:00:00.000+02:00",
+            "endTime": "2026-06-18T17:10:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmmt57yhm05qo01nv5kxm73bc": {
+            "id": "cmmt57yhm05qo01nv5kxm73bc",
+            "title": "Recyclez vos vieux PC en homelab kubernetes",
+            "startTime": "2026-06-18T15:15:00.000+02:00",
+            "endTime": "2026-06-18T15:40:00.000+02:00",
+            "speakers": ["cmlax4lcj00kd01k2q5i6y4lp"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "Des vieux PC inutilisés à la maison?\nEnvie de découvrir Kubernetes, mais votre poste de travail est ras-la-gueule?\nVenez voir comment se créer un petit cluster Kubernetes multi-node chez soi, pas à pas, en partant de zéro.\nC'est idéal pour apprendre, et tester. Sans rien débourser, et avec un impact environnemental minimal.\nCa permet de voir comment ça marche (côté dev ET côté ops), après une installation simplifiée.\n\n- Quelle distribution Kubernetes choisir?\n- Quels avantages/inconvénients par rapport à Docker Desktop ou Minikube?\n- Quels pré-requis techniques pour les machines du cluster?\n- Comment y accéder à distance? Avec quel(s) outil(s)?\n- Dans quel ordre apprendre les différentes technologies?"
+        },
+        "cmnel6occ00n101pfeu4j4nvj": {
+            "id": "cmnel6occ00n101pfeu4j4nvj",
+            "title": "Quand l'IA sait tout faire, qu'est-ce qui nous reste ?",
+            "startTime": "2026-06-18T17:10:00.000+02:00",
+            "endTime": "2026-06-18T17:40:00.000+02:00",
+            "speakers": ["cmnem29kw00nq01pfkwmisqro"],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "language": "fr",
+            "abstract": "L'IA code, résume, décide, architecte. En quelques années, elle a compressé les écarts de compétences techniques vers le haut — ce que tout le monde savait faire \"bien\" ne suffit plus à se démarquer. Alors qu'est-ce qui reste, quand les hard skills deviennent commodité ?\n\nDonatien — ancien militaire devenu développeur, puis product, puis coach — raconte comment une suite de signaux écoutés (et parfois ignorés) l'a mené en 7 ans à travers 5 métiers, 3 surmenages, et un podcast où il décortique les parcours de dizaines de profils tech. \nCe qu’il en a appris : **il n'y a pas de bon chemin dans la tech — il y a le sien.** Et la compétence qui traverse toutes les ères technologiques n'est pas technique : c'est la capacité à s'écouter, à naviguer l'incertitude, et à faire le choix qui résonne plutôt que celui qui rassure.\n\nUn talk personnel, ancré dans le réel, qui pose une question simple : et si ce qu'on ne vous a jamais appris était précisément ce qui vous rend irremplaçable ?"
+        },
+        "cmn2z82un005t01prv9hvn0y9": {
+            "id": "cmn2z82un005t01prv9hvn0y9",
+            "title": "Devons-nous sacrifier la qualité avec l’IA ?",
+            "startTime": "2026-06-18T16:00:00.000+02:00",
+            "endTime": "2026-06-18T16:50:00.000+02:00",
+            "speakers": ["cmlxdy2lh005i01qlm3erekiu"],
+            "trackTitle": "Craft",
+            "tags": ["Craft", "Data & IA"],
+            "language": "fr",
+            "abstract": "L’IA génère du code.\nSouvent rapidement.\nParfois différemment de ce que nous aurions écrit.\n\nAprès des années à perfectionner notre craft — design patterns, clean architecture, SOLID, DDD — nous avons construit des standards exigeants pour garantir la qualité et la maintenabilité. Mais ces standards ont été pensés pour compenser nos limites humaines : mémoire imparfaite, fatigue, difficulté à maintenir du code complexe.\n\nAlors que se passe-t-il quand une IA, capable de régénérer, refactorer et tester massivement, entre dans l’équation ?\n\nDans ce retour d’expérience de CTO, nous questionnerons :\n - Ce que nous appelons vraiment “qualité”\n - Le rôle de l’ego et de l’identité du développeur face à l’IA\n - Les standards qui restent essentiels… et ceux qui méritent d’être repensés\n\nCe talk ne cherche pas à opposer humains et IA.\nIl explore comment notre définition du craft est en train d’évoluer — et ce que cela implique pour les équipes techniques aujourd’hui."
+        },
+        "cmmt582cb05qp01nvq65qdbvl": {
+            "id": "cmmt582cb05qp01nvq65qdbvl",
+            "title": "Pimp my Shell",
+            "startTime": "2026-06-18T16:00:00.000+02:00",
+            "endTime": "2026-06-18T16:50:00.000+02:00",
+            "speakers": ["cmm7n82ci00l301nsugns1jrx"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "Travailler dans un shell n'a pas besoin d'être ennuyeux, ni moche.\n\nCe qui constitue une stack shell moderne : un émulateur de terminal, une _nerd-font_ pleine d'icônes, un joli prompt `starship` et un outillage fou : `mise` pour gérer vos outils, tâches et alias, `fnox` pour les secrets et `chezmoi` pour une gestion propre de vos _dotfiles_.\n\nJe vous partage ma stack et mes astuces et trucs rigolos pour mettre des paillettes dans mon bash, et être efficace en ligne de commande."
+        },
+        "cmmuqigt107ma01nvc5jgouj7": {
+            "id": "cmmuqigt107ma01nvc5jgouj7",
+            "title": "Afterwork",
+            "startTime": "2026-06-18T17:40:00.000+02:00",
+            "endTime": "2026-06-18T19:00:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmmt7cwtt05vf01nvzwl7fkhx": {
+            "id": "cmmt7cwtt05vf01nvzwl7fkhx",
+            "title": "(Re)Découvrir le front par les tests",
+            "startTime": "2026-06-18T11:10:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cmkqpru7h003o01s4ukqu45xb", "cmkqpru8n003p01s4dhjgenq9"],
+            "trackTitle": "Craft",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "On a longtemps été des développeurs fullstack qui ne faisait que du back (et qui détestait le CSS).\n\nPar cette méconnaissance du front, on a pu créer des soupes de div pour essayer de placer correctement un élément, ne pas écrire de tests unitaires et préférer des tests e2e lents (et flaky).\n\nSi vous êtes dans ce cas, le front devient vite une application sur laquelle on redoute d’intervenir. Le code est de plus en plus compliqué à maintenir et peut devenir un goulot d’étranglement pour la livraison de valeur.\n\nDans nos expériences récentes, nous nous sommes réintéressés au front en y appliquant les mêmes réflexions qu’au back (comment bien tester, comment faciliter les développements).\n\nNous vous dévoilerons lors d’un live-coding sur un front en React, comment utiliser correctement les différents niveaux de test, tester unitairement ses composants et supprimer les freins à l’écriture des tests."
+        },
+        "cmn7ffegt01pj01prlzg1qeah": {
+            "id": "cmn7ffegt01pj01prlzg1qeah",
+            "title": "REX : Notre IA et nous contre le legacy : REX d'une reprise de contrôle assistée",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T14:05:00.000+02:00",
+            "speakers": ["cmlp8ypj3009n01pheiounnkk", "cmlp8ypj8009o01phi7m13kbm"],
+            "trackTitle": "Data",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "Ce projet legacy. Vous savez, celui que personne ne veut toucher. Celui où chaque commit est une prière et où l'on vous dit : \"Surtout, ne casse rien, mais ajoute-moi cette feature pour demain.\"\n\nLe rêve ? Tout jeter et repartir de zéro.\nLa réalité ? On *doit* faire avec. Stabiliser, et vite.\n\nMais comment s'attaquer à une base de code tentaculaire sans y perdre sa santé mentale ? Et si l'IA, loin d'être un simple gadget, devenait votre co-pilote le plus précieux pour cette mission ?\n\nÀ travers ce Retour d'Expérience (REX) pragmatique, nous partageons notre journal de bord. Oubliez le \"hands-on\" théorique : ici, on vous montre les cicatrices et les victoires d'une aventure bien réelle pour :\n\n- **Plonger dans l'inconnu :** Cartographier et comprendre des pans entiers de code \"spaghetti\" grâce à l'IA.\n- **Éteindre les incendies :** Générer des tests et ajouter des garde-fous (sécurité, validation) pour stabiliser l'existant avant de le modifier.\n- **Dresser l'assistant :** Configurer et \"prompter\" notre IA pour qu'elle devienne une experte de *notre* code, pas juste un générateur de snippets.\n- **Construire l'avenir :** Démarrer un refactoring stratégique (extraire un service, moderniser une brique) en tandem avec l'IA, sans paralyser le produit.\n\nLoin du discours marketing, on vous montre comment garder la maîtrise, éviter les hallucinations de l'IA, et transformer une corvée en un défi technique stimulant.\n\n*Ce talk est animé par deux développeurs : le \"Prudent\" (qui craint l'effet \"boîte noire\") et \"l'Enthousiaste\" (prêt à tout automatiser). Une dynamique qui reflète les débats de votre propre équipe !*"
+        },
+        "cmnd1dii600dr01pft8waebb7": {
+            "id": "cmnd1dii600dr01pft8waebb7",
+            "title": "Datadog: Observabilité et Sécurité à l'ère de l'IA",
+            "startTime": "2026-06-18T16:00:00.000+02:00",
+            "endTime": "2026-06-18T16:50:00.000+02:00",
+            "speakers": ["cmnx16jpj009s01o2pe6cyrlb"],
+            "trackTitle": "Data",
+            "tags": ["Data"],
+            "abstract": "Les agents IA sont entrés dans nos stacks de production. Ils répondent à des incidents, analysent des alertes sécurité, génèrent et déploient du code. Les équipes DevSecOps sont en première ligne: adopter l'IA pour aller plus vite, sans perdre le contrôle sur ce qu'elles mettent en production.\n\nNous verrons dans un premier temps comment les agents autonomes Datadog changent concrètement le cycle d'un incident, de l'investigation à la remédiation, et ce que ça implique pour les équipes qui restent aux commandes.\n\nNous nous intéresserons ensuite aux systèmes reposant sur l'IA: que se passe-t-il vraiment dans vos chaînes LLM et vos workflows agentiques? Hallucinations, dérives silencieuses, coûts qui s'emballent: autant de signaux qui peuvent rester invisibles sans observabilité dédiée. Ces mêmes systèmes ouvrent aussi de nouvelles surfaces d'attaque: nous verrons comment identifier et se protéger contre ces menaces (prompt injection, jailbreak, exfiltration de données), qui échappent bien souvent aux méthodes de détection conventionnelles.\n\nNous conclurons enfin sur un enjeu souvent sous-estimé: la fiabilité des données qui alimentent ces systèmes. Un pipeline corrompu, un schéma qui change en amont, une anomalie silencieuse: c'est le modèle entier qui dérive sans que personne ne le remarque. L'observabilité des données permet de fermer la boucle, et de s'assurer que l'ensemble des systèmes, de l'IA jusqu'aux tableaux de bord business, repose sur des données fiables et sûres."
+        },
+        "cmmt7doe905vj01nv8na1ialr": {
+            "id": "cmmt7doe905vj01nv8na1ialr",
+            "title": "Context Engineering : pas des modèles plus malins, du contexte plus malin",
+            "startTime": "2026-06-18T11:10:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cmlsglj4b00sv01phpwszh5ve"],
+            "trackTitle": "Data",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "\"Trop de slop.\" \"Usine à dette technique.\" \"Ça marche pas sur les gros repos.\"\n\nOn a tous vécu ça : on lance un agent IA sur un vrai projet, et le résultat est générique, inadapté, voire cassé. La réaction classique, c'est d'attendre des modèles plus intelligents. Mais le problème n'est pas l'intelligence du modèle, c'est ce qu'on lui donne à manger.\n\nDans ce talk, je vous montre pourquoi le context engineering, la discipline de gérer ce qui entre dans la fenêtre de contexte d'un LLM, est la compétence la plus importante pour tirer parti des outils IA en développement.\n\nOn verra :\n  - Pourquoi les LLMs sont des fonctions stateless, et ce que ça implique concrètement\n  - Ce qui bouffe le contexte avant même que l'agent commence à coder\n  - La technique de compaction intentionnelle pour garder le savoir sans le bruit\n  - Comment les micro-agents permettent de contrôler la qualité en isolant l'exploration\n  - Le workflow Research → Plan → Implement qui garde chaque session dans la \"smart zone\"\n  - Comment structurer un CLAUDE.md (ou équivalent) pour que l'agent démarre informé\n\nCe talk s'appuie sur le travail de Dex Horthy (HumanLayer, 12-Factor Agents) et sur des exemples concrets tirés de mes propres expérience avec mon équipe. Pas de théorie abstraite : des techniques applicables dès lundi."
+        },
+        "cmn7fi88901pk01prs3qw6tan": {
+            "id": "cmn7fi88901pk01prs3qw6tan",
+            "title": "GenUI: The Future of Apps?",
+            "startTime": "2026-06-18T14:15:00.000+02:00",
+            "endTime": "2026-06-18T15:05:00.000+02:00",
+            "speakers": ["cmlgkk4kg01iz01k2h9u4v144"],
+            "trackTitle": "Data",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "As an app developer, you may have heard that \"apps are dead\" and \"the future of software is conversational\". Indeed, we can see many use cases that were fulfilled with apps are now covered by chat based apps. Those general chat based solutions can be convenient, but they offer a limited user experience since they rely on text only interactions. What if we could make our app shine by combining the best of both worlds: the convenience of having an user friendly conversational experience with our users and transforming the text-based interactions with interactive experiences? The GenUI SDK allows us to do exactly that by orchestrating the flow of information between the user, our own Flutter widgets and the AI agent of your choice. In this session, I'll introduce you to the concept behind it, how it works, and of course, a demo!"
+        },
+        "cmmuqlmye07me01nvn1kefqj4": {
+            "id": "cmmuqlmye07me01nvn1kefqj4",
+            "title": "Accueil et viennoiseries",
+            "startTime": "2026-06-18T08:30:00.000+02:00",
+            "endTime": "2026-06-18T09:00:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmn7fku2t01pm01pro70gj4l0": {
+            "id": "cmn7fku2t01pm01pro70gj4l0",
+            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
+            "startTime": "2026-06-18T15:15:00.000+02:00",
+            "endTime": "2026-06-18T15:40:00.000+02:00",
+            "speakers": ["cmor96vmt000001pxnxo5in7e"],
+            "trackTitle": "Data",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n"
+        },
+        "cmmt43krv05nu01nv42xhh9fe": {
+            "id": "cmmt43krv05nu01nv42xhh9fe",
+            "title": "Le consultant augmenté : Comment fonctionner comme les grands… tout en restant petit ?",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T14:05:00.000+02:00",
+            "speakers": ["cmmasteda01lz01ns9fij90u4"],
+            "trackTitle": "Agilité",
+            "tags": ["Data & IA", "Agilité"],
+            "language": "fr",
+            "abstract": "“On nous a toujours dit qu'il fallait grandir, grossir. Nous avons fait exactement l’inverse.”\n\nDepuis 14 ans, nous avons choisi de rester une TPE à deux, tout en développant des capacités souvent associées à des structures bien plus grandes : production industrialisée, logique produit, outils sur mesure, et aujourd'hui l'intégration de l’intelligence artificielle.\n\nNos clients ont souvent l’impression que nous fonctionnons comme une organisation de dix… alors que nous n’en avons pas la taille.\n\nCette trajectoire nous a permis de sortir en partie du modèle classique du conseil fondé sur la vente de temps et la croissance permanente.\n\nEt le paradoxe est là : plus nous avons automatisé et structuré, plus nous avons pu revenir à l’essentiel : le lien.\n\nUne conférence sur le consultant augmenté… et sur ce que cette mutation change pour tous les métiers du savoir."
+        },
+        "cmmt4d6ct05oy01nv6jpx7y0k": {
+            "id": "cmmt4d6ct05oy01nv6jpx7y0k",
+            "title": "Le jeu des cartes : résoudre un problème et non trouver une solution",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cmlv004i3018501pho0m3yy5h", "cmluywpqr017n01ph3dog7m8t"],
+            "trackTitle": "Workshop1",
+            "tags": ["Agilité"],
+            "language": "fr",
+            "abstract": "Une équipe est en charge de produire des cartes. Le client n’est pas content. Des moyens sont donnés pour améliorer le processus. L'équipe trouve une SOLUTION mais le client n'est toujours pas content.\n\nL'équipe change de posture et s'intéresse au PROBLEME du client. Une amélioration est mise en place et un débriefe est réalisé avec le client. L’équipe procède à une 2ème amélioration en se focalisant sur les exigences du client. Et ainsi de suite.\n\nUn atelier pour découvrir les vertus des boucles d'amélioration orientées CLIENT. Vous serez surpris par le résultat !"
+        },
+        "cmmt4bdbo05or01nvnqap2fkt": {
+            "id": "cmmt4bdbo05or01nvnqap2fkt",
+            "title": "Codez votre Game Master de JDR grâce à l'IA agentique et le SDK Strands Agents.",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T15:15:00.000+02:00",
+            "speakers": [
+                "cmkqkin5200tc01s4ylf8b0c2",
+                "cmkqkin5y00td01s4hl71qd5m",
+                "cmkqkin6r00te01s45dntruj7",
+                "cmkqkin7j00tf01s4vt6ikgr8"
+            ],
+            "trackTitle": "Workshop1",
+            "tags": ["Data & IA"],
+            "language": "fr",
+            "abstract": "Venez coder un Maître du jeu (MJ) qui sera chargé d'orchestrer plusieurs agents IA, chacun spécialisé dans une tâche particulière. On y verra des concepts comme les agent tools, le protocole MCP (Model Context Protocol), A2A (Agent to Agent) et RAG (Retrieval-augmented generation) afin de créer des agents et/ou serveurs MCP qui tirent les dés, vérifient les règles de DnD, et génèrent l'histoire au fur et à mesure"
+        },
+        "cmmt4t8o205q301nvbuq1s27u": {
+            "id": "cmmt4t8o205q301nvbuq1s27u",
+            "title": "Cloud-Native: toujours plus automatiser pour rendre encore plus bête ?",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T10:50:00.000+02:00",
+            "speakers": ["cmlkz4b6402ec01k2vqg3lzg2", "cmlkzvlnu02ff01k2rmhc96bz"],
+            "trackTitle": "DevOps",
+            "tags": ["Cloud & DevOps"],
+            "language": "fr",
+            "abstract": "Face à la ***complexité technique toujours croissante*** et à l’avalanche de solutions à maîtriser, les équipes s’appuient de plus en plus sur des outils qui automatisent les gestes du quotidien\nAudits automatiques, recommandations, remédiations et actions exécutées sans intervention humaine : notre REX SNCF 2026 interroge ces pratiques qui masquent toujours plus la complexité… parfois au détriment de la connaissance et de l’expertise.\n\nNous proposerons des revues synthétiques et illustrées de plusieurs thématiques :\n* **Finops(pods kubernetes)**: revue automatisée des usages et actions de right‑sizing sans intervention humaine (perfectscale)\n* **Finops(provisionnement)** : création intelligente des noeuds (VM) selon le besoin/cout/disponibilité (Karpenter)\n* **Ops(Diagnostic)** : assistant IA qui analyse le cluster, synthétise la situation, propose des solutions et .. les réalise ? (kubectl ia/mcp datadog)\n* **Platform-engineering** : des experts conçoivent et exposent des objets managés encapsulant la complexité réduisant le besoin d'expertise pour l'utilisateur (crossplane/terraform) .\n\nEntre réalité/constat de terrain, gains avérés et limites/craintes potentielles, voyons comment nous pouvons devenir “***intelligemment plus bêtes***”… sans nous mettre en danger."
+        },
+        "cmmt4f2r605p201nvdff4zjqq": {
+            "id": "cmmt4f2r605p201nvdff4zjqq",
+            "title": "Quand l’accessibilité rencontre le Mob : pratiquer, tester, corriger ensemble",
+            "startTime": "2026-06-18T13:15:00.000+02:00",
+            "endTime": "2026-06-18T15:15:00.000+02:00",
+            "speakers": ["cmlaqltkh00j201k24zch5t9e", "cmlaqltl500j301k272jb2k1g"],
+            "trackTitle": "Workshop2",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "Les ateliers d’accessibilité remplissent rarement les salles, et les conférences sur l’accessibilité numérique restent souvent théoriques : on parle du “pourquoi”, rarement du “comment”.\n\nDans cet atelier, nous allons changer ça.\n\nLe manque de pratique empêche les développeurs et développeuses de progresser. Tester un site avec un lecteur d’écran ou au clavier paraît complexe. Pourtant, il existe des méthodes simples pour apprendre ensemble.\n\nPendant l’atelier, nous corrigerons en direct un site e-commerce volontairement inaccessible, en mob programming. Nous expérimenterons les tests, les outils et les corrections pas à pas.\n\nQue vous soyez dev front, dev généraliste ou novice en accessibilité, vous repartirez avec :\n\n- une méthode pour pratiquer l’accessibilité numérique en équipe\n- une vision concrète de “ce qui compte vraiment”\n- et la preuve que démarrer l’accessibilité, ce n’est pas si compliqué\n\nNB : pensez à apporter vos écouteurs pour écouter le lecteur d’écran. Si vous êtes une personne sourde ou malentendante ou si vous n’avez pas d’écouteurs, vous pourrez activer la visionneuse de paroles qui transcrira ce que dit le lecteur d’écran."
+        },
+        "cmmt4gmb505pc01nv7js5sdsr": {
+            "id": "cmmt4gmb505pc01nv7js5sdsr",
+            "title": "REX Malt : De l'expérimentation à la production, adapter son infrastructure d'Observabilité pour la GenAI",
+            "startTime": "2026-06-18T10:00:00.000+02:00",
+            "endTime": "2026-06-18T10:50:00.000+02:00",
+            "speakers": ["cmm3k33yz007f01nswm5bi5ab", "cmm3hmy60006j01ns5x40orao"],
+            "trackTitle": "Data",
+            "tags": ["Cloud & DevOps", "Data & IA"],
+            "language": "fr",
+            "abstract": "L’usage interne et le déploiement massif en production de solutions utilisant l’IA générative apportent leur lot de challenges : explosion des coûts, enjeux de confidentialité, SLA ou encore non-déterminisme dans l’exécution. Dans cette situation, comment garder le contrôle ?\n\nUne première réponse que nous avons apportée chez Malt a été de mettre à jour notre stack d’observabilité pour répondre à ces nouveaux besoins.\n\nDans ce retour d'expérience technique, nous vous proposerons d’explorer les coulisses de notre architecture :\n- Standardisation OpenTelemetry : Comment nous utilisons OTEL comme standard pour les traces LLM et comment nous l'avons adapté à nos différentes stacks techniques (Python et écosystème JVM/Spring).\n- Architecture & Data Pipeline : La configuration de notre pipeline de collecte (OTEL Collector, routage sélectif vers Datadog)  ainsi que les astuces pour le déboguer efficacement.\n- Piloter le ROI : Comment nous monitorons l’adoption et les coûts de l'IA en interne, notamment les agents de code utilisés par nos développeurs (Claude Code).\n- Démocratisation avec Langfuse : Pourquoi et comment nous avons donné l’accès aux traces au plus grand nombre via cette “LLM engineering platform”.\n\nEn bref : les bonnes pratiques, les standards de demain et les erreurs à éviter pour opérer vos LLM en toute sérénité."
+        },
+        "cmmuqc0dy07lz01nv93k0ulut": {
+            "id": "cmmuqc0dy07lz01nv93k0ulut",
+            "title": "Pause",
+            "startTime": "2026-06-18T10:50:00.000+02:00",
+            "endTime": "2026-06-18T11:10:00.000+02:00",
+            "speakers": [],
+            "trackTitle": "Commun",
+            "tags": ["Commun"],
+            "hideInFeedback": true
+        },
+        "cmq8ipcc1025a01nsfczbv24b": {
+            "id": "cmq8ipcc1025a01nsfczbv24b",
+            "title": "Mon équipe ne voit pas le problème",
+            "startTime": "2026-06-18T11:10:00.000+02:00",
+            "endTime": "2026-06-18T12:00:00.000+02:00",
+            "speakers": ["cmq8ikzh4024q01nst0oduh8s"],
+            "trackTitle": "Agilité",
+            "tags": ["Agilité"],
+            "language": "fr",
+            "abstract": "\"Je ne comprends pas que mon équipe ne prenne pas ce problème à bras le corps\", \"J'ai essayé de leur expliquer pourquoi ce problème était fondamental et il ne se passe rien\", \"Nous avons plein de trucs à faire et mon équipe ne réagit pas\".\n\nN'avez-vous jamais vécu une situation où un problème était évident et pourtant, rien. Pas de réaction de la part de votre équipe.\n\nQue vous soyez manager, lead ou équipier, le problème est là sous le nez de tout le monde mais vous êtes la seule personne à le voir. Vous avez tenté de les sensibiliser, de leur faire prendre conscience mais rien n'y fait.\n\nLors de cette conférence, nous répondrons à :\n- Comment envisager différemment le problème ?\n- Comment changer la dynamique interactionnelle entre vous, le problème et votre équipe ?\n- Comment se sentir mieux face au stress suscité par le problème ?\n- Quel premier pas tenter avec mon équipe pour expérimenter une autre façon de faire ?"
+        },
+        "cmmt4o5lf05po01nvi5nb657c": {
+            "id": "cmmt4o5lf05po01nvi5nb657c",
+            "title": "Pairing is caring!",
+            "startTime": "2026-06-18T14:15:00.000+02:00",
+            "endTime": "2026-06-18T15:05:00.000+02:00",
+            "speakers": ["cmkqq0oii005001s49v2h7fhv"],
+            "trackTitle": "Agilité",
+            "tags": ["Agilité"],
+            "language": "fr",
+            "abstract": "Lorsque j’étais Engineering Manager chez CoachHub, le pair et mob programming se sont installés naturellement dans mes équipes. Les ingénieurs s’étaient totalement approprié la pratique. Ils décidaient eux-mêmes du format, du rythme, du style, parce qu’ils en voyaient les bénéfices au quotidien : code plus qualitatif, moins d'introductions de bugs, identification des angles morts plus en amont, partage de connaissances, opportunités de mentoring...\n\nEn rejoignant Ogury comme coach agile, j’ai été surpris de faire face à une forte résistance. Beaucoup voyaient le pairing comme une perte de temps, un frein à la vélocité, voire une contrainte inutile. Et ces réactions étaient fondées : le pairing avait été mal compris, mal introduit, mal ou même jamais vécu.\n\nCette conférence est née de la présentation qui m’a permis de faire bouger les lignes. Elle s’adresse aux Scrum Masters, Engineering Managers, Head of Engineering, tech leads et développeurs qui souhaitent introduire (ou réintroduire) le pair programming de manière durable et adaptée dans leur organisation.\n\nVous y découvrirez :\n- Les bénéfices concrets du pairing pour les individus, les équipes et les organisations\n- Pourquoi il échoue parfois, et comment éviter ces pièges\n- Des pratiques simples, humaines et simples à mettre en oeuvre pour vous y mettre sans forcer\n\nQue vous soyez convaincu.e, curieux.se ou sceptique, vous repartirez avec une nouvelle perspective sur cette pratique souvent mal comprise."
+        },
+        "cmmt4b9uc05op01nv6i6b2xcy": {
+            "id": "cmmt4b9uc05op01nv6i6b2xcy",
+            "title": "Claude a codé, OpenAI a parlé, j'ai facturé : bienvenue dans le futur du consulting",
+            "startTime": "2026-06-18T15:15:00.000+02:00",
+            "endTime": "2026-06-18T15:40:00.000+02:00",
+            "speakers": ["cmm9a0ybn010501nsogyk48h7"],
+            "trackTitle": "Agilité",
+            "tags": ["Data & IA", "Agilité"],
+            "language": "fr",
+            "abstract": "Un client veut auditer la maturité IA de ses équipes tech. 40 entretiens individuels, une synthèse, un Power Point à endormir n'import qui. Classiquement, c'est 2 semaines de travail. Mais je n'avais que 3 jours. J'ai quand même dit oui.\n\nLe plan : faire coder l'app par Claude Code, faire parler un agent vocal avec un modèle OpenAI, et me contenter de piloter le tout. Vendredi soir l'app n'existait pas. Lundi matin, 40 personnes lui parlaient. Mardi, le client avait sa synthèse.\n\nDans ce talk, je déballe tout, sans filtre :\n - Claude Code comme développeur : j'ai conçu une app complète (FastAPI, TypeScript, WebRTC, Docker) sans coder une seule ligne moi-même. Ce que ça change concrètement quand le dev devient une conversation.\n - Un agent vocal qui mène l'entretien : comment fonctionne un chatbot speech-to-speech : l'API Realtime d'OpenAI, la détection de silence, la gestion du fil de discussion, les appels d'outils, la génération automatique du compte-rendu.\n - Les réactions des 40 interviewés : certains ont oublié qu'ils parlaient à une machine, se sont complètement livrés, d'autres ont détesté. Ce que ça révèle sur notre rapport à l'IA en 2026.\n - La facture et la morale : combien de temps j'ai réellement passé, ce que j'aurais fait différemment, et la question que personne ne pose : est-ce que c'est encore du consulting ?\n\nUn REX cash sur ce qui arrive quand on arrête de faire des POC et qu'on pousse l'IA jusqu'au bout de la chaîne, du code source jusqu'au client final."
+        }
+    },
+    "speakers": {
+        "cmkmgpzo5009z01s4acjpfkbl": {
+            "id": "cmkmgpzo5009z01s4acjpfkbl",
+            "name": "Ludovic Lefebvre",
+            "photoUrl": "https://devfest2025.gdgnantes.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fludovic_lefebvre.ab2c9b6b.jpeg&w=256&q=75",
+            "bio": "En tant que passionné de la performance web depuis plus de 15 ans, j’ai acquis une solide expérience en tant que responsable de l’équipe « coaching perf » chez Peaksys, filiale Tech de Cdiscount.  Aujourd'hui, j'occupe le rôle de **Platform Owner IA**, avec pour mission de structurer, piloter et faire évoluer une plateforme dédiée à l'industrialisation et à l'orchestration de solutions d'intelligence artificielle à grande échelle.\n\nEn dehors de mon activité professionnelle, je suis passionné par le mind mapping et la composition de musique électronique.\n\n - Platform Owner de la plateforme IA chez Cdiscount\n - Expert en Web Performance et JavaScript\n - Intervenant à l’université de Bordeaux / Talence\n - Présent au Chrome Advisory Board chez Google pendant 4 ans",
+            "company": "Peaksys : filiale technologique de Cdiscount",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/Ludovic33Fr"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/Crafty33"
+                }
+            ]
+        },
+        "cmkv0ggc6002801k2e1jmawaf": {
+            "id": "cmkv0ggc6002801k2e1jmawaf",
+            "name": "Edouard CATTEZ",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQFZo0av822Zkw/profile-displayphoto-shrink_800_800/B4EZse5ogaKMAc-/0/1765749983805?e=1775088000&v=beta&t=DkG-axKuz-DFqvg_1_uysB7XSky3uAHKDBsBPfWM_hg",
+            "bio": "Head of Craft chez HoppR mais avant tout consultant crafter, j’accompagne les équipes et les organisations dans la construction de systèmes logiciels durables. Mon travail se situe à l’intersection de l’excellence technique, de la compréhension du problème et du développement des compétences humaines, convaincu que la qualité d’un logiciel dépend autant des pratiques que des personnes qui les portent.",
+            "company": "HoppR",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/ecattez"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/ecattez"
+                }
+            ]
+        },
+        "cmlkk7nl802c201k2hx4vrlv4": {
+            "id": "cmlkk7nl802c201k2hx4vrlv4",
+            "name": "Yoan Thirion",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHs8qwJJqYAjg/profile-displayphoto-shrink_800_800/B4EZPjInezGYAo-/0/1734682507700?e=1750291200&v=beta&t=gMX6MTp3nTw_GeKVnv8_hwvapPnE3gE2tGUfhIuiOZI",
+            "bio": "J'accompagne les équipes pour qu'elles s'améliorent dans la livraison de logiciels grâce aux pratiques Craft et Agile. \nJe les forme et les aide à mettre en œuvre des pratiques telles que Scrum, Kanban, XP, Domain Driven Design, Clean Code et bien d'autres encore...",
+            "company": "Coda School",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/ythirion"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/yoanthirion/"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/yot88"
+                }
+            ]
+        },
+        "cmm232wyr00nw01qlhmhzk6jm": {
+            "id": "cmm232wyr00nw01qlhmhzk6jm",
+            "name": "Kilian Decaderincourt",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJqj6_299ciOEB2gm8zvwN7_lhz4JssK-GTfgHovZzFEp-pvT7S=s96-c",
+            "bio": "Venant initialement d'un parcours orienté Dev, j'ai très vite basculé du côté Ops.\nAprès 3 ans passés chez Orange à travailler sur des problématiques DevOps, je m'occupe depuis plus de 4 ans de l'infrastructure Cloud de 365Talents.",
+            "socials": []
+        },
+        "cml4yilnr01h201k2vie5iwwr": {
+            "id": "cml4yilnr01h201k2vie5iwwr",
+            "name": "Guillaume Chauvet",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLxXlwq2FFLzSv8jlIotpfVdDgMeL11PaeePZdmKu0Mt2stKoE=s96-c",
+            "bio": "Développeur full-stack avec une appétence marquée pour le front, l'ui et l'accessibilité. Guillaume cultive autant le sens du détail que le goût du partage. Entre deux tasses de café, il adore transmettre, apprendre et faire vivre des expériences web élégantes et utiles.",
+            "company": "Octo Technology",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/guillaume-chauvet-0a9664261"
+                }
+            ]
+        },
+        "cml4yilok01h301k2ioht63pf": {
+            "id": "cml4yilok01h301k2ioht63pf",
+            "name": "Dorian Lamandé",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL_nhuuLNqYmLMTTz7tDD8DpbYBB9YcG08Trw4JCV5vvd5pWRah=s576-c-no",
+            "bio": "À la fois formateur et leader d'équipe, Dorian partage avec enthousiasme ses compétences humaines et techniques pour inspirer et guider chacun vers l'exploitation totale de leurs capacités. Ces 10 dernières années, il a notamment travaillé, en tant que Tech Lead, à la formation des développeurs aux pratiques du software craftsmanship.",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/dlamande"
+                }
+            ]
+        },
+        "cmkmuks4j00eq01s4lf4nlxv4": {
+            "id": "cmkmuks4j00eq01s4lf4nlxv4",
+            "name": "Damien Metzler",
+            "photoUrl": "https://avatars.githubusercontent.com/u/111077?v=4",
+            "bio": "Damien Metzler is a Cloud Architect at Hyland, where he leads platform engineering efforts for cloud-native teams. With over 20 years in software development, his journey spans nearly a decade building Nuxeo's cloud platform and four years advising AWS customers as a Solutions Architect. He believes developers are craftsmen, not factory workers—and that platforms should absorb complexity, not shift it. Damien speaks regularly at AWS User Groups and regional tech events, sharing practical insights grounded in real production experience.\n\n---\n\nDamien Metzler est Cloud Architect chez Hyland, où il dirige les efforts de platform engineering pour les équipes cloud-native. Son parcours de plus de 20 ans couvre près d'une décennie à construire la plateforme cloud de Nuxeo et quatre ans à conseiller des clients AWS en tant que Solutions Architect. Convaincu que les développeurs sont des artisans et non des ouvriers, il croit que les plateformes doivent absorber la complexité, pas la transférer. Damien intervient régulièrement aux AWS User Groups et événements tech régionaux, partageant des retours d'expérience concrets issus de la production.",
+            "company": "Hyland",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/damienmetzler/"
+                }
+            ]
+        },
+        "cmnefokqu00ku01pfsfq8kyxn": {
+            "id": "cmnefokqu00ku01pfsfq8kyxn",
+            "name": "Alexis Monville",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/C5103AQElbYnsvbgLZg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516243734165?e=1776297600&v=beta&t=W95SCNdlAGAqKhBqdMvlKVMGgDbapSoh_yOVqgAM2vg",
+            "bio": "Alexis Monville est co-fondateur de Pearlside et coach de dirigeants dans la tech.\nIl accompagne les organisations qui veulent passer d’un leadership centré sur le contrôle à un leadership qui fait émerger responsabilité et impact.\n\nAncien Chief of Staff du CTO chez Red Hat, il a évolué pendant plus de 30 ans dans des\nenvironnements open source, startups et grandes organisations internationales.\n\nAuteur de Changing Your Team from the Inside et I Am a Software Engineer and I Am in\nCharge, il travaille aujourd’hui avec des leaders qui veulent construire des organisations\noù chacun prend sa part, sans attendre qu’on lui dise quoi faire.",
+            "company": "Pearlside",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/alexismonville/"
+                }
+            ]
+        },
+        "cmmb28izl01oy01ns0ed9ugzt": {
+            "id": "cmmb28izl01oy01ns0ed9ugzt",
+            "name": "Jean-Yves CAMIER",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJC567COb_8dmk_rBX_FPQ4ampp8dGj65Xjra4B731E0w=s96-c",
+            "bio": "Craft addict et technophile compulsif, Jean-Yves a traversé pas mal de rôles — dev, tech lead, archi, formateur, manager, SRE — ex-Clever Age, ex-M6 Web, avant d'atterrir chez Capgemini comme Tech Lead Platform Engineer. Entre Go, Kubernetes et tout ce qui peut s'automatiser, il croit dur comme fer qu'une bonne solution est une solution simple (et qu'on peut mesurer).",
+            "socials": []
+        },
+        "cmor96vmt000001pxnxo5in7e": {
+            "id": "cmor96vmt000001pxnxo5in7e",
+            "name": "Leo Bourrel",
+            "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
+            "company": "IALAb",
+            "socials": []
+        },
+        "cmlniwgq5001k01phg6v9tsm5": {
+            "id": "cmlniwgq5001k01phg6v9tsm5",
+            "name": "Rose Lutz",
+            "photoUrl": "https://lh3.googleusercontent.com/a/AATXAJwFvxIf_vJYbxZgMSg_cpUHci_7EW1r2b5v2IJx=s96-c",
+            "bio": "Je suis tombée dans la marmite de la QA suite à une reconversion professionnelle, il y a 14 ans, et j'ai tellement aimé que j'y suis restée !\n\nD'abord testeuse, je suis devenue Lead QA après quelques années, puis Responsable QA, avant de passer à mon compte pour accompagner les équipes sur la mise en place de stratégies Qualité. Je donne régulièrement des cours en École, notamment sur le BDD et sur les pratiques de test.\n\nJ'aime creuser, comprendre et challenger les pratiques et les produits.\n\nMa marotte : trouver les meilleures solutions pour améliorer la qualité produit, la vitesse de delivery et la satisfaction des équipes.",
+            "company": "ALT QA",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://fr.linkedin.com/in/rose-lutz"
+                }
+            ]
+        },
+        "cmlax4lcj00kd01k2q5i6y4lp": {
+            "id": "cmlax4lcj00kd01k2q5i6y4lp",
+            "name": "Boris Maras",
+            "photoUrl": "https://cloud.flaht.eu/public.php/dav/files/Fc8L7BeRr9ikqtK/",
+            "bio": "Freelance passionné, je suis familier avec les cultures dev et ops.\n\nAvec les certifs CKA, CKAD et CKS, j'assiste actuellement des entreprises sur des déploiements sur Kubernetes, en m'appuyant sur la synergie entre leur infra et leurs stacks applicatives.\n\nJe connais aussi l'écosystème Java, Linux, CI/CD, Ansible etc. Je fais de l'auto-hébergement à la maison, et du bénévolat pour des associations (audit de sécurité, notamment).\n\nVous ne me trouverez pas sur les réseaux sociaux (à part sur https://www.linkedin.com/in/boris-maras/), mais plutôt sur mon blog https://blog.mossroy.fr/",
+            "company": "Freelance",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/mossroy"
+                },
+                {
+                    "name": "website",
+                    "link": "https://gitlab.com/mossroy/"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/boris-maras/"
+                }
+            ]
+        },
+        "cmnem29kw00nq01pfkwmisqro": {
+            "id": "cmnem29kw00nq01pfkwmisqro",
+            "name": "Donatien Delalu Möller",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4D03AQGIDyVU6nMhhg/profile-displayphoto-crop_800_800/B4DZnNC4SWHwAI-/0/1760081709370?e=1776297600&v=beta&t=Tgsh1ZBmaZPQdEzpaFkpRYs5pOllj4HepTV43FOToGc",
+            "bio": "Donatien Delalu Möller a passé 4 ans dans le milieu militaire avant de se reconvertir dans la tech. D'abord développeur full stack, il évolue rapidement vers des rôles plus hybrides : Tech & Product Lead, Product Engineer, CPTO. À chaque étape, il s'éloigne un peu plus du code pour adresser ce qui l'anime vraiment : la structuration produit, l'alignement tech-business, et les dynamiques humaines dans les organisations.\n\nEn parallèle, il lance le podcast *Developer Experience* — à date, plus de quarante épisodes qui décortiquent les parcours et les questionnements de profils tech. En 2025, il se forme au coaching avec une méthode basée sur les neurosciences grâce à 108 Milliards. Aujourd'hui, il accompagne des profils tech, produit et non-tech — managers, dirigeants, entrepreneurs — et co-anime le meetup Dev With AI à Lyon.\n\n## Références\n\n- 🎙️ Podcast *[Developer Experience](https://smartlink.ausha.co/developer-experience)* — 40+ épisodes sur les parcours tech\n- 🧠 Coach certifié 108 Milliards — méthode basée sur les neurosciences\n- 🤖 Co-animateur du meetup [Dev With AI (Lyon)](https://www.devw.ai/)",
+            "company": "Freelance",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/donatien-d/"
+                }
+            ]
+        },
+        "cmlxdy2lh005i01qlm3erekiu": {
+            "id": "cmlxdy2lh005i01qlm3erekiu",
+            "name": "Kevin Delfour",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ61LaEDskpN46nmb5_A4_HpfEUGYti5uyL18ZbN4Y9PVoBxybACw=s96-c",
+            "bio": "Développeur expérimenté et CTO, j’accompagne des équipes techniques dans la conception de produits robustes et scalables. Passionné par le craftsmanship, l’architecture logicielle et la qualité du code, j’ai longtemps défendu des standards exigeants en matière de conception et de maintenabilité.\n\nEntrepreneur engagé, je m’intéresse particulièrement à l’évolution des organisations techniques, aux modèles de gouvernance responsabilisants et à l’impact de l’intelligence artificielle sur nos métiers.\nAujourd’hui, j’explore une question centrale : comment l’IA transforme-t-elle notre définition de la qualité logicielle — et notre identité de développeur ?",
+            "socials": []
+        },
+        "cmm7n82ci00l301nsugns1jrx": {
+            "id": "cmm7n82ci00l301nsugns1jrx",
+            "name": "Julien WITTOUCK",
+            "photoUrl": "https://gravatar.com/avatar/9028e87cd3b536db3b422aa3d50a159149db13ca4d8330708b82aa9cf7886f34?size=200",
+            "bio": "Je suis fan de Star Wars 💫, de Dragon Ball 🐉, et de rock seventies & nineties 🎸🤘.\n\nJe suis aussi Architecte Solution 🏗️  indépendant, associé chez [Ekité](https://ekite.info) et j'enseigne le développement Java / Spring à l'université de Lille 🎓 depuis plus de 10 ans.\nJe suis aussi l'auteur du livre [L’infrastructure as Code avec Terraform](https://www.editions-eni.fr/livre/l-infrastructure-as-code-avec-terraform-deployez-votre-infrastructure-sur-le-cloud-9782409046629) paru aux éditions ENI, et membre du comité d'organisation de la conférence ☁️ Cloud Nord\n\nJe publie régulièrement des articles de veille sur mon site perso [codeka.io](https://codeka.io).\n\nMes sujets de prédilection:\n\n* ☕ : Java/Spring\n* ☁️ : Cloud/IaC/Terraform\n* 🐋 : Docker/Kubernetes\n* 🐧 : Linux 💙",
+            "company": "Freelance / Associé chez Ekité",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/juwit"
+                },
+                {
+                    "name": "bluesky",
+                    "link": "https://bsky.app/profile/codeka.io"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/julien-wittouck/"
+                }
+            ]
+        },
+        "cmkqpru7h003o01s4ukqu45xb": {
+            "id": "cmkqpru7h003o01s4ukqu45xb",
+            "name": "Yann Bouvet",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJhrYvM7OKifi-7chzyCa5q9bFGk4uRZYb7QcXTfLeIZxcY5QgoWkX0uahjolq6sqhIgmY9dQihpbeJsAyehURTjxo=s288-c-no",
+            "bio": "Développeur Fullstack Senior chez [Shodo Lyon](https://shodo.io/), je suis tombé dans le software craft récemment.\n\nSes pratiques et méthodes m'émerveillent et facilite mon travail, c'est pour ça que j'aime en parler.",
+            "company": "Shodo Lyon",
+            "socials": []
+        },
+        "cmkqpru8n003p01s4dhjgenq9": {
+            "id": "cmkqpru8n003p01s4dhjgenq9",
+            "name": "Jérémy CHAUVIN",
+            "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXvXK7QKYarz-ATGq7uyd9hGAfT9GB8SzNdZetQ08y6S65GYMUDG1rNoOySpSvyO80YDq1WE60zuPi8p5ygNui2ukZ3bCJJCG_owJ_BhQ_E4tlsNEr8PXSWJB2bbvcD9caADyi1kKoHFjJUMobEzsvMk34mM7Z_d9ugI_j4hUbi4uHeHpDd-kyahJkEDB3Q3GiyfA9l-2gnBAl-Zf7frSAGJ-VaEmkiy_Z1Zx2kkxJoC_52_NwBJbEIos2msX1l8fCMBFBPaktfc67Dp8YrTmONaT-KdeH7LnnjLF6FNQxet3_VId-ZqEZtMfAp4mqtxQsLYfQ6tSK95hgrbP1NOEx67kAqc7aUMbvIhIGauOaEtAV5vbg6FAwJp7R13DV1D6REbBga3JEOyxwZcLcdFxlI6Qm3LheEVJj304WjX69YeK4ZiY0p1uedICF7C3cNci3u5ec2mVho7ShrT1YQUHPIP6gxNndMcY0kf0WIc3nIjhbiG3KtUjQYuDyKEmrh8HnsrM4zE-uBJoHBs8ZVD744psB7l2MxBxmIlAWGdfe5gt-lIVJ4nFsaYKmiADBiV8cm4OFNI5ma2enDbb5CupZMe_mkztY8AMnWwKN9Znw0CcrltYZf8bjilTjpj_dwByykMyBVpuXrSaLc5YK_QzIRcB0tButO930gn4Lbr8xdiKlLaPD8cZduluUK-He7vOHgq28vWQCTeLE10pZbekav1SQ0T8cH3eOtG5Rhysp1Orjh_UhumyDiJAua6SUXnxT_m1eqri6UyTkg6xDTrAFwn1HZKgZC3jxwJKM3eKVhrPpPa4sZowqih6q9ugHSmiTMbAbYXcWplVMcYcfa9WGYD8h8mwbUkIS-zCxQB4Q82Raj46uW8zlo-T_3z70-AgYJk_gZnueSr1UwksBCKJsYh6UaR5962Z_ONT4y8bZ8OwuiqrdaKwVHFmnZWGNQlIFPfnHAu2ieCGb8tZ-usPfYWgxD=s576-c-no",
+            "bio": "Développeur un peu touche à tout, je possède une certaine appétence pour le front et les interfaces élégantes et intuitives, même si un bon backend fait toujours plaisir.\n\nVéritable technophile dans une esprit craftsman et agile, j'aime à ce que l'amélioration continue, la qualité et le partage ne soient pas que des mots.",
+            "company": "Shodo Lyon",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/j%C3%A9r%C3%A9my-chauvin-b33923196/"
+                }
+            ]
+        },
+        "cmlp8ypj3009n01pheiounnkk": {
+            "id": "cmlp8ypj3009n01pheiounnkk",
+            "name": "Benjamin Lacroix",
+            "photoUrl": "https://gravatar.com/avatar/eb25bd4e2953b8e32b5057f5a7953bc5ce382e35579e29db6cf7a0c755750b09?v=1675763392000&size=512",
+            "bio": "Développeur mobile, Web & Back j'aide nos clients à choisir, puis à implémenter la meilleure stack pour leurs besoins.\n\nJ'adore apprendre, bidouiller et entreprendre, je le raconte au détour de différentes conférences : XebiCon, DevFest, Android Makers et en interne.",
+            "company": "Shodo Studio",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/blacroix"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/benjlacroix"
+                }
+            ]
+        },
+        "cmlp8ypj8009o01phi7m13kbm": {
+            "id": "cmlp8ypj8009o01phi7m13kbm",
+            "name": "Jordan NOURRY",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHsk5O25htc6g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1680858694099?e=1775088000&v=beta&t=c0IJNrOCgM6mIYtAAZIr4bjv7fTdBUYQhft1VadRvEE",
+            "bio": "Cofondateur de Shodo Studio, je construis depuis 15 ans du code durable et accompagne des équipes sur leurs projets les plus critiques. Convaincu que le développement est un artisanat qui se transmet, je partage mon savoir-faire avec la communauté sous plusieurs formats : articles, talks, et au sein de CraftsRecords, un collectif de passionnés.\n\nAujourd'hui, j'explore comment l'IA peut devenir un véritable allié dans la reprise de contrôle sur le legacy — à condition de garder la main et d'éviter les promesses marketing.",
+            "company": "Shodo Studio",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/jordan-nourry-20377a50/"
+                }
+            ]
+        },
+        "cmnx16jpj009s01o2pe6cyrlb": {
+            "id": "cmnx16jpj009s01o2pe6cyrlb",
+            "name": "Pierre Quemard",
+            "bio": "Architecte Solutions chez Datadog passionné d'innovation, qui fait de l'observabilité un moteur de transformation pour les partenaires à travers l'EMEA",
+            "company": "Datadog",
+            "socials": []
+        },
+        "cmlsglj4b00sv01phpwszh5ve": {
+            "id": "cmlsglj4b00sv01phpwszh5ve",
+            "name": "Mehdi Lahmam",
+            "photoUrl": "https://avatars3.githubusercontent.com/u/224928?v=4",
+            "bio": "I’m the co-founder and CPTO of Grinta, a platform helping retailers and amateur sports clubs connect through tailored online shops.\n\nBefore that, I was CTO at act for sport, a company I co-founded and later sold. Earlier in my career, I worked at Captain Train (now Trainline) after running a small consultancy where I helped 40+ startups build and grow their products over seven years.\n\nOutside of work, I enjoy spending time with my kids and lately pretending to be a DJ with living room sets. My toughest crowd yet!\n\nI also share my thoughts through public speaking. You can find some of my talks on my Speakerdeck.\n\nI keep a low profile online, but you can still find me on Linkedin or GitHub. Feel free to say hi!",
+            "company": "Grinta",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/mehlah"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/mehlah/"
+                },
+                {
+                    "name": "website",
+                    "link": "https://mehdi.lahmam.com"
+                }
+            ]
+        },
+        "cmlgkk4kg01iz01k2h9u4v144": {
+            "id": "cmlgkk4kg01iz01k2h9u4v144",
+            "name": "Elaine Dias Batista",
+            "photoUrl": "https://pbs.twimg.com/profile_images/1785639222084292608/Gw6lM5Vb_400x400.jpg",
+            "bio": "Elaine has been working with mobile apps development for more than 10 years. Since the launch of the Google Assistant, she has been following the developments around that area. She truly believes that interacting with technology using natural language will define the future of computing. Born and raised in Brazil, she's been living in France since 2004 and loves everything multicultural. She's a GDE for the Flutter and Dart.",
+            "company": "SFEIR",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/elainedb"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/elainedbatista"
+                }
+            ]
+        },
+        "cmmasteda01lz01ns9fij90u4": {
+            "id": "cmmasteda01lz01ns9fij90u4",
+            "name": "Romain Couturier",
+            "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUW6xS8NTfI1FSw5sPfQkWZJ4ce2dbKPU7_LlSBhE8uB3rZMAnW2srX7fsa-CKN0hEZiXv0DOwiD2De2-R-34aFmPxCzaLmYzklSwVw6S_F-rBuqXXngCBCqlnAmXjnbaZnr5KSgMVvl8rSHIsOIKPDdkHxHLoxP3FfPaSGTNAoCV-g3OJg-L6UA6G5Z0n6rETEWt6lSjEOm7RgZfTvVwW-oSYyreDfheTCRkk5ZbfC76uPQkG7c-D-g63fOVtUhHcShNdoZ561Xu3JQur0kLF7INdmrCGT5FNZ8vcC2oqXj8V2K0R45nkB6CHL2IrwDxvLFGlAamzjHQfjxm5DctiUVdny1V4duZyuzfTypL8-yJSIKZ-lIAz2TEOIkGPJ5kXgseT2MIwGkW-jYInWe93I3SAiPPl4LQolDK5ZcwHo3r5jY2pmd8Yxusz9TG9CYi8n0ZqPG7E-OCYQr8jQ_oHtzLytna6XWapicJ4Nf_OyVvao496KC3fmWOEHH1Om_fXQY6MT7r-V3jc5N3nyzdqRG_KE-kfrTCgNAeah7Fcynueny0ccWMsKVLwBZUc973WDfP8a4Wdw-iSvXqEA0HrwUnfl5e5rVsDVs7lFiRXap4T0SE2ZEvqHSJ3punKd0kVMuF-wIB-6uUrxBmy0L3FtG4c_Iy5o3IkTREa0qrEvucY1KgHWWm6usjNcvU3CUxDwZPQnZuWNfO1QfT-TylAYUE6r1-bqz6yp4OMSz9iIoIpHJAxvoM3NGp67NRDqUf6nLodBPevAhNHrBiofZl8aa0aLcuD9MeEPoPtkQjyqkNQL4lN0pTfNxvNpNbNCZhYJPIkTpBjFIzTqROTJkT2Xsg1EiY4fmSfVdYMFtc-VpMttMrOXSAwj9ZgEOhIZLixi3N4WrMuOg6VTECw3HxhZOZbKqB9CKP813ZBV8YF4WUUtwe7XpqZC3PMth20KqBQC2tZTctBfykshUxtu84Fe9AqrXpc7ZwwlmTxRiJJo3oWrWuk0OlFlV4Fu5YXFMvEgNHXO05cJK-Jj8vfKBm0sCnUYwFHXlU4fOtlNljiQwjwMADBlM0XB=s96-c",
+            "bio": "Romain Couturier est co-fondateur de SuperTilt, une TPE qu’il développe depuis plus de 14 ans.\n\nIl accompagne les organisations lorsqu’elles ont du mal à avancer sur leurs sujets stratégiques, en aidant les équipes à clarifier, s’aligner et prendre des décisions concrètes (Agilité) grâce au travail collectif (intelligence collective) et à la visualisation des idées (facilitation graphique). \n\nIl s’intéresse particulièrement à l’évolution des métiers du conseil et aux nouvelles façons d’augmenter les capacités des petites structures avec l'IA",
+            "socials": []
+        },
+        "cmlv004i3018501pho0m3yy5h": {
+            "id": "cmlv004i3018501pho0m3yy5h",
+            "name": "Alfred Almendra",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKR2JTW-dww-27bwd-mB00iTUHXtwgCR35c0RKxpCMlWpM4C9qChA=s96-c",
+            "bio": "Formateur et consultant sur les approches agiles",
+            "company": "Astuces Agiles",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/alfredalmendra"
+                }
+            ]
+        },
+        "cmluywpqr017n01ph3dog7m8t": {
+            "id": "cmluywpqr017n01ph3dog7m8t",
+            "name": "Damien BONHOMME",
+            "photoUrl": "https://drive.google.com/file/d/1ANxIuyEEx9OG2xFhbYMmleaa2d7TY57L/view?usp=sharing",
+            "bio": "Damien, dirigeant de 3Conselis (Lyon), présente une expérience confirmée dans l’identification des opportunités d’amélioration ainsi que dans l’animation d’équipes projets en environnement Service et Industrie. Il est un spécialiste de l’approche processus. Il accompagne les entreprises dans leurs dynamiques d’Amélioration Continue pour des processus plus fluides, une satisfaction client accrue et une activité pérenne.\n\n• Accompagnement en individuel ou collectif sur la gestion de projet, la facilitation d’équipe, la transformation de l’organisation, l’intrapreneuriat ou l’innovation selon les méthodes Lean, Agile ou Six Sigma (DMAIC)\n\n• Pilotage de projet de résolution de problème sur la réduction de temps de cycle, la fiabilisation de la prise de décision à partir de données processus, la libération de capacité de production ou l’accompagnement au changement des équipes opérationnelles.\n\n• Formation à l’Amélioration Continue (Lean, Méthodes Agiles, Six Sigma). Mise en place du parcours certifiants Lean Service Agile Niveau Green Belt pour apprendre les méthodes et outils de l’amélioration continue",
+            "company": "3Conseils",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/damienbonhomme3conseils/"
+                },
+                {
+                    "name": "website",
+                    "link": "https://www.3conseils.com/"
+                }
+            ]
+        },
+        "cmkqkin5200tc01s4ylf8b0c2": {
+            "id": "cmkqkin5200tc01s4ylf8b0c2",
+            "name": "Olivier Leplus",
+            "photoUrl": "https://raw.githubusercontent.com/tagazok/tagazok.github.io/master/assets/images/avatar%20olivier.png",
+            "bio": "Developer Advocate at AWS and Google Developer Expert in Web Technologies. I love to share knowledge (and love) among developers and people in general.",
+            "company": "AWS",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/tagazok"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/olivierleplus"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/olivierleplus/"
+                }
+            ]
+        },
+        "cmkqkin5y00td01s4hl71qd5m": {
+            "id": "cmkqkin5y00td01s4hl71qd5m",
+            "name": "Adrien Lebret",
+            "photoUrl": "https://pbs.twimg.com/profile_images/1933446732139921408/JCAnVwuG_400x400.jpg",
+            "bio": "Adrien Lebret - Solutions Architect chez Amazon Web Services (AWS) passionné par l’Intelligence Artificielle, le développement, le Media & Entertainment et le Sport. Après avoir intégré le programme Tech U d’AWS en 2022, il accompagne au quotidien les entreprises française du monde du média.",
+            "company": "Amazon Web Services",
+            "socials": [
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/adrienlebret"
+                },
+                {
+                    "name": "mastodon",
+                    "link": "https://builder.aws.com/community/@adrien"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/adrien-lebret/"
+                }
+            ]
+        },
+        "cmkqkin6r00te01s45dntruj7": {
+            "id": "cmkqkin6r00te01s45dntruj7",
+            "name": "Tiffany Souterre",
+            "photoUrl": "https://lh3.googleusercontent.com/-0XDx36TcjxU/AAAAAAAAAAI/AAAAAAABQkA/-hqGP4ktCDY/photo.jpg",
+            "bio": "I'm Tiffany, Senior Developer Advocate in AI/ML at AWS 💻. After a Ph.D. in Genetic Engineering, I worked as a Data/ML engineer and Developer Relations at Microsoft. I'm also a recurring speaker in the Underscore talk-show. I love engaging with developers about technologies, innovations and help them use our tools. My main focus are Artificial Intelligence 🤖 and Cloud technologies ☁️ but I also love astronomy 🚀, biotechnologies 🧬, outdoors activities 🏔️ and sharing a meal in good compagnie 🍲",
+            "company": "AWS",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/amagash"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/tiffanysouterre"
+                }
+            ]
+        },
+        "cmkqkin7j00tf01s4vt6ikgr8": {
+            "id": "cmkqkin7j00tf01s4vt6ikgr8",
+            "name": "Arnaud Jean",
+            "photoUrl": "https://lh3.googleusercontent.com/a/AEdFTp7PvJLVubaFLWMiAONNoTTqX-MzJdYxOyI2oV5lww=s96-c",
+            "bio": "Helping Devs build cool stuff, learn faster, and laugh along the way — one bug at a time.",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/TheWitcherish"
+                },
+                {
+                    "name": "twitter",
+                    "link": "https://x.com/TheWitcherish"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/TheWitcherish/"
+                },
+                {
+                    "name": "website",
+                    "link": "https://www.twitch.tv/TheWitcherish"
+                }
+            ]
+        },
+        "cmlkz4b6402ec01k2vqg3lzg2": {
+            "id": "cmlkz4b6402ec01k2vqg3lzg2",
+            "name": "Antoine BERMON",
+            "photoUrl": "https://avatars.githubusercontent.com/u/136324580?v=4",
+            "bio": "[SNCF] Senior Staff Engineer - Platform Engineer\nExpertise cloud-native/conteneurisation",
+            "company": "SNCF",
+            "socials": []
+        },
+        "cmlkzvlnu02ff01k2rmhc96bz": {
+            "id": "cmlkzvlnu02ff01k2rmhc96bz",
+            "name": "Thomas Comtet",
+            "photoUrl": "https://avatars.githubusercontent.com/u/57966036?v=4",
+            "bio": "2 vieux brigands qui naviguent parmis les eaux troubles du landscape Cloud native depuis quelques années maintenant. Notre terrain de jeux préféré : le SI du groupe SNCF en charge des activités de transport feroviaire.",
+            "socials": []
+        },
+        "cmlaqltkh00j201k24zch5t9e": {
+            "id": "cmlaqltkh00j201k24zch5t9e",
+            "name": "Emmanuelle ABOAF",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLnRmgQnZjlGQ3qpeT1DjNmvxjNO7dXq6hHlulE8FjhSUxJyxAA=s83-c",
+            "bio": "Sourde de naissance et bionique avec mes deux implants cochléaires, je suis développeuse fullstack et coach en accessibilité chez Shodo. Dans mon monde idéal, tout doit être accessible aussi bien dans la vraie vie que sur le Web.",
+            "company": "Shodo",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/emmanuelle-aboaf/"
+                }
+            ]
+        },
+        "cmlaqltl500j301k272jb2k1g": {
+            "id": "cmlaqltl500j301k272jb2k1g",
+            "name": "Manon Carbonnel",
+            "photoUrl": "https://avatars.githubusercontent.com/u/6471771?v=4",
+            "bio": "Développeuse web front et back, experte en intégration web, design systems et accessibilité. \n\nSpécialisée en tests automatisés (unitaires, composants, mutation, UI, non‑régression visuelle, accessibilité) et en analyse statique.\n\nJ’accompagne les équipes vers les pratiques software craft grâce à la facilitation, au mentoring et à l’animation de workshops (pair & mob programming, TDD, tests, coding dojos, mindset Agile).\n\nJe suis passionnée par le HTML/CSS et j'ai créé [Csscade](https://csscade.fr/), une communauté française sur l'intégration web.\n\nJe m'investis activement pour promouvoir la diversité dans la tech. En tant que [Yeeso](https://yeeso.fr/) Leader à Rennes, animatrice de [La Fresque Du Sexisme](https://www.fresque-du-sexisme.org/), et mentor/marraine pour [Craft Records](https://craftsrecords.org/).",
+            "company": "Shodo",
+            "socials": [
+                {
+                    "name": "github",
+                    "link": "https://github.com/manoncarbonnel"
+                },
+                {
+                    "name": "website",
+                    "link": "https://linktr.ee/manoncarbonnel"
+                },
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/manon-carbonnel/"
+                },
+                {
+                    "name": "bluesky",
+                    "link": "https://bsky.app/profile/manoncarbonnel.bsky.social"
+                }
+            ]
+        },
+        "cmm3k33yz007f01nswm5bi5ab": {
+            "id": "cmm3k33yz007f01nswm5bi5ab",
+            "name": "Julien Aubert",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJRXtqEHL504l3qdYpERXhC_Hj1NdPyUpp7EKHUxWZVRNzt65w=s96-c",
+            "bio": "Développeur Java de formation (2009), j'ai forgé mon expérience sur des projets critiques, notamment la construction du SI Linky chez Enedis. C’est dans ce contexte de performance et haute disponibilité que j'ai pivoté vers l'univers Cloud et DevOps.\n\nDepuis 2019, j'officie en tant que Tech Lead de l’équipe Platform/SRE chez Malt. Passionné par l'efficience opérationnelle, je concentre aujourd'hui mon expertise sur l’optimisation des coûts (FinOps), l’automatisation à l'échelle et l’amélioration de la Developer Experience (DevEx).",
+            "company": "Malt",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/j-aubert/"
+                }
+            ]
+        },
+        "cmm3hmy60006j01ns5x40orao": {
+            "id": "cmm3hmy60006j01ns5x40orao",
+            "name": "Nicolas Mauti",
+            "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLA8hU2ZVOcjfdqdz2OsogA8Tp_5xxB3wg6MdwnXd-fff0ddaI=s96-c",
+            "bio": "Graduated in July 2014 from the Computer Science department of INSA Lyon, I spent several years working as a Software Engineer, specializing in Java and C++.\n\nIn 2019, I pivoted toward Data Science. In this role, I successfully developed and deployed several machine learning models, specifically in the fields of NLP (Natural Language Processing) and recommender systems.\n\nStarting in 2021, I sought to bridge the gap between software development, DevOps practices, and Data Science by transitioning into an MLOps Engineer role.\n\nWith the rise of LLMs in production, I now support both Data and Engineering teams in adopting and successfully integrating these technologies into our products.\n\nAlongside my professional career, I have been teaching at engineering schools for several years, covering a variety of subjects: Big Data, Java, Data Science, and MLOps.",
+            "company": "Malt",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/nicolasmauti/"
+                }
+            ]
+        },
+        "cmq8ikzh4024q01nst0oduh8s": {
+            "id": "cmq8ikzh4024q01nst0oduh8s",
+            "name": "Grégory Alexandre",
+            "bio": "Je suis coach organisationnel et produit chez Goood!\n\nJ’accompagne les projets IT à débloquer leur chaîne de delivery soit parce que les objectifs sont mal définis, que le produit est mal cadré, que la production s'embourbe, soit à cause d'incompréhensions et de tensions dans les équipes.\n\nJ'aime les gens qui doutent car ils se questionnent et s'ouvrent aux hypothèses et aux expérimentations.",
+            "company": "Goood!",
+            "socials": []
+        },
+        "cmkqq0oii005001s49v2h7fhv": {
+            "id": "cmkqq0oii005001s49v2h7fhv",
+            "name": "Olivier Breda",
+            "photoUrl": "https://cache.sessionize.com/image/5129-400o400o2-YSg6mF8sA8sEuYkoej83Fr.jpg",
+            "bio": "Plus de 15 ans dans la tech, dont 10 en management : une conviction assumée, pas un choix par défaut.\n\nTrès tôt, j’ai décidé de manager en mettant l’humain au centre, avec l'obsession de produire des résultats concrets dans un cadre sain. Installer la confiance, clarifier les attentes, élever le niveau d’exigence et s'améliorer en continu pour construire des équipes solides, responsables et performantes. Développeur, delivery manager, coach agile, engineering manager ou encore head of engineering, chaque rôle que j'ai occupé fut l'occasion de matérialiser cette vision de l'équipe qui performe vraiment.\n\nAujourd’hui consultant indépendant, j’aide les organisations à façonner ces équipes.",
+            "company": "Freelance",
+            "socials": [
+                {
+                    "name": "linkedin",
+                    "link": "https://www.linkedin.com/in/olivier-breda-executive-agile-engineering-consultant/"
+                },
+                {
+                    "name": "website",
+                    "link": "https://olivierbredaconsulting.fr"
+                }
+            ]
+        },
+        "cmm9a0ybn010501nsogyk48h7": {
+            "id": "cmm9a0ybn010501nsogyk48h7",
+            "name": "Dario Spagnolo",
+            "bio": "Dario Spagnolo bidouille le web depuis 25 ans. Fondateur de l'Ecole O'clock, la première école de développement en téléprésentiel (8 000 personnes formées), il a aussi dirigé une agence web. Aujourd'hui consultant en IA à Lyon, il conseille les entreprises sur leur transformation IA.",
+            "socials": []
+        }
+    }
+}
