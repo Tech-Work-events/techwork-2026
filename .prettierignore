@@ -3,3 +3,6 @@ build
 coverage
 dist
 
+# Spec docs contain illustrative / partial code snippets that must not be reformatted
+docs/specs
+
