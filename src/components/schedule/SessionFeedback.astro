@@ -1,0 +1,37 @@
+---
+import QRCode from 'qrcode'
+
+interface Props {
+    url: string
+}
+
+const { url } = Astro.props
+
+// QR généré en SVG inline AU BUILD : aucun JS client, aucun appel réseau au
+// runtime. Si l'URL est invalide, le build échoue franchement (pas de fallback).
+const qrSvg = await QRCode.toString(url, { type: 'svg', margin: 1 })
+---
+
+<div class="px-6 sm:px-8 py-8 border-t border-gray-100">
+    <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Donnez votre avis</h2>
+    <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div
+            class="w-44 h-44 flex-shrink-0 rounded-xl bg-white p-2 ring-1 ring-gray-100 [&>svg]:h-full [&>svg]:w-full"
+            set:html={qrSvg}
+            aria-hidden="true"
+        />
+        <div class="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+            <p class="text-gray-700">
+                Scannez le QR code ou cliquez pour partager votre retour sur ce talk via OpenFeedback.
+            </p>
+            <a href={url} target="_blank" rel="noopener noreferrer" class="btn btn-primary"> Donner mon avis </a>
+            <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs text-gray-400 break-all hover:text-primary-600">
+                {url}
+            </a>
+        </div>
+    </div>
+</div>

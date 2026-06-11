@@ -529,6 +529,7 @@
         "cmor96vmt000001pxnxo5in7e": {
             "id": "cmor96vmt000001pxnxo5in7e",
             "name": "Leo Bourrel",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
             "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
             "company": "IALAb",
             "socials": []
@@ -662,6 +663,7 @@
         "cmnx16jpj009s01o2pe6cyrlb": {
             "id": "cmnx16jpj009s01o2pe6cyrlb",
             "name": "Pierre Quemard",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
             "bio": "Architecte Solutions chez Datadog passionné d'innovation, qui fait de l'observabilité un moteur de transformation pour les partenaires à travers l'EMEA",
             "company": "Datadog",
             "socials": []
@@ -906,6 +908,7 @@
         "cmq8ikzh4024q01nst0oduh8s": {
             "id": "cmq8ikzh4024q01nst0oduh8s",
             "name": "Grégory Alexandre",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
             "bio": "Je suis coach organisationnel et produit chez Goood!\n\nJ’accompagne les projets IT à débloquer leur chaîne de delivery soit parce que les objectifs sont mal définis, que le produit est mal cadré, que la production s'embourbe, soit à cause d'incompréhensions et de tensions dans les équipes.\n\nJ'aime les gens qui doutent car ils se questionnent et s'ouvrent aux hypothèses et aux expérimentations.",
             "company": "Goood!",
             "socials": []
@@ -930,6 +933,7 @@
         "cmm9a0ybn010501nsogyk48h7": {
             "id": "cmm9a0ybn010501nsogyk48h7",
             "name": "Dario Spagnolo",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
             "bio": "Dario Spagnolo bidouille le web depuis 25 ans. Fondateur de l'Ecole O'clock, la première école de développement en téléprésentiel (8 000 personnes formées), il a aussi dirigé une agence web. Aujourd'hui consultant en IA à Lyon, il conseille les entreprises sur leur transformation IA.",
             "socials": []
         }

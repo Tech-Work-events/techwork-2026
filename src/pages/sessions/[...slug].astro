@@ -4,6 +4,8 @@ import { markdownToTxt } from 'markdown-to-txt'
 import Layout from '../../layouts/Layout.astro'
 import MarkdownWrapper from '../../components/ui-elements/MarkdownWrapper.astro'
 import { getScheduleData } from '../../data/conference-hall'
+import { getFeedbackUrl } from '../../data/openfeedback'
+import SessionFeedback from '../../components/schedule/SessionFeedback.astro'
 
 export async function getStaticPaths() {
     const { sessions, speakers, categories, tracks } = getScheduleData()
@@ -40,6 +42,7 @@ export async function getStaticPaths() {
 }
 
 const {
+    id,
     title,
     track,
     abstract,
@@ -64,6 +67,8 @@ const levelLabels: Record<string, { label: string; color: string }> = {
 }
 
 const levelInfo = level ? levelLabels[level] || { label: level, color: 'bg-gray-100 text-gray-700' } : null
+
+const feedbackUrl = getFeedbackUrl({ sessionId: id, dateStart: dateStart ?? '', hasSpeakers: speakers.length > 0 })
 ---
 
 <Layout
@@ -261,6 +266,7 @@ const levelInfo = level ? levelLabels[level] || { label: level, color: 'bg-gray-
                         </div>
                     )
                 }
+                {feedbackUrl && <SessionFeedback url={feedbackUrl} />}
             </div>
         </div>
     </section>
