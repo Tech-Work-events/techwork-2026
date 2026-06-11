@@ -251,6 +251,32 @@
             "proposal": null
         },
         {
+            "id": "cmnd1a2bw00do01pfy22quxq6",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
+            "track": "Craft",
+            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
+            "language": "fr",
+            "proposal": {
+                "id": "cmnx1eqdp009w01o256hey1tc",
+                "proposalNumber": 110,
+                "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n",
+                "level": "INTERMEDIATE",
+                "formats": ["Lightning Talk"],
+                "categories": ["Data & IA"],
+                "speakers": [
+                    {
+                        "id": "cmor96vmt000001pxnxo5in7e",
+                        "name": "Leo Bourrel",
+                        "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
+                        "company": "IALAb",
+                        "picture": null,
+                        "socialLinks": []
+                    }
+                ]
+            }
+        },
+        {
             "id": "cmmt4dlqt05oz01nvsq355d96",
             "start": "2026-06-18T10:00:00.000+02:00",
             "end": "2026-06-18T10:50:00.000+02:00",
@@ -298,7 +324,7 @@
                     {
                         "id": "cmlniwgq5001k01phg6v9tsm5",
                         "name": "Rose Lutz",
-                        "bio": "Je suis tombée dans la marmite de la QA suite à une reconversion professionnelle, il y a 13 ans, et j'ai tellement aimé que j'y suis restée !\n\nD'abord testeuse, je suis devenue Lead QA après quelques années, puis Responsable QA, avant de passer à mon compte pour accompagner les équipes sur la mise en place de stratégies Qualité. Je donne régulièrement des cours en École, notamment sur le BDD et sur les pratiques de test.\n\nJ'aime creuser, comprendre et  challenger les pratiques et les produits.\n\nMa marotte : trouver les meilleures solutions pour améliorer la qualité produit, la vitesse de delivery et la satisfaction des équipes.",
+                        "bio": "Je suis tombée dans la marmite de la QA suite à une reconversion professionnelle, il y a 14 ans, et j'ai tellement aimé que j'y suis restée !\n\nD'abord testeuse, je suis devenue Lead QA après quelques années, puis Responsable QA, avant de passer à mon compte pour accompagner les équipes sur la mise en place de stratégies Qualité. Je donne régulièrement des cours en École, notamment sur le BDD et sur les pratiques de test.\n\nJ'aime creuser, comprendre et challenger les pratiques et les produits.\n\nMa marotte : trouver les meilleures solutions pour améliorer la qualité produit, la vitesse de delivery et la satisfaction des équipes.",
                         "company": "ALT QA",
                         "picture": "https://lh3.googleusercontent.com/a/AATXAJwFvxIf_vJYbxZgMSg_cpUHci_7EW1r2b5v2IJx=s96-c",
                         "socialLinks": ["https://fr.linkedin.com/in/rose-lutz"]
@@ -393,35 +419,6 @@
                         "company": null,
                         "picture": "https://lh3.googleusercontent.com/a/ACg8ocJ61LaEDskpN46nmb5_A4_HpfEUGYti5uyL18ZbN4Y9PVoBxybACw=s96-c",
                         "socialLinks": []
-                    }
-                ]
-            }
-        },
-        {
-            "id": "cmmt4f9w605p801nvqmrc6vwk",
-            "start": "2026-06-18T11:10:00.000+02:00",
-            "end": "2026-06-18T12:00:00.000+02:00",
-            "track": "Agilité",
-            "title": "La face cachée de la performance des équipes de développements",
-            "language": "fr",
-            "proposal": {
-                "id": "cmls4z1vl00qm01phoonif3s3",
-                "proposalNumber": 64,
-                "abstract": "En tant que coach craft et devops, j'accompagne au quotidien des équipes de développements. Je suis à leur écoute, je prends en compte leur besoin et j'essaie de comprendre ce qui les ralentit. \nFort de mon expérience depuis plus de 17 ans maintenant, j'ai identifié petit à petit les \"vrais\" bloqueurs ou ralentisseurs de ces équipes. Et j'ai découvert notamment qu'un développeur était interrompu **1 fois toutes les 4 minutes dans son quotidien de travail**, soit environ 15 fois par heure. \nCela a pour effet d'avoir un impact négatif sur votre mémoire de travail et donc sur votre performance. \n\nAlors faut il encore penser que ce qui ralentit le plus les équipes, ce sont les processus ou les outils ?\n\nA travers cette conférence, je souhaite vous révéler les **4/5 ralentisseurs invisibles les plus impactants** dans votre quotidien. Nous comprendrons ensemble également pas à pas leur impact négatif sur les équipes et sur les temps de réalisation de nos tâches. Tout cela avec l'appui d'étude et de références scientifiques pertinentes. Pour terminer, vous présenterai également les perspectives possibles en 2026 qui pourraient être mise dans votre organisation.",
-                "level": "BEGINNER",
-                "formats": ["Keynote"],
-                "categories": ["Craft", "Agilité"],
-                "speakers": [
-                    {
-                        "id": "cmls4xbzc00qi01ph55oabb4n",
-                        "name": "geoffrey graveaud",
-                        "bio": "I have been working in the field of computer science for over 15 years. \n\nI am interested in all areas:  DevSecOps, Software Craftmanship, Security,  Agility, Method, Product  etc…\n\nI gained extensive experience because I had the opportunity to work for thirty different organizations. \n\nIn my last experiences, I was CTO, Coach, Head of a consulting department, speaker, trainer, facilitator and event organizer.\n\nI have been a speaker for 2 years (Voxxed Days, DevOxx, DevFest Agile Tour, MixIt, JugSummerCamp, Sunny Tech, BDX.io, etc.) \n\nCurrently, I am passionate about speaking coaching. In 1 year and half, I have already accompanied several 32 people especially for the preparation of TEDX, School of Product, for the contest of Miss Aquitaine, Opening Keynotes and for the springboards of speakers of Craft Records.\n\nThis year, I accompagny the [Craft Records association](https://www.linkedin.com/company/craftsrecords/) and [Women In Tech Bordeaux](https://www.meetup.com/fr-FR/women-in-tech-bordeaux/).  Since May, I challenge myself to coach a team of coaches for speaking for the \"Tremplin des speakers Bordeaux\"",
-                        "company": "Inside",
-                        "picture": "https://lh3.googleusercontent.com/a/ACg8ocLQ1diNw19SU_Jo-n3NGOqOnb4Zj2qnBAL0RMclwfb1GDuXszUl=s96-c",
-                        "socialLinks": [
-                            "https://insidegroup.fr/coachs-craft-accelerate-devops/",
-                            "https://www.linkedin.com/in/geoffrey-graveaud-033319b0/"
-                        ]
                     }
                 ]
             }
@@ -695,9 +692,9 @@
                         "id": "cmlv004i3018501pho0m3yy5h",
                         "name": "Alfred Almendra",
                         "bio": "Formateur et consultant sur les approches agiles",
-                        "company": "Indépendant",
+                        "company": "Astuces Agiles",
                         "picture": "https://lh3.googleusercontent.com/a/ACg8ocKR2JTW-dww-27bwd-mB00iTUHXtwgCR35c0RKxpCMlWpM4C9qChA=s96-c",
-                        "socialLinks": []
+                        "socialLinks": ["https://www.linkedin.com/in/alfredalmendra"]
                     },
                     {
                         "id": "cmluywpqr017n01ph3dog7m8t",
@@ -755,7 +752,7 @@
                     {
                         "id": "cmkqkin6r00te01s45dntruj7",
                         "name": "Tiffany Souterre",
-                        "bio": "I'm Tiffany, Senior Developer Advocate in AI/ML at AWS 💻. I previously worked as a Data/ML engineer and Developer Relations at Microsoft. I'm also a recurring speaker in the Underscore talk-show. I love engaging with developers about technologies, innovations and help them use our tools. My main focus are Artificial Intelligence 🤖 and Cloud technologies ☁️ but I also love astronomy 🚀, genetic engineering 🧬, outdoors activities 🏔️ and sharing a meal in good compagnie 🍲",
+                        "bio": "I'm Tiffany, Senior Developer Advocate in AI/ML at AWS 💻. After a Ph.D. in Genetic Engineering, I worked as a Data/ML engineer and Developer Relations at Microsoft. I'm also a recurring speaker in the Underscore talk-show. I love engaging with developers about technologies, innovations and help them use our tools. My main focus are Artificial Intelligence 🤖 and Cloud technologies ☁️ but I also love astronomy 🚀, biotechnologies 🧬, outdoors activities 🏔️ and sharing a meal in good compagnie 🍲",
                         "company": "AWS",
                         "picture": "https://lh3.googleusercontent.com/-0XDx36TcjxU/AAAAAAAAAAI/AAAAAAABQkA/-hqGP4ktCDY/photo.jpg",
                         "socialLinks": ["https://github.com/amagash", "https://x.com/tiffanysouterre"]
@@ -891,6 +888,32 @@
             "title": "Pause",
             "language": null,
             "proposal": null
+        },
+        {
+            "id": "cmq8ipcc1025a01nsfczbv24b",
+            "start": "2026-06-18T11:10:00.000+02:00",
+            "end": "2026-06-18T12:00:00.000+02:00",
+            "track": "Agilité",
+            "title": "Mon équipe ne voit pas le problème",
+            "language": "fr",
+            "proposal": {
+                "id": "cmq8iln6x024r01ns3x74zck9",
+                "proposalNumber": 111,
+                "abstract": "\"Je ne comprends pas que mon équipe ne prenne pas ce problème à bras le corps\", \"J'ai essayé de leur expliquer pourquoi ce problème était fondamental et il ne se passe rien\", \"Nous avons plein de trucs à faire et mon équipe ne réagit pas\".\n\nN'avez-vous jamais vécu une situation où un problème était évident et pourtant, rien. Pas de réaction de la part de votre équipe.\n\nQue vous soyez manager, lead ou équipier, le problème est là sous le nez de tout le monde mais vous êtes la seule personne à le voir. Vous avez tenté de les sensibiliser, de leur faire prendre conscience mais rien n'y fait.\n\nLors de cette conférence, nous répondrons à :\n- Comment envisager différemment le problème ?\n- Comment changer la dynamique interactionnelle entre vous, le problème et votre équipe ?\n- Comment se sentir mieux face au stress suscité par le problème ?\n- Quel premier pas tenter avec mon équipe pour expérimenter une autre façon de faire ?",
+                "level": "INTERMEDIATE",
+                "formats": ["Conférence"],
+                "categories": ["Agilité"],
+                "speakers": [
+                    {
+                        "id": "cmq8ikzh4024q01nst0oduh8s",
+                        "name": "Grégory Alexandre",
+                        "bio": "Je suis coach organisationnel et produit chez Goood!\n\nJ’accompagne les projets IT à débloquer leur chaîne de delivery soit parce que les objectifs sont mal définis, que le produit est mal cadré, que la production s'embourbe, soit à cause d'incompréhensions et de tensions dans les équipes.\n\nJ'aime les gens qui doutent car ils se questionnent et s'ouvrent aux hypothèses et aux expérimentations.",
+                        "company": "Goood!",
+                        "picture": null,
+                        "socialLinks": []
+                    }
+                ]
+            }
         },
         {
             "id": "cmmt4o5lf05po01nvi5nb657c",
