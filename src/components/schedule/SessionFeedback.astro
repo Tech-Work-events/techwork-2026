@@ -9,7 +9,7 @@ const { url } = Astro.props
 
 // QR généré en SVG inline AU BUILD : aucun JS client, aucun appel réseau au
 // runtime. Si l'URL est invalide, le build échoue franchement (pas de fallback).
-const qrSvg = await QRCode.toString(url, { type: 'svg', margin: 1, width: 200 })
+const qrSvg = await QRCode.toString(url, { type: 'svg', margin: 1 })
 ---
 
 <div class="px-6 sm:px-8 py-8 border-t border-gray-100">
