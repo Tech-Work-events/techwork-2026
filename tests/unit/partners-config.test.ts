@@ -33,19 +33,28 @@ describe('partners.json — schema cible (need scenarios 1, 2, 3, 5)', () => {
         })
     })
 
-    describe('scenario 2 (révisé 2026-04-29): animationPartners = Yeeso (asso) + 3 artisans J-jour', () => {
-        it('la clé animationPartners existe et contient exactement 4 entrées', () => {
+    describe('scenario 2 (révisé 2026-06-15): animationPartners = 2 assos + 3 artisans J-jour', () => {
+        it('la clé animationPartners existe et contient exactement 5 entrées', () => {
             expect(config.animationPartners).toBeDefined()
             expect(Array.isArray(config.animationPartners)).toBe(true)
-            expect(config.animationPartners.length).toBe(4)
+            expect(config.animationPartners.length).toBe(5)
         })
 
-        it('les 4 partenaires "associations & artisans" sont présents', () => {
+        it('les 5 partenaires "associations & artisans" sont présents', () => {
             const names = config.animationPartners.map((p) => p.name)
             expect(names).toContain('Yeeso')
             expect(names).toContain('Domaine des Braves')
             expect(names).toContain('Viegne')
             expect(names).toContain('Atelier Minuit 81')
+            expect(names).toContain('Pharm O Verre')
+        })
+
+        it('Pharm O Verre est une association avec Instagram comme canal principal', () => {
+            const pov = config.animationPartners.find((p) => p.name === 'Pharm O Verre')
+            expect(pov).toBeDefined()
+            expect(pov?.kind).toBe('association')
+            const instagram = pov?.socials.find((s) => s.type === 'instagram')
+            expect(instagram?.url).toMatch(/^https:\/\/(www\.)?instagram\.com\/pharm_o_verre/)
         })
 
         it('chaque animation partner a un champ kind valide', () => {

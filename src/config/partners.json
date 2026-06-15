@@ -75,6 +75,18 @@
                     "url": "https://www.instagram.com/atelierminuit81/"
                 }
             ]
+        },
+        {
+            "name": "Pharm O Verre",
+            "url": "https://www.instagram.com/pharm_o_verre/",
+            "logo": "pharm-o-verre.webp",
+            "kind": "association",
+            "socials": [
+                {
+                    "type": "instagram",
+                    "url": "https://www.instagram.com/pharm_o_verre/"
+                }
+            ]
         }
     ]
 }
