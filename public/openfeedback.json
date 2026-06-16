@@ -118,17 +118,6 @@
             "tags": ["Commun"],
             "hideInFeedback": true
         },
-        "cmnd1a2bw00do01pfy22quxq6": {
-            "id": "cmnd1a2bw00do01pfy22quxq6",
-            "title": "1 million de requêtes LLM par mois : Comment optimiser coût, qualité et vitesse ?",
-            "startTime": "2026-06-18T15:15:00.000+02:00",
-            "endTime": "2026-06-18T15:40:00.000+02:00",
-            "speakers": ["cmor96vmt000001pxnxo5in7e"],
-            "trackTitle": "Craft",
-            "tags": ["Data & IA"],
-            "language": "fr",
-            "abstract": "Passer d'un prototype qui marche à un produit qui tient à l'échelle, c'est tout un art. Retour d'expérience sur le développement d'une application générant plusieurs millions d'emails par mois : les pièges qu'on n'avait pas anticipés, les leviers d'optimisation concrets (routing de modèles, caching, compression de contexte, évaluation automatisée) et comment on pilote aujourd'hui le triptyque coût / qualité / vitesse sans sacrifier l'un pour l'autre.\n"
-        },
         "cmmt4dlqt05oz01nvsq355d96": {
             "id": "cmmt4dlqt05oz01nvsq355d96",
             "title": "Le Coaching Agile Tech - la pièce manquante de votre organisation",
@@ -443,7 +432,7 @@
         "cmlkk7nl802c201k2hx4vrlv4": {
             "id": "cmlkk7nl802c201k2hx4vrlv4",
             "name": "Yoan Thirion",
-            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHs8qwJJqYAjg/profile-displayphoto-shrink_800_800/B4EZPjInezGYAo-/0/1734682507700?e=1750291200&v=beta&t=gMX6MTp3nTw_GeKVnv8_hwvapPnE3gE2tGUfhIuiOZI",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHs8qwJJqYAjg/profile-displayphoto-shrink_400_400/B4EZPjInezGYAs-/0/1734682507683?e=1782950400&v=beta&t=5uwOuTTTUO9ZhGDBVZ4scQxNkxdfKUHsGEZoZhvdLuE",
             "bio": "J'accompagne les équipes pour qu'elles s'améliorent dans la livraison de logiciels grâce aux pratiques Craft et Agile. \nJe les forme et les aide à mettre en œuvre des pratiques telles que Scrum, Kanban, XP, Domain Driven Design, Clean Code et bien d'autres encore...",
             "company": "Coda School",
             "socials": [
@@ -509,7 +498,7 @@
         "cmnefokqu00ku01pfsfq8kyxn": {
             "id": "cmnefokqu00ku01pfsfq8kyxn",
             "name": "Alexis Monville",
-            "photoUrl": "https://media.licdn.com/dms/image/v2/C5103AQElbYnsvbgLZg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516243734165?e=1776297600&v=beta&t=W95SCNdlAGAqKhBqdMvlKVMGgDbapSoh_yOVqgAM2vg",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQGm_E6scD2sfw/profile-displayphoto-scale_400_400/B4EZ21PLUgJoAk-/0/1776862153733?e=1782950400&v=beta&t=CK-YqJzOu3lyP7XS9Cix-URcVsFOtQqfFe3yPCOVMxE",
             "bio": "Alexis Monville est co-fondateur de Pearlside et coach de dirigeants dans la tech.\nIl accompagne les organisations qui veulent passer d’un leadership centré sur le contrôle à un leadership qui fait émerger responsabilité et impact.\n\nAncien Chief of Staff du CTO chez Red Hat, il a évolué pendant plus de 30 ans dans des\nenvironnements open source, startups et grandes organisations internationales.\n\nAuteur de Changing Your Team from the Inside et I Am a Software Engineer and I Am in\nCharge, il travaille aujourd’hui avec des leaders qui veulent construire des organisations\noù chacun prend sa part, sans attendre qu’on lui dise quoi faire.",
             "company": "Pearlside",
             "socials": [
@@ -524,14 +513,6 @@
             "name": "Jean-Yves CAMIER",
             "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJC567COb_8dmk_rBX_FPQ4ampp8dGj65Xjra4B731E0w=s96-c",
             "bio": "Craft addict et technophile compulsif, Jean-Yves a traversé pas mal de rôles — dev, tech lead, archi, formateur, manager, SRE — ex-Clever Age, ex-M6 Web, avant d'atterrir chez Capgemini comme Tech Lead Platform Engineer. Entre Go, Kubernetes et tout ce qui peut s'automatiser, il croit dur comme fer qu'une bonne solution est une solution simple (et qu'on peut mesurer).",
-            "socials": []
-        },
-        "cmor96vmt000001pxnxo5in7e": {
-            "id": "cmor96vmt000001pxnxo5in7e",
-            "name": "Leo Bourrel",
-            "photoUrl": "https://techwork.events/favicon-96x96.png",
-            "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
-            "company": "IALAb",
             "socials": []
         },
         "cmlniwgq5001k01phg6v9tsm5": {
@@ -571,7 +552,7 @@
         "cmnem29kw00nq01pfkwmisqro": {
             "id": "cmnem29kw00nq01pfkwmisqro",
             "name": "Donatien Delalu Möller",
-            "photoUrl": "https://media.licdn.com/dms/image/v2/D4D03AQGIDyVU6nMhhg/profile-displayphoto-crop_800_800/B4DZnNC4SWHwAI-/0/1760081709370?e=1776297600&v=beta&t=Tgsh1ZBmaZPQdEzpaFkpRYs5pOllj4HepTV43FOToGc",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4D03AQGIDyVU6nMhhg/profile-displayphoto-scale_400_400/B4DZnNC4SWHwAg-/0/1760081709467?e=1782950400&v=beta&t=XYpMCqHN4x5A5RfvRmaD5pTkSi2uo1NmG0fwNxwtVUg",
             "bio": "Donatien Delalu Möller a passé 4 ans dans le milieu militaire avant de se reconvertir dans la tech. D'abord développeur full stack, il évolue rapidement vers des rôles plus hybrides : Tech & Product Lead, Product Engineer, CPTO. À chaque étape, il s'éloigne un peu plus du code pour adresser ce qui l'anime vraiment : la structuration produit, l'alignement tech-business, et les dynamiques humaines dans les organisations.\n\nEn parallèle, il lance le podcast *Developer Experience* — à date, plus de quarante épisodes qui décortiquent les parcours et les questionnements de profils tech. En 2025, il se forme au coaching avec une méthode basée sur les neurosciences grâce à 108 Milliards. Aujourd'hui, il accompagne des profils tech, produit et non-tech — managers, dirigeants, entrepreneurs — et co-anime le meetup Dev With AI à Lyon.\n\n## Références\n\n- 🎙️ Podcast *[Developer Experience](https://smartlink.ausha.co/developer-experience)* — 40+ épisodes sur les parcours tech\n- 🧠 Coach certifié 108 Milliards — méthode basée sur les neurosciences\n- 🤖 Co-animateur du meetup [Dev With AI (Lyon)](https://www.devw.ai/)",
             "company": "Freelance",
             "socials": [
@@ -650,7 +631,7 @@
         "cmlp8ypj8009o01phi7m13kbm": {
             "id": "cmlp8ypj8009o01phi7m13kbm",
             "name": "Jordan NOURRY",
-            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHsk5O25htc6g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1680858694099?e=1775088000&v=beta&t=c0IJNrOCgM6mIYtAAZIr4bjv7fTdBUYQhft1VadRvEE",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQHsk5O25htc6g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680858694099?e=1782950400&v=beta&t=ziZqXhekJSlwHwUFNoT12fxVIKagq45WvUkgyGBl7d4",
             "bio": "Cofondateur de Shodo Studio, je construis depuis 15 ans du code durable et accompagne des équipes sur leurs projets les plus critiques. Convaincu que le développement est un artisanat qui se transmet, je partage mon savoir-faire avec la communauté sous plusieurs formats : articles, talks, et au sein de CraftsRecords, un collectif de passionnés.\n\nAujourd'hui, j'explore comment l'IA peut devenir un véritable allié dans la reprise de contrôle sur le legacy — à condition de garder la main et d'éviter les promesses marketing.",
             "company": "Shodo Studio",
             "socials": [
@@ -706,10 +687,18 @@
                 }
             ]
         },
+        "cmor96vmt000001pxnxo5in7e": {
+            "id": "cmor96vmt000001pxnxo5in7e",
+            "name": "Leo Bourrel",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
+            "bio": "Léo est fondateur d'IALab, studio de développement IA basé en France. Il s'est spécialisé dans le passage du 0 au 1 : transformer des prototypes pour devenir des systèmes qui tiennent à l'échelle.",
+            "company": "IALAb",
+            "socials": []
+        },
         "cmmasteda01lz01ns9fij90u4": {
             "id": "cmmasteda01lz01ns9fij90u4",
             "name": "Romain Couturier",
-            "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUW6xS8NTfI1FSw5sPfQkWZJ4ce2dbKPU7_LlSBhE8uB3rZMAnW2srX7fsa-CKN0hEZiXv0DOwiD2De2-R-34aFmPxCzaLmYzklSwVw6S_F-rBuqXXngCBCqlnAmXjnbaZnr5KSgMVvl8rSHIsOIKPDdkHxHLoxP3FfPaSGTNAoCV-g3OJg-L6UA6G5Z0n6rETEWt6lSjEOm7RgZfTvVwW-oSYyreDfheTCRkk5ZbfC76uPQkG7c-D-g63fOVtUhHcShNdoZ561Xu3JQur0kLF7INdmrCGT5FNZ8vcC2oqXj8V2K0R45nkB6CHL2IrwDxvLFGlAamzjHQfjxm5DctiUVdny1V4duZyuzfTypL8-yJSIKZ-lIAz2TEOIkGPJ5kXgseT2MIwGkW-jYInWe93I3SAiPPl4LQolDK5ZcwHo3r5jY2pmd8Yxusz9TG9CYi8n0ZqPG7E-OCYQr8jQ_oHtzLytna6XWapicJ4Nf_OyVvao496KC3fmWOEHH1Om_fXQY6MT7r-V3jc5N3nyzdqRG_KE-kfrTCgNAeah7Fcynueny0ccWMsKVLwBZUc973WDfP8a4Wdw-iSvXqEA0HrwUnfl5e5rVsDVs7lFiRXap4T0SE2ZEvqHSJ3punKd0kVMuF-wIB-6uUrxBmy0L3FtG4c_Iy5o3IkTREa0qrEvucY1KgHWWm6usjNcvU3CUxDwZPQnZuWNfO1QfT-TylAYUE6r1-bqz6yp4OMSz9iIoIpHJAxvoM3NGp67NRDqUf6nLodBPevAhNHrBiofZl8aa0aLcuD9MeEPoPtkQjyqkNQL4lN0pTfNxvNpNbNCZhYJPIkTpBjFIzTqROTJkT2Xsg1EiY4fmSfVdYMFtc-VpMttMrOXSAwj9ZgEOhIZLixi3N4WrMuOg6VTECw3HxhZOZbKqB9CKP813ZBV8YF4WUUtwe7XpqZC3PMth20KqBQC2tZTctBfykshUxtu84Fe9AqrXpc7ZwwlmTxRiJJo3oWrWuk0OlFlV4Fu5YXFMvEgNHXO05cJK-Jj8vfKBm0sCnUYwFHXlU4fOtlNljiQwjwMADBlM0XB=s96-c",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4D03AQHAtlciRFpTwQ/profile-displayphoto-shrink_400_400/B4DZSmzG9cHYAg-/0/1737965203844?e=1782950400&v=beta&t=LjC5C94CJwXtGRoeEVF8CaO_8vXeBjAQHIrSGFSnmqg",
             "bio": "Romain Couturier est co-fondateur de SuperTilt, une TPE qu’il développe depuis plus de 14 ans.\n\nIl accompagne les organisations lorsqu’elles ont du mal à avancer sur leurs sujets stratégiques, en aidant les équipes à clarifier, s’aligner et prendre des décisions concrètes (Agilité) grâce au travail collectif (intelligence collective) et à la visualisation des idées (facilitation graphique). \n\nIl s’intéresse particulièrement à l’évolution des métiers du conseil et aux nouvelles façons d’augmenter les capacités des petites structures avec l'IA",
             "socials": []
         },
@@ -729,7 +718,7 @@
         "cmluywpqr017n01ph3dog7m8t": {
             "id": "cmluywpqr017n01ph3dog7m8t",
             "name": "Damien BONHOMME",
-            "photoUrl": "https://drive.google.com/file/d/1ANxIuyEEx9OG2xFhbYMmleaa2d7TY57L/view?usp=sharing",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D5603AQFXgwQR0RhD4w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724745962471?e=1782950400&v=beta&t=FNPKJamFyxQOmwNx5NmPCPRlrIe21DpIzBRPsDmfmgA",
             "bio": "Damien, dirigeant de 3Conselis (Lyon), présente une expérience confirmée dans l’identification des opportunités d’amélioration ainsi que dans l’animation d’équipes projets en environnement Service et Industrie. Il est un spécialiste de l’approche processus. Il accompagne les entreprises dans leurs dynamiques d’Amélioration Continue pour des processus plus fluides, une satisfaction client accrue et une activité pérenne.\n\n• Accompagnement en individuel ou collectif sur la gestion de projet, la facilitation d’équipe, la transformation de l’organisation, l’intrapreneuriat ou l’innovation selon les méthodes Lean, Agile ou Six Sigma (DMAIC)\n\n• Pilotage de projet de résolution de problème sur la réduction de temps de cycle, la fiabilisation de la prise de décision à partir de données processus, la libération de capacité de production ou l’accompagnement au changement des équipes opérationnelles.\n\n• Formation à l’Amélioration Continue (Lean, Méthodes Agiles, Six Sigma). Mise en place du parcours certifiants Lean Service Agile Niveau Green Belt pour apprendre les méthodes et outils de l’amélioration continue",
             "company": "3Conseils",
             "socials": [
@@ -908,7 +897,7 @@
         "cmq8ikzh4024q01nst0oduh8s": {
             "id": "cmq8ikzh4024q01nst0oduh8s",
             "name": "Grégory Alexandre",
-            "photoUrl": "https://techwork.events/favicon-96x96.png",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQGsJoDURT7PMg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1674637436186?e=1782950400&v=beta&t=anvtmVlpMb3kRNE7Ig68yS1TCN3OpLRqZX26I9UQRDI",
             "bio": "Je suis coach organisationnel et produit chez Goood!\n\nJ’accompagne les projets IT à débloquer leur chaîne de delivery soit parce que les objectifs sont mal définis, que le produit est mal cadré, que la production s'embourbe, soit à cause d'incompréhensions et de tensions dans les équipes.\n\nJ'aime les gens qui doutent car ils se questionnent et s'ouvrent aux hypothèses et aux expérimentations.",
             "company": "Goood!",
             "socials": []
@@ -933,7 +922,7 @@
         "cmm9a0ybn010501nsogyk48h7": {
             "id": "cmm9a0ybn010501nsogyk48h7",
             "name": "Dario Spagnolo",
-            "photoUrl": "https://techwork.events/favicon-96x96.png",
+            "photoUrl": "https://media.licdn.com/dms/image/v2/D4D03AQEtGWSt4DFRZg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680245808171?e=1782950400&v=beta&t=K6cCVrpzWe0YcQncFDV6N29ykyJbmJvxXJ8hKqrHHA4",
             "bio": "Dario Spagnolo bidouille le web depuis 25 ans. Fondateur de l'Ecole O'clock, la première école de développement en téléprésentiel (8 000 personnes formées), il a aussi dirigé une agence web. Aujourd'hui consultant en IA à Lyon, il conseille les entreprises sur leur transformation IA.",
             "socials": []
         }
