@@ -371,6 +371,17 @@
             "language": "fr",
             "abstract": "\"Je ne comprends pas que mon équipe ne prenne pas ce problème à bras le corps\", \"J'ai essayé de leur expliquer pourquoi ce problème était fondamental et il ne se passe rien\", \"Nous avons plein de trucs à faire et mon équipe ne réagit pas\".\n\nN'avez-vous jamais vécu une situation où un problème était évident et pourtant, rien. Pas de réaction de la part de votre équipe.\n\nQue vous soyez manager, lead ou équipier, le problème est là sous le nez de tout le monde mais vous êtes la seule personne à le voir. Vous avez tenté de les sensibiliser, de leur faire prendre conscience mais rien n'y fait.\n\nLors de cette conférence, nous répondrons à :\n- Comment envisager différemment le problème ?\n- Comment changer la dynamique interactionnelle entre vous, le problème et votre équipe ?\n- Comment se sentir mieux face au stress suscité par le problème ?\n- Quel premier pas tenter avec mon équipe pour expérimenter une autre façon de faire ?"
         },
+        "cmqglz58801xv01qfpik4q8j0": {
+            "id": "cmqglz58801xv01qfpik4q8j0",
+            "title": "Bien coder avec un assistant IA",
+            "startTime": "2026-06-18T15:15:00.000+02:00",
+            "endTime": "2026-06-18T15:40:00.000+02:00",
+            "speakers": ["cmqglw3pd01xi01qf0mbuc29q", "cmqglwxzo01xj01qfw5jm5k50"],
+            "trackTitle": "Craft",
+            "tags": ["Craft"],
+            "language": "fr",
+            "abstract": "# Le code n'est plus le code source.\n\nLa valeur n'a jamais été le code, mais sa spécification. L'assistant ne fait que le révéler.\n\n# Ce que mesure vraimentla recherche.\n\nPerçu plus rapide, mesuré plus lent. Sans dispositif de mesure, on croit. On ne sait pas.\n\n# Les trois fondations d'un assistant productif.\n\nSpécifier, c'est faire de l'ingénierie.\nL'architecture détermine ce que l'IA peut produire.\nLe code est jetable, les tests sont permanents.\n\n# Un outil, quatre cadres d'usage.\n\nAdapter le cadre au profil et au contexte, du junior en apprentissage au code de production.\n\n# Les trois pièges les plus fréquents.\n\nTrois anti-patterns, une même cause : déléguer à l'IA ce qui ne se délègue pas."
+        },
         "cmmt4o5lf05po01nvi5nb657c": {
             "id": "cmmt4o5lf05po01nvi5nb657c",
             "title": "Pairing is caring!",
@@ -900,6 +911,20 @@
             "photoUrl": "https://media.licdn.com/dms/image/v2/D4E03AQGsJoDURT7PMg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1674637436186?e=1782950400&v=beta&t=anvtmVlpMb3kRNE7Ig68yS1TCN3OpLRqZX26I9UQRDI",
             "bio": "Je suis coach organisationnel et produit chez Goood!\n\nJ’accompagne les projets IT à débloquer leur chaîne de delivery soit parce que les objectifs sont mal définis, que le produit est mal cadré, que la production s'embourbe, soit à cause d'incompréhensions et de tensions dans les équipes.\n\nJ'aime les gens qui doutent car ils se questionnent et s'ouvrent aux hypothèses et aux expérimentations.",
             "company": "Goood!",
+            "socials": []
+        },
+        "cmqglw3pd01xi01qf0mbuc29q": {
+            "id": "cmqglw3pd01xi01qf0mbuc29q",
+            "name": "Jean-Baptiste Musso",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
+            "company": "evryg",
+            "socials": []
+        },
+        "cmqglwxzo01xj01qfw5jm5k50": {
+            "id": "cmqglwxzo01xj01qfw5jm5k50",
+            "name": "Florian Tessedre",
+            "photoUrl": "https://techwork.events/favicon-96x96.png",
+            "company": "evryg",
             "socials": []
         },
         "cmkqq0oii005001s49v2h7fhv": {

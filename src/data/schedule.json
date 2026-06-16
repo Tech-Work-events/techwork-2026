@@ -890,6 +890,40 @@
             }
         },
         {
+            "id": "cmqglz58801xv01qfpik4q8j0",
+            "start": "2026-06-18T15:15:00.000+02:00",
+            "end": "2026-06-18T15:40:00.000+02:00",
+            "track": "Craft",
+            "title": "Bien coder avec un assistant IA",
+            "language": "fr",
+            "proposal": {
+                "id": "cmqgly1rk01xn01qf607jh1cx",
+                "proposalNumber": 112,
+                "abstract": "# Le code n'est plus le code source.\n\nLa valeur n'a jamais été le code, mais sa spécification. L'assistant ne fait que le révéler.\n\n# Ce que mesure vraimentla recherche.\n\nPerçu plus rapide, mesuré plus lent. Sans dispositif de mesure, on croit. On ne sait pas.\n\n# Les trois fondations d'un assistant productif.\n\nSpécifier, c'est faire de l'ingénierie.\nL'architecture détermine ce que l'IA peut produire.\nLe code est jetable, les tests sont permanents.\n\n# Un outil, quatre cadres d'usage.\n\nAdapter le cadre au profil et au contexte, du junior en apprentissage au code de production.\n\n# Les trois pièges les plus fréquents.\n\nTrois anti-patterns, une même cause : déléguer à l'IA ce qui ne se délègue pas.",
+                "level": "BEGINNER",
+                "formats": ["Lightning Talk"],
+                "categories": ["Craft"],
+                "speakers": [
+                    {
+                        "id": "cmqglw3pd01xi01qf0mbuc29q",
+                        "name": "Jean-Baptiste Musso",
+                        "bio": null,
+                        "company": "evryg",
+                        "picture": null,
+                        "socialLinks": []
+                    },
+                    {
+                        "id": "cmqglwxzo01xj01qfw5jm5k50",
+                        "name": "Florian Tessedre",
+                        "bio": null,
+                        "company": "evryg",
+                        "picture": null,
+                        "socialLinks": []
+                    }
+                ]
+            }
+        },
+        {
             "id": "cmmt4o5lf05po01nvi5nb657c",
             "start": "2026-06-18T14:15:00.000+02:00",
             "end": "2026-06-18T15:05:00.000+02:00",
