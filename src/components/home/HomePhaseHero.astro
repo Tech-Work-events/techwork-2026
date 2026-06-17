@@ -5,12 +5,22 @@
 import { EVENT_DATA } from '../../config'
 import { getScheduleData } from '../../data/conference-hall'
 
-const { sessions } = getScheduleData()
+const { sessions, commonSessions } = getScheduleData()
 const starts = sessions
     .map((s) => s.dateStart)
     .filter((d): d is string => !!d)
     .sort()
 const liveStart = starts.length ? starts[0] : `${EVENT_DATA.event.date.iso}T${EVENT_DATA.event.duration.startTime}:00`
+
+// Heure d'ouverture des portes = début de la 1ʳᵉ entrée du programme (accueil
+// inclus), pour rester juste si le planning bouge. Format FR : "8h30", "9h".
+const doorsIso = [...starts, ...commonSessions.map((c) => c.dateStart)].filter(Boolean).sort()[0] ?? null
+const doorsTime = doorsIso
+    ? (() => {
+          const [h, min] = doorsIso.slice(11, 16).split(':')
+          return `${parseInt(h, 10)}h${min === '00' ? '' : min}`
+      })()
+    : null
 
 const dateFull = EVENT_DATA.event.date.full
 const venue = EVENT_DATA.event.location.venue
@@ -83,7 +93,16 @@ const city = EVENT_DATA.event.location.city
                         data-event-day={EVENT_DATA.event.date.iso}>c'est bientôt</span
                     > !
                 </h1>
-                <p class="text-lg text-gray-100">Préparez votre venue à <strong>{venue}</strong>, {city}.</p>
+                <p class="text-lg text-gray-100">
+                    <strong>{venue}</strong>, {city}{
+                        doorsTime && (
+                            <Fragment>
+                                {' '}
+                                — ouverture des portes à partir de <strong>{doorsTime}</strong>
+                            </Fragment>
+                        )
+                    }.
+                </p>
             </div>
         </div>
 
