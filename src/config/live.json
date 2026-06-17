@@ -1,0 +1,17 @@
+{
+    "preEventStart": "2026-06-15T00:00:00",
+    "feedbackWindowMinutes": 20,
+    "wifi": {
+        "ssid": "",
+        "password": ""
+    },
+    "rooms": {
+        "Agilité": "C 254",
+        "Craft": "C 225",
+        "DevOps": "C 329",
+        "Data": "C 302",
+        "Workshop1": "C 228",
+        "Workshop2": "C 251",
+        "Commun": "Amphithéâtre (RDC)"
+    }
+}

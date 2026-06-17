@@ -1,0 +1,694 @@
+---
+// Phase live : sections temps réel rendues côté client à partir d'un JSON sérialisé
+// au build. Recalcul toutes les 30 s + au changement de favori. Heures comparées en
+// heure locale naïve (cohérent avec conference-hall.ts / fixTimestamp).
+import { getScheduleData } from '../../data/conference-hall'
+import { getFeedbackUrl } from '../../data/openfeedback'
+import { LIVE_DATA, SOCIAL_DATA, SERVICES_DATA } from '../../config'
+
+const { sessions, speakers, tracks, commonSessions } = getScheduleData()
+
+const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
+    'agilit-': { icon: '🔄', color: '#e67e22' },
+    craft: { icon: '🛠️', color: '#2ecc71' },
+    devops: { icon: '☁️', color: '#3498db' },
+    data: { icon: '📊', color: '#9b59b6' },
+    workshop: { icon: '🧪', color: '#f59e0b' },
+}
+const KEYNOTE_STYLE = { icon: '🎤', color: '#6366f1' }
+
+const COMMON_ICONS: Record<string, string> = {
+    Accueil: '☕',
+    Introduction: '🎬',
+    Pause: '☕',
+    déjeuner: '🍽️',
+    Remerciements: '🎤',
+    Afterwork: '🍻',
+}
+function commonIcon(title: string): string {
+    for (const [key, icon] of Object.entries(COMMON_ICONS)) {
+        if (title.includes(key)) return icon
+    }
+    return '📌'
+}
+
+type LiveItem = {
+    id: string
+    title: string
+    start: string
+    end: string
+    kind: 'talk' | 'keynote' | 'common'
+    trackLabel: string
+    trackIcon: string
+    trackColor: string
+    room: string | null
+    level: string | null
+    speakers: { id: string; name: string; company: string | null | undefined; photoUrl: string | null | undefined }[]
+    sessionUrl: string | null
+    feedbackUrl: string | null
+}
+
+const sessionItems: LiveItem[] = sessions
+    .filter((s) => s.dateStart && s.dateEnd)
+    .map((s) => {
+        const isKeynote = s.trackId === null
+        const track = tracks.find((t) => t.id === s.trackId)
+        const style = isKeynote ? KEYNOTE_STYLE : TRACK_STYLE[s.trackId ?? ''] || { icon: '🎯', color: '#6b7280' }
+        const sessionSpeakers = speakers
+            .filter((sp) => s.speakerIds.includes(sp.id))
+            .map((sp) => ({ id: sp.id, name: sp.name, company: sp.company, photoUrl: sp.photoUrl }))
+        return {
+            id: s.id,
+            title: s.title,
+            start: s.dateStart as string,
+            end: s.dateEnd as string,
+            kind: isKeynote ? 'keynote' : 'talk',
+            trackLabel: isKeynote ? 'Keynote' : track?.name || '',
+            trackIcon: style.icon,
+            trackColor: style.color,
+            room: s.room,
+            level: s.level,
+            speakers: sessionSpeakers,
+            sessionUrl: `/sessions/${s.id}?from=live`,
+            feedbackUrl: getFeedbackUrl({
+                sessionId: s.id,
+                dateStart: s.dateStart as string,
+                hasSpeakers: s.speakerIds.length > 0,
+            }),
+        }
+    })
+
+const commonItems: LiveItem[] = commonSessions.map((c) => ({
+    id: c.id,
+    title: c.title,
+    start: c.dateStart,
+    end: c.dateEnd,
+    kind: 'common',
+    trackLabel: '',
+    trackIcon: commonIcon(c.title),
+    trackColor: '#6b7280',
+    room: null,
+    level: null,
+    speakers: [],
+    sessionUrl: null,
+    feedbackUrl: null,
+}))
+
+const items = [...sessionItems, ...commonItems].sort(
+    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+)
+const feedbackWindow = LIVE_DATA.feedbackWindowMinutes
+
+// Infos pratiques (onglet) : salles regroupées par étage. L'étage est déduit du
+// numéro UCLy (C 2xx -> 2ᵉ étage, C 3xx -> 3ᵉ étage). Une salle dont le numéro ne
+// matche pas reste affichée dans un groupe "À l'étage" plutôt que de disparaître.
+const rooms = LIVE_DATA.rooms as Record<string, string>
+const ROOM_META: { key: string; label: string; kind: 'conf' | 'atelier' }[] = [
+    { key: 'Agilité', label: 'Agile', kind: 'conf' },
+    { key: 'Craft', label: 'Craft', kind: 'conf' },
+    { key: 'Data', label: 'Data / IA', kind: 'conf' },
+    { key: 'DevOps', label: 'DevOps', kind: 'conf' },
+    { key: 'Workshop1', label: 'Workshop 1', kind: 'atelier' },
+    { key: 'Workshop2', label: 'Workshop 2', kind: 'atelier' },
+]
+const FLOOR_LABELS: Record<string, string> = { '2': '2ᵉ étage', '3': '3ᵉ étage' }
+const floorKeyOf = (room: string): string => {
+    const m = room.match(/(\d)\d\d/)
+    return m ? m[1] : '?'
+}
+const placedRooms = ROOM_META.map((m) => ({ ...m, room: rooms[m.key] })).filter((m) => m.room && m.room !== 'TODO') as {
+    key: string
+    label: string
+    kind: 'conf' | 'atelier'
+    room: string
+}[]
+const floorGroups = [...new Set(placedRooms.map((r) => floorKeyOf(r.room)))].sort().map((fk) => ({
+    label: FLOOR_LABELS[fk] ?? 'À l’étage',
+    rooms: placedRooms.filter((r) => floorKeyOf(r.room) === fk),
+}))
+const amphiRaw = rooms['Commun'] && rooms['Commun'] !== 'TODO' ? rooms['Commun'] : null
+// Évite la répétition "(RDC)" sous l'en-tête "Rez-de-chaussée".
+const amphi = amphiRaw ? amphiRaw.replace(/\s*\(RDC\)\s*$/i, '') : null
+const contactEmail = SOCIAL_DATA.contact.general
+const whatsappUrl = SERVICES_DATA.community.whatsapp.inviteUrl
+const wifi = (LIVE_DATA as { wifi?: { ssid?: string; password?: string } }).wifi
+const wifiSsid = wifi?.ssid ? wifi.ssid : null
+const wifiPassword = wifi?.password ? wifi.password : null
+
+// Contacts d'urgence jour J. On encode en base64 et on réassemble le lien tel:
+// côté client : aucun numéro ni href "tel:" en clair dans le HTML statique, donc
+// les crawlers/scrapers basiques (regex sur les chiffres ou sur tel:) repartent
+// bredouilles. Réversible facilement, ce n'est pas du chiffrement — juste un repoussoir.
+const enc = (s: string) => Buffer.from(s, 'utf8').toString('base64')
+const emergencyContacts = [
+    { name: 'Xavier', tel: '+33673474053', display: '06 73 47 40 53' },
+    { name: 'Maxime', tel: '+33683637026', display: '06 83 63 70 26' },
+].map((c) => ({ n: c.name, t: enc(c.tel), d: enc(c.display) }))
+
+const cocUrl = SERVICES_DATA.legal.codeOfConduct
+const linkedinUrl = SOCIAL_DATA.networks.find((n) => n.id === 'linkedin')?.url ?? null
+// Hashtag officiel acté par l'orga (cf. checklist jour J), distinct des hashtags
+// génériques de social.json.
+const eventHashtag = '#QueLeLamaSoitAvecNous'
+---
+
+<section class="py-10 sm:py-14" data-feedback-window={feedbackWindow}>
+    <script
+        type="application/json"
+        id="live-data"
+        set:html={JSON.stringify(items).replace(/</g, '\\u003c')}
+        is:inline
+    />
+
+    <div class="max-w-3xl mx-auto px-5">
+        {/* Onglets */}
+        <div class="live-tabs" role="tablist" aria-label="Vue du programme">
+            <button type="button" class="live-tab" data-tab="now" role="tab" aria-selected="true">
+                🔴 En ce moment <span class="live-tab-count" data-count="now"></span>
+            </button>
+            <button type="button" class="live-tab" data-tab="next" role="tab" aria-selected="false">
+                ⏭️ À venir <span class="live-tab-count" data-count="next"></span>
+            </button>
+            <button type="button" class="live-tab" data-tab="past" role="tab" aria-selected="false">
+                🏁 Terminées <span class="live-tab-count" data-count="past"></span>
+            </button>
+            <button type="button" class="live-tab" data-tab="all" role="tab" aria-selected="false">
+                📅 Tous <span class="live-tab-count" data-count="all"></span>
+            </button>
+            <button type="button" class="live-tab" data-tab="fav" role="tab" aria-selected="false">
+                ⭐ Favoris <span class="live-tab-count" data-count="fav"></span>
+            </button>
+            <button type="button" class="live-tab" data-tab="info" role="tab" aria-selected="false"> ℹ️ Infos </button>
+        </div>
+
+        {/* Panneaux */}
+        <div id="tab-now" class="live-panel" role="tabpanel"></div>
+        <div id="tab-next" class="live-panel" role="tabpanel" hidden></div>
+        <div id="tab-past" class="live-panel" role="tabpanel" hidden></div>
+        <div id="tab-all" class="live-panel" role="tabpanel" hidden></div>
+        <div id="tab-fav" class="live-panel" role="tabpanel" hidden></div>
+
+        {/* Onglet Infos pratiques — contenu statique (rendu au build) */}
+        <div id="tab-info" class="live-panel" role="tabpanel" hidden>
+            <div class="grid gap-4">
+                {/* Se repérer : keynotes au RDC, conférences regroupées par étage. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Se repérer</h3>
+                    <div class="space-y-5">
+                        {
+                            amphi && (
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">
+                                        Rez-de-chaussée
+                                    </p>
+                                    <p class="text-sm text-gray-700">
+                                        <span class="font-semibold text-gray-900">{amphi}</span> — keynotes,
+                                        restauration, café &amp; stands partenaires.
+                                    </p>
+                                </div>
+                            )
+                        }
+                        {
+                            floorGroups.map((g) => (
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">
+                                        {g.label}
+                                    </p>
+                                    <div class="divide-y divide-gray-100">
+                                        {g.rooms.map((r) => (
+                                            <div class="flex items-center justify-between py-2">
+                                                <span class="text-sm text-gray-800">
+                                                    <span class="font-semibold">{r.label}</span>
+                                                    {r.kind === 'atelier' && (
+                                                        <span class="ml-2 text-xs text-gray-400">Atelier</span>
+                                                    )}
+                                                </span>
+                                                <span class="font-mono text-sm text-gray-500">{r.room}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <p class="text-xs text-gray-400 mt-4">Suivez les affiches pour rejoindre les salles à l'étage.</p>
+                </div>
+
+                {/* Besoin d'aide : contacts orga (réassemblés côté client), CoC. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Besoin d'aide ?</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Malaise, objet perdu, comportement déplacé, accessibilité… appelle un organisateur, on répond
+                        tout de suite.
+                    </p>
+                    {
+                        /* Liens tel: réassemblés depuis du base64 côté client (cf. frontmatter) pour ne pas exposer les numéros. */
+                    }
+                    <div
+                        id="live-contacts"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4"
+                        data-contacts={JSON.stringify(emergencyContacts)}>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                        <a href={`mailto:${contactEmail}`} class="text-primary-600 hover:underline">
+                            Écrire à l'orga
+                        </a>
+                        {
+                            whatsappUrl && (
+                                <a
+                                    href={whatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-primary-600 hover:underline">
+                                    Groupe WhatsApp
+                                </a>
+                            )
+                        }
+                        {
+                            cocUrl && (
+                                <a href={cocUrl} class="text-primary-600 hover:underline">
+                                    Code de conduite
+                                </a>
+                            )
+                        }
+                    </div>
+                </div>
+
+                {/* Infos pratiques : WiFi + partage. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Infos pratiques</h3>
+                    <div class="flex items-center justify-between gap-3">
+                        <span class="text-sm font-semibold text-gray-700">WiFi</span>
+                        {
+                            wifiSsid ? (
+                                <span class="text-sm text-right">
+                                    <span class="font-mono font-semibold text-gray-900">{wifiSsid}</span>
+                                    {wifiPassword && <span class="text-gray-400"> · </span>}
+                                    {wifiPassword && <span class="font-mono text-gray-600">{wifiPassword}</span>}
+                                </span>
+                            ) : (
+                                <span class="text-sm text-gray-500">communiqué sur place</span>
+                            )
+                        }
+                    </div>
+                    <div class="border-t border-gray-100 mt-4 pt-4">
+                        <p class="text-sm text-gray-600 mb-2">
+                            Partagez votre journée avec le hashtag officiel — touchez-le pour le copier.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button
+                                type="button"
+                                data-copy={eventHashtag}
+                                class="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-1.5 text-sm font-mono text-gray-800">
+                                {eventHashtag}
+                                <span data-copy-feedback class="font-sans text-xs text-green-600"></span>
+                            </button>
+                            {
+                                linkedinUrl && (
+                                    <a
+                                        href={linkedinUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm text-primary-600 hover:underline">
+                                        Page LinkedIn
+                                    </a>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="/location" class="text-sm text-primary-600 hover:underline">Plan d'accès &amp; venue</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="/schedule" class="btn btn-secondary inline-flex items-center gap-2"> 📅 Programme complet </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .live-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    /* Mobile : 2 colonnes (2×2), les 4 onglets visibles sans scroll. */
+    .live-tab {
+        flex: 1 1 calc(50% - 4px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 8px;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #475569;
+        background: #f1f5f9;
+        border: 1px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.15s;
+    }
+    /* Desktop : une seule ligne, largeur au contenu. */
+    @media (min-width: 640px) {
+        .live-tab {
+            flex: 0 1 auto;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+    }
+    .live-tab:hover {
+        background: #e2e8f0;
+    }
+    .live-tab[aria-selected='true'] {
+        color: white;
+        background: linear-gradient(to right, #4f46e5, #4338ca);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .live-tab-count:empty {
+        display: none;
+    }
+    .live-tab-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.25);
+    }
+    .live-tab[aria-selected='false'] .live-tab-count {
+        background: #cbd5e1;
+        color: #475569;
+    }
+    .live-panel[hidden] {
+        display: none;
+    }
+</style>
+
+<script>
+    const FAV_KEY = 'techwork-live-favorites'
+
+    function getNow(): Date {
+        try {
+            const p = new URLSearchParams(window.location.search).get('now')
+            if (p) {
+                const d = new Date(p)
+                if (!isNaN(d.getTime())) return d
+            }
+        } catch (e) {}
+        return new Date()
+    }
+
+    function getFavs(): string[] {
+        try {
+            return JSON.parse(localStorage.getItem(FAV_KEY) || '[]')
+        } catch (e) {
+            return []
+        }
+    }
+    function setFavs(ids: string[]) {
+        try {
+            localStorage.setItem(FAV_KEY, JSON.stringify(ids))
+        } catch (e) {}
+    }
+
+    type LiveItem = {
+        id: string
+        title: string
+        start: string
+        end: string
+        kind: 'talk' | 'keynote' | 'common'
+        trackLabel: string
+        trackIcon: string
+        trackColor: string
+        room: string | null
+        level: string | null
+        speakers: { id: string; name: string; company: string | null; photoUrl: string | null }[]
+        sessionUrl: string | null
+        feedbackUrl: string | null
+    }
+
+    const LEVEL_LABELS: Record<string, string> = {
+        BEGINNER: 'Débutant',
+        INTERMEDIATE: 'Intermédiaire',
+        ADVANCED: 'Avancé',
+    }
+
+    function fmtTime(iso: string): string {
+        return new Date(iso).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })
+    }
+    function esc(s: string): string {
+        const d = document.createElement('div')
+        d.textContent = s
+        return d.innerHTML
+    }
+
+    function speakersHtml(it: LiveItem): string {
+        if (!it.speakers || it.speakers.length === 0) return ''
+        const names = it.speakers.map((s) => esc(s.name)).join(', ')
+        return `<p class="text-sm text-gray-600">🎙️ ${names}</p>`
+    }
+
+    // Badge de statut temporel d'une session.
+    function statusBadge(startT: number, endT: number, nowMs: number): string {
+        if (startT <= nowMs && nowMs < endT) {
+            return `<span class="inline-flex items-center gap-1 text-xs font-bold text-red-700 bg-red-100 rounded-full px-2.5 py-0.5">● En cours</span>`
+        }
+        if (endT <= nowMs) {
+            return `<span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 rounded-full px-2.5 py-0.5">Terminé</span>`
+        }
+        const mins = Math.round((startT - nowMs) / 60000)
+        const label =
+            mins < 60
+                ? `dans ${mins} min`
+                : `dans ${Math.floor(mins / 60)} h ${(mins % 60).toString().padStart(2, '0')}`
+        return `<span class="inline-block text-xs font-semibold text-primary-700 bg-primary-50 rounded-full px-2.5 py-0.5">${label}</span>`
+    }
+
+    function buildCard(it: LiveItem, favs: string[], opts: { feedback?: boolean; statusHtml?: string } = {}): string {
+        const isFav = favs.indexOf(it.id) !== -1
+        // Carte entièrement cliquable (comme le programme) : un clic n'importe où
+        // déclenche le lien du titre (géré par délégation dans onClick), sauf sur
+        // l'étoile ou un lien interne (feedback).
+        const titleHtml = it.sessionUrl
+            ? `<a href="${it.sessionUrl}" data-card-link class="hover:text-primary-600 transition-colors">${esc(it.title)}</a>`
+            : esc(it.title)
+        const meta: string[] = [`${it.trackIcon} ${esc(it.trackLabel || '')}`.trim()]
+        if (it.room) meta.push(`📍 ${esc(it.room)}`)
+        if (it.level && LEVEL_LABELS[it.level]) meta.push(LEVEL_LABELS[it.level])
+        const favBtn =
+            it.kind === 'common'
+                ? ''
+                : `<button type="button" class="fav-btn text-2xl leading-none flex-shrink-0" data-fav="${it.id}" aria-pressed="${isFav}" aria-label="${
+                      isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'
+                  }">${isFav ? '★' : '☆'}</button>`
+        const feedbackBtn =
+            opts.feedback && it.feedbackUrl
+                ? `<a href="${it.feedbackUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full justify-center text-sm mt-1">💬 Donner mon avis</a>`
+                : ''
+        const cardAttr = it.sessionUrl ? ' data-session-card' : ''
+        return `
+        <article class="card p-4 flex flex-col gap-2${it.sessionUrl ? ' cursor-pointer hover:shadow-lg transition-shadow' : ''}"${cardAttr} style="border-left:4px solid ${it.trackColor}">
+            <div class="flex items-start justify-between gap-2">
+                <span class="text-sm font-semibold text-gray-900">${fmtTime(it.start)} – ${fmtTime(it.end)}</span>
+                <div class="flex items-center gap-2 flex-shrink-0">${opts.statusHtml || ''}${favBtn}</div>
+            </div>
+            <div class="text-xs text-gray-500">${meta.filter(Boolean).join(' · ')}</div>
+            <h3 class="text-base font-bold text-gray-900 leading-snug">${titleHtml}</h3>
+            ${speakersHtml(it)}
+            ${feedbackBtn}
+        </article>`
+    }
+
+    function listHtml(cards: string[], emptyMsg: string): string {
+        if (cards.length === 0) return `<p class="text-center text-gray-500 py-8">${emptyMsg}</p>`
+        return `<div class="grid gap-3">${cards.join('')}</div>`
+    }
+
+    const TAB_KEY = 'techwork-live-tab'
+    let activeTab = 'now'
+
+    function showTab(tab: string) {
+        activeTab = tab
+        try {
+            sessionStorage.setItem(TAB_KEY, tab)
+        } catch (e) {}
+        ;['now', 'next', 'past', 'all', 'fav', 'info'].forEach((t) => {
+            const panel = document.getElementById('tab-' + t)
+            if (panel) (panel as HTMLElement).hidden = t !== tab
+        })
+        document.querySelectorAll('.live-tab').forEach((b) => {
+            b.setAttribute('aria-selected', b.getAttribute('data-tab') === tab ? 'true' : 'false')
+        })
+    }
+
+    function setCount(name: string, n: number) {
+        document.querySelectorAll(`.live-tab-count[data-count="${name}"]`).forEach((el) => {
+            el.textContent = String(n)
+        })
+    }
+
+    function render() {
+        const dataEl = document.getElementById('live-data')
+        const root = document.querySelector('[data-feedback-window]') as HTMLElement | null
+        if (!dataEl || !root) return
+        let data: LiveItem[] = []
+        try {
+            data = JSON.parse(dataEl.textContent || '[]')
+        } catch (e) {
+            return
+        }
+        const nowMs = getNow().getTime()
+        const favs = getFavs()
+
+        const withTimes = data
+            .map((d) => ({ it: d, startT: new Date(d.start).getTime(), endT: new Date(d.end).getTime() }))
+            .sort((a, b) => a.startT - b.startT)
+
+        // Onglet "En ce moment" : uniquement les sessions en cours (le feedback des
+        // sessions finies vit dans l'onglet "Terminées" -> pas de doublon).
+        const nowCards = withTimes
+            .filter((x) => x.startT <= nowMs && nowMs < x.endT)
+            .map((x) => buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
+
+        // Onglet "À venir" : tout ce qui démarre après maintenant.
+        const nextCards = withTimes
+            .filter((x) => x.startT > nowMs)
+            .map((x) => buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
+
+        // Onglet "Terminées" : talks/keynotes passés (avec lien + avis), plus récent
+        // d'abord. On exclut les entrées sans page (pauses, déjeuner…).
+        const pastCards = withTimes
+            .filter((x) => x.endT <= nowMs && x.it.sessionUrl)
+            .sort((a, b) => b.endT - a.endT)
+            .map((x) => buildCard(x.it, favs, { feedback: true, statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
+
+        // Onglet "Tout le programme" : toute la journée, avec statut.
+        const allCards = withTimes.map((x) =>
+            buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) })
+        )
+
+        // Onglet "Favoris".
+        const favTimes = withTimes.filter((x) => favs.indexOf(x.it.id) !== -1)
+        const favCards = favTimes.map((x) =>
+            buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) })
+        )
+
+        document.getElementById('tab-now')!.innerHTML = listHtml(nowCards, 'Aucune session en cours pour le moment.')
+        document.getElementById('tab-next')!.innerHTML = listHtml(nextCards, 'Plus de sessions à venir aujourd’hui.')
+        document.getElementById('tab-past')!.innerHTML = listHtml(pastCards, 'Aucune session terminée pour l’instant.')
+        document.getElementById('tab-all')!.innerHTML = listHtml(allCards, 'Programme indisponible.')
+        document.getElementById('tab-fav')!.innerHTML = listHtml(
+            favCards,
+            'Aucun favori pour l’instant. Touchez ☆ sur une session pour l’ajouter ici.'
+        )
+
+        setCount('now', nowCards.length)
+        setCount('past', pastCards.length)
+        setCount('next', nextCards.length)
+        setCount('all', allCards.length)
+        setCount('fav', favTimes.length)
+    }
+
+    function onClick(e: Event) {
+        const target = e.target as HTMLElement
+        const tabBtn = target.closest('.live-tab') as HTMLElement | null
+        if (tabBtn) {
+            const tab = tabBtn.getAttribute('data-tab')
+            if (tab) showTab(tab)
+            return
+        }
+        const copyBtn = target.closest('[data-copy]') as HTMLElement | null
+        if (copyBtn) {
+            const txt = copyBtn.getAttribute('data-copy') || ''
+            const fb = copyBtn.querySelector('[data-copy-feedback]')
+            if (navigator.clipboard) {
+                navigator.clipboard
+                    .writeText(txt)
+                    .then(() => {
+                        if (fb) {
+                            fb.textContent = '✓ copié'
+                            setTimeout(() => {
+                                fb.textContent = ''
+                            }, 1500)
+                        }
+                    })
+                    .catch(() => {})
+            }
+            return
+        }
+        const favBtn = target.closest('.fav-btn') as HTMLElement | null
+        if (favBtn) {
+            const id = favBtn.getAttribute('data-fav')
+            if (!id) return
+            const favs = getFavs()
+            const idx = favs.indexOf(id)
+            if (idx === -1) favs.push(id)
+            else favs.splice(idx, 1)
+            setFavs(favs)
+            render()
+            return
+        }
+        // Carte cliquable : tout clic ailleurs que sur un lien déclenche le lien du titre.
+        if (target.closest('a')) return
+        const card = target.closest('[data-session-card]') as HTMLElement | null
+        if (card) {
+            const link = card.querySelector('a[data-card-link]') as HTMLAnchorElement | null
+            if (link) link.click()
+        }
+    }
+
+    // Réassemble les liens tel: à partir des contacts encodés en base64 dans
+    // data-contacts. Idempotent : ne réinjecte pas si déjà fait (init est rejoué
+    // après chaque navigation Astro).
+    function hydrateContacts() {
+        const holder = document.getElementById('live-contacts') as HTMLElement | null
+        if (!holder || holder.dataset.hydrated) return
+        let contacts: { n: string; t: string; d: string }[] = []
+        try {
+            contacts = JSON.parse(holder.getAttribute('data-contacts') || '[]')
+        } catch (e) {
+            return
+        }
+        holder.innerHTML = contacts
+            .map((c) => {
+                const tel = atob(c.t).replace(/[^+\d]/g, '')
+                const disp = atob(c.d)
+                return `<a href="tel:${tel}" class="flex items-center gap-3 rounded-xl border border-gray-200 px-4 py-3 hover:border-primary-400 hover:bg-primary-50/50 transition-colors">
+                    <span class="text-lg" aria-hidden="true">📞</span>
+                    <span class="flex-1 font-semibold text-gray-900">${esc(c.n)}</span>
+                    <span class="font-mono text-sm text-gray-500">${esc(disp)}</span>
+                </a>`
+            })
+            .join('')
+        holder.dataset.hydrated = '1'
+    }
+
+    function init() {
+        if (!document.getElementById('live-data')) return
+        try {
+            activeTab = sessionStorage.getItem(TAB_KEY) || activeTab
+        } catch (e) {}
+        showTab(activeTab)
+        render()
+        hydrateContacts()
+    }
+
+    document.addEventListener('click', onClick)
+    document.addEventListener('astro:page-load', init)
+    document.addEventListener('astro:after-swap', init)
+    setInterval(() => {
+        if (document.getElementById('live-data')) render()
+    }, 30000)
+    init()
+</script>

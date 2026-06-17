@@ -1,5 +1,6 @@
 import type { Session, Speaker, Track, Category } from '../type'
 import scheduleData from './schedule.json'
+import { LIVE_DATA } from '../config'
 
 // Conference-Hall API types
 interface CHSpeaker {
@@ -72,6 +73,15 @@ function fixTimestamp(iso: string): string {
 function normalizeTrackName(name: string): string {
     if (name.startsWith('Workshop')) return 'Workshop'
     return name
+}
+
+// Résout la salle physique depuis le nom de track BRUT de Conference Hall
+// (avant normalizeTrackName, sinon Workshop1 et Workshop2 — deux salles distinctes —
+// seraient confondus). Les placeholders "TODO" non renseignés sont traités comme absents.
+const ROOMS = LIVE_DATA.rooms as Record<string, string>
+function resolveRoom(rawTrack: string): string | null {
+    const room = ROOMS[rawTrack]
+    return room && room !== 'TODO' ? room : null
 }
 
 function inferSocialIcon(url: string): { name: string; icon: string; link: string } {
@@ -166,6 +176,7 @@ export function getScheduleData(): ScheduleResult {
             durationMinutes,
             speakerIds,
             trackId,
+            room: resolveRoom(s.track),
             language: s.language,
             level: s.proposal!.level || null,
             categoryId,

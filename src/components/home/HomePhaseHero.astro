@@ -1,0 +1,203 @@
+---
+// Hero léger, affiché dans les phases preevent / live / post (le hero marketing
+// reste réservé à la phase default). Chaque variante est gatée par data-when ;
+// la variante "jour J" utilise data-eventday-only. Pas d'image lourde ici.
+import { Picture } from 'astro:assets'
+import backgroundHome from '../../assets/hero.webp'
+import { EVENT_DATA } from '../../config'
+import { getScheduleData } from '../../data/conference-hall'
+
+const { sessions, commonSessions } = getScheduleData()
+const starts = sessions
+    .map((s) => s.dateStart)
+    .filter((d): d is string => !!d)
+    .sort()
+const liveStart = starts.length ? starts[0] : `${EVENT_DATA.event.date.iso}T${EVENT_DATA.event.duration.startTime}:00`
+
+// Heure d'ouverture des portes = début de la 1ʳᵉ entrée du programme (accueil
+// inclus), pour rester juste si le planning bouge. Format FR : "8h30", "9h".
+const doorsIso = [...starts, ...commonSessions.map((c) => c.dateStart)].filter(Boolean).sort()[0] ?? null
+const doorsTime = doorsIso
+    ? (() => {
+          const [h, min] = doorsIso.slice(11, 16).split(':')
+          return `${parseInt(h, 10)}h${min === '00' ? '' : min}`
+      })()
+    : null
+// Suffixe construit en une seule string : évite qu'un point isolé en JSX hérite
+// d'un espace parasite après reformatage prettier.
+const doorsSuffix = doorsTime ? ` — ouverture des portes à partir de ${doorsTime}.` : '.'
+
+const dateFull = EVENT_DATA.event.date.full
+const venue = EVENT_DATA.event.location.venue
+const city = EVENT_DATA.event.location.city
+---
+
+<section class="hero-gradient relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-28 text-white">
+    {/* Fond lama (même asset que le hero marketing, déjà préchargé) + voile dégradé pour la lisibilité. */}
+    <Picture
+        src={backgroundHome}
+        formats={['avif', 'webp']}
+        widths={[480, 768, 1024, 1280, 1600]}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        sizes="100vw"
+        width={backgroundHome.width}
+        height={backgroundHome.height}
+        class="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
+        style="z-index:0;"
+    />
+    <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90 animate-gradient pointer-events-none"
+        style="z-index:1;"
+        aria-hidden="true">
+    </div>
+
+    <div class="absolute -top-24 -right-24 w-72 h-72 bg-secondary-500/20 rounded-full blur-3xl" aria-hidden="true">
+    </div>
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl" aria-hidden="true">
+    </div>
+
+    {/* Particules flottantes décoratives (cohérence avec le hero principal). */}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div
+            class="absolute top-16 left-6 sm:left-16 w-3 h-3 bg-white/10 rounded-full animate-float"
+            style="animation-delay: 0s;">
+        </div>
+        <div
+            class="absolute top-28 right-8 sm:right-24 w-4 h-4 sm:w-6 sm:h-6 bg-secondary-300/20 rounded-full animate-float"
+            style="animation-delay: 1s;">
+        </div>
+        <div
+            class="absolute bottom-20 left-10 sm:left-28 w-2 h-2 sm:w-3 sm:h-3 bg-primary-300/20 rounded-full animate-float"
+            style="animation-delay: 2s;">
+        </div>
+        <div
+            class="hidden sm:block absolute top-1/2 right-1/3 w-4 h-4 bg-white/5 rounded-full animate-float"
+            style="animation-delay: 0.5s;">
+        </div>
+    </div>
+
+    {/* Motif radial animé (décoratif). */}
+    <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
+        <div
+            class="absolute inset-0 animate-gradient"
+            style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+        <!-- ============ PRE-EVENT ============ -->
+        <div data-when="preevent">
+            <!-- Variante jour J -->
+            <div data-eventday-only>
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-sm font-semibold mb-6">
+                    <span class="animate-bounce-gentle" aria-hidden="true">🎉</span> C'est aujourd'hui !
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                    Bienvenue à <span class="text-gradient">{EVENT_DATA.event.shortName}</span>
+                </h1>
+                <p class="text-lg text-gray-100 mb-2">On vous attend à <strong>{venue}</strong>, {city}.</p>
+                <p class="text-primary-100">La première conférence approche — voici comment nous rejoindre 👇</p>
+            </div>
+
+            <!-- Variante J-x (avant le jour J) -->
+            <div data-eventday-hide>
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-sm font-semibold mb-6">
+                    <span class="animate-bounce-gentle" aria-hidden="true">🗓️</span>
+                    {dateFull}
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black text-white mb-5">
+                    {EVENT_DATA.event.shortName},{' '}
+                    <span
+                        id="countdown"
+                        class="text-gradient"
+                        data-target={liveStart}
+                        data-event-day={EVENT_DATA.event.date.iso}>c'est bientôt</span
+                    > !
+                </h1>
+                <p class="text-lg text-gray-100"><strong>{venue}</strong>, {city}{doorsSuffix}</p>
+            </div>
+        </div>
+
+        <!-- ============ LIVE ============ -->
+        <div data-when="live">
+            <span
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/90 text-sm font-bold mb-6 animate-pulse">
+                🔴 En direct
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                {EVENT_DATA.event.shortName}
+                <span class="text-gradient">en cours</span>
+            </h1>
+            <p class="text-lg text-gray-100">Ce qui se passe maintenant et juste après 👇</p>
+        </div>
+
+        <!-- ============ POST ============ -->
+        <div data-when="post">
+            <div class="text-6xl mb-4" aria-hidden="true">🦙</div>
+            <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                Merci à tous pour ce <span class="text-gradient">super événement</span> !
+            </h1>
+            <p class="text-lg text-gray-100 mb-6">
+                Rendez-vous l'année prochaine. En attendant, revivez le programme ci-dessous.
+            </p>
+            <a href="/schedule" class="btn btn-primary inline-flex items-center gap-2">📅 Voir le programme</a>
+        </div>
+    </div>
+</section>
+
+<style is:global>
+    /* Inverse de data-eventday-only : masqué le jour J. */
+    html[data-eventday='true'] [data-eventday-hide] {
+        display: none !important;
+    }
+</style>
+
+<script>
+    // Compte à rebours jusqu'à la première conférence (phase preevent, hors jour J).
+    function tickCountdown() {
+        const el = document.getElementById('countdown')
+        if (!el) return
+        const target = el.getAttribute('data-target')
+        if (!target) return
+        const now = (() => {
+            try {
+                const p = new URLSearchParams(window.location.search).get('now')
+                if (p) {
+                    const d = new Date(p)
+                    if (!isNaN(d.getTime())) return d
+                }
+            } catch (e) {}
+            return new Date()
+        })()
+        const diff = new Date(target).getTime() - now.getTime()
+        // Le texte s'insère dans le titre : "Tech'Work, <countdown> !".
+        if (diff <= 0) {
+            el.textContent = "c'est parti"
+            return
+        }
+        // Écart en jours calendaires (pas en multiples de 24 h) entre aujourd'hui et
+        // le jour J : ainsi le 17 au soir affiche bien "demain" et non "dans 0 jour".
+        const eventDayAttr = el.getAttribute('data-event-day')
+        let calDays = null
+        if (eventDayAttr) {
+            const [y, m, d] = eventDayAttr.split('-').map(Number)
+            const eventMidnight = new Date(y, m - 1, d)
+            const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+            calDays = Math.round((eventMidnight.getTime() - todayMidnight.getTime()) / 86400000)
+        }
+        if (calDays === 1) {
+            el.textContent = "c'est demain"
+        } else if (calDays !== null && calDays >= 2) {
+            el.textContent = `c'est dans ${calDays} jours`
+        } else {
+            el.textContent = "c'est bientôt"
+        }
+    }
+    tickCountdown()
+    setInterval(tickCountdown, 30000)
+    document.addEventListener('astro:after-swap', tickCountdown)
+</script>

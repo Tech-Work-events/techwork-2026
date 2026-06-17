@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro'
 import ScheduleSessionCard from '../../components/schedule/ScheduleSessionCard.astro'
 import UserSchedule from '../../components/schedule/UserSchedule.astro'
 import CTASection from '../../components/cta/CTASection.astro'
-import { EVENT_DATA } from '../../config'
+import { EVENT_DATA, LIVE_DATA } from '../../config'
 import { getScheduleData } from '../../data/conference-hall'
 
 export async function getStaticPaths() {
@@ -129,6 +129,15 @@ const GRID_COLUMNS = tracks
     }))
 
 const GRID_COLUMN_TEMPLATE = `64px ${GRID_COLUMNS.map((c) => `${c.widthFr}fr`).join(' ')}`
+
+// Salle fixe d'un track (en-tête de colonne). Le track Workshop regroupe deux
+// salles distinctes (une par session) -> pas de salle unique en en-tête : on
+// affiche alors la salle au niveau de chaque session.
+const ROOM_BY_TRACK = LIVE_DATA.rooms as Record<string, string>
+function roomForTrackName(name: string): string | null {
+    const r = ROOM_BY_TRACK[name]
+    return r && r !== 'TODO' ? r : null
+}
 
 const TRACK_SLOTS = [
     { start: '10:00', end: '10:50' },
@@ -346,7 +355,10 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                             <div
                                 class="schedule-grid-col-header"
                                 style={`grid-row: 1; grid-column: ${ci + 2}; background-color: ${col.color}`}>
-                                {col.name}
+                                <span>{col.name}</span>
+                                {roomForTrackName(col.name) && (
+                                    <span class="schedule-grid-col-room">Salle {roomForTrackName(col.name)}</span>
+                                )}
                             </div>
                         ))}
 
@@ -421,6 +433,7 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                             style={`grid-row: ${entry.gridRow}; grid-column: 2 / -1;`}>
                                             <div class="schedule-keynote-header">
                                                 <span class="schedule-keynote-badge">Keynote</span>
+                                                {ks.room && <span class="schedule-grid-cell-room">📍 {ks.room}</span>}
                                                 <span class="schedule-grid-cell-time">
                                                     {startTime} — {endTime}
                                                     <span class="schedule-grid-cell-duration">
@@ -509,6 +522,11 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                                                 {result.session.durationMinutes} min
                                                             </span>
                                                         </div>
+                                                        {!roomForTrackName(col.name) && result.session.room && (
+                                                            <span class="schedule-grid-cell-room">
+                                                                📍 {result.session.room}
+                                                            </span>
+                                                        )}
                                                         <h3 class="schedule-grid-cell-title">{result.session.title}</h3>
                                                         {result.session.level && (
                                                             <span
@@ -610,6 +628,9 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                                     style="background-color: #6366f1">
                                                     Keynote
                                                 </span>
+                                                {ks.room && (
+                                                    <span class="schedule-mobile-session-room">📍 {ks.room}</span>
+                                                )}
                                                 <span class="schedule-mobile-session-duration">
                                                     {ks.durationMinutes} min
                                                 </span>
@@ -664,6 +685,9 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
                                                     style={`background-color: ${col.color}`}>
                                                     {col.name}
                                                 </span>
+                                                {s.room && (
+                                                    <span class="schedule-mobile-session-room">📍 {s.room}</span>
+                                                )}
                                                 <span class="schedule-mobile-session-duration">
                                                     {s.durationMinutes} min
                                                 </span>
@@ -764,9 +788,10 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
 
     .schedule-grid-col-header {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 6px;
+        gap: 2px;
         padding: 10px 8px;
         border-radius: 12px;
         color: white;
@@ -774,6 +799,25 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
         font-size: 0.8rem;
         text-align: center;
         white-space: nowrap;
+    }
+
+    .schedule-grid-col-room {
+        font-size: 0.7rem;
+        font-weight: 600;
+        opacity: 0.85;
+        letter-spacing: 0.02em;
+    }
+
+    .schedule-grid-cell-room {
+        display: inline-block;
+        align-self: flex-start;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #374151;
+        background: #f3f4f6;
+        border-radius: 9999px;
+        padding: 1px 8px;
+        margin: 2px 0;
     }
 
     .schedule-grid-time {
@@ -1084,6 +1128,16 @@ function isCellOccupied(gridRow: number, trackId: string): boolean {
             font-size: 0.65rem;
             font-weight: 600;
             color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .schedule-mobile-session-room {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #374151;
+            background: #f3f4f6;
             padding: 2px 8px;
             border-radius: 6px;
             white-space: nowrap;

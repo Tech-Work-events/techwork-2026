@@ -87,6 +87,8 @@ const feedbackUrl = getFeedbackUrl({ sessionId: id, dateStart: dateStart ?? '', 
                 <!-- Back link -->
                 <a
                     href={parentUrl}
+                    data-back-link
+                    data-default-href={parentUrl}
                     class="inline-flex items-center text-white/70 hover:text-white transition-colors mb-8 text-sm">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -95,7 +97,7 @@ const feedbackUrl = getFeedbackUrl({ sessionId: id, dateStart: dateStart ?? '', 
                             stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Retour au programme
+                    <span data-back-label>Retour au programme</span>
                 </a>
 
                 <!-- Badges -->
@@ -275,11 +277,45 @@ const feedbackUrl = getFeedbackUrl({ sessionId: id, dateStart: dateStart ?? '', 
     <section class="py-12 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="scroll-animate">
-                <a href={parentUrl} class="btn btn-primary text-lg px-8 py-4 hover-lift group">
-                    <span class="mr-2 group-hover:animate-bounce-gentle">📅</span>
-                    Retour au programme
+                <a
+                    href={parentUrl}
+                    data-back-link
+                    data-default-href={parentUrl}
+                    class="btn btn-primary text-lg px-8 py-4 hover-lift group">
+                    <span class="mr-2 group-hover:animate-bounce-gentle" data-back-icon>📅</span>
+                    <span data-back-label>Retour au programme</span>
                 </a>
             </div>
         </div>
     </section>
+
+    <script>
+        // Adapte le bouton "retour" si l'on arrive depuis l'accueil live (?from=live) :
+        // libellé "Retour au live" + retour navigateur pour retrouver l'onglet et la
+        // position de défilement exacts. Sinon, comportement par défaut (programme).
+        function setupBackLinks() {
+            const from = new URLSearchParams(window.location.search).get('from')
+            const links = document.querySelectorAll<HTMLAnchorElement>('[data-back-link]')
+            if (from !== 'live') return
+            links.forEach((a) => {
+                // Idempotent : setupBackLinks tourne au parse ET sur astro:page-load
+                // (déclenché aussi au 1er chargement) → sans ce garde, deux listeners
+                // click feraient deux history.back() (recul de 2 pages).
+                if (a.dataset.backBound) return
+                a.dataset.backBound = '1'
+                const label = a.querySelector('[data-back-label]')
+                if (label) label.textContent = 'Retour au live'
+                const icon = a.querySelector('[data-back-icon]')
+                if (icon) icon.textContent = '🔴'
+                a.setAttribute('href', '/') // repli si pas d'historique
+                a.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    if (window.history.length > 1) window.history.back()
+                    else window.location.href = '/'
+                })
+            })
+        }
+        setupBackLinks()
+        document.addEventListener('astro:page-load', setupBackLinks)
+    </script>
 </Layout>

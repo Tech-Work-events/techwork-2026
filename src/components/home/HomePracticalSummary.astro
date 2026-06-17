@@ -1,0 +1,64 @@
+---
+// Phase preevent : l'essentiel pour venir, sans dupliquer /location.
+// Résumé court (adresse, horaire, accès) + boutons vers /location et /schedule.
+import { EVENT_DATA } from '../../config'
+import { getScheduleData } from '../../data/conference-hall'
+
+const { location, date } = EVENT_DATA.event
+
+// Ouverture des portes = début de la 1ʳᵉ entrée du programme (accueil inclus),
+// pour rester cohérent avec le hero. Format FR : "8h30", "9h".
+const { sessions, commonSessions } = getScheduleData()
+const doorsIso = [...sessions.map((s) => s.dateStart), ...commonSessions.map((c) => c.dateStart)]
+    .filter((d): d is string => !!d)
+    .sort()[0]
+const doorsTime = doorsIso
+    ? (() => {
+          const [h, min] = doorsIso.slice(11, 16).split(':')
+          return `${parseInt(h, 10)}h${min === '00' ? '' : min}`
+      })()
+    : EVENT_DATA.event.duration.startTime
+const access = [
+    { icon: '🚇', label: 'Métro A — arrêt Perrache (5 min à pied)' },
+    { icon: '🚊', label: 'Tram T1 & T2 — Perrache' },
+    { icon: '🅿️', label: 'Q-Park Lyon Perrache Archives (en face)' },
+    { icon: '🚲', label: "Station Vélo'v Place des Archives" },
+]
+---
+
+<section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-5">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Comment venir</h2>
+            <p class="text-gray-600">{date.full} — ouverture des portes à partir de {doorsTime}</p>
+        </div>
+
+        <div class="card p-6 sm:p-8">
+            <div class="flex items-start gap-3 mb-5">
+                <span class="text-2xl" aria-hidden="true">📍</span>
+                <div>
+                    <p class="font-bold text-gray-900">{location.venue}</p>
+                    <p class="text-gray-600">{location.address}</p>
+                </div>
+            </div>
+
+            <ul class="grid sm:grid-cols-2 gap-3 mb-6">
+                {
+                    access.map((a) => (
+                        <li class="flex items-center gap-2.5 text-sm text-gray-700">
+                            <span class="text-lg" aria-hidden="true">
+                                {a.icon}
+                            </span>
+                            <span>{a.label}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="/location" class="btn btn-primary flex-1 justify-center">🗺️ Itinéraire & plan d'accès</a>
+                <a href="/schedule" class="btn btn-secondary flex-1 justify-center">📅 Voir le programme</a>
+            </div>
+        </div>
+    </div>
+</section>
