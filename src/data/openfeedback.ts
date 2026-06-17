@@ -5,6 +5,10 @@ export const OPENFEEDBACK_EVENT_ID = 'BR8HzqCDbXYeLhhvcLNk'
 
 const OPENFEEDBACK_BASE_URL = 'https://openfeedback.io'
 
+// Page publique récap de l'évènement sur OpenFeedback : liste toutes les sessions
+// notables, point d'entrée global du feedback (onglet « Avis » du live).
+export const OPENFEEDBACK_EVENT_URL = `${OPENFEEDBACK_BASE_URL}/${OPENFEEDBACK_EVENT_ID}`
+
 interface FeedbackUrlInput {
     sessionId: string
     // Timestamp de début en heure locale naïve (conference-hall.ts a déjà
