@@ -99,25 +99,33 @@ const items = [...sessionItems, ...commonItems].sort(
 )
 const feedbackWindow = LIVE_DATA.feedbackWindowMinutes
 
-// Infos pratiques (onglet) : repérage des salles depuis la config.
-const ROOM_LABELS: Record<string, string> = {
-    Agilité: 'Agile',
-    Craft: 'Craft',
-    DevOps: 'DevOps',
-    Data: 'Data / IA',
-    Workshop1: 'Workshop 1',
-    Workshop2: 'Workshop 2',
-}
+// Infos pratiques (onglet) : salles regroupées par étage. L'étage est déduit du
+// numéro UCLy (C 2xx -> 2ᵉ étage, C 3xx -> 3ᵉ étage). Une salle dont le numéro ne
+// matche pas reste affichée dans un groupe "À l'étage" plutôt que de disparaître.
 const rooms = LIVE_DATA.rooms as Record<string, string>
-const roomEntry = (key: string) => {
-    const r = rooms[key]
-    return r && r !== 'TODO' ? { label: ROOM_LABELS[key], room: r } : null
+const ROOM_META: { key: string; label: string; kind: 'conf' | 'atelier' }[] = [
+    { key: 'Agilité', label: 'Agile', kind: 'conf' },
+    { key: 'Craft', label: 'Craft', kind: 'conf' },
+    { key: 'Data', label: 'Data / IA', kind: 'conf' },
+    { key: 'DevOps', label: 'DevOps', kind: 'conf' },
+    { key: 'Workshop1', label: 'Workshop 1', kind: 'atelier' },
+    { key: 'Workshop2', label: 'Workshop 2', kind: 'atelier' },
+]
+const FLOOR_LABELS: Record<string, string> = { '2': '2ᵉ étage', '3': '3ᵉ étage' }
+const floorKeyOf = (room: string): string => {
+    const m = room.match(/(\d)\d\d/)
+    return m ? m[1] : '?'
 }
-const confRooms = ['Agilité', 'Craft', 'DevOps', 'Data'].map(roomEntry).filter(Boolean) as {
+const placedRooms = ROOM_META.map((m) => ({ ...m, room: rooms[m.key] })).filter((m) => m.room && m.room !== 'TODO') as {
+    key: string
     label: string
+    kind: 'conf' | 'atelier'
     room: string
 }[]
-const workshopRooms = ['Workshop1', 'Workshop2'].map(roomEntry).filter(Boolean) as { label: string; room: string }[]
+const floorGroups = [...new Set(placedRooms.map((r) => floorKeyOf(r.room)))].sort().map((fk) => ({
+    label: FLOOR_LABELS[fk] ?? 'À l’étage',
+    rooms: placedRooms.filter((r) => floorKeyOf(r.room) === fk),
+}))
 const amphiRaw = rooms['Commun'] && rooms['Commun'] !== 'TODO' ? rooms['Commun'] : null
 // Évite la répétition "(RDC)" sous l'en-tête "Rez-de-chaussée".
 const amphi = amphiRaw ? amphiRaw.replace(/\s*\(RDC\)\s*$/i, '') : null
@@ -174,104 +182,67 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         {/* Onglet Infos pratiques — contenu statique (rendu au build) */}
         <div id="tab-info" class="live-panel" role="tabpanel" hidden>
             <div class="grid gap-4">
-                <div class="card p-5">
-                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">🧭 Se repérer</h3>
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-start gap-3">
-                            <span class="text-2xl" aria-hidden="true">🏛️</span>
-                            <div>
-                                <p class="font-bold text-gray-900">Rez-de-chaussée</p>
-                                <p class="text-sm text-gray-600">
-                                    {amphi ? `${amphi} : ` : ''}keynotes (ouverture &amp; clôture), restauration, café
-                                    et stands partenaires.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-2xl" aria-hidden="true">⬆️</span>
-                            <div class="flex-1">
-                                <p class="font-bold text-gray-900">À l'étage — suivez les affiches</p>
-                                <p class="text-sm text-gray-600 mb-3">
-                                    Les conférences et ateliers se tiennent à l'étage, dans un autre espace.
-                                </p>
-                                {
-                                    confRooms.length > 0 && (
-                                        <div class="mb-2">
-                                            <p class="text-xs font-semibold text-gray-400 uppercase mb-1">
-                                                Conférences
-                                            </p>
-                                            <div class="flex flex-wrap gap-2">
-                                                {confRooms.map((r) => (
-                                                    <span class="inline-flex items-center gap-1.5 text-sm bg-gray-100 rounded-lg px-2.5 py-1">
-                                                        <span class="font-semibold text-gray-800">{r.label}</span>
-                                                        <span class="text-gray-500">{r.room}</span>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    workshopRooms.length > 0 && (
-                                        <div>
-                                            <p class="text-xs font-semibold text-gray-400 uppercase mb-1">Ateliers</p>
-                                            <div class="flex flex-wrap gap-2">
-                                                {workshopRooms.map((r) => (
-                                                    <span class="inline-flex items-center gap-1.5 text-sm bg-gray-100 rounded-lg px-2.5 py-1">
-                                                        <span class="font-semibold text-gray-800">{r.label}</span>
-                                                        <span class="text-gray-500">{r.room}</span>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card p-5">
-                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">📶 WiFi</h3>
-                    {
-                        wifiSsid ? (
-                            <div class="flex flex-col gap-1 text-sm">
-                                <div class="flex justify-between gap-3">
-                                    <span class="text-gray-500">Réseau</span>
-                                    <span class="font-mono font-semibold text-gray-900">{wifiSsid}</span>
+                {/* Se repérer : keynotes au RDC, conférences regroupées par étage. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Se repérer</h3>
+                    <div class="space-y-5">
+                        {
+                            amphi && (
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">
+                                        Rez-de-chaussée
+                                    </p>
+                                    <p class="text-sm text-gray-700">
+                                        <span class="font-semibold text-gray-900">{amphi}</span> — keynotes,
+                                        restauration, café &amp; stands partenaires.
+                                    </p>
                                 </div>
-                                {wifiPassword && (
-                                    <div class="flex justify-between gap-3">
-                                        <span class="text-gray-500">Mot de passe</span>
-                                        <span class="font-mono font-semibold text-gray-900">{wifiPassword}</span>
+                            )
+                        }
+                        {
+                            floorGroups.map((g) => (
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">
+                                        {g.label}
+                                    </p>
+                                    <div class="divide-y divide-gray-100">
+                                        {g.rooms.map((r) => (
+                                            <div class="flex items-center justify-between py-2">
+                                                <span class="text-sm text-gray-800">
+                                                    <span class="font-semibold">{r.label}</span>
+                                                    {r.kind === 'atelier' && (
+                                                        <span class="ml-2 text-xs text-gray-400">Atelier</span>
+                                                    )}
+                                                </span>
+                                                <span class="font-mono text-sm text-gray-500">{r.room}</span>
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
-                            </div>
-                        ) : (
-                            <p class="text-sm text-gray-600">Les identifiants seront communiqués sur place.</p>
-                        )
-                    }
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <p class="text-xs text-gray-400 mt-4">Suivez les affiches pour rejoindre les salles à l'étage.</p>
                 </div>
 
-                <div class="card p-5">
-                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
-                        🆘 Un souci, une urgence ?
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-3">
+                {/* Besoin d'aide : contacts orga (réassemblés côté client), CoC. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Besoin d'aide ?</h3>
+                    <p class="text-sm text-gray-600 mb-4">
                         Malaise, objet perdu, comportement déplacé, accessibilité… appelle un organisateur, on répond
                         tout de suite.
                     </p>
                     {
-                        /* Liens tel: réassemblés côté client (cf. frontmatter) pour ne pas exposer les numéros aux crawlers. */
+                        /* Liens tel: réassemblés depuis du base64 côté client (cf. frontmatter) pour ne pas exposer les numéros. */
                     }
                     <div
                         id="live-contacts"
-                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4"
                         data-contacts={JSON.stringify(emergencyContacts)}>
                     </div>
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <a href={`mailto:${contactEmail}`} class="btn btn-secondary flex-1 justify-center text-sm">
-                            ✉️ Écrire à l'orga
+                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                        <a href={`mailto:${contactEmail}`} class="text-primary-600 hover:underline">
+                            Écrire à l'orga
                         </a>
                         {
                             whatsappUrl && (
@@ -279,52 +250,67 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
                                     href={whatsappUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="btn btn-secondary flex-1 justify-center text-sm">
-                                    💬 Groupe WhatsApp
+                                    class="text-primary-600 hover:underline">
+                                    Groupe WhatsApp
+                                </a>
+                            )
+                        }
+                        {
+                            cocUrl && (
+                                <a href={cocUrl} class="text-primary-600 hover:underline">
+                                    Code de conduite
                                 </a>
                             )
                         }
                     </div>
-                    {
-                        cocUrl && (
-                            <a href={cocUrl} class="inline-block text-sm text-primary-600 hover:underline mt-3">
-                                📜 Lire le code de conduite
-                            </a>
-                        )
-                    }
                 </div>
 
-                <div class="card p-5">
-                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
-                        📱 Partagez votre journée
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-3">
-                        Postez vos photos et retours avec le hashtag officiel — touchez-le pour le copier.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <button
-                            type="button"
-                            data-copy={eventHashtag}
-                            class="btn btn-secondary flex-1 justify-center text-sm font-mono">
-                            {eventHashtag}
-                            <span data-copy-feedback class="ml-1 not-italic font-sans"></span>
-                        </button>
+                {/* Infos pratiques : WiFi + partage. */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Infos pratiques</h3>
+                    <div class="flex items-center justify-between gap-3">
+                        <span class="text-sm font-semibold text-gray-700">WiFi</span>
                         {
-                            linkedinUrl && (
-                                <a
-                                    href={linkedinUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="btn btn-secondary flex-1 justify-center text-sm">
-                                    💼 Page LinkedIn
-                                </a>
+                            wifiSsid ? (
+                                <span class="text-sm text-right">
+                                    <span class="font-mono font-semibold text-gray-900">{wifiSsid}</span>
+                                    {wifiPassword && <span class="text-gray-400"> · </span>}
+                                    {wifiPassword && <span class="font-mono text-gray-600">{wifiPassword}</span>}
+                                </span>
+                            ) : (
+                                <span class="text-sm text-gray-500">communiqué sur place</span>
                             )
                         }
+                    </div>
+                    <div class="border-t border-gray-100 mt-4 pt-4">
+                        <p class="text-sm text-gray-600 mb-2">
+                            Partagez votre journée avec le hashtag officiel — touchez-le pour le copier.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button
+                                type="button"
+                                data-copy={eventHashtag}
+                                class="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-1.5 text-sm font-mono text-gray-800">
+                                {eventHashtag}
+                                <span data-copy-feedback class="font-sans text-xs text-green-600"></span>
+                            </button>
+                            {
+                                linkedinUrl && (
+                                    <a
+                                        href={linkedinUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm text-primary-600 hover:underline">
+                                        Page LinkedIn
+                                    </a>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <a href="/location" class="text-sm text-primary-600 hover:underline">📍 Plan d'accès &amp; venue</a>
+                    <a href="/location" class="text-sm text-primary-600 hover:underline">Plan d'accès &amp; venue</a>
                 </div>
             </div>
         </div>
@@ -675,9 +661,10 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
             .map((c) => {
                 const tel = atob(c.t).replace(/[^+\d]/g, '')
                 const disp = atob(c.d)
-                return `<a href="tel:${tel}" class="btn btn-primary justify-center text-sm flex flex-col items-center gap-0.5 py-2">
-                    <span>📞 ${esc(c.n)}</span>
-                    <span class="font-mono text-xs opacity-90">${esc(disp)}</span>
+                return `<a href="tel:${tel}" class="flex items-center gap-3 rounded-xl border border-gray-200 px-4 py-3 hover:border-primary-400 hover:bg-primary-50/50 transition-colors">
+                    <span class="text-lg" aria-hidden="true">📞</span>
+                    <span class="flex-1 font-semibold text-gray-900">${esc(c.n)}</span>
+                    <span class="font-mono text-sm text-gray-500">${esc(disp)}</span>
                 </a>`
             })
             .join('')
