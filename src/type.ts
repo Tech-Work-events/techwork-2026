@@ -49,6 +49,7 @@ export interface Session {
     durationMinutes: number
     speakerIds: string[]
     trackId: string | null
+    room: string | null
     language: string | null
     level: string | null
     imageUrl: string | null | undefined

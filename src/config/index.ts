@@ -15,6 +15,7 @@ import eventData from './event.json'
 import menuData from './menu.json'
 import jobsData from './jobs.json'
 import partnersData from './partners.json'
+import liveData from './live.json'
 // Calcul de l'état du CFP
 const now = new Date()
 // On utilise isOpen du fichier de config qui est mis à jour par le script fetch-cfp
@@ -43,6 +44,9 @@ export const SOCIAL_DATA = socialData
 export const SERVICES_DATA = servicesData
 export const EVENT_DATA = eventData
 export const PARTNERS_DATA = partnersData
+
+// Configuration de l'accueil adaptative "live" (phases, fenêtre feedback, salles par track)
+export const LIVE_DATA = liveData
 
 // Configuration de l'équipe
 export const TEAM_CONFIG = teamData

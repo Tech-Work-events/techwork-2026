@@ -1,0 +1,111 @@
+---
+// Pilote l'accueil adaptative : calcule la "phase" de l'événement à partir de
+// l'heure du navigateur (override possible via ?now=) et la pose sur <html>
+// AVANT le paint pour éviter tout flash (FOUC).
+//
+// Phases :
+//   default  -> avant preEventStart            (accueil marketing, fallback no-JS/SEO)
+//   preevent -> preEventStart .. liveStart      (comment venir + programme, billets masqués)
+//   live     -> liveStart .. liveEnd            (sessions en cours / à venir, favoris, feedback)
+//   post     -> après liveEnd                   (merci + programme)
+//
+// Les bornes liveStart / liveEnd sont DÉRIVÉES du programme (1ʳᵉ session avec
+// orateur -> dernière fin), pas codées en dur. preEventStart est une ancre de config.
+import { EVENT_DATA, LIVE_DATA } from '../config'
+import { getScheduleData } from '../data/conference-hall'
+
+const { sessions } = getScheduleData()
+
+const startTimes = sessions
+    .map((s) => s.dateStart)
+    .filter((d): d is string => !!d)
+    .sort()
+const endTimes = sessions
+    .map((s) => s.dateEnd)
+    .filter((d): d is string => !!d)
+    .sort()
+
+const liveStart = startTimes.length ? startTimes[0] : null
+const liveEnd = endTimes.length ? endTimes[endTimes.length - 1] : null
+const preEventStart = LIVE_DATA.preEventStart
+const eventDayIso = EVENT_DATA.event.date.iso
+---
+
+<script is:inline define:vars={{ preEventStart, liveStart, liveEnd, eventDayIso }}>
+    ;(function () {
+        function getNow() {
+            try {
+                var p = new URLSearchParams(window.location.search).get('now')
+                if (p) {
+                    var d = new Date(p)
+                    if (!isNaN(d.getTime())) return d
+                }
+            } catch (e) {}
+            return new Date()
+        }
+
+        function computePhase() {
+            var now = getNow()
+            // Ancres parsées comme heures locales naïves (cohérent avec le programme).
+            var pre = new Date(preEventStart)
+            var ls = liveStart ? new Date(liveStart) : null
+            var le = liveEnd ? new Date(liveEnd) : null
+
+            var phase = 'default'
+            if (le && now >= le) phase = 'post'
+            else if (ls && le && now >= ls && now < le) phase = 'live'
+            else if (now >= pre) phase = 'preevent'
+
+            var root = document.documentElement
+            root.setAttribute('data-phase', phase)
+
+            // Jour J : active la variante "C'est aujourd'hui" en phase preevent.
+            var isEventDay = false
+            try {
+                var y = now.getFullYear()
+                var m = ('0' + (now.getMonth() + 1)).slice(-2)
+                var dd = ('0' + now.getDate()).slice(-2)
+                isEventDay = y + '-' + m + '-' + dd === eventDayIso
+            } catch (e) {}
+            root.setAttribute('data-eventday', isEventDay ? 'true' : 'false')
+        }
+
+        computePhase()
+        // Le router Astro (ClientRouter) conserve <html> entre les navigations ;
+        // on recalcule par sécurité après chaque swap.
+        document.addEventListener('astro:after-swap', computePhase)
+        // Recalcul périodique : si la page reste ouverte et franchit une bascule
+        // (1ʳᵉ conf, fin de l'événement…), la phase change sans rechargement.
+        setInterval(computePhase, 30000)
+    })()
+</script>
+
+<style is:global>
+    /* Fallback sans JS : seul le contenu "default" (accueil marketing) est visible. */
+    html:not([data-phase]) [data-when]:not([data-when~='default']) {
+        display: none !important;
+    }
+    /* Visibilité par phase : on masque tout [data-when] qui ne cible pas la phase courante. */
+    html[data-phase='default'] [data-when]:not([data-when~='default']) {
+        display: none !important;
+    }
+    html[data-phase='preevent'] [data-when]:not([data-when~='preevent']) {
+        display: none !important;
+    }
+    html[data-phase='live'] [data-when]:not([data-when~='live']) {
+        display: none !important;
+    }
+    html[data-phase='post'] [data-when]:not([data-when~='post']) {
+        display: none !important;
+    }
+    /* CTA billets/CFP globaux : masqués dès qu'on quitte la phase marketing. */
+    html[data-phase='preevent'] [data-phase-hide~='preevent'],
+    html[data-phase='live'] [data-phase-hide~='live'],
+    html[data-phase='post'] [data-phase-hide~='post'] {
+        display: none !important;
+    }
+    /* Variante "jour J" : visible uniquement le jour de l'événement. */
+    html:not([data-eventday='true']) [data-eventday-only] {
+        display: none !important;
+    }
+</style>

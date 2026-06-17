@@ -15,6 +15,9 @@ import HomeFAQ from '../components/home/HomeFAQ.astro'
 import HomeCommunityBlock from '../components/home/HomeCommunityBlock.astro'
 import HomePartnersBlock from '../components/home/HomePartnersBlock.astro'
 import AnimationPartnersSection from '../components/partners/AnimationPartnersSection.astro'
+import HomePhaseHero from '../components/home/HomePhaseHero.astro'
+import HomePracticalSummary from '../components/home/HomePracticalSummary.astro'
+import HomeLiveSessions from '../components/home/HomeLiveSessions.astro'
 
 const response = await fetch(OPENPLANNER_URL)
 const openPlannerData: OpenPlannerType = await response.json()
@@ -24,16 +27,35 @@ const tickets = await getCollection('tickets')
 <Layout
     title="Tech'Work Lyon 2026"
     description="L'événement tech décalé qui crée des connexions mémorables. Talks inspirants, ateliers pratiques, artisans locaux et rencontres authentiques – ambiance lama garantie 🦙">
-    <Hero />
+    {/* Hero adaptatif (preevent / live / post) — masqué en phase default */}
+    <div data-when="preevent live post">
+        <HomePhaseHero />
+    </div>
 
-    <HomeContentBlock />
+    {/* Accueil marketing — phase default uniquement (+ fallback no-JS / SEO) */}
+    <div data-when="default">
+        <Hero />
 
-    <HomeTestimonials />
-    <HomeTicketsBlock tickets={tickets} />
-    <HomeCommunityBlock />
-    <HomeGalleryBlock />
-    <HomeFAQ />
+        <HomeContentBlock />
 
+        <HomeTestimonials />
+        <HomeTicketsBlock tickets={tickets} />
+        <HomeCommunityBlock />
+        <HomeGalleryBlock />
+        <HomeFAQ />
+    </div>
+
+    {/* Phase preevent : comment venir */}
+    <div data-when="preevent">
+        <HomePracticalSummary />
+    </div>
+
+    {/* Phase live : sessions en cours / à venir / feedback / favoris */}
+    <div data-when="live">
+        <HomeLiveSessions />
+    </div>
+
+    {/* Sponsors & partenaires — conservés dans toutes les phases */}
     <HomePartnersBlock />
     <SponsorsBlock sponsorCategories={openPlannerData.sponsors} />
     <AnimationPartnersSection />

@@ -1,0 +1,117 @@
+---
+// Hero léger, affiché dans les phases preevent / live / post (le hero marketing
+// reste réservé à la phase default). Chaque variante est gatée par data-when ;
+// la variante "jour J" utilise data-eventday-only. Pas d'image lourde ici.
+import { EVENT_DATA } from '../../config'
+import { getScheduleData } from '../../data/conference-hall'
+
+const { sessions } = getScheduleData()
+const starts = sessions
+    .map((s) => s.dateStart)
+    .filter((d): d is string => !!d)
+    .sort()
+const liveStart = starts.length ? starts[0] : `${EVENT_DATA.event.date.iso}T${EVENT_DATA.event.duration.startTime}:00`
+
+const dateFull = EVENT_DATA.event.date.full
+const venue = EVENT_DATA.event.location.venue
+const city = EVENT_DATA.event.location.city
+---
+
+<section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 text-white">
+    <div class="absolute -top-24 -right-24 w-72 h-72 bg-secondary-500/20 rounded-full blur-3xl" aria-hidden="true">
+    </div>
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl" aria-hidden="true">
+    </div>
+
+    <div class="relative max-w-3xl mx-auto px-5 text-center">
+        <!-- ============ PRE-EVENT ============ -->
+        <div data-when="preevent">
+            <!-- Variante jour J -->
+            <div data-eventday-only>
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-5">
+                    🎉 C'est aujourd'hui !
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-black mb-4">Bienvenue à {EVENT_DATA.event.shortName}</h1>
+                <p class="text-lg text-gray-100 mb-2">On vous attend à <strong>{venue}</strong>, {city}.</p>
+                <p class="text-primary-100">La première conférence approche — voici comment nous rejoindre 👇</p>
+            </div>
+
+            <!-- Variante J-x (avant le jour J) -->
+            <div data-eventday-hide>
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-5">
+                    🗓️ {dateFull}
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-black mb-4">{EVENT_DATA.event.shortName}, c'est bientôt !</h1>
+                <p id="countdown" class="text-2xl sm:text-3xl font-bold text-primary-100 mb-3" data-target={liveStart}>
+                    &nbsp;
+                </p>
+                <p class="text-gray-100">Préparez votre venue à <strong>{venue}</strong>, {city}.</p>
+            </div>
+        </div>
+
+        <!-- ============ LIVE ============ -->
+        <div data-when="live">
+            <span
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/90 text-sm font-bold mb-5 animate-pulse">
+                🔴 En direct
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-black mb-4">{EVENT_DATA.event.shortName} en cours</h1>
+            <p class="text-lg text-gray-100">Ce qui se passe maintenant et juste après 👇</p>
+        </div>
+
+        <!-- ============ POST ============ -->
+        <div data-when="post">
+            <div class="text-6xl mb-4" aria-hidden="true">🦙</div>
+            <h1 class="text-4xl sm:text-5xl font-black mb-4">Merci à tous pour ce super événement !</h1>
+            <p class="text-lg text-gray-100 mb-6">
+                Rendez-vous l'année prochaine. En attendant, revivez le programme ci-dessous.
+            </p>
+            <a href="/schedule" class="btn btn-primary inline-flex items-center gap-2">📅 Voir le programme</a>
+        </div>
+    </div>
+</section>
+
+<style is:global>
+    /* Inverse de data-eventday-only : masqué le jour J. */
+    html[data-eventday='true'] [data-eventday-hide] {
+        display: none !important;
+    }
+</style>
+
+<script>
+    // Compte à rebours jusqu'à la première conférence (phase preevent, hors jour J).
+    function tickCountdown() {
+        const el = document.getElementById('countdown')
+        if (!el) return
+        const target = el.getAttribute('data-target')
+        if (!target) return
+        const now = (() => {
+            try {
+                const p = new URLSearchParams(window.location.search).get('now')
+                if (p) {
+                    const d = new Date(p)
+                    if (!isNaN(d.getTime())) return d
+                }
+            } catch (e) {}
+            return new Date()
+        })()
+        const diff = new Date(target).getTime() - now.getTime()
+        if (diff <= 0) {
+            el.textContent = "C'est parti !"
+            return
+        }
+        const days = Math.floor(diff / 86400000)
+        const hours = Math.floor((diff % 86400000) / 3600000)
+        const mins = Math.floor((diff % 3600000) / 60000)
+        if (days >= 1) {
+            el.textContent = `Plus que ${days} jour${days > 1 ? 's' : ''} et ${hours} h`
+        } else {
+            el.textContent = `Plus que ${hours} h ${mins.toString().padStart(2, '0')} min`
+        }
+    }
+    tickCountdown()
+    setInterval(tickCountdown, 30000)
+    document.addEventListener('astro:after-swap', tickCountdown)
+</script>
