@@ -98,6 +98,9 @@ const items = [...sessionItems, ...commonItems].sort(
     (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
 )
 const feedbackWindow = LIVE_DATA.feedbackWindowMinutes
+// Questionnaire de satisfaction global de l'évènement (Google Form), distinct du feedback
+// par session (OpenFeedback). Affiché dans l'onglet « Avis ».
+const satisfactionFormUrl = (LIVE_DATA as { satisfactionFormUrl?: string }).satisfactionFormUrl ?? null
 
 // Infos pratiques (onglet) : salles regroupées par étage. L'étage est déduit du
 // numéro UCLy (C 2xx -> 2ᵉ étage, C 3xx -> 3ᵉ étage). Une salle dont le numéro ne
@@ -152,7 +155,7 @@ const linkedinUrl = SOCIAL_DATA.networks.find((n) => n.id === 'linkedin')?.url ?
 const eventHashtag = '#QueLeLamaSoitAvecNous'
 ---
 
-<section class="py-10 sm:py-14" data-feedback-window={feedbackWindow}>
+<section id="live" class="py-10 sm:py-14" data-feedback-window={feedbackWindow}>
     <script
         type="application/json"
         id="live-data"
@@ -163,22 +166,30 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
     <div class="max-w-3xl mx-auto px-5">
         {/* Onglets */}
         <div class="live-tabs" role="tablist" aria-label="Vue du programme">
-            <button type="button" class="live-tab" data-tab="now" role="tab" aria-selected="true">
-                🔴 En ce moment <span class="live-tab-count" data-count="now"></span>
-            </button>
-            <button type="button" class="live-tab" data-tab="next" role="tab" aria-selected="false">
-                ⏭️ À venir <span class="live-tab-count" data-count="next"></span>
-            </button>
-            <button type="button" class="live-tab" data-tab="past" role="tab" aria-selected="false">
-                🏁 Terminées <span class="live-tab-count" data-count="past"></span>
-            </button>
-            <button type="button" class="live-tab" data-tab="all" role="tab" aria-selected="false">
-                📅 Tous <span class="live-tab-count" data-count="all"></span>
+            <button type="button" class="live-tab" data-tab="conferences" role="tab" aria-selected="true">
+                🎤 Conférences
             </button>
             <button type="button" class="live-tab" data-tab="fav" role="tab" aria-selected="false">
                 ⭐ Favoris <span class="live-tab-count" data-count="fav"></span>
             </button>
+            <button type="button" class="live-tab" data-tab="avis" role="tab" aria-selected="false"> 💬 Avis </button>
             <button type="button" class="live-tab" data-tab="info" role="tab" aria-selected="false"> ℹ️ Infos </button>
+        </div>
+
+        {/* Sous-navigation des conférences : visible seulement quand l'onglet « Conférences » est actif. */}
+        <div class="live-subtabs" role="tablist" aria-label="Filtrer les conférences" data-subnav hidden>
+            <button type="button" class="live-subtab" data-subtab="now" role="tab" aria-selected="true">
+                🔴 En ce moment <span class="live-tab-count" data-count="now"></span>
+            </button>
+            <button type="button" class="live-subtab" data-subtab="next" role="tab" aria-selected="false">
+                ⏭️ À venir <span class="live-tab-count" data-count="next"></span>
+            </button>
+            <button type="button" class="live-subtab" data-subtab="past" role="tab" aria-selected="false">
+                🏁 Terminées <span class="live-tab-count" data-count="past"></span>
+            </button>
+            <button type="button" class="live-subtab" data-subtab="all" role="tab" aria-selected="false">
+                📅 Toutes <span class="live-tab-count" data-count="all"></span>
+            </button>
         </div>
 
         {/* Panneaux */}
@@ -187,6 +198,49 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         <div id="tab-past" class="live-panel" role="tabpanel" hidden></div>
         <div id="tab-all" class="live-panel" role="tabpanel" hidden></div>
         <div id="tab-fav" class="live-panel" role="tabpanel" hidden></div>
+
+        {/* Onglet Avis — contenu statique : feedback global + renvoi vers le feedback par session */}
+        <div id="tab-avis" class="live-panel" role="tabpanel" hidden>
+            <div class="grid gap-4">
+                {/* Feedback global de l'évènement (OpenFeedback). */}
+                <div class="card p-6 text-center">
+                    <div class="text-4xl mb-3" aria-hidden="true">💬</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Votre avis compte</h3>
+                    <p class="text-sm text-gray-600 mb-5">
+                        Dites-nous ce que vous avez pensé de cette édition de Tech'Work : organisation, lieu, ambiance…
+                        Vos retours nous aident à préparer la suite.
+                    </p>
+                    {
+                        satisfactionFormUrl && (
+                            <a
+                                href={satisfactionFormUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-primary inline-flex items-center gap-2">
+                                💬 Répondre au questionnaire
+                            </a>
+                        )
+                    }
+                </div>
+
+                {/* Renvoi vers le feedback par session (onglet Terminées + page session). */}
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Notez aussi chaque session</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Un grand merci aux oratrices et orateurs ! Prenez 30 secondes pour évaluer les sessions
+                        auxquelles vous avez assisté : c'est un retour précieux pour elles et eux.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                        <button type="button" data-goto-tab="past" class="text-primary-600 hover:underline">
+                            🏁 Voir les sessions terminées
+                        </button>
+                        <span class="text-gray-400">
+                            ou ouvrez la page d'une session pour scanner son QR code d'avis.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Onglet Infos pratiques — contenu statique (rendu au build) */}
         <div id="tab-info" class="live-panel" role="tabpanel" hidden>
@@ -390,6 +444,56 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         background: #cbd5e1;
         color: #475569;
     }
+
+    /* Sous-navigation des conférences : pilules plus discrètes que le niveau 1. */
+    .live-subtabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 18px;
+    }
+    .live-subtabs[hidden] {
+        display: none;
+    }
+    .live-subtab {
+        flex: 1 1 calc(50% - 3px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px;
+        border-radius: 9999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #475569;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.15s;
+    }
+    @media (min-width: 640px) {
+        .live-subtab {
+            flex: 0 1 auto;
+            padding: 6px 14px;
+        }
+    }
+    .live-subtab:hover {
+        background: #f1f5f9;
+    }
+    .live-subtab[aria-selected='true'] {
+        color: #4338ca;
+        background: #eef2ff;
+        border-color: #c7d2fe;
+    }
+    .live-subtab .live-tab-count {
+        background: #e2e8f0;
+        color: #475569;
+    }
+    .live-subtab[aria-selected='true'] .live-tab-count {
+        background: #c7d2fe;
+        color: #3730a3;
+    }
     .live-panel[hidden] {
         display: none;
     }
@@ -516,20 +620,63 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
     }
 
     const TAB_KEY = 'techwork-live-tab'
-    let activeTab = 'now'
+    const SUB_KEY = 'techwork-live-subtab'
+    const SUB_TABS = ['now', 'next', 'past', 'all']
+    const L1_DIRECT = ['fav', 'avis', 'info']
+    let activeL1 = 'conferences'
+    let activeSub = 'now'
+    let didShareScroll = false
 
-    function showTab(tab: string) {
-        activeTab = tab
-        try {
-            sessionStorage.setItem(TAB_KEY, tab)
-        } catch (e) {}
-        ;['now', 'next', 'past', 'all', 'fav', 'info'].forEach((t) => {
+    // Vue effective : le sous-onglet courant si on est dans « Conférences », sinon l'onglet de niveau 1.
+    function effectiveTab(): string {
+        return activeL1 === 'conferences' ? activeSub : activeL1
+    }
+
+    function applyView() {
+        const eff = effectiveTab()
+        ;['now', 'next', 'past', 'all', 'fav', 'avis', 'info'].forEach((t) => {
             const panel = document.getElementById('tab-' + t)
-            if (panel) (panel as HTMLElement).hidden = t !== tab
+            if (panel) (panel as HTMLElement).hidden = t !== eff
         })
         document.querySelectorAll('.live-tab').forEach((b) => {
-            b.setAttribute('aria-selected', b.getAttribute('data-tab') === tab ? 'true' : 'false')
+            b.setAttribute('aria-selected', b.getAttribute('data-tab') === activeL1 ? 'true' : 'false')
         })
+        const subnav = document.querySelector('[data-subnav]') as HTMLElement | null
+        if (subnav) subnav.hidden = activeL1 !== 'conferences'
+        document.querySelectorAll('.live-subtab').forEach((b) => {
+            b.setAttribute('aria-selected', b.getAttribute('data-subtab') === activeSub ? 'true' : 'false')
+        })
+        try {
+            sessionStorage.setItem(TAB_KEY, effectiveTab())
+            sessionStorage.setItem(SUB_KEY, activeSub)
+        } catch (e) {}
+    }
+
+    // Reflète la vue courante dans l'URL (?tab=…) sans empiler d'historique, en préservant
+    // les autres paramètres (ex. ?now= de debug). Permet de partager un lien direct vers une vue.
+    function syncUrl() {
+        try {
+            const url = new URL(window.location.href)
+            url.searchParams.set('tab', effectiveTab())
+            window.history.replaceState(window.history.state, '', url)
+        } catch (e) {}
+    }
+
+    // tab = valeur effective (now|next|past|all|fav|avis|info) ou 'conferences'.
+    function setTab(tab: string, updateUrl: boolean) {
+        if (tab === 'conferences') {
+            activeL1 = 'conferences'
+        } else if (SUB_TABS.indexOf(tab) !== -1) {
+            activeL1 = 'conferences'
+            activeSub = tab
+        } else if (L1_DIRECT.indexOf(tab) !== -1) {
+            activeL1 = tab
+        } else {
+            activeL1 = 'conferences'
+            activeSub = 'now'
+        }
+        applyView()
+        if (updateUrl) syncUrl()
     }
 
     function setCount(name: string, n: number) {
@@ -605,7 +752,20 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         const tabBtn = target.closest('.live-tab') as HTMLElement | null
         if (tabBtn) {
             const tab = tabBtn.getAttribute('data-tab')
-            if (tab) showTab(tab)
+            if (tab) setTab(tab, true)
+            return
+        }
+        const subBtn = target.closest('.live-subtab') as HTMLElement | null
+        if (subBtn) {
+            const sub = subBtn.getAttribute('data-subtab')
+            if (sub) setTab(sub, true)
+            return
+        }
+        // Lien interne « voir les sessions terminées » depuis l'onglet Avis.
+        const gotoBtn = target.closest('[data-goto-tab]') as HTMLElement | null
+        if (gotoBtn) {
+            const tab = gotoBtn.getAttribute('data-goto-tab')
+            if (tab) setTab(tab, true)
             return
         }
         const copyBtn = target.closest('[data-copy]') as HTMLElement | null
@@ -676,12 +836,31 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
 
     function init() {
         if (!document.getElementById('live-data')) return
+        // Restaure le dernier sous-onglet de Conférences pour y revenir au clic sur le niveau 1.
         try {
-            activeTab = sessionStorage.getItem(TAB_KEY) || activeTab
+            const sub = sessionStorage.getItem(SUB_KEY)
+            if (sub && SUB_TABS.indexOf(sub) !== -1) activeSub = sub
         } catch (e) {}
-        showTab(activeTab)
+        // Priorité : ?tab= (lien partagé) > dernière vue mémorisée > défaut.
+        let paramTab: string | null = null
+        try {
+            paramTab = new URLSearchParams(window.location.search).get('tab')
+        } catch (e) {}
+        let initial = paramTab
+        if (!initial) {
+            try {
+                initial = sessionStorage.getItem(TAB_KEY)
+            } catch (e) {}
+        }
+        setTab(initial || 'now', !!paramTab)
         render()
         hydrateContacts()
+        // Lien partagé : amène directement à la section live (une seule fois).
+        if (paramTab && !didShareScroll) {
+            didShareScroll = true
+            const sec = document.getElementById('live')
+            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
     }
 
     document.addEventListener('click', onClick)

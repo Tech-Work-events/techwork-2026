@@ -1,6 +1,7 @@
 {
     "preEventStart": "2026-06-15T00:00:00",
     "feedbackWindowMinutes": 20,
+    "satisfactionFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSe5syK7bCymEsnDaEAC_0B0QZZmqIMydx9R5duFvQriOYf5Hg/viewform",
     "wifi": {
         "ssid": "",
         "password": ""
