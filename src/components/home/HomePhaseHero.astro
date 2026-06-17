@@ -17,22 +17,52 @@ const venue = EVENT_DATA.event.location.venue
 const city = EVENT_DATA.event.location.city
 ---
 
-<section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 text-white">
+<section class="hero-gradient relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-28 text-white">
     <div class="absolute -top-24 -right-24 w-72 h-72 bg-secondary-500/20 rounded-full blur-3xl" aria-hidden="true">
     </div>
     <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl" aria-hidden="true">
     </div>
 
-    <div class="relative max-w-3xl mx-auto px-5 text-center">
+    {/* Particules flottantes décoratives (cohérence avec le hero principal). */}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div
+            class="absolute top-16 left-6 sm:left-16 w-3 h-3 bg-white/10 rounded-full animate-float"
+            style="animation-delay: 0s;">
+        </div>
+        <div
+            class="absolute top-28 right-8 sm:right-24 w-4 h-4 sm:w-6 sm:h-6 bg-secondary-300/20 rounded-full animate-float"
+            style="animation-delay: 1s;">
+        </div>
+        <div
+            class="absolute bottom-20 left-10 sm:left-28 w-2 h-2 sm:w-3 sm:h-3 bg-primary-300/20 rounded-full animate-float"
+            style="animation-delay: 2s;">
+        </div>
+        <div
+            class="hidden sm:block absolute top-1/2 right-1/3 w-4 h-4 bg-white/5 rounded-full animate-float"
+            style="animation-delay: 0.5s;">
+        </div>
+    </div>
+
+    {/* Motif radial animé (décoratif). */}
+    <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
+        <div
+            class="absolute inset-0 animate-gradient"
+            style="background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
         <!-- ============ PRE-EVENT ============ -->
         <div data-when="preevent">
             <!-- Variante jour J -->
             <div data-eventday-only>
                 <span
-                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-5">
-                    🎉 C'est aujourd'hui !
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-sm font-semibold mb-6">
+                    <span class="animate-bounce-gentle" aria-hidden="true">🎉</span> C'est aujourd'hui !
                 </span>
-                <h1 class="text-4xl sm:text-5xl font-black mb-4">Bienvenue à {EVENT_DATA.event.shortName}</h1>
+                <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                    Bienvenue à <span class="text-gradient">{EVENT_DATA.event.shortName}</span>
+                </h1>
                 <p class="text-lg text-gray-100 mb-2">On vous attend à <strong>{venue}</strong>, {city}.</p>
                 <p class="text-primary-100">La première conférence approche — voici comment nous rejoindre 👇</p>
             </div>
@@ -40,11 +70,18 @@ const city = EVENT_DATA.event.location.city
             <!-- Variante J-x (avant le jour J) -->
             <div data-eventday-hide>
                 <span
-                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-5">
-                    🗓️ {dateFull}
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-sm font-semibold mb-6">
+                    <span class="animate-bounce-gentle" aria-hidden="true">🗓️</span>
+                    {dateFull}
                 </span>
-                <h1 class="text-4xl sm:text-5xl font-black mb-4">{EVENT_DATA.event.shortName}, c'est bientôt !</h1>
-                <p id="countdown" class="text-2xl sm:text-3xl font-bold text-primary-100 mb-3" data-target={liveStart}>
+                <h1 class="text-4xl sm:text-6xl font-black text-white mb-5">
+                    {EVENT_DATA.event.shortName}, <span class="text-gradient">c'est bientôt</span> !
+                </h1>
+                <p
+                    id="countdown"
+                    class="text-3xl sm:text-4xl font-black text-white mb-4"
+                    data-target={liveStart}
+                    data-event-day={EVENT_DATA.event.date.iso}>
                     &nbsp;
                 </p>
                 <p class="text-gray-100">Préparez votre venue à <strong>{venue}</strong>, {city}.</p>
@@ -54,17 +91,22 @@ const city = EVENT_DATA.event.location.city
         <!-- ============ LIVE ============ -->
         <div data-when="live">
             <span
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/90 text-sm font-bold mb-5 animate-pulse">
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/90 text-sm font-bold mb-6 animate-pulse">
                 🔴 En direct
             </span>
-            <h1 class="text-4xl sm:text-5xl font-black mb-4">{EVENT_DATA.event.shortName} en cours</h1>
+            <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                {EVENT_DATA.event.shortName}
+                <span class="text-gradient">en cours</span>
+            </h1>
             <p class="text-lg text-gray-100">Ce qui se passe maintenant et juste après 👇</p>
         </div>
 
         <!-- ============ POST ============ -->
         <div data-when="post">
             <div class="text-6xl mb-4" aria-hidden="true">🦙</div>
-            <h1 class="text-4xl sm:text-5xl font-black mb-4">Merci à tous pour ce super événement !</h1>
+            <h1 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                Merci à tous pour ce <span class="text-gradient">super événement</span> !
+            </h1>
             <p class="text-lg text-gray-100 mb-6">
                 Rendez-vous l'année prochaine. En attendant, revivez le programme ci-dessous.
             </p>
@@ -102,12 +144,24 @@ const city = EVENT_DATA.event.location.city
             el.textContent = "C'est parti !"
             return
         }
-        const days = Math.floor(diff / 86400000)
-        const hours = Math.floor((diff % 86400000) / 3600000)
-        const mins = Math.floor((diff % 3600000) / 60000)
-        if (days >= 1) {
-            el.textContent = `Plus que ${days} jour${days > 1 ? 's' : ''} et ${hours} h`
+        // Écart en jours calendaires (pas en multiples de 24 h) entre aujourd'hui et
+        // le jour J : ainsi le 17 au soir affiche bien "demain" et non "dans 0 jour".
+        const eventDayAttr = el.getAttribute('data-event-day')
+        let calDays = null
+        if (eventDayAttr) {
+            const [y, m, d] = eventDayAttr.split('-').map(Number)
+            const eventMidnight = new Date(y, m - 1, d)
+            const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+            calDays = Math.round((eventMidnight.getTime() - todayMidnight.getTime()) / 86400000)
+        }
+        if (calDays === 1) {
+            el.textContent = "C'est demain !"
+        } else if (calDays !== null && calDays >= 2) {
+            el.textContent = `Plus que ${calDays} jours`
         } else {
+            // Jour J (ou repli) : compte à rebours en heures/minutes.
+            const hours = Math.floor(diff / 3600000)
+            const mins = Math.floor((diff % 3600000) / 60000)
             el.textContent = `Plus que ${hours} h ${mins.toString().padStart(2, '0')} min`
         }
     }
