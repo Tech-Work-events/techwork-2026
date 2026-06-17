@@ -126,6 +126,22 @@ const whatsappUrl = SERVICES_DATA.community.whatsapp.inviteUrl
 const wifi = (LIVE_DATA as { wifi?: { ssid?: string; password?: string } }).wifi
 const wifiSsid = wifi?.ssid ? wifi.ssid : null
 const wifiPassword = wifi?.password ? wifi.password : null
+
+// Contacts d'urgence jour J. On encode en base64 et on réassemble le lien tel:
+// côté client : aucun numéro ni href "tel:" en clair dans le HTML statique, donc
+// les crawlers/scrapers basiques (regex sur les chiffres ou sur tel:) repartent
+// bredouilles. Réversible facilement, ce n'est pas du chiffrement — juste un repoussoir.
+const enc = (s: string) => Buffer.from(s, 'utf8').toString('base64')
+const emergencyContacts = [
+    { name: 'Xavier', tel: '+33673474053', display: '06 73 47 40 53' },
+    { name: 'Maxime', tel: '+33683637026', display: '06 83 63 70 26' },
+].map((c) => ({ n: c.name, t: enc(c.tel), d: enc(c.display) }))
+
+const cocUrl = SERVICES_DATA.legal.codeOfConduct
+const linkedinUrl = SOCIAL_DATA.networks.find((n) => n.id === 'linkedin')?.url ?? null
+// Hashtag officiel acté par l'orga (cf. checklist jour J), distinct des hashtags
+// génériques de social.json.
+const eventHashtag = '#QueLeLamaSoitAvecNous'
 ---
 
 <section class="py-10 sm:py-14" data-feedback-window={feedbackWindow}>
@@ -238,10 +254,24 @@ const wifiPassword = wifi?.password ? wifi.password : null
                 </div>
 
                 <div class="card p-5">
-                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">🆘 Besoin d'aide ?</h3>
-                    <div class="flex flex-col sm:flex-row gap-3">
+                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
+                        🆘 Un souci, une urgence ?
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        Malaise, objet perdu, comportement déplacé, accessibilité… appelle un organisateur, on répond
+                        tout de suite.
+                    </p>
+                    {
+                        /* Liens tel: réassemblés côté client (cf. frontmatter) pour ne pas exposer les numéros aux crawlers. */
+                    }
+                    <div
+                        id="live-contacts"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3"
+                        data-contacts={JSON.stringify(emergencyContacts)}>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-2">
                         <a href={`mailto:${contactEmail}`} class="btn btn-secondary flex-1 justify-center text-sm">
-                            ✉️ Contacter l'orga
+                            ✉️ Écrire à l'orga
                         </a>
                         {
                             whatsappUrl && (
@@ -251,6 +281,42 @@ const wifiPassword = wifi?.password ? wifi.password : null
                                     rel="noopener noreferrer"
                                     class="btn btn-secondary flex-1 justify-center text-sm">
                                     💬 Groupe WhatsApp
+                                </a>
+                            )
+                        }
+                    </div>
+                    {
+                        cocUrl && (
+                            <a href={cocUrl} class="inline-block text-sm text-primary-600 hover:underline mt-3">
+                                📜 Lire le code de conduite
+                            </a>
+                        )
+                    }
+                </div>
+
+                <div class="card p-5">
+                    <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
+                        📱 Partagez votre journée
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        Postez vos photos et retours avec le hashtag officiel — touchez-le pour le copier.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <button
+                            type="button"
+                            data-copy={eventHashtag}
+                            class="btn btn-secondary flex-1 justify-center text-sm font-mono">
+                            {eventHashtag}
+                            <span data-copy-feedback class="ml-1 not-italic font-sans"></span>
+                        </button>
+                        {
+                            linkedinUrl && (
+                                <a
+                                    href={linkedinUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn btn-secondary flex-1 justify-center text-sm">
+                                    💼 Page LinkedIn
                                 </a>
                             )
                         }
@@ -553,6 +619,25 @@ const wifiPassword = wifi?.password ? wifi.password : null
             if (tab) showTab(tab)
             return
         }
+        const copyBtn = target.closest('[data-copy]') as HTMLElement | null
+        if (copyBtn) {
+            const txt = copyBtn.getAttribute('data-copy') || ''
+            const fb = copyBtn.querySelector('[data-copy-feedback]')
+            if (navigator.clipboard) {
+                navigator.clipboard
+                    .writeText(txt)
+                    .then(() => {
+                        if (fb) {
+                            fb.textContent = '✓ copié'
+                            setTimeout(() => {
+                                fb.textContent = ''
+                            }, 1500)
+                        }
+                    })
+                    .catch(() => {})
+            }
+            return
+        }
         const favBtn = target.closest('.fav-btn') as HTMLElement | null
         if (favBtn) {
             const id = favBtn.getAttribute('data-fav')
@@ -574,6 +659,31 @@ const wifiPassword = wifi?.password ? wifi.password : null
         }
     }
 
+    // Réassemble les liens tel: à partir des contacts encodés en base64 dans
+    // data-contacts. Idempotent : ne réinjecte pas si déjà fait (init est rejoué
+    // après chaque navigation Astro).
+    function hydrateContacts() {
+        const holder = document.getElementById('live-contacts') as HTMLElement | null
+        if (!holder || holder.dataset.hydrated) return
+        let contacts: { n: string; t: string; d: string }[] = []
+        try {
+            contacts = JSON.parse(holder.getAttribute('data-contacts') || '[]')
+        } catch (e) {
+            return
+        }
+        holder.innerHTML = contacts
+            .map((c) => {
+                const tel = atob(c.t).replace(/[^+\d]/g, '')
+                const disp = atob(c.d)
+                return `<a href="tel:${tel}" class="btn btn-primary justify-center text-sm flex flex-col items-center gap-0.5 py-2">
+                    <span>📞 ${esc(c.n)}</span>
+                    <span class="font-mono text-xs opacity-90">${esc(disp)}</span>
+                </a>`
+            })
+            .join('')
+        holder.dataset.hydrated = '1'
+    }
+
     function init() {
         if (!document.getElementById('live-data')) return
         try {
@@ -581,6 +691,7 @@ const wifiPassword = wifi?.password ? wifi.password : null
         } catch (e) {}
         showTab(activeTab)
         render()
+        hydrateContacts()
     }
 
     document.addEventListener('click', onClick)
