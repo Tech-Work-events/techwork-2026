@@ -169,6 +169,9 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
             <button type="button" class="live-tab" data-tab="next" role="tab" aria-selected="false">
                 ⏭️ À venir <span class="live-tab-count" data-count="next"></span>
             </button>
+            <button type="button" class="live-tab" data-tab="past" role="tab" aria-selected="false">
+                🏁 Terminées <span class="live-tab-count" data-count="past"></span>
+            </button>
             <button type="button" class="live-tab" data-tab="all" role="tab" aria-selected="false">
                 📅 Tous <span class="live-tab-count" data-count="all"></span>
             </button>
@@ -181,6 +184,7 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         {/* Panneaux */}
         <div id="tab-now" class="live-panel" role="tabpanel"></div>
         <div id="tab-next" class="live-panel" role="tabpanel" hidden></div>
+        <div id="tab-past" class="live-panel" role="tabpanel" hidden></div>
         <div id="tab-all" class="live-panel" role="tabpanel" hidden></div>
         <div id="tab-fav" class="live-panel" role="tabpanel" hidden></div>
 
@@ -510,10 +514,6 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         if (cards.length === 0) return `<p class="text-center text-gray-500 py-8">${emptyMsg}</p>`
         return `<div class="grid gap-3">${cards.join('')}</div>`
     }
-    function blockHtml(title: string, cards: string[]): string {
-        if (cards.length === 0) return ''
-        return `<div class="mb-6"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">${title}</h3><div class="grid gap-3">${cards.join('')}</div></div>`
-    }
 
     const TAB_KEY = 'techwork-live-tab'
     let activeTab = 'now'
@@ -523,7 +523,7 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         try {
             sessionStorage.setItem(TAB_KEY, tab)
         } catch (e) {}
-        ;['now', 'next', 'all', 'fav', 'info'].forEach((t) => {
+        ;['now', 'next', 'past', 'all', 'fav', 'info'].forEach((t) => {
             const panel = document.getElementById('tab-' + t)
             if (panel) (panel as HTMLElement).hidden = t !== tab
         })
@@ -548,7 +548,6 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
         } catch (e) {
             return
         }
-        const feedbackWindowMs = parseInt(root.getAttribute('data-feedback-window') || '20', 10) * 60000
         const nowMs = getNow().getTime()
         const favs = getFavs()
 
@@ -556,26 +555,23 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
             .map((d) => ({ it: d, startT: new Date(d.start).getTime(), endT: new Date(d.end).getTime() }))
             .sort((a, b) => a.startT - b.startT)
 
-        // Onglet "En ce moment" : feedback (sessions tout juste finies) + sessions en cours.
-        const feedbackCards = withTimes
-            .filter((x) => x.it.feedbackUrl && x.endT <= nowMs && nowMs - x.endT <= feedbackWindowMs)
-            .sort((a, b) => b.endT - a.endT)
-            .map((x) => buildCard(x.it, favs, { feedback: true }))
+        // Onglet "En ce moment" : uniquement les sessions en cours (le feedback des
+        // sessions finies vit dans l'onglet "Terminées" -> pas de doublon).
         const nowCards = withTimes
             .filter((x) => x.startT <= nowMs && nowMs < x.endT)
             .map((x) => buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
-        const nowPanel =
-            blockHtml('💬 Donnez votre avis', feedbackCards) +
-            (nowCards.length
-                ? blockHtml('🔴 En cours', nowCards)
-                : feedbackCards.length
-                  ? ''
-                  : listHtml([], 'Aucune session en cours pour le moment.'))
 
-        // Onglet "Plus tard" : tout ce qui démarre après maintenant.
+        // Onglet "À venir" : tout ce qui démarre après maintenant.
         const nextCards = withTimes
             .filter((x) => x.startT > nowMs)
             .map((x) => buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
+
+        // Onglet "Terminées" : talks/keynotes passés (avec lien + avis), plus récent
+        // d'abord. On exclut les entrées sans page (pauses, déjeuner…).
+        const pastCards = withTimes
+            .filter((x) => x.endT <= nowMs && x.it.sessionUrl)
+            .sort((a, b) => b.endT - a.endT)
+            .map((x) => buildCard(x.it, favs, { feedback: true, statusHtml: statusBadge(x.startT, x.endT, nowMs) }))
 
         // Onglet "Tout le programme" : toute la journée, avec statut.
         const allCards = withTimes.map((x) =>
@@ -588,15 +584,17 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
             buildCard(x.it, favs, { statusHtml: statusBadge(x.startT, x.endT, nowMs) })
         )
 
-        document.getElementById('tab-now')!.innerHTML = nowPanel
+        document.getElementById('tab-now')!.innerHTML = listHtml(nowCards, 'Aucune session en cours pour le moment.')
         document.getElementById('tab-next')!.innerHTML = listHtml(nextCards, 'Plus de sessions à venir aujourd’hui.')
+        document.getElementById('tab-past')!.innerHTML = listHtml(pastCards, 'Aucune session terminée pour l’instant.')
         document.getElementById('tab-all')!.innerHTML = listHtml(allCards, 'Programme indisponible.')
         document.getElementById('tab-fav')!.innerHTML = listHtml(
             favCards,
             'Aucun favori pour l’instant. Touchez ☆ sur une session pour l’ajouter ici.'
         )
 
-        setCount('now', nowCards.length + feedbackCards.length)
+        setCount('now', nowCards.length)
+        setCount('past', pastCards.length)
         setCount('next', nextCards.length)
         setCount('all', allCards.length)
         setCount('fav', favTimes.length)
