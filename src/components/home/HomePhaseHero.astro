@@ -2,6 +2,8 @@
 // Hero léger, affiché dans les phases preevent / live / post (le hero marketing
 // reste réservé à la phase default). Chaque variante est gatée par data-when ;
 // la variante "jour J" utilise data-eventday-only. Pas d'image lourde ici.
+import { Picture } from 'astro:assets'
+import backgroundHome from '../../assets/hero.webp'
 import { EVENT_DATA } from '../../config'
 import { getScheduleData } from '../../data/conference-hall'
 
@@ -31,6 +33,26 @@ const city = EVENT_DATA.event.location.city
 ---
 
 <section class="hero-gradient relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-28 text-white">
+    {/* Fond lama (même asset que le hero marketing, déjà préchargé) + voile dégradé pour la lisibilité. */}
+    <Picture
+        src={backgroundHome}
+        formats={['avif', 'webp']}
+        widths={[480, 768, 1024, 1280, 1600]}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        sizes="100vw"
+        width={backgroundHome.width}
+        height={backgroundHome.height}
+        class="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
+        style="z-index:0;"
+    />
+    <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-secondary-900/90 animate-gradient pointer-events-none"
+        style="z-index:1;"
+        aria-hidden="true">
+    </div>
+
     <div class="absolute -top-24 -right-24 w-72 h-72 bg-secondary-500/20 rounded-full blur-3xl" aria-hidden="true">
     </div>
     <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl" aria-hidden="true">
