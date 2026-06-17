@@ -3,7 +3,7 @@
 // au build. Recalcul toutes les 30 s + au changement de favori. Heures comparées en
 // heure locale naïve (cohérent avec conference-hall.ts / fixTimestamp).
 import { getScheduleData } from '../../data/conference-hall'
-import { getFeedbackUrl, OPENFEEDBACK_EVENT_URL } from '../../data/openfeedback'
+import { getFeedbackUrl } from '../../data/openfeedback'
 import { LIVE_DATA, SOCIAL_DATA, SERVICES_DATA } from '../../config'
 
 const { sessions, speakers, tracks, commonSessions } = getScheduleData()
@@ -98,6 +98,9 @@ const items = [...sessionItems, ...commonItems].sort(
     (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
 )
 const feedbackWindow = LIVE_DATA.feedbackWindowMinutes
+// Questionnaire de satisfaction global de l'évènement (Google Form), distinct du feedback
+// par session (OpenFeedback). Affiché dans l'onglet « Avis ».
+const satisfactionFormUrl = (LIVE_DATA as { satisfactionFormUrl?: string }).satisfactionFormUrl ?? null
 
 // Infos pratiques (onglet) : salles regroupées par étage. L'étage est déduit du
 // numéro UCLy (C 2xx -> 2ᵉ étage, C 3xx -> 3ᵉ étage). Une salle dont le numéro ne
@@ -207,13 +210,17 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
                         Dites-nous ce que vous avez pensé de cette édition de Tech'Work : organisation, lieu, ambiance…
                         Vos retours nous aident à préparer la suite.
                     </p>
-                    <a
-                        href={OPENFEEDBACK_EVENT_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-primary inline-flex items-center gap-2">
-                        💬 Donner mon avis sur l'évènement
-                    </a>
+                    {
+                        satisfactionFormUrl && (
+                            <a
+                                href={satisfactionFormUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-primary inline-flex items-center gap-2">
+                                💬 Répondre au questionnaire
+                            </a>
+                        )
+                    }
                 </div>
 
                 {/* Renvoi vers le feedback par session (onglet Terminées + page session). */}
