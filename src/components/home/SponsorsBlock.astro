@@ -8,7 +8,11 @@ interface Props {
 
 const { sponsorCategories } = Astro.props
 
-const sponsorsCategoriesSorted = sponsorCategories.sort((a, b) => a.order - b.order)
+// On écarte les catégories sans sponsor (sinon un titre de catégorie s'affiche
+// au-dessus d'une grille vide). Si tout est vide, l'état "Devenir partenaire" prend le relais.
+const sponsorsCategoriesSorted = sponsorCategories
+    .filter((c) => Array.isArray(c.sponsors) && c.sponsors.length > 0)
+    .sort((a, b) => a.order - b.order)
 ---
 
 <section id="sponsors" class="py-12 sm:py-16 lg:py-20 bg-white">
