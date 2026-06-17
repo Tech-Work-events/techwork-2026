@@ -298,6 +298,11 @@ const feedbackUrl = getFeedbackUrl({ sessionId: id, dateStart: dateStart ?? '', 
             const links = document.querySelectorAll<HTMLAnchorElement>('[data-back-link]')
             if (from !== 'live') return
             links.forEach((a) => {
+                // Idempotent : setupBackLinks tourne au parse ET sur astro:page-load
+                // (déclenché aussi au 1er chargement) → sans ce garde, deux listeners
+                // click feraient deux history.back() (recul de 2 pages).
+                if (a.dataset.backBound) return
+                a.dataset.backBound = '1'
                 const label = a.querySelector('[data-back-label]')
                 if (label) label.textContent = 'Retour au live'
                 const icon = a.querySelector('[data-back-icon]')

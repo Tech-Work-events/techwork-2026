@@ -153,7 +153,12 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
 ---
 
 <section class="py-10 sm:py-14" data-feedback-window={feedbackWindow}>
-    <script type="application/json" id="live-data" set:html={JSON.stringify(items)} is:inline />
+    <script
+        type="application/json"
+        id="live-data"
+        set:html={JSON.stringify(items).replace(/</g, '\\u003c')}
+        is:inline
+    />
 
     <div class="max-w-3xl mx-auto px-5">
         {/* Onglets */}
@@ -591,7 +596,7 @@ const eventHashtag = '#QueLeLamaSoitAvecNous'
             'Aucun favori pour l’instant. Touchez ☆ sur une session pour l’ajouter ici.'
         )
 
-        setCount('now', nowCards.length)
+        setCount('now', nowCards.length + feedbackCards.length)
         setCount('next', nextCards.length)
         setCount('all', allCards.length)
         setCount('fav', favTimes.length)
