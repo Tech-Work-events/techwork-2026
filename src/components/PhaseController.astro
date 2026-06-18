@@ -9,18 +9,21 @@
 //   live     -> liveStart .. liveEnd            (sessions en cours / à venir, favoris, feedback)
 //   post     -> après liveEnd                   (merci + programme)
 //
-// Les bornes liveStart / liveEnd sont DÉRIVÉES du programme (1ʳᵉ session avec
-// orateur -> dernière fin), pas codées en dur. preEventStart est une ancre de config.
+// Les bornes liveStart / liveEnd sont DÉRIVÉES du programme (début du tout premier
+// créneau du jour -> dernière fin), pas codées en dur. On inclut les créneaux "Commun"
+// (accueil, intro, pauses) pour que le mode live couvre la journée dès l'accueil, pas
+// seulement à partir de la 1ʳᵉ session avec orateur. preEventStart est une ancre de config.
 import { EVENT_DATA, LIVE_DATA } from '../config'
 import { getScheduleData } from '../data/conference-hall'
 
-const { sessions } = getScheduleData()
+const { sessions, commonSessions } = getScheduleData()
+const scheduleItems = [...sessions, ...commonSessions]
 
-const startTimes = sessions
+const startTimes = scheduleItems
     .map((s) => s.dateStart)
     .filter((d): d is string => !!d)
     .sort()
-const endTimes = sessions
+const endTimes = scheduleItems
     .map((s) => s.dateEnd)
     .filter((d): d is string => !!d)
     .sort()
